@@ -14,4 +14,5 @@ Contributions are welcome! Feel free to submit issues or pull requests.
 ### Planned Updates
 - More Eagler Clients and Eagler Servers
 - Integration with other eaglercraft projects. 
-- Make the News Section
+- Implement a News Section
+- Implement Settings (Empty for Now)
