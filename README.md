@@ -1,5 +1,5 @@
 # MineXLauncher-Beta
-## MineXLauncher-Beta is a static HTML Minecraft launcher designed for Eaglercraft servers.
+## MineXLauncher-Beta is a HTML Minecraft launcher designed for Eaglercraft servers.
 
 ### Features
 Eaglercraft Integration: Specifically tailored for Eaglercraft clients and adding servers to the server list.
