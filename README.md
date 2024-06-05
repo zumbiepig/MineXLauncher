@@ -16,3 +16,4 @@ Contributions are welcome! Feel free to submit issues or pull requests.
 - Integration with other eaglercraft projects. 
 - Implement a News Section
 - Implement Settings (Empty for Now)
+#### Succeeding MineXLauncher (Old): https://github.com/SpeedSlicer/MineXLauncher-Old/ 
