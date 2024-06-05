@@ -5,7 +5,7 @@ function playGame() {
 }
 document.addEventListener('DOMContentLoaded', function() {
     const repoOwner = 'SpeedSlicer'; // Replace with your GitHub username or organization name
-    const repoName = 'MineXLauncher'; // Replace with your GitHub repository name
+    const repoName = 'MineXLauncher-Beta'; // Replace with your GitHub repository name
 
     const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
 
