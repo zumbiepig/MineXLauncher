@@ -18,7 +18,29 @@
         </div>
         <div class="content">
             <div class="sidebar">
-                <!-- Sidebar content here -->
+                <div class="profile">
+                    <span class="profile-name">Default</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li class="nav-item" onclick="redirectToNews()">
+                            <img src="./Resources/news-icon.png" alt="News Icon" class="nav-icon">
+                            <span class="nav-text">Updates</span>
+                        </li>
+                        <li class="nav-item selected">
+                            <img src="./Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                            <span class="nav-text">Eaglercraft: Web Edition</span>
+                        </li>
+                        <li class="nav-item" onclick="redirectToSettings()">
+                            <img src="./Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                            <span class="nav-text">Settings</span>
+                        </li>
+						<li class="nav-item" onclick="redirectToList()">
+                            <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Server List</span>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <div class="main-panel">
                 <div class="top-bar">
