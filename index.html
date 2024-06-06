@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launcher</title>
 	<link rel="stylesheet" href="styles.css">
-	<script src="script.js"></script>
+	<script src="script.js?v=2"></script>
+		<script src="script.js?v=2"></script>
+		<script src="nav-visibility.js"></script>
+
 	<style> body {
 		margin: 0;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -271,18 +274,50 @@
 	.username {
 		font-size: 14px;
 	}</style>
+	<script>  document.addEventListener("DOMContentLoaded", function() {
+            // Function to get a cookie value by name
+            function getCookie(name) {
+               let cookieArr = document.cookie.split(";");
+               for(let i = 0; i < cookieArr.length; i++) {
+                  let cookiePair = cookieArr[i].split("=");
+                  if(name === cookiePair[0].trim()) {
+                     return decodeURIComponent(cookiePair[1]);
+                  }
+               }
+               return null;
+            }
+
+            // Set the username placeholder from the cookie
+            let username = getCookie("username");
+            if (username != null) {
+            
+               document.getElementById("usernameInput").placeholder = username;
+               document.getElementById("profile-name").textContent = username;
+            }
+             let modMakerKitEnabled = getCookie("modMakerKitEnabled");
+            if (modMakerKitEnabled === "true") {
+               document.getElementById("modMakerCheckbox").checked = true;
+               document.getElementById("modMakerItem").style.display = "flex";
+               document.getElementById("apiItem").style.display = "flex";
+            } else {
+               document.getElementById("modMakerItem").style.display = "none";
+               document.getElementById("apiItem").style.display = "none";
+            }
+            // Set the mod maker checkbox state from the cookie
+            
+         });</script>
 </head>
-<body>
+<body onload="detection()">
     <div class="launcher">
         <div class="title-bar">
-            <span>Eaglercraft Launcher</span>
+            <span>MineXLauncher 0.2.0</span>
         </div>
 		
         <div class="content">
             <div class="sidebar">
                 <div class="profile">
-                    <span class="profile-name">Default</span>
-                </div>
+                  <span class="profile-name" id="profile-name">Default</span>
+               </div>
                 <nav>
                     <ul>
                         <li class="nav-item" onclick="redirectToNews()">
@@ -301,6 +336,14 @@
                             <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
+                        <li class="nav-item" id="modMakerItem" style="display: none;">
+                    <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                    <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
+                </li>
+                <li class="nav-item" id="apiItem" style="display: none;">
+                    <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                    <span class="nav-text">Eaglerforge API</span>
+                </li>
                     </ul>
                 </nav>
             </div>
@@ -354,9 +397,10 @@
             </div>
         </div>
         <div class="bottom-bar">
-            <span class="username">Default</span>
+            <span class="username" id="profile-name">MinecraftXLauncher</span>
         </div>
     </div>
 
 </body>
+
 </html>
