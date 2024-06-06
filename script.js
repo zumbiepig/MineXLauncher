@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
                document.getElementById("apiItem").style.display = "none";
             }
          });
-         function openBlankPage(link) {
-            // Open a new blank window or tab
-            var newWindow = window.open(link);
+function openBlankPage(link) {
+          // Open a new blank window or tab
+        window.open(link);
 
-        }
+}
