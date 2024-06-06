@@ -1,3 +1,4 @@
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #2d2d2d;
@@ -11,15 +12,15 @@ body {
 
 .launcher {
     background-color: #333;
-    width: calc(100% - 60px); /* Adjusted width */
-    max-width: 1000px; /* Maximum width */
-    height: 600px; /* Adjusted height */
+    width: 90%; /* Full width */
+    height: 90%;
     display: flex;
     border-radius: 8px;
     overflow: hidden;
     border: 30px solid #2d2d2d; /* Border around the launcher */
 }
 
+/* Sidebar styles */
 .sidebar {
     background-color: #212121;
     width: 250px; /* Fixed width for the sidebar */
@@ -53,96 +54,53 @@ body {
     text-decoration: none;
     display: flex; /* Ensure items are flex items */
     align-items: center; /* Center items vertically */
+    padding: 10px; /* Add padding for better click area */
+    width: 100%; /* Full width links */
+    transition: background-color 0.3s;
 }
 
 .sidebar li.highlighted a {
     color: #4CAF50; /* Highlighted color */
     font-weight: bold; /* Bold text for highlight */
+    background-color: #444; /* Highlight background */
+    border-radius: 4px;
+}
+
+.sidebar li a:hover {
+    background-color: #444; /* Hover background */
+    border-radius: 4px;
 }
 
 .sidebar li i {
     margin-right: 10px; /* Space between icon and text */
 }
 
+/* Main content styles */
 .main-content {
     flex-grow: 1;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding-right: 30px; /* Adjusted padding */
+    justify-content: center;
+    align-items: center;
 }
 
 .main-content img {
-    max-width: 100%; /* Ensures the image fits within its container */
-    max-height: 300px; /* Limiting the height of the image */
+    max-width: 90%; /* Ensures the image fits within its container */
+    max-height: 90%; /* Limiting the height of the image */
     border-radius: 8px;
     align-self: center; /* Center the image horizontally */
     margin-bottom: 20px; /* Space below the image */
 }
 
-.play-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.play-section select, .play-section button {
-    padding: 10px;
-    margin: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-}
-
-.play-section button {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center; /* Center icon vertically */
-}
-
-.play-section button:hover {
-    background-color: #45a049;
-}
-
-.icon {
-    margin-right: 5px; /* Space between icon and text */
-}
-
-.server-list {
-    background-color: #444;
-    padding: 20px;
-    border-radius: 8px;
-    overflow-y: auto; /* Enable scrolling */
-    max-height: 400px; /* Limit height for scrolling */
-}
-
-.server {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #555;
-    border-radius: 4px;
-}
-
-.server-title {
-    font-size: 18px;
-    color: #fff;
-    margin-bottom: 5px;
-}
-
-.server-description {
-    color: #a0a0a0;
-}
-
+/* Releases section styles */
 #github-releases {
     margin-top: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #444;
-    max-height: 200px; /* Limit height for releases */
+    max-height: 400px; /* Limit height for releases */
     overflow-y: auto; /* Enable scrolling */
 }
 
@@ -171,4 +129,86 @@ body {
 
 #github-releases ul li a:hover {
     background-color: #555;
+}
+
+/* Footer styles */
+.launcher p {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Play button styles */
+/* Play button styles */
+.play-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-section select {
+    padding: 10px;
+    margin: 50px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff; /* Background color for select */
+    color: #333; /* Text color for select */
+    width: 80%; /* Set width to 80% of the container */
+}
+
+.play-section button {
+    margin-top: 20px; /* Adjust the distance between select and button */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Server list styles */
+.server-list {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #333;
+    overflow-y: auto; /* Enable scrolling */
+    max-height: 400px; /* Limit height for scrolling */
+    scrollbar-width: thin; /* Width of the scrollbar */
+    scrollbar-color: #4CAF50 #333; /* Color of the scrollbar */
+}
+
+.server-list::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.server-list::-webkit-scrollbar-thumb {
+    background-color: #4CAF50; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+.server-list::-webkit-scrollbar-thumb:hover {
+    background-color: #45a049; /* Color of the scrollbar thumb on hover */
+}
+
+.server {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #444;
+    border-radius: 4px;
+}
+
+.server-title {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.server-description {
+    color: #a0a0a0;
 }
