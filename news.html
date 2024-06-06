@@ -3,34 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eaglercraft Launcher</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Launcher</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js?v=2" defer></script>
-    <style>
-        /* Custom styles */
-    </style>
+    <script type="text/javascript" src="script.js"></script>
+
+    <script type="text/javascript" src="embed.min.js"></script>
+
+    
 </head>
 <body>
     <div class="launcher">
-        <div class="sidebar">
-            <h2>EaglerXLauncher</h2>
-            <ul>
-                <li class="highlighted"><a href="releases.html"><i class="fas fa-newspaper icon"></i> Releases</a></li>
-
-                <li><a href="index.html"><i class="fas fa-gamepad icon"></i> Eaglercraft</a></li>
-
-                <li><a href="serverlist.html"><i class="fas fa-list icon"></i> Serverlist</a></li>
-                <li><a href="#"><i class="fas fa-cog icon"></i> Settings</a></li>
-            </ul>
+        <div class="title-bar">
+            <span>Eaglercraft Launcher</span>
         </div>
-        <div class="main-content">
-            <img src="resources/mainpage.png" alt="Eaglercraft Image">
-            <div id="github-releases"></div>
+        <div class="content">
+            <div class="sidebar">
+                <div class="profile">
+                    <span class="profile-name">Default</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li class="nav-item selected" >
+                            <img src="./Resources/news-icon.png" alt="News Icon" class="nav-icon">
+                            <span class="nav-text">Updates</span>
+                        </li>
+                        <li class="nav-item" onclick="redirectToMain()">
+                            <img src="./Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                            <span class="nav-text">Eaglercraft: Web Edition</span>
+                        </li>
+                        <li class="nav-item" onclick="redirectToSettings()">
+                            <img src="./Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                            <span class="nav-text">Settings</span>
+                        </li>
+						<li class="nav-item" onclick="redirectToList()">
+                            <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Server List</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="main-panel">
+                <div class="top-bar">
+                    <span class="game-title">EAGLERCRAFT: WEB EDITION</span>
+                </div>
+                <div class="main-content">
+                    <h2>Eagler Releases</h2>
+                    <div class="news-item">
+                        <h3>Minecraft 1.9</h3>
+                        <ul>
+                            <li>This version of Eagler has:</li>
+                            <li>Fixed many bugs</li>
+                            <li>Improved performance</li>
+                            <li>Improved Combat and End Dimension</li>
+                            <h4>Not completed yet. On Snapshot 0.3.3</h4>
+
+                        </ul>
+                    </div>
+                    <div class="news-item">
+                        <h3>Minecraft 1.8.8</h3>
+                        <p>Eaglercraft has been updated to Minecraft version 1.8.8 to bring a variety of new things to Minecraft. Switching to 1.8.8 is highly recommended from older versions as it introduces a ton of new features, blocks, bug fixes, and optimizations.</p>
+                    </div>
+                    <div class="news-item">
+                        <h3>Minecraft 1.5.2</h3>
+                        <p>The original version of Eaglercraft. An AOT compiled port of Minecraft 1.5.2 designed to run in a browser environment, using TeaVM and LAX1DUDE's OpenGL 1.3 emulator to simulate a Java virtual machine fully compatible with Minecraft Java Edition.</p>
+                    </div>
+                    <div class="news-item">
+                        <h3>Minecraft Beta 1.3</h3>
+                        <p>A version of Eaglercraft with both singleplayer and multiplayer, released after the 1.5.2 version. Based on Minecraft Beta 1.3, you can play singleplayer and multiplayer, and your worlds will be saved to your browser's local storage. Works on all Chromebooks; you can export and import your worlds to make backups or move worlds to a different computer.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <span class="username">Default</span>
         </div>
     </div>
-    <p  style="position: fixed; bottom: 0; width:100%; text-align: center">Version Test 4</p>
-
+    
+    </script>
 </body>
-
 </html>

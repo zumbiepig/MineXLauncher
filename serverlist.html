@@ -3,53 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eaglercraft Launcher - Serverlist</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js?v=2" defer></script>
+    <title>Launcher</title>
+    <link rel="stylesheet" href="serverlist.css">
+    <script src="embed.min.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="launcher">
-        <div class="sidebar">
-            <h2>EaglerXLauncher</h2>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-gamepad icon"></i> Eaglercraft</a></li>
-                <li><a href="releases.html"><i class="fas fa-newspaper icon"></i> Releases</a></li>
-                <li class="highlighted"><a href="serverlist.html"><i class="fas fa-list icon"></i> Serverlist</a></li>
-                <li><a href="#"><i class="fas fa-cog icon"></i> Settings</a></li>
-            </ul>
+        <div class="title-bar">
+            <span>Eaglercraft Launcher</span>
         </div>
-        <div class="main-content">
-            <img src="resources/serverlist.png" alt="Serverlist Image">
-            <div class="server-list">
-                <div class="server">
-                    <div class="server-title">Zelz Net</div>
-                    <div class="server-description">IP: wss://demo.zelz.net</div>
+        <div class="content">
+            <div class="sidebar">
+                <div class="profile">
+                    <span class="profile-name">Default</span>
                 </div>
-                <div class="server">
-                    <div class="server-title">ArchMC</div>
-                    <div class="server-description">IP: wss://mc.arch.lol</div>
+                <nav>
+                    <ul>
+                        <li class="nav-item" onclick="redirectToNews()">
+                            <img src="./Resources/news-icon.png" alt="News Icon" class="nav-icon">
+                            <span class="nav-text">Updates</span>
+                        </li>
+                        <li class="nav-item" onclick="redirectToMain()">
+                            <img src="./Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                            <span class="nav-text">Eaglercraft: Web Edition</span>
+                        </li>
+                        <li class="nav-item" onclick="redirectToSettings()">
+                            <img src="./Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                            <span class="nav-text">Settings</span>
+                        </li>
+                        <li class="nav-item selected" onclick="redirectToList()">
+                            <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Server List</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="main-panel">
+                <div class="top-bar">
+                    <span class="game-title">EAGLERCRAFT: WEB EDITION</span>
                 </div>
-                <div class="server">
-                    <div class="server-title">Zentic</div>
-                    <div class="server-description">IP: wss://zentic.cc/</div>
+                <div class="main-content" id="embed">
+                    <!-- Server embeds will be dynamically added here -->
                 </div>
-                <div class="server">
-                    <div class="server-title">Rice Network</div>
-                    <div class="server-description">IP: wss://mc.ricenetwork.xyz</div>
-                </div>
-                <div class="server">
-                    <div class="server-title">Asian F4rmer</div>
-                    <div class="server-description">IP: wss://asianf4rmer.minecraft.pe</div>
-                </div>
-                <div class="server">
-                    <div class="server-title">Fire Network</div>
-                    <div class="server-description">IP: wss://mc.firenetwork.lol</div>
-                </div>
-                <!-- Add more servers as needed -->
             </div>
         </div>
+        <div class="bottom-bar">
+            <span class="username">Default</span>
+        </div>
     </div>
-    <p style="position: fixed; bottom: 0; width: 100%; text-align: center">Version Test 4</p>
 </body>
 </html>
+
+<script>
+window.addEventListener("load", () => {
+    const servers = [
+        "wss://zentic.cc",
+        "mc.arch.lol",
+        "wss://mc.zyth.me",
+        "wss://asianf4rmer.minecraft.pe",
+        "wss://hoosiertransfer.xyz",
+        "wss://eg.cloudwars.club",
+        "wss://mc.firenetwork.lol",
+        "wss://deercraft.ddns.net",
+        "wss://sus.shhnowisnottheti.me",
+        "wss://mc.asspixel.net/",
+        "wss://aeon-network.net/1.8",
+
+    ];
+
+    const embedContainer = document.getElementById("embed");
+    embedContainer.style.display = "flex";
+    embedContainer.style.flexWrap = "wrap";
+
+    servers.forEach(server => {
+        const serverDiv = document.createElement("div");
+        serverDiv.className = "server-embed";
+        embedContainer.appendChild(serverDiv);
+
+        const serverInfoDiv = document.createElement("div");
+        serverInfoDiv.style.display = "flex";
+        serverInfoDiv.style.flexDirection = "row";
+        serverInfoDiv.style.alignItems = "center";
+        serverInfoDiv.style.marginBottom = "10px";
+        serverDiv.appendChild(serverInfoDiv);
+
+        const ipSpan = document.createElement("span");
+        ipSpan.textContent = server + ' (Server Embed Below) ↓';
+        serverInfoDiv.appendChild(ipSpan);
+
+        const copyButton = document.createElement("button");
+        copyButton.textContent = "Copy IP";
+        copyButton.classList.add("minecraft-button");
+        copyButton.addEventListener("click", () => {
+            navigator.clipboard.writeText(server)
+                .then(() => {
+                    alert("IP address copied to clipboard: " + server);
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                });
+        });
+        serverInfoDiv.appendChild(copyButton);
+
+        new ServerEmbed(serverDiv, "75%").ping(server);
+    });
+});
+</script>
