@@ -9,6 +9,6 @@ Install the required dependencies by following the instructions provided in the 
 Build the project using your preferred build tools.
 Run the launcher executable to start enjoying its features.
 ## Usage
-Just use it!
+Just host it and use it!
 ## Contributing
 Contributions to MineXLauncher-Beta are welcome! If you encounter any issues or have ideas for enhancements, feel free to submit a pull request or open an issue on the repository.
