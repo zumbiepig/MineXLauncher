@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launcher</title>
-	<link rel="stylesheet" href="styles.css">
-	<script src="script.js?v=2"></script>
-		<script src="script.js?v=2"></script>
-		<script src="nav-visibility.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js?v=2"></script>
+    <script src="nav-visibility.js"></script>
 
-	<style> body {
+    <style>
+		 body {
 		margin: 0;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		background-color: #1e1e1e;
@@ -273,52 +273,108 @@
 
 	.username {
 		font-size: 14px;
-	}</style>
-	<script>  document.addEventListener("DOMContentLoaded", function() {
+	}
+        /* existing styles */
+        /* Additional styles for upload */
+        .upload-section {
+            margin-top: 10px;
+        }
+        .upload-button {
+            background-color: #048239;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .upload-button:hover {
+            background-color: #00cc00;
+        }
+    </style>
+    <script>
+        // existing script
+        document.addEventListener("DOMContentLoaded", function() {
             // Function to get a cookie value by name
             function getCookie(name) {
-               let cookieArr = document.cookie.split(";");
-               for(let i = 0; i < cookieArr.length; i++) {
-                  let cookiePair = cookieArr[i].split("=");
-                  if(name === cookiePair[0].trim()) {
-                     return decodeURIComponent(cookiePair[1]);
-                  }
-               }
-               return null;
+                let cookieArr = document.cookie.split(";");
+                for(let i = 0; i < cookieArr.length; i++) {
+                    let cookiePair = cookieArr[i].split("=");
+                    if(name === cookiePair[0].trim()) {
+                        return decodeURIComponent(cookiePair[1]);
+                    }
+                }
+                return null;
             }
 
             // Set the username placeholder from the cookie
             let username = getCookie("username");
             if (username != null) {
-            
-               document.getElementById("usernameInput").placeholder = username;
-               document.getElementById("profile-name").textContent = username;
+                document.getElementById("usernameInput").placeholder = username;
+                document.getElementById("profile-name").textContent = username;
             }
-             let modMakerKitEnabled = getCookie("modMakerKitEnabled");
+            let modMakerKitEnabled = getCookie("modMakerKitEnabled");
             if (modMakerKitEnabled === "true") {
-               document.getElementById("modMakerCheckbox").checked = true;
-               document.getElementById("modMakerItem").style.display = "flex";
-               document.getElementById("apiItem").style.display = "flex";
+                document.getElementById("modMakerCheckbox").checked = true;
+                document.getElementById("modMakerItem").style.display = "flex";
+                document.getElementById("apiItem").style.display = "flex";
             } else {
-               document.getElementById("modMakerItem").style.display = "none";
-               document.getElementById("apiItem").style.display = "none";
+                document.getElementById("modMakerItem").style.display = "none";
+                document.getElementById("apiItem").style.display = "none";
             }
             // Set the mod maker checkbox state from the cookie
             
-         });
-		</script>
+        });
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'text/html') {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const fileContent = e.target.result;
+                    addVersion(file.name, fileContent);
+                };
+                reader.readAsText(file);
+            } else {
+                alert("Please upload a valid HTML file.");
+            }
+        }
+
+        function addVersion(filename, fileContent) {
+            const customOptions = document.querySelector('.custom-options');
+
+            // Create a new option for the uploaded file
+            const option = document.createElement('div');
+            option.className = 'custom-option';
+            option.innerHTML = `<img src="Resources/icon.png" alt="${filename} Icon">
+                                <span>${filename}</span>`;
+            option.onclick = function() {
+                loadUploadedFile(fileContent);
+            };
+
+            customOptions.appendChild(option);
+        }
+
+        function loadUploadedFile(content) {
+            const newWindow = window.open();
+            newWindow.document.write(content);
+            newWindow.document.close();
+        }
+    </script>
 </head>
 <body onload="detection()">
     <div class="launcher">
         <div class="title-bar">
             <span>MineXLauncher 0.2.0</span>
         </div>
-		
+        
         <div class="content">
             <div class="sidebar">
                 <div class="profile">
-                  <span class="profile-name" id="profile-name">Default</span>
-               </div>
+                    <span class="profile-name" id="profile-name">Default</span>
+                </div>
                 <nav>
                     <ul>
                         <li class="nav-item" onclick="redirectToNews()">
@@ -333,18 +389,18 @@
                             <img src="./Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
                             <span class="nav-text">Settings</span>
                         </li>
-						<li class="nav-item" onclick="redirectToList()">
+                        <li class="nav-item" onclick="redirectToList()">
                             <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
                         <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
-                    <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon"> <!-- Outsourcing Images -->
-                    <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
-                </li>
-                <li class="nav-item" id="apiItem" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
-                    <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
-                    <span class="nav-text">Eaglerforge API</span>
-                </li>
+                            <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
+                        </li>
+                        <li class="nav-item" id="apiItem" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
+                            <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Eaglerforge API</span>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -361,39 +417,33 @@
                                 <span class="custom-select-trigger">Versions:</span>
                             </div>
                             <div class="custom-options">
-								<div class="custom-option" onclick="selectVersion('1.8.8')">
-                                    <img src="Resources/icon.png" alt="1.8.8 Icon">
-                                    <span>Classic 1.8.8</span>
-                                </div>
-								<div class="custom-option" onclick="selectVersion('forge')">
+                                 <div class="custom-option" onclick="selectVersion('forge')">
                                     <img src="Resources/forge-logo.png" alt="1.8.8 Icon">
                                     <span>Eaglerforge 1.8.8</span>
                                 </div>
+                                <div class="custom-option" onclick="selectVersion('1.8.8')">
+                                    <img src="Resources/icon.png" alt="1.8.8 Icon">
+                                    <span>Classic 1.8.8</span>
+                                </div>
+                               
                                 <div class="custom-option" onclick="selectVersion('1.5.2')">
                                     <img src="Resources/icon.png" alt="1.5.2 Icon">
                                     <span>1.5.2</span>
                                 </div>
-								<div class="custom-option" onclick="selectVersion('beta13')">
+                                <div class="custom-option" onclick="selectVersion('beta13')">
                                     <img src="Resources/icon.png" alt="Beta13 Icon">
                                     <span>Beta 1.3</span>
                                 </div>
-								<div class="custom-option" onclick="selectVersion('1.9')">
+                                <div class="custom-option" onclick="selectVersion('1.9')">
                                     <img src="Resources/icon.png" alt="1.9 Icon">
                                     <span>1.9 (Snapshot 0.3.3)</span>
                                 </div>
-                                <div class="custom-option" onclick="selectVersion('1.12')">
-                                    <img src="Resources/icon.png" alt="1.12 Icon">
-                                    <span>1.12 (WIP)</span>
-                                </div>
-                                <div class="custom-option" onclick="selectVersion('1.16.5')">
-                                    <img src="Resources/icon.png" alt="1.16.5 Icon">
-                                    <span>1.16.5 (WIP)</span>
-                                </div>
-								
+                              
                             </div>
                         </div>
                         <button class="play-button" onclick="playGame()">Play</button>
                     </div>
+              
                 </div>
             </div>
         </div>
@@ -401,7 +451,5 @@
             <span class="username" id="profile-name">MinecraftXLauncher</span>
         </div>
     </div>
-
 </body>
-
 </html>
