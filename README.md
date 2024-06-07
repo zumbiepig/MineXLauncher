@@ -2,11 +2,7 @@
 ### MineXLauncher-Beta is a custom launcher for Minecraft, designed to provide additional features and customization options for players.
 
 ## Features
-Customizable UI: Tailor the launcher's appearance to your preferences with various themes and color schemes.
-Multi-Account Support: Manage multiple Minecraft accounts effortlessly within the launcher.
-Modpack Management: Seamlessly install and manage modpacks for enhanced gameplay experiences.
-Enhanced Security: Benefit from built-in security measures to protect your accounts and gameplay data.
-Automatic Updates: Stay up-to-date with the latest launcher features and improvements through automatic updates.
+One of the first Eaglercraft Launchers, that is easily hosted and can be used anywhere!
 ## Installation
 Clone or download the repository to your local machine.
 Install the required dependencies by following the instructions provided in the README.md file.
