@@ -64,17 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
                document.getElementById("apiItem").style.display = "none";
             }
          });
-         function openBlankPage(link) {
-            // Open a new blank window or tab
-            var newWindow = window.open('about:blank');
+function openBlankPage(link) {
+          // Open a new blank window or tab
+        window.open(link);
 
-            // Wait for the new window to finish loading
-            newWindow.onload = function() {
-                // Embed content into the new window
-                var embed = document.createElement('embed');
-                embed.src = link;
-                embed.width = 500;
-                embed.height = 300;
-                newWindow.document.body.appendChild(embed);
-            };
-        }
+}

@@ -306,20 +306,7 @@
             // Set the mod maker checkbox state from the cookie
             
          });
-		 function openBlankPage(link) {
-            // Open a new blank window or tab
-            var newWindow = window.open('about:blank');
-
-            // Wait for the new window to finish loading
-            newWindow.onload = function() {
-                // Embed content into the new window
-                var embed = document.createElement('embed');
-                embed.src = link;
-                embed.width = 500;
-                embed.height = 300;
-                newWindow.document.body.appendChild(embed);
-            };
-        }</script>
+		</script>
 </head>
 <body onload="detection()">
     <div class="launcher">
