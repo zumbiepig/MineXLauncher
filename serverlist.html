@@ -6,15 +6,17 @@
     <title>Launcher</title>
     <link rel="stylesheet" href="serverlist.css">
     <script src="embed.min.js" defer></script>
-    <script src="script.js?v=2" defer></script>
-        <script src="nav-visibility.js"></script>
+    <script src="serverlist.js" defer></script>
 
+    <script src="script.js?v=2" defer></script>
+    <script src="nav-visibility.js" defer></script>
 </head>
-<body onload="detection()">
+<body>
     <div class="launcher">
         <div class="title-bar">
-            <span>MineXLauncher 0.2.0</span>
+            <span>MineXLauncher 0.2.2</span>
         </div>
+       
         <div class="content">
             <div class="sidebar">
                 <div class="profile">
@@ -39,7 +41,7 @@
                             <span class="nav-text">Server List</span>
                         </li>
                         <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
-                            <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon"> <!-- Outsourcing Images -->
+                            <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
                         </li>
                         <li class="nav-item" id="apiItem" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
@@ -64,92 +66,3 @@
     </div>
 </body>
 </html>
-
-<script>
-window.addEventListener("load", () => {
-    const servers = [
-        "wss://zentic.cc",
-        "mc.arch.lol",
-        "wss://mc.zyth.me",
-        "wss://asianf4rmer.minecraft.pe",
-        "wss://hoosiertransfer.xyz",
-        "wss://eg.cloudwars.club",
-        "wss://mc.firenetwork.lol",
-        "wss://deercraft.ddns.net",
-        "wss://sus.shhnowisnottheti.me",
-        "wss://mc.asspixel.net/",
-        "wss://aeon-network.net/1.8",
-
-    ];
-
-    const embedContainer = document.getElementById("embed");
-    embedContainer.style.display = "flex";
-    embedContainer.style.flexWrap = "wrap";
-
-    servers.forEach(server => {
-        const serverDiv = document.createElement("div");
-        serverDiv.className = "server-embed";
-        embedContainer.appendChild(serverDiv);
-
-        const serverInfoDiv = document.createElement("div");
-        serverInfoDiv.style.display = "flex";
-        serverInfoDiv.style.flexDirection = "row";
-        serverInfoDiv.style.alignItems = "center";
-        serverInfoDiv.style.marginBottom = "10px";
-        serverDiv.appendChild(serverInfoDiv);
-
-        const ipSpan = document.createElement("span");
-        ipSpan.textContent = server + ' (Server Embed Below) ↓';
-        serverInfoDiv.appendChild(ipSpan);
-
-        const copyButton = document.createElement("button");
-        copyButton.textContent = "Copy IP";
-        copyButton.classList.add("minecraft-button");
-        copyButton.addEventListener("click", () => {
-            navigator.clipboard.writeText(server)
-                .then(() => {
-                    alert("IP address copied to clipboard: " + server);
-                })
-                .catch(err => {
-                    console.error("Failed to copy: ", err);
-                });
-        });
-        serverInfoDiv.appendChild(copyButton);
-
-        new ServerEmbed(serverDiv, "75%").ping(server);
-    });
-});
-
-</script>
-<script>  document.addEventListener("DOMContentLoaded", function() {
-            // Function to get a cookie value by name
-            function getCookie(name) {
-               let cookieArr = document.cookie.split(";");
-               for(let i = 0; i < cookieArr.length; i++) {
-                  let cookiePair = cookieArr[i].split("=");
-                  if(name === cookiePair[0].trim()) {
-                     return decodeURIComponent(cookiePair[1]);
-                  }
-               }
-               return null;
-            }
-
-            // Set the username placeholder from the cookie
-            let username = getCookie("username");
-            if (username != null) {
-            
-               document.getElementById("usernameInput").placeholder = username;
-               document.getElementById("profile-name").textContent = username;
-            }
-
-            // Set the mod maker checkbox state from the cookie
-             let modMakerKitEnabled = getCookie("modMakerKitEnabled");
-            if (modMakerKitEnabled === "true") {
-               document.getElementById("modMakerCheckbox").checked = true;
-               document.getElementById("modMakerItem").style.display = "flex";
-               document.getElementById("apiItem").style.display = "flex";
-            } else {
-               document.getElementById("modMakerItem").style.display = "none";
-               document.getElementById("apiItem").style.display = "none";
-            }
-         });</script>
