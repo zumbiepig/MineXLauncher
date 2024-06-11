@@ -10,13 +10,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return null;
     }
-
+    
+    // Set the username placeholder from the cookie
     // Set the username placeholder from the cookie
     let username = getCookie("username");
     if (username != null) {
-        document.getElementById("usernameInput").placeholder = username;
-        document.getElementById("profile-name").textContent = username;
+       document.getElementById("profile-name").textContent = username;
+       document.getElementById("bottom-profile-name").textContent = username;
     }
+
     let modMakerKitEnabled = getCookie("modMakerKitEnabled");
     if (modMakerKitEnabled === "true") {
         document.getElementById("modMakerCheckbox").checked = true;

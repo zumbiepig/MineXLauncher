@@ -20,7 +20,15 @@ function playGame() {
     window.location.href = selectedVersion + '/index.html';
 }
 
+function detection(){
+    // Set the username placeholder from the cookie
+    let username = getCookie("username");
+    if (username != null) {
+       document.getElementById("profile-name").textContent = username;
+       document.getElementById("bottom-profile-name").textContent = username;
+    }
 
+}
 function redirectToNews() {
     window.location.href = 'news.html';
 }
