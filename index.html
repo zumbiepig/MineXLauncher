@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 	<script src="script.js?v=3" defer></script>
     <script src="nav-visibility.js"></script>
+	<script src="detector.js" defer></script>
 
     <style>
 		 body {
@@ -356,11 +357,11 @@ window.onload = function() {
                 </div>
                 <nav>
                     <ul>
-                        <li class="nav-item selected" >
+                        <li class="nav-item" onclick="redirectToNews()">
                             <img src="./Resources/news-icon.png" alt="News Icon" class="nav-icon">
                             <span class="nav-text">Updates</span>
                         </li>
-                        <li class="nav-item" onclick="redirectToMain()">
+                        <li class="nav-item selected" >
                             <img src="./Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
                             <span class="nav-text">Game</span>
                         </li>
