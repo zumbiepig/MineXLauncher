@@ -5,16 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launcher</title>
     <link rel="stylesheet" href="serverlist.css">
-    <script src="embed.min.js" defer></script>
     <script src="serverlist.js" defer></script>
+    <script src="script.js"></script>
+    <script src="detector.js"></script>
 
-    <script src="script.js?v=2" defer></script>
-    <script src="nav-visibility.js" defer></script>
 </head>
+<script defer>document.addEventListener("DOMContentLoaded", function() {
+    // Function to get a cookie value by name
+    function getCookie(name) {
+        let cookieArr = document.cookie.split(";");
+        for(let i = 0; i < cookieArr.length; i++) {
+            let cookiePair = cookieArr[i].split("=");
+            if(name === cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+
+    // Set the username placeholder from the cookie
+    let username = getCookie("username");
+    if (username != null) {
+        document.getElementById("usernameInput").placeholder = username;
+        document.getElementById("profile-name").textContent = username;
+    }
+    let modMakerKitEnabled = getCookie("modMakerKitEnabled");
+    if (modMakerKitEnabled === "true") {
+        document.getElementById("modMakerCheckbox").checked = true;
+        document.getElementById("modMakerItem").style.display = "flex";
+        document.getElementById("apiItem").style.display = "flex";
+    } else {
+        document.getElementById("modMakerItem").style.display = "none";
+        document.getElementById("apiItem").style.display = "none";
+    }
+    let serverToolEnabled = getCookie("serverToolEnabled");
+    if (modMakerKitEnabled === "true") {
+        document.getElementById("serverToolCheckbox").checked = true;
+        document.getElementById("serverTool").style.display = "flex";
+    } else {
+        document.getElementById("serverTool").style.display = "none";
+    }
+    // Set the mod maker checkbox state from the cookie
+    
+});</script>
+<style>
+/* serverlist.css */
+
+/* Existing styles */
+.copy-button, .play-button {
+    cursor: pointer;
+    background-color: #555; /* Default background color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-family: 'Minecraft', sans-serif; /* Minecraft font */
+}
+
+.copy-button:hover, .play-button:hover {
+    background-color: #777; /* Darker background color on hover */
+}
+
+/* Scrollbar styles */
+.minecraft-scrollbar {
+    height: 400px; /* Set height if needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Webkit-based browsers */
+.minecraft-scrollbar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.minecraft-scrollbar::-webkit-scrollbar-track {
+    background: #2e2e2e;
+}
+
+.minecraft-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4c4c4c;
+    border-radius: 0; /* Keep it blocky */
+    border: 2px solid #333;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.minecraft-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+}
+
+/* For Firefox */
+.minecraft-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #4c4c4c #2e2e2e;
+}
+
+/* For IE and Edge */
+.minecraft-scrollbar {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+</style>
 <body>
     <div class="launcher">
         <div class="title-bar">
-            <span>MineXLauncher 0.2.2</span>
+            <span>MineXLauncher 0.3.0</span>
         </div>
        
         <div class="content">
@@ -40,6 +133,9 @@
                             <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
+                        <li class="nav-item" onclick="location.href='clientd.html'">
+                            <img src="./Resources/offlinedownloads.png" alt="News Icon" class="nav-icon"> <span class="nav-text">Client Downloads</span>
+                        </li>
                         <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
                             <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
@@ -48,6 +144,14 @@
                             <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Eaglerforge API</span>
                         </li>
+                        <li class="nav-item" id="serverTool" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
+                            <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Server Tools</span>
+                        </li>
+                        <li class="nav-item" onclick="location.href='otherclients.html'">
+                            <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Other Clients</span>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -55,8 +159,99 @@
                 <div class="top-bar">
                     <span class="game-title">Game</span>
                 </div>
-                <div class="main-content" id="embed">
-                    <!-- Server embeds will be dynamically added here -->
+                <div class="server-list minecraft-scrollbar">
+                    <!-- Server entries -->
+                    <div class="server-entry">
+                        <img src="server1.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">Vanilla Network IP: </span>
+                            <span class="server-address">wss://play.vanilanetwork.uk.to</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://play.vanilanetwork.uk.to'">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server1.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">Zentic IP: </span>
+                            <span class="server-address">wss://zentic.cc</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://zentic.cc'">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server2.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">Arch MC IP: </span>
+                            <span class="server-address">wss://mc.arch.lol</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="window.open('1.8.8/index.html?server=wss://mc.arch.lol')">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">ZythMC IP: </span>
+                            <span class="server-address">wss://mc.zyth.me</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="window.open('1.8.8/index.html?server=wss://mc.zyth.me')">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">Asianf4rmer IP: </span>
+                            <span class="server-address">wss://asianf4rmer.minecraft.pe</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://asianf4rmer.minecraft.pe'">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">CloudWars IP: </span>
+                            <span class="server-address">wss://eg.cloudwars.club</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://eg.cloudwars.club'">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">Fire Network IP: </span>
+                            <span class="server-address">wss://mc.firenetwork.lol</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://mc.firenetwork.lol'">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">ViaProxy IP: </span>
+                            <span class="server-address">wss://sus.shhnowisnottheti.me</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://sus.shhnowisnottheti.me'">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">A*spixel IP: </span>
+                            <span class="server-address">wss://mc.asspixel.net/</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://mc.asspixel.net/'">Play</button>
+                    </div>
+                    <div class="server-entry">
+                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        <div class="server-details">
+                            <span class="server-name">VanillaMC Legacy IP: </span>
+                            <span class="server-address">wss://mc.asspixel.net/</span>
+                        </div>
+                        <button class="copy-button">Copy</button>
+                        <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://mc.asspixel.net/'">Play</button>
+                    </div>
+                    <!-- Add more server entries as needed -->
                 </div>
             </div>
         </div>
@@ -64,5 +259,64 @@
             <span class="username" id="profile-name">MinecraftXLauncher</span>
         </div>
     </div>
+
+    <script>
+        // Add event listeners to all copy buttons
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const serverAddress = button.previousElementSibling.querySelector('.server-address').innerText;
+                copyToClipboard(serverAddress);
+            });
+        });
+
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Server address copied to clipboard!');
+        }
+    </script>
+    <script defer>document.addEventListener("DOMContentLoaded", function() {
+        // Function to get a cookie value by name
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for(let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if(name === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+    
+        // Set the username placeholder from the cookie
+        let username = getCookie("username");
+        if (username != null) {
+            document.getElementById("usernameInput").placeholder = username;
+            document.getElementById("profile-name").textContent = username;
+        }
+        let modMakerKitEnabled = getCookie("modMakerKitEnabled");
+        if (modMakerKitEnabled === "true") {
+            document.getElementById("modMakerCheckbox").checked = true;
+            document.getElementById("modMakerItem").style.display = "flex";
+            document.getElementById("apiItem").style.display = "flex";
+        } else {
+            document.getElementById("modMakerItem").style.display = "none";
+            document.getElementById("apiItem").style.display = "none";
+        }
+        let serverToolEnabled = getCookie("serverToolEnabled");
+        if (modMakerKitEnabled === "true") {
+            document.getElementById("serverToolCheckbox").checked = true;
+            document.getElementById("serverTool").style.display = "flex";
+        } else {
+            document.getElementById("serverTool").style.display = "none";
+        }
+        // Set the mod maker checkbox state from the cookie
+        
+    });</script>
 </body>
 </html>
