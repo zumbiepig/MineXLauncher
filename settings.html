@@ -9,107 +9,7 @@
           <script src="nav-visibility.js"></script>
 
       <style>
-         /* Your existing styles */
-         body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1e1e1e;
-            color: #fff;
-         }
-         .launcher {
-            width: 900px;
-            height: 600px;
-            margin: 50px auto;
-            background-color: #333;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-         }
-         .title-bar {
-            background-color: #2c2c2c;
-            padding: 10px;
-            text-align: center;
-            color: #ddd;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-         }
-         .content {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-         }
-         .sidebar {
-            background-color: #242424;
-            width: 200px;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-            border-right: 1px solid #333;
-         }
-         .profile {
-            padding: 20px 10px;
-            border-bottom: 1px solid #333;
-            text-align: center;
-         }
-         .profile-name {
-            font-weight: bold;
-            display: block;
-            font-size: 16px;
-         }
-         .profile-status {
-            font-size: 12px;
-            color: #00cc00;
-            display: block;
-            margin-top: 5px;
-         }
-         nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-         }
-         .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-         }
-         .nav-item:hover,
-         .nav-item.selected {
-            background-color: #444;
-         }
-         .nav-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 15px;
-         }
-         .nav-text {
-            font-size: 14px;
-         }
-         .main-panel {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: #202020;
-         }
-         .top-bar {
-            background-color: #2c2c2c;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            flex-shrink: 0;
-         }
-         .game-title {
-            font-size: 18px;
-            font-weight: bold;
-         }
+       
          .tabs {
             display: flex;
          }
@@ -287,7 +187,7 @@
       <div class="launcher">
          <div class="title-bar">
              
-            <span>MineXLauncher 0.2.2</span>
+            <span>MineXLauncher 0.3.0</span>
          </div>
          
          <div class="content">
@@ -314,6 +214,9 @@
                         <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                         <span class="nav-text">Server List</span>
                      </li>
+                     <li class="nav-item" onclick="location.href='clientd.html'">
+                        <img src="./Resources/offlinedownloads.png" alt="News Icon" class="nav-icon">                        <span class="nav-text">Client Downloads</span>
+                     </li>
                      <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
                         <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon"> <!-- Outsourcing Images -->
                         <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
@@ -322,28 +225,43 @@
                         <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
                         <span class="nav-text">Eaglerforge API</span>
                     </li>
+                    <li class="nav-item" id="serverTool" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
+                     <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                     <span class="nav-text">Server Tools</span>
+                 </li>
+                 <li class="nav-item" onclick="location.href='otherclients.html'">
+                  <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                  <span class="nav-text">Other Clients</span>
+              </li>
                   </ul>
                </nav>
                
             </div>
-           
-            <div class="main-content">
-                <div class="top-bar">
-                    <span class="game-title">Settings</span>
-                </div>
-               <input type="text" class="usernameSelect" id="usernameInput" placeholder="Enter new username">
-               <button class="minecraft-button" onclick="submitForm()">Submit</button>
-               <br>
-               <label class="mod-maker-checkbox" onclick="modKitChecker()">
-                  <input type="checkbox" id="modMakerCheckbox">
-                  <span class="slider"></span>
-               </label>
-               <span class="modMakerKit">Mod Maker Kit</span>
+
+            <div class="main-panel">
+               <div class="top-bar">
+                  <span class="game-title">Settings</span>
+               </div>
+               <div class="main-content">
+                  <h6>Profile Name</h6>
+                  <input type="text" class="usernameSelect" id="usernameInput" placeholder="Enter Profile Name">
+                  <button class="minecraft-button" onclick="submitForm()">Submit</button>
+                  <br>
+                  <label class="mod-maker-checkbox" onclick="modKitChecker()">
+                     <input type="checkbox" id="modMakerCheckbox">
+                     <span class="slider"></span>
+                  </label>
+                  <span class="modMakerKit">Mod Maker Kit</span>
+               </div>
+
             </div>
-         </div>
-         <div class="bottom-bar">
-            <span class="username" id="bottom-profile-name">MinecraftXLauncher</span>
-         </div>
+            <div class="bottom-bar">
+               <span class="username" id="bottom-profile-name">MinecraftXLauncher</span>
+            </div>
+               </div>
+           </div>
+            
+             
       </div>
       <script>
          document.addEventListener("DOMContentLoaded", function() {

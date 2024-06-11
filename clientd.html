@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MineXLauncher</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js?v=2"></script>
+    <script src="nav-visibility.js"></script>
+
+    <style>
+        /* Existing styles */
+        /* Additional styles for download section */
+        .downloads {
+            margin-top: 20px;
+        }
+
+        .download-link {
+            display: block;
+            background-color: #048239;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .download-link:hover {
+            background-color: #00cc00;
+        }
+    </style>
+    <script>
+        // Existing script and new functions
+    </script>
+</head>
+<body onload="detection()">
+    <div class="launcher">
+        <div class="title-bar">
+            <span>MineXLauncher 0.3.0</span>
+        </div>
+        
+        <div class="content">
+            <div class="sidebar">
+                <div class="profile">
+                    <span class="profile-name" id="profile-name">Default</span>
+                </div>
+                <nav>
+                    <li class="nav-item" onclick="redirectToNews()">
+                        <img src="./Resources/news-icon.png" alt="News Icon" class="nav-icon">
+                        <span class="nav-text">Updates</span>
+                    </li>
+                    <li class="nav-item">
+                        <img src="./Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                        <span class="nav-text">Game</span>
+                    </li>
+                    <li class="nav-item" onclick="redirectToSettings()">
+                        <img src="./Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                        <span class="nav-text">Settings</span>
+                    </li>
+                    <li class="nav-item" onclick="redirectToList()">
+                        <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                        <span class="nav-text">Server List</span>
+                    </li>
+                    <li class="nav-item selected" onclick="location.href='clientd.html'">
+                        <img src="./Resources/offlinedownloads.png" alt="News Icon" class="nav-icon">
+                        <span class="nav-text">Client Downloads</span>
+                    </li>
+                    <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
+                        <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon">
+                        <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
+                    </li>
+                
+                    <li class="nav-item" id="apiItem" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
+                        <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                        <span class="nav-text">Eaglerforge API</span>
+                    </li>         
+                    <li class="nav-item" onclick="location.href='otherclients.html'" >
+                        <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                        <span class="nav-text">Other Clients</span>
+                    </li>    
+                   </nav>
+            </div>
+            <div class="main-panel">
+                <div class="top-bar">
+                    <span class="game-title">Offline Downloads</span>
+                </div>
+                <div class="main-content">
+                    <h2>Client Downloads</h2>
+                    <div class="downloads">
+                        <a href="offline_downloads/1.8.8.html" class="download-link" download>Download 1.8.8 Offline</a>
+                        <a href="offline_downloads/1.5.2.html" class="download-link" download>Download 1.5.2 Offline</a>
+                        <a href="offline_downloads/b1.3.html" class="download-link" download>Download Beta 1.3 Offline</a>
+
+                        <!-- Add more download links as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <span class="username" id="profile-name">MinecraftXLauncher</span>
+        </div>
+    </div>
+</body>
+</html>
