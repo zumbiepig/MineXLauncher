@@ -362,7 +362,7 @@ window.onload = function() {
                             <img src="/resources/news-icon.png" alt="News Icon" class="nav-icon">
                             <span class="nav-text">Updates</span>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" onclick="redirectToMain()">
                             <img src="/resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
                             <span class="nav-text">Game</span>
                         </li>
@@ -385,7 +385,7 @@ window.onload = function() {
                             <img src="/resources/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">EaglerForge API</span>
                         </li>
-						<li class="nav-item selected" onclick="redirectToOtherClients()">
+						<li class="nav-item selected">
                             <img src="/resources/otherclients.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Other Clients</span>
                         </li>
@@ -404,7 +404,12 @@ window.onload = function() {
                             <div id="custom-select" class="custom-select" onclick="toggleOptions()">
                                 <span class="custom-select-trigger">Select a version</span>
                             </div>
+							
                             <div class="custom-options">
+								<div class="custom-option" onclick="selectVersion('archive')">
+									<img src="/resources/eaglerarchiveicon.png" alt="1.5.2 Icon">
+									<span>Eagler Archive</span>
+								</div>
                                  <div class="custom-option" onclick="selectVersion('/otherclients/resent')">
                                     <img src="/resources/forge-logo.png" alt="1.8.8 Icon">
                                     <span>Resent Client</span>

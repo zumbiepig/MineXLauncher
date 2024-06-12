@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MineXLauncher</title>
     <link rel="stylesheet" href="/styles.css">
-    <script src="../../script.js"></script>
     <script src="../../detector.js"></script>
     <script src="./archive.js?v=2"></script>
     <!--Staying here until git stops being shitty and archive.js stops breaking-->
@@ -135,6 +134,7 @@ function openOldB13Client() {
         .upload-button:hover {
             background-color: #00cc00;
         }
+        
     </style>
 </head>
 <body onload="detection()">
@@ -142,7 +142,7 @@ function openOldB13Client() {
         <div class="title-bar">
             <span>MineXLauncher 0.3.0</span>
         </div>
-        <div class="content">
+        <div class="content" >
             <div class="sidebar">
                 <!-- Sidebar content -->
 
@@ -151,46 +151,21 @@ function openOldB13Client() {
                 </div>
                 <nav>
                     <ul>
-                        <li class="nav-item" onclick="redirectToUpdates()">
-                            <img src="/resources/news-icon.png" alt="News Icon" class="nav-icon">
-                            <span class="nav-text">Updates</span>
-                        </li>
-                        <li class="nav-item selected" >
-                            <img src="/resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
-                            <span class="nav-text">Game</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="/resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
-                            <span class="nav-text">Settings</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToList()">
-                            <img src="/resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Server List</span>
-                        </li>
-						<li class="nav-item" onclick="redirectToClientDownload()">
-							<img src="/resources/offlinedownloads.png" alt="Offline Download Icon" class="nav-icon">
-							<span class="nav-text">Client Downloads</span>
-						</li>
-                        <li class="nav-item" id="modMakerItem" onclick="openEaglerForgeModMaker()">
-                            <img src="/resources/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge Mod Maker</span>
-                        </li>
-                        <li class="nav-item" id="apiItem"  onclick="openEaglerForgeApi()">
-                            <img src="/resources/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge API</span>
-                        </li>
-						<li class="nav-item" onclick="redirectToOtherClients()">
+                        
+						<li class="nav-item selected" onclick="location.href='../'">
                             <img src="/resources/otherclients.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Other Clients</span>
+                            <span class="nav-text">Back</span>
                         </li>
                     </ul>
                 </nav>
             </div>
-            <div class="main-panel">
+            <div class="main-panel" style="padding: 10px 20px;">
                 <div class="top-bar">
                     <span class="game-title">Eaglercraft</span>
                     <span class="game-title">Archive</span>
                 </div>
+                <button class="upload-button" onclick="location.href='../'">Back to Other Clients Page</button>
+
                 <div class="main-content">
                     <div class="upload-section">
                         <label for="client-version">Select 1.8 version:</label>

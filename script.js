@@ -78,6 +78,9 @@ function openEaglerForgeApi() {
     createAbout('https://eaglerforge.github.io/apidocs/', "Mod API | EaglerForge", "/resources/eaglerforge-icon.png")
 }
 function redirectToOtherClients() {
-    window.location.href = '/otherclients/';
+    window.location.href = '/other/';
+}
+function redirectToArchive() {
+    window.location.href ='/other/archive';
 }
 
