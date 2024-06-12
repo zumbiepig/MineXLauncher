@@ -20,18 +20,32 @@ function playGame() {
     window.location.href = selectedVersion + '/';
 }
 
-function createAbout(url) {
+function createAbout(url, title, faviconURL) {
     var win = window.open();
     win.document.body.style.margin = '0';
     win.document.body.style.height = '100vh';
+    
+  
+    var favicon = win.document.createElement('link');
+    favicon.rel = 'shortcut icon';
+    favicon.type = 'image/x-icon';
+    favicon.href = faviconURL; 
+    win.document.head.appendChild(favicon);
+    
+  
+    win.document.title = title; 
+    
     var iframe = win.document.createElement('iframe');
     iframe.style.border = 'none';
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.style.margin = '0';
     iframe.src = url;
+    
     win.document.body.appendChild(iframe);
 }
+
+
 
 function redirectToMain() {
     window.location.href = '/';
