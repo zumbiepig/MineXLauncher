@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MineXLauncher</title>
-    <link rel="stylesheet" href="serverlist.css">
-    <script src="serverlist.js" defer></script>
-    <script src="script.js"></script>
-    <script src="detector.js" defer></script>
+    <link rel="stylesheet" href="./serverlist.css">
+    <script src="/serverlist.js" defer></script>
+    <script src="/script.js"></script>
+    <script src="/detector.js" defer></script>
 </head>
 <style>/* serverlist.css */
 
@@ -113,22 +113,18 @@
                             <img src="/Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
-                        <li class="nav-item" onclick="location.href='clientd.html'">
+                        <li class="nav-item" onclick="redirectToClientDownload()">
                             <img src="/Resources/offlinedownloads.png" alt="News Icon" class="nav-icon"> <span class="nav-text">Client Downloads</span>
                         </li>
-                        <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
-                            <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
+                        <li class="nav-item" id="modMakerItem" style="display: none;" onclick="openEaglerForgeModMaker()">
+                            <img src="/Resources/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">EaglerForge Mod Maker</span>
                         </li>
-                        <li class="nav-item" id="apiItem" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
-                            <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Eaglerforge API</span>
+                        <li class="nav-item" id="apiItem" style="display: none;" onclick="openEaglerForgeApi()">
+                            <img src="/Resources/eaglerforge-docs.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">EaglerForge API</span>
                         </li>
-                        <li class="nav-item" id="serverTool" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
-                            <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Server Tools</span>
-                        </li>
-                        <li class="nav-item" onclick="location.href='otherclients.html'">
+                        <li class="nav-item" onclick="redirectToOtherClients()">
                             <img src="/Resources/otherclients.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Other Clients</span>
                         </li>

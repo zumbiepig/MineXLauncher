@@ -71,7 +71,7 @@ class ServerEmbed {
 			self.isSpriteSheetLoaded = true;
 			setInterval(() => self.redraw(), 50);
 		});
-		this.spriteSheet.src = "icons.png";
+		this.spriteSheet.src = "/icons.png";
 		this.socket = null;
 		this.connected = false;
 		this.dirty = false;

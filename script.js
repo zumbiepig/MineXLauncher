@@ -29,19 +29,32 @@ function detection(){
     }
 
 }
-function redirectToNews() {
-    window.location.href = '/news.html';
-}
 
+function redirectToNews() {
+    window.location.href = '/news/';
+}
 function redirectToSettings() {
-    window.location.href = '/settings.html';
+    window.location.href = '/settings/';
 }
 function redirectToList() {
-    window.location.href = '/serverlist.html';
+    window.location.href = '/serverlist/';
+}
+function redirectToClientDownload() {
+    window.location.href = '/clientdownload/';
 }
 function redirectToMain() {
     window.location.href = '/';
 }
+function openEaglerForgeModMaker() {
+    createAbout('https://eaglerforge-builder.vercel.app')
+}
+function openEaglerForgeApi() {
+    createAbout('https://eaglerforge.github.io/apidocs/')
+}
+function redirectToOtherClients() {
+    window.location.href = '/otherclients/';
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     // Function to get a cookie value by name
     function getCookie(name) {
