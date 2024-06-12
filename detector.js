@@ -14,21 +14,19 @@ document.addEventListener("DOMContentLoaded", function() {
     // Set the username placeholder from the cookie
     let username = getCookie("username");
     if (username != null) {
-        let profileNameElement = document.getElementById("profile-name");
-        if (profileNameElement) profileNameElement.textContent = username;
-
-        let bottomProfileNameElement = document.getElementById("bottom-profile-name");
-        if (bottomProfileNameElement) bottomProfileNameElement.textContent = username;
+        document.getElementById("profile-name").textContent = username;
+        document.getElementById("bottom-profile-name").textContent = username;
     }
 
+    // Set the mod maker checkbox state from the cookie
     let modMakerKitEnabled = getCookie("modMakerKitEnabled");
-    let modMakerItem = document.getElementById("modMakerItem");
-    let apiItem = document.getElementById("apiItem");
     if (modMakerKitEnabled === "true") {
-        if (modMakerItem) modMakerItem.style.display = "flex";
-        if (apiItem) apiItem.style.display = "flex";
+        document.getElementById("modMakerCheckbox").checked = true;
+        document.getElementById("modMakerItem").style.display = "flex";
+        document.getElementById("apiItem").style.display = "flex";
     } else {
-        if (modMakerItem) modMakerItem.style.display = "none";
-        if (apiItem) apiItem.style.display = "none";
+        document.getElementById("modMakerCheckbox").checked = false;
+        document.getElementById("modMakerItem").style.display = "none";
+        document.getElementById("apiItem").style.display = "none";
     }
 });
