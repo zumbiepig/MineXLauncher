@@ -62,9 +62,23 @@
                 </div>
                 <div class="main-content">
                     <div class="news-item">
-                        <h3>Latest GitHub Releases</h3>
-                        <strong>Testing</strong>
-                        <p>description</p>
+                        <h3>News and Updates</h3>
+                            <strong>V0.2.2 Alpha</strong>
+                            <p>Bugfix</p>
+                                <li>Fixed up-to-date version name</li>
+                                <li>Fixed bad performance on server list tab</li>
+                                <li>Fixed bad performance on the Mod Maker Kit setting enabled</li>
+                            <strong>V0.2.1 Alpha</strong>
+                            <p>Additions</p>
+                                <li>Turned window.open() to a custom function that opens in about:blank</li>
+                            <strong>V0.2.0 Alpha</strong>
+                            <p>Additions</p>
+                                <li>Settings menu</li>
+                                <li>Mod Maker Kit</li>
+                                <li>Fixed JS and added server list</li>
+                            <strong>V0.1.0 Alpha</strong>
+                            <p>Additions</p>
+                                <li>First release of MineXLauncher</li>
                     </div>
                 </div>
             </div>
@@ -73,32 +87,5 @@
             <span class="username" id="bottom-profile-name">MinecraftXLauncher</span>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('https://api.github.com/repos/SpeedSlicer/MineXLauncher-Beta/releases')
-                .then(response => response.json())
-                .then(data => {
-                    const releasesList = document.getElementById('github-releases');
-                    releasesList.innerHTML = ''; // Clear previous content
-                    if (data.length === 0) {
-                        releasesList.innerHTML = '<li>No releases found.</li>';
-                    } else {
-                        data.forEach(release => {
-                            const releaseItem = document.createElement('li');
-                            releaseItem.innerHTML = `
-                                <strong>${release.name}</strong>
-                                <p>${release.body ? release.body : 'No description available.'}</p>
-                            `;
-                            releasesList.appendChild(releaseItem);
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching GitHub releases:', error);
-                    document.getElementById('github-releases').innerHTML = `<li>Error fetching releases: ${error.message}</li>`;
-                });
-        });
-
-    </script>
 </body>
 </html>
