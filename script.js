@@ -72,10 +72,10 @@ function redirectToClientDownload() {
     window.location.href = '/clientdownload/';
 }
 function openEaglerForgeModMaker() {
-    createAbout('https://eaglerforge-builder.vercel.app', "EaglerForge Builder - Make mods with blocks", "https://eaglerforge-builder.vercel.app/favicon.png")
+    createAbout('https://eaglerforge-builder.vercel.app', "EaglerForge Builder - Make mods with blocks", "/resources/eaglerforge-builder.png")
 }
 function openEaglerForgeApi() {
-    createAbout('https://eaglerforge.github.io/apidocs/', "Mod API | EaglerForge", "/resources/eaglerforge-docs.pn")
+    createAbout('https://eaglerforge.github.io/apidocs/', "Mod API | EaglerForge", "/resources/eaglerforge-icon.png")
 }
 function redirectToOtherClients() {
     window.location.href = '/otherclients/';
