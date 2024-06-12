@@ -28,13 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("modMakerItem").style.display = "none";
         document.getElementById("apiItem").style.display = "none";
     }
-    let serverToolEnabled = getCookie("serverToolEnabled");
-    if (modMakerKitEnabled === "true") {
-        document.getElementById("serverToolCheckbox").checked = true;
-        document.getElementById("serverTool").style.display = "flex";
-    } else {
-        document.getElementById("serverTool").style.display = "none";
-    }
+    
     // Set the mod maker checkbox state from the cookie
     
 });
