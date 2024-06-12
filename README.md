@@ -15,4 +15,4 @@ Contributions to MineXLauncher-Beta are welcome! If you encounter any issues or 
 ## Links
 Discord: https://discord.gg/suQwdJfzrx
 
-Dev Repo: https://github.com/zumbiepig/MineXLauncher-Dev
+Dev preview: https://dev.launcher.orionzleon.me

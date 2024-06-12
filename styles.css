@@ -277,6 +277,19 @@ nav ul {
 .username {
     font-size: 14px;
 }
+/* Add padding to the launcher container */
+
+
+/* Add padding to the news item */
+.news-item {
+    padding: 10px; /* Adjust the value as needed */
+}
+
+/* Add padding to the list items within the news item */
+.news-item li {
+    padding-left: 20px; /* Adjust the value as needed */
+}
+
 
 /* Custom Scrollbar Styles */
 .custom-options::-webkit-scrollbar {

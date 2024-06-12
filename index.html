@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launcher</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js?v=2"></script>
-    <script src="nav-visibility.js"></script>
+    <title>MineXLauncher</title>
+    <link rel="stylesheet" href="/styles.css">
+	<script src="/script.js" defer></script>
+    <script src="/nav-visibility.js"></script>
+    <script src="/detector.js"></script>
 
     <style>
 		 body {
@@ -296,37 +297,7 @@
     </style>
     <script>
         // existing script
-        document.addEventListener("DOMContentLoaded", function() {
-            // Function to get a cookie value by name
-            function getCookie(name) {
-                let cookieArr = document.cookie.split(";");
-                for(let i = 0; i < cookieArr.length; i++) {
-                    let cookiePair = cookieArr[i].split("=");
-                    if(name === cookiePair[0].trim()) {
-                        return decodeURIComponent(cookiePair[1]);
-                    }
-                }
-                return null;
-            }
-
-            // Set the username placeholder from the cookie
-            let username = getCookie("username");
-            if (username != null) {
-                document.getElementById("usernameInput").placeholder = username;
-                document.getElementById("profile-name").textContent = username;
-            }
-            let modMakerKitEnabled = getCookie("modMakerKitEnabled");
-            if (modMakerKitEnabled === "true") {
-                document.getElementById("modMakerCheckbox").checked = true;
-                document.getElementById("modMakerItem").style.display = "flex";
-                document.getElementById("apiItem").style.display = "flex";
-            } else {
-                document.getElementById("modMakerItem").style.display = "none";
-                document.getElementById("apiItem").style.display = "none";
-            }
-            // Set the mod maker checkbox state from the cookie
-            
-        });
+      
 
         function handleFileSelect(event) {
             const file = event.target.files[0];
@@ -341,14 +312,21 @@
                 alert("Please upload a valid HTML file.");
             }
         }
+		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  				document.write("mobile");
+				location.href="/mobilesite/index.html"
+		}	
+		else{
+			console.log("not mobile");
+		} 
 
-        function addVersion(filename, fileContent) {
+  function addVersion(filename, fileContent) {
             const customOptions = document.querySelector('.custom-options');
 
             // Create a new option for the uploaded file
             const option = document.createElement('div');
             option.className = 'custom-option';
-            option.innerHTML = `<img src="Resources/icon.png" alt="${filename} Icon">
+            option.innerHTML = `<img src="/resources/icon.png" alt="${filename} Icon">
                                 <span>${filename}</span>`;
             option.onclick = function() {
                 loadUploadedFile(fileContent);
@@ -367,7 +345,7 @@
 <body onload="detection()">
     <div class="launcher">
         <div class="title-bar">
-            <span>MineXLauncher 0.2.2</span>
+            <span>MineXLauncher 0.3.0</span>
         </div>
         
         <div class="content">
@@ -377,66 +355,77 @@
                 </div>
                 <nav>
                     <ul>
-                        <li class="nav-item" onclick="redirectToNews()">
-                            <img src="./Resources/news-icon.png" alt="News Icon" class="nav-icon">
+                        <li class="nav-item" onclick="redirectToUpdates()">
+                            <img src="/resources/news-icon.png" alt="News Icon" class="nav-icon">
                             <span class="nav-text">Updates</span>
                         </li>
-                        <li class="nav-item selected">
-                            <img src="./Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                        <li class="nav-item selected" >
+                            <img src="/resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
                             <span class="nav-text">Game</span>
                         </li>
                         <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="./Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                            <img src="/resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
                             <span class="nav-text">Settings</span>
                         </li>
                         <li class="nav-item" onclick="redirectToList()">
-                            <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
-                        <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
-                            <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Eaglerforge Mod Maker (Block)</span>
+						<li class="nav-item" onclick="redirectToClientDownload()">
+							<img src="/resources/offlinedownloads.png" alt="Offline Download Icon" class="nav-icon">
+							<span class="nav-text">Client Downloads</span>
+						</li>
+                        <li class="nav-item" id="modMakerItem" onclick="openEaglerForgeModMaker()">
+                            <img src="/resources/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">EaglerForge Mod Maker</span>
                         </li>
-                        <li class="nav-item" id="apiItem" style="display: none;" onclick="createAbout('https://eaglerforge.github.io/apidocs/')">
-                            <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Eaglerforge API</span>
+                        <li class="nav-item" id="apiItem"  onclick="openEaglerForgeApi()">
+                            <img src="/resources/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">EaglerForge API</span>
+                        </li>
+						<li class="nav-item" onclick="redirectToOtherClients()">
+                            <img src="/resources/otherclients.png" alt="List Icon" class="nav-icon">
+                            <span class="nav-text">Other Clients</span>
                         </li>
                     </ul>
                 </nav>
             </div>
-            <div class="main-panel">
+			<div class="main-panel">
                 <div class="top-bar">
                     <span class="game-title">EAGLERCRAFT</span>
                     <span class="game-title">Game</span>
                 </div>
                 <div class="main-content">
-                    <img src="./Resources/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
+                    <img src="/resources/betacover.png" alt="Minecraft Cover Image" class="minecraft-image">
                     <div class="installations">
                         <div class="custom-select-wrapper">
                             <div id="custom-select" class="custom-select" onclick="toggleOptions()">
-                                <span class="custom-select-trigger">Versions:</span>
+                                <span class="custom-select-trigger">Select a version</span>
                             </div>
                             <div class="custom-options">
-                                 <div class="custom-option" onclick="selectVersion('forge')">
-                                    <img src="Resources/forge-logo.png" alt="1.8.8 Icon">
-                                    <span>Eaglerforge 1.8.8</span>
-                                </div>
-                                <div class="custom-option" onclick="selectVersion('1.8.8')">
-                                    <img src="Resources/icon.png" alt="1.8.8 Icon">
-                                    <span>Classic 1.8.8</span>
-                                </div>
-                               
-                                <div class="custom-option" onclick="selectVersion('1.5.2')">
-                                    <img src="Resources/icon.png" alt="1.5.2 Icon">
-                                    <span>1.5.2</span>
-                                </div>
-                                <div class="custom-option" onclick="selectVersion('beta13')">
-                                    <img src="Resources/icon.png" alt="Beta13 Icon">
+								<div class="custom-option" onclick="selectVersion('/beta_1.3')">
+                                    <img src="/resources/icon.png" alt="Beta 1.3 Icon">
                                     <span>Beta 1.3</span>
                                 </div>
-                                <div class="custom-option" onclick="selectVersion('1.9')">
-                                    <img src="Resources/icon.png" alt="1.9 Icon">
-                                    <span>1.9 (Snapshot 0.3.3)</span>
+								<div class="custom-option" onclick="selectVersion('/1.5.2')">
+                                    <img src="/resources/icon.png" alt="1.5.2 Icon">
+                                    <span>1.5.2</span>
+                                </div>
+								<div class="custom-option" onclick="selectVersion('/1.8.8')">
+                                    <img src="/resources/icon.png" alt="1.8.8 Icon">
+                                    <span>1.8.8</span>
+                                </div>
+                                 <div class="custom-option" onclick="selectVersion('/forge')">
+                                    <img src="/resources/forge-logo.png" alt="1.8.8 Icon">
+                                    <span>EaglerForge 1.8.8</span>
+                                </div>
+								<div class="custom-option" onclick="selectVersion('/mobilesite/EaglerMobile')">
+                                    <img src="/resources/eaglermobile-icon.png" alt="EaglerMobile Icon">
+                                    <span>EaglerMobile 1.8.8</span>
+                                </div>
+                                <div class="custom-option" onclick="selectVersion('/1.9')">
+                                    <img src="/resources/icon.png" alt="1.9 Icon">
+                                    <span>1.9 (Unstable)</span>
                                 </div>
                               
                             </div>
@@ -451,5 +440,6 @@
             <span class="username" id="profile-name">MinecraftXLauncher</span>
         </div>
     </div>
+	
 </body>
 </html>

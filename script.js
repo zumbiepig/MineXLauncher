@@ -17,55 +17,70 @@ function playGame() {
         alert('Please select a version to play.');
         return;
     }
-    window.location.href = selectedVersion + '/index.html';
+    window.location.href = selectedVersion + '/';
 }
 
-
-function redirectToNews() {
-    window.location.href = 'news.html';
+function createAbout(url, title, faviconURL) {
+    var win = window.open();
+    win.document.body.style.margin = '0';
+    win.document.body.style.height = '100vh';
+    
+    if (faviconURL) {
+        var favicon = win.document.createElement('link');
+        favicon.rel = 'shortcut icon';
+        favicon.type = 'image/x-icon';
+        favicon.href = faviconURL;
+        win.document.head.appendChild(favicon);
+    }
+    
+    if (title) {
+        win.document.title = title;
+    }
+    
+    var iframe = win.document.createElement('iframe');
+    iframe.style.border = 'none';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.margin = '0';
+    iframe.src = url;
+    
+    win.document.body.appendChild(iframe);
 }
 
+// Example usage:
+// With title and favicon
+// createAbout('about.html', 'About Page', 'path_to_favicon.ico');
+
+// Without title and favicon
+// createAbout('about.html');
+
+
+
+function redirectToMain() {
+    window.location.href = '/';
+}
+function redirectToUpdates() {
+    window.location.href = '/updates/';
+}
 function redirectToSettings() {
-    window.location.href = 'settings.html';
+    window.location.href = '/settings/';
 }
 function redirectToList() {
-    window.location.href = 'serverlist.html';
+    window.location.href = '/serverlist/';
 }
-function redirectToMain() {
-    window.location.href = 'index.html';
+function redirectToClientDownload() {
+    window.location.href = '/clientdownload/';
 }
-document.addEventListener("DOMContentLoaded", function() {
-            // Function to get a cookie value by name
-            function getCookie(name) {
-               let cookieArr = document.cookie.split(";");
-               for(let i = 0; i < cookieArr.length; i++) {
-                  let cookiePair = cookieArr[i].split("=");
-                  if(name === cookiePair[0].trim()) {
-                     return decodeURIComponent(cookiePair[1]);
-                  }
-               }
-               return null;
-            }
-
-            // Set the username placeholder from the cookie
-            let username = getCookie("username");
-            if (username != null) {
-            
-               document.getElementById("profile-name").textContent = username;
-            }
-
-             let modMakerKitEnabled = getCookie("modMakerKitEnabled");
-            if (modMakerKitEnabled === "true") {
-               document.getElementById("modMakerCheckbox").checked = true;
-               document.getElementById("modMakerItem").style.display = "flex";
-               document.getElementById("apiItem").style.display = "flex";
-            } else {
-               document.getElementById("modMakerItem").style.display = "none";
-               document.getElementById("apiItem").style.display = "none";
-            }
-         });
-function openBlankPage(link) {
-          // Open a new blank window or tab
-        window.open(link);
-
+function openEaglerForgeModMaker() {
+    createAbout('https://eaglerforge-builder.vercel.app', "EaglerForge Builder - Make mods with blocks", "/resources/eaglerforge-builder.png")
 }
+function openEaglerForgeApi() {
+    createAbout('https://eaglerforge.github.io/apidocs/', "Mod API | EaglerForge", "/resources/eaglerforge-icon.png")
+}
+function redirectToOtherClients() {
+    window.location.href = '/other/';
+}
+function redirectToArchive() {
+    window.location.href ='/other/archive';
+}
+
