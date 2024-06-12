@@ -10,7 +10,7 @@ window.eaglercraftXOpts = {
 	    { addr: "wss://play.vanilanetwork.uk.to", name: "Vanilla Network" },
 	    { addr: "wss://vanillacraft.kones.tech", name: "VanillaMC Legacy" },
 	    { addr: "wss://zentic.cc", name: "Zentic" },
-	    { addr: "wss://mc.zyth.me", name: "ZythMC" },
+	    { addr: "wss://mc.zyth.me", name: "ZythMC" }
 	]
 }
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
