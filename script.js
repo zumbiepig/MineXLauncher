@@ -17,7 +17,7 @@ function playGame() {
         alert('Please select a version to play.');
         return;
     }
-    window.location.href = selectedVersion + '/index.html';
+    window.location.href = selectedVersion + '/';
 }
 
 function detection(){
@@ -30,17 +30,17 @@ function detection(){
 
 }
 function redirectToNews() {
-    window.location.href = 'news.html';
+    window.location.href = '/news.html';
 }
 
 function redirectToSettings() {
-    window.location.href = 'settings.html';
+    window.location.href = '/settings.html';
 }
 function redirectToList() {
-    window.location.href = 'serverlist.html';
+    window.location.href = '/serverlist.html';
 }
 function redirectToMain() {
-    window.location.href = 'index.html';
+    window.location.href = '/';
 }
 document.addEventListener("DOMContentLoaded", function() {
     // Function to get a cookie value by name

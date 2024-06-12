@@ -314,7 +314,7 @@
         }
 		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
   				document.write("mobile");
-				location.href="mobilesite/index.html"
+				location.href="/mobilesite/index.html"
 		}	
 		else{
 			console.log("not mobile");
@@ -328,7 +328,7 @@ window.onload = function() {
             // Create a new option for the uploaded file
             const option = document.createElement('div');
             option.className = 'custom-option';
-            option.innerHTML = `<img src="Resources/icon.png" alt="${filename} Icon">
+            option.innerHTML = `<img src="/Resources/icon.png" alt="${filename} Icon">
                                 <span>${filename}</span>`;
             option.onclick = function() {
                 loadUploadedFile(fileContent);
@@ -359,23 +359,23 @@ window.onload = function() {
                 <nav>
                     <ul>
                         <li class="nav-item" onclick="redirectToNews()">
-                            <img src="./Resources/news-icon.png" alt="News Icon" class="nav-icon">
+                            <img src="/Resources/news-icon.png" alt="News Icon" class="nav-icon">
                             <span class="nav-text">Updates</span>
                         </li>
                         <li class="nav-item">
-                            <img src="./Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                            <img src="/Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
                             <span class="nav-text">Game</span>
                         </li>
                         <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="./Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                            <img src="/Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
                             <span class="nav-text">Settings</span>
                         </li>
                         <li class="nav-item" onclick="redirectToList()">
-                            <img src="./Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                            <img src="/Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
 						<li class="nav-item" onclick="location.href='clientd.html'">
-							<img src="./Resources/offlinedownloads.png" alt="News Icon" class="nav-icon">							<span class="nav-text">Client Downloads</span>
+							<img src="/Resources/offlinedownloads.png" alt="News Icon" class="nav-icon">							<span class="nav-text">Client Downloads</span>
 						</li>
                         <li class="nav-item" id="modMakerItem" style="display: none;" onclick="createAbout('https://eaglerforge-builder.vercel.app/')">
                             <img src="https://eaglerforge-builder.vercel.app/favicon.png" alt="List Icon" class="nav-icon">
@@ -391,7 +391,7 @@ window.onload = function() {
                             <span class="nav-text">Server Tools</span>
                         </li>
 						<li class="nav-item selected">
-                            <img src="Resources/otherclients.png" alt="List Icon" class="nav-icon">
+                            <img src="/Resources/otherclients.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Other Clients</span>
                         </li>
                     </ul>
@@ -403,7 +403,7 @@ window.onload = function() {
                     <span class="game-title">Game</span>
                 </div>
                 <div class="main-content">
-                    <img src="./Resources/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
+                    <img src="/Resources/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
                     <div class="installations">
                         <div class="custom-select-wrapper">
                             <div id="custom-select" class="custom-select" onclick="toggleOptions()">
@@ -411,16 +411,16 @@ window.onload = function() {
                             </div>
                             <div class="custom-options">
                                  <div class="custom-option" onclick="selectVersion('otherclients/resent')">
-                                    <img src="Resources/forge-logo.png" alt="1.8.8 Icon">
+                                    <img src="/Resources/forge-logo.png" alt="1.8.8 Icon">
                                     <span>Resent Client</span>
                                 </div>
                                 <div class="custom-option" onclick="selectVersion('otherclients/shadowclient')">
-                                    <img src="Resources/icon.png" alt="1.8.8 Icon">
+                                    <img src="/Resources/icon.png" alt="1.8.8 Icon">
                                     <span>Shadow Client</span>
                                 </div>
                                
                                 <div class="custom-option" onclick="selectVersion('otherclients/koneclient')">
-                                    <img src="Resources/koneclient.png" alt="1.5.2 Icon">
+                                    <img src="/Resources/koneclient.png" alt="1.5.2 Icon">
                                     <span>Kone Client</span>
                                 </div>
 								
