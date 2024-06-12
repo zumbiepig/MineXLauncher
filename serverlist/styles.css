@@ -168,6 +168,17 @@ nav ul {
     width: 250px;
     z-index: 9999;
 }
+/* Add padding to the launcher container */
+
+/* Add padding to the news item */
+.news-item {
+    padding: 10px; /* Adjust the value as needed */
+}
+
+/* Add padding to the list items within the news item */
+.news-item li {
+    padding-left: 20px; /* Adjust the value as needed */
+}
 
 .custom-select {
     display: flex;

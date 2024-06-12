@@ -21,11 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Set the mod maker checkbox state from the cookie
     let modMakerKitEnabled = getCookie("modMakerKitEnabled");
     if (modMakerKitEnabled === "true") {
-        document.getElementById("modMakerCheckbox").checked = true;
         document.getElementById("modMakerItem").style.display = "flex";
         document.getElementById("apiItem").style.display = "flex";
     } else {
-        document.getElementById("modMakerCheckbox").checked = false;
         document.getElementById("modMakerItem").style.display = "none";
         document.getElementById("apiItem").style.display = "none";
     }
