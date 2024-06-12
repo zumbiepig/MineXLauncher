@@ -25,15 +25,17 @@ function createAbout(url, title, faviconURL) {
     win.document.body.style.margin = '0';
     win.document.body.style.height = '100vh';
     
-  
-    var favicon = win.document.createElement('link');
-    favicon.rel = 'shortcut icon';
-    favicon.type = 'image/x-icon';
-    favicon.href = faviconURL; 
-    win.document.head.appendChild(favicon);
+    if (faviconURL) {
+        var favicon = win.document.createElement('link');
+        favicon.rel = 'shortcut icon';
+        favicon.type = 'image/x-icon';
+        favicon.href = faviconURL;
+        win.document.head.appendChild(favicon);
+    }
     
-  
-    win.document.title = title; 
+    if (title) {
+        win.document.title = title;
+    }
     
     var iframe = win.document.createElement('iframe');
     iframe.style.border = 'none';
@@ -44,6 +46,13 @@ function createAbout(url, title, faviconURL) {
     
     win.document.body.appendChild(iframe);
 }
+
+// Example usage:
+// With title and favicon
+// createAbout('about.html', 'About Page', 'path_to_favicon.ico');
+
+// Without title and favicon
+// createAbout('about.html');
 
 
 
