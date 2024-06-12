@@ -328,7 +328,7 @@ window.onload = function() {
             // Create a new option for the uploaded file
             const option = document.createElement('div');
             option.className = 'custom-option';
-            option.innerHTML = `<img src="/Resources/icon.png" alt="${filename} Icon">
+            option.innerHTML = `<img src="/resources/icon.png" alt="${filename} Icon">
                                 <span>${filename}</span>`;
             option.onclick = function() {
                 loadUploadedFile(fileContent);
@@ -359,34 +359,34 @@ window.onload = function() {
                 <nav>
                     <ul>
                         <li class="nav-item" onclick="redirectToNews()">
-                            <img src="/Resources/news-icon.png" alt="News Icon" class="nav-icon">
+                            <img src="/resources/news-icon.png" alt="News Icon" class="nav-icon">
                             <span class="nav-text">Updates</span>
                         </li>
                         <li class="nav-item">
-                            <img src="/Resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                            <img src="/resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
                             <span class="nav-text">Game</span>
                         </li>
                         <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="/Resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                            <img src="/resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
                             <span class="nav-text">Settings</span>
                         </li>
                         <li class="nav-item" onclick="redirectToList()">
-                            <img src="/Resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
 						<li class="nav-item" onclick="redirectToClientDownload()">
-							<img src="/Resources/offlinedownloads.png" alt="News Icon" class="nav-icon">							<span class="nav-text">Client Downloads</span>
+							<img src="/resources/offlinedownloads.png" alt="News Icon" class="nav-icon">							<span class="nav-text">Client Downloads</span>
 						</li>
                         <li class="nav-item" id="modMakerItem" style="display: none;" onclick="openEaglerForgeModMaker()">
-                            <img src="/Resources/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">EaglerForge Mod Maker</span>
                         </li>
                         <li class="nav-item" id="apiItem" style="display: none;" onclick="openEaglerForgeApi()">
-                            <img src="/Resources/eaglerforge-docs.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/eaglerforge-docs.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">EaglerForge API</span>
                         </li>
 						<li class="nav-item selected" onclick="redirectToOtherClients()">
-                            <img src="/Resources/otherclients.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/otherclients.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Other Clients</span>
                         </li>
                     </ul>
@@ -398,7 +398,7 @@ window.onload = function() {
                     <span class="game-title">Game</span>
                 </div>
                 <div class="main-content">
-                    <img src="/Resources/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
+                    <img src="/resources/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
                     <div class="installations">
                         <div class="custom-select-wrapper">
                             <div id="custom-select" class="custom-select" onclick="toggleOptions()">
@@ -406,16 +406,16 @@ window.onload = function() {
                             </div>
                             <div class="custom-options">
                                  <div class="custom-option" onclick="selectVersion('/otherclients/resent')">
-                                    <img src="/Resources/forge-logo.png" alt="1.8.8 Icon">
+                                    <img src="/resources/forge-logo.png" alt="1.8.8 Icon">
                                     <span>Resent Client</span>
                                 </div>
                                 <div class="custom-option" onclick="selectVersion('/otherclients/shadowclient')">
-                                    <img src="/Resources/icon.png" alt="1.8.8 Icon">
+                                    <img src="/resources/icon.png" alt="1.8.8 Icon">
                                     <span>Shadow Client</span>
                                 </div>
                                
                                 <div class="custom-option" onclick="selectVersion('/otherclients/koneclient')">
-                                    <img src="/Resources/koneclient.png" alt="1.5.2 Icon">
+                                    <img src="/resources/koneclient.png" alt="1.5.2 Icon">
                                     <span>Kone Client</span>
                                 </div>
 								
