@@ -35,7 +35,7 @@ function openOldClient() {
 }
 function openOld15Client() {
     // Get the selected version from the dropdown
-    const versionSelect = document.getElementById('client-version');
+    const versionSelect = document.getElementById('15-client-version');
     const selectedVersion = versionSelect.value;
 
     // Construct the URL based on the selected version
@@ -70,7 +70,7 @@ function openOld15Client() {
 }
 function openOldB13Client() {
     // Get the selected version from the dropdown
-    const versionSelect = document.getElementById('client-version');
+    const versionSelect = document.getElementById('13-client-version');
     const selectedVersion = versionSelect.value;
 
     // Construct the URL based on the selected version
