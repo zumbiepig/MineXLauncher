@@ -8,71 +8,12 @@
     <script src="serverlist.js" defer></script>
     <script src="script.js"></script>
     <script src="detector.js" defer></script>
-
 </head>
-
-<style>
-/* serverlist.css */
-
-/* Existing styles */
-.copy-button, .play-button {
-    cursor: pointer;
-    background-color: #555; /* Default background color */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    font-family: 'Minecraft', sans-serif; /* Minecraft font */
-}
-
-.copy-button:hover, .play-button:hover {
-    background-color: #777; /* Darker background color on hover */
-}
-
-/* Scrollbar styles */
-.minecraft-scrollbar {
-    height: 400px; /* Set height if needed */
-    overflow-y: auto; /* Enable vertical scrolling */
-}
-
-/* Webkit-based browsers */
-.minecraft-scrollbar::-webkit-scrollbar {
-    width: 12px;
-}
-
-.minecraft-scrollbar::-webkit-scrollbar-track {
-    background: #2e2e2e;
-}
-
-.minecraft-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #4c4c4c;
-    border-radius: 0; /* Keep it blocky */
-    border: 2px solid #333;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.minecraft-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: #666;
-}
-
-/* For Firefox */
-.minecraft-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: #4c4c4c #2e2e2e;
-}
-
-/* For IE and Edge */
-.minecraft-scrollbar {
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-</style>
 <body>
     <div class="launcher">
         <div class="title-bar">
             <span>MineXLauncher 0.3.0</span>
         </div>
-       
         <div class="content">
             <div class="sidebar">
                 <div class="profile">
@@ -219,15 +160,14 @@
             </div>
         </div>
         <div class="bottom-bar">
-            <span class="username" id="profile-name">MinecraftXLauncher</span>
+            <span class="username" id="bottom-profile-name">MinecraftXLauncher</span>
         </div>
     </div>
-
     <script>
         // Add event listeners to all copy buttons
         document.querySelectorAll('.copy-button').forEach(button => {
             button.addEventListener('click', () => {
-                const serverAddress = button.previousElementSibling.querySelector('.server-address').innerText;
+                const serverAddress = button.parentNode.querySelector('.server-address').innerText;
                 copyToClipboard(serverAddress);
             });
         });

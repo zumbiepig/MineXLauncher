@@ -10,25 +10,25 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return null;
     }
-    
-    // Set the username placeholder from the cookie
+
     // Set the username placeholder from the cookie
     let username = getCookie("username");
     if (username != null) {
-       document.getElementById("profile-name").textContent = username;
-       document.getElementById("bottom-profile-name").textContent = username;
+        let profileNameElement = document.getElementById("profile-name");
+        if (profileNameElement) profileNameElement.textContent = username;
+
+        let bottomProfileNameElement = document.getElementById("bottom-profile-name");
+        if (bottomProfileNameElement) bottomProfileNameElement.textContent = username;
     }
 
     let modMakerKitEnabled = getCookie("modMakerKitEnabled");
+    let modMakerItem = document.getElementById("modMakerItem");
+    let apiItem = document.getElementById("apiItem");
     if (modMakerKitEnabled === "true") {
-        document.getElementById("modMakerCheckbox").checked = true;
-        document.getElementById("modMakerItem").style.display = "flex";
-        document.getElementById("apiItem").style.display = "flex";
+        if (modMakerItem) modMakerItem.style.display = "flex";
+        if (apiItem) apiItem.style.display = "flex";
     } else {
-        document.getElementById("modMakerItem").style.display = "none";
-        document.getElementById("apiItem").style.display = "none";
+        if (modMakerItem) modMakerItem.style.display = "none";
+        if (apiItem) apiItem.style.display = "none";
     }
-    
-    // Set the mod maker checkbox state from the cookie
-    
 });
