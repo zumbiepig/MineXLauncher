@@ -45,6 +45,12 @@ function redirectToClientDownload() {
 function redirectToMain() {
     window.location.href = '/';
 }
+function openEaglerForgeModMaker() {
+    createAbout('https://eaglerforge-builder.vercel.app')
+}
+function openEaglerForgeApi() {
+    createAbout('https://eaglerforge.github.io/apidocs/')
+}
 function redirectToOtherClients() {
     window.location.href = '/otherclients/';
 }
