@@ -30,8 +30,11 @@ function detection(){
 
 }
 
-function redirectToNews() {
-    window.location.href = '/news/';
+function redirectToMain() {
+    window.location.href = '/';
+}
+function redirectToUpdates() {
+    window.location.href = '/updates/';
 }
 function redirectToSettings() {
     window.location.href = '/settings/';
@@ -42,9 +45,7 @@ function redirectToList() {
 function redirectToClientDownload() {
     window.location.href = '/clientdownload/';
 }
-function redirectToMain() {
-    window.location.href = '/';
-}
+
 function openEaglerForgeModMaker() {
     createAbout('https://eaglerforge-builder.vercel.app')
 }
