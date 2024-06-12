@@ -1,0 +1,16 @@
+// %%%%%%%%% launch options %%%%%%%%%%%%
+window.eaglercraftXOpts = {
+	servers: [
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	    { addr: "wss://zentic.cc", name: "ArchMC" },
+	]
+}
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
