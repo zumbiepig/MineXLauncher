@@ -9,6 +9,82 @@
     <script src="script.js"></script>
     <script src="detector.js" defer></script>
 </head>
+<style>/* serverlist.css */
+
+    /* Scrollbar styling */
+    .server-list {
+        max-height: 400px; /* Adjust this height as needed */
+        overflow-y: auto;
+        padding: 10px;
+    }
+    
+    .server-list::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .server-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    .server-list::-webkit-scrollbar-thumb {
+        background: #1f9207;
+        border-radius: 4px;
+    }
+    
+    .server-list::-webkit-scrollbar-thumb:hover {
+        background: #107a0c;
+    }
+    
+    /* Button styling */
+    .copy-button, .play-button {
+        background-color: #4CAF50; /* Green background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 10px 20px; /* Some padding */
+        text-align: center; /* Center the text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Get the element to fit the content */
+        margin: 4px 2px; /* Small margin */
+        cursor: pointer; /* Pointer cursor on hover */
+        border-radius: 5px; /* Rounded corners */
+        font-size: 14px; /* Font size */
+    }
+    
+    .copy-button:hover, .play-button:hover {
+        background-color: #45a049; /* Darker green on hover */
+    }
+    
+    /* Server entry styling */
+    .server-entry {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .server-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    
+    .server-details {
+        flex-grow: 1;
+    }
+    
+    .server-name {
+        font-weight: bold;
+        display: block;
+    }
+    
+    .server-address {
+        font-family: monospace;
+    }
+    </style>
 <body>
     <div class="launcher">
         <div class="title-bar">
@@ -53,7 +129,7 @@
                             <span class="nav-text">Server Tools</span>
                         </li>
                         <li class="nav-item" onclick="location.href='otherclients.html'">
-                            <img src="https://avatars.githubusercontent.com/u/157155680?s=48&v=4" alt="List Icon" class="nav-icon">
+                            <img src="Resources/otherclients.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Other Clients</span>
                         </li>
                     </ul>
@@ -66,7 +142,6 @@
                 <div class="server-list minecraft-scrollbar">
                     <!-- Server entries -->
                     <div class="server-entry">
-                        <img src="server1.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">Vanilla Network IP: </span>
                             <span class="server-address">wss://play.vanilanetwork.uk.to</span>
@@ -75,7 +150,6 @@
                         <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://play.vanilanetwork.uk.to'">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server1.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">Zentic IP: </span>
                             <span class="server-address">wss://zentic.cc</span>
@@ -84,7 +158,6 @@
                         <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://zentic.cc'">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server2.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">Arch MC IP: </span>
                             <span class="server-address">wss://mc.arch.lol</span>
@@ -93,7 +166,6 @@
                         <button class="play-button" onclick="window.open('1.8.8/index.html?server=wss://mc.arch.lol')">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server3.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">ZythMC IP: </span>
                             <span class="server-address">wss://mc.zyth.me</span>
@@ -102,7 +174,6 @@
                         <button class="play-button" onclick="window.open('1.8.8/index.html?server=wss://mc.zyth.me')">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server3.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">Asianf4rmer IP: </span>
                             <span class="server-address">wss://asianf4rmer.minecraft.pe</span>
@@ -111,7 +182,6 @@
                         <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://asianf4rmer.minecraft.pe'">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server3.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">CloudWars IP: </span>
                             <span class="server-address">wss://eg.cloudwars.club</span>
@@ -120,7 +190,6 @@
                         <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://eg.cloudwars.club'">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server3.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">Fire Network IP: </span>
                             <span class="server-address">wss://mc.firenetwork.lol</span>
@@ -129,16 +198,14 @@
                         <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://mc.firenetwork.lol'">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server3.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
-                            <span class="server-name">ViaProxy IP: </span>
+                            <span class="server-name">Ayunboom IP: </span>
                             <span class="server-address">wss://sus.shhnowisnottheti.me</span>
                         </div>
                         <button class="copy-button">Copy</button>
                         <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://sus.shhnowisnottheti.me'">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server3.jpg" alt="Server Image" class="server-image">
                         <div class="server-details">
                             <span class="server-name">A*spixel IP: </span>
                             <span class="server-address">wss://mc.asspixel.net/</span>
@@ -147,7 +214,7 @@
                         <button class="play-button" onclick="location.href='1.8.8/index.html?server=wss://mc.asspixel.net/'">Play</button>
                     </div>
                     <div class="server-entry">
-                        <img src="server3.jpg" alt="Server Image" class="server-image">
+                        
                         <div class="server-details">
                             <span class="server-name">VanillaMC Legacy IP: </span>
                             <span class="server-address">wss://mc.asspixel.net/</span>
