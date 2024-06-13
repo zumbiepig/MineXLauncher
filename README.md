@@ -7,7 +7,7 @@ One of the first Eaglercraft Launchers, that is easily hosted and can be used an
 Clone or download the repository to your local machine.
 Install the required dependencies by following the instructions provided in the README.md file.
 Build the project using your preferred build tools.
-Run the launcher executable to start enjoying its features.
+And host it anywhere
 ## Usage
 Just host it and use it!
 ## Contributing
