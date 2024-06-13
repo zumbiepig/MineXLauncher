@@ -17,7 +17,7 @@ function playGame() {
         alert('Please select a version to play.');
         return;
     }
-    window.location.href = selectedVersion + '/';
+    window.location.href = 'main_versions' + selectedVersion + '/';
 }
 
 function createAbout(url, title, faviconURL) {
