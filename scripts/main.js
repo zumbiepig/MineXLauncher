@@ -69,7 +69,7 @@ function redirectToList() {
     window.location.href = '/serverlist/';
 }
 function redirectToClientDownload() {
-    window.location.href = '/clientdownload/';
+    window.location.href = '/offline/';
 }
 function openEaglerForgeModMaker() {
     createAbout('https://eaglerforge-builder.vercel.app', "EaglerForge Builder - Make mods with blocks", "/resources/images/eaglerforge-builder.png")
