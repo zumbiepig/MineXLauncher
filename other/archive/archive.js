@@ -109,7 +109,7 @@ function opena126Client() {
     const selectedVersion = versionSelect.value;
    
     // Construct the URL based on the selected version
-    const url = `https://speedslicer.github.io/MineXLauncher-Archive/a1.2.6/${selectedVersion}.html`;
+    const url = `https://archive-launcher.orionzleon.me/a1.2.6/${selectedVersion}.html`;
 
     // Open the URL in a new window or tab
     window.open(url, '_blank');
@@ -145,7 +145,7 @@ function openb173Client() {
     const selectedVersion = versionSelect.value;
 
     // Construct the URL based on the selected version
-    const url = `https://speedslicer.github.io/MineXLauncher-Archive/b1.7.3/${selectedVersion}.html`;
+    const url = `https://archive-launcher.orionzleon.me/b1.7.3/${selectedVersion}.html`;
 
     // Open the URL in a new window or tab
     window.open(url, '_blank');
@@ -180,7 +180,7 @@ function openinfClient() {
     const selectedVersion = versionSelect.value;
 
     // Construct the URL based on the selected version
-    const url = `https://speedslicer.github.io/MineXLauncher-Archive/VeryOld/${selectedVersion}.html`;
+    const url = `https://archive-launcher.orionzleon.me/VeryOld/${selectedVersion}.html`;
 
     // Open the URL in a new window or tab
     window.open(url, '_blank');
