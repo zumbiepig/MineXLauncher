@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZLauncher</title>
+	<title>ZLauncher</title>
+	<link rel="icon" type="image/x-icon" href="/resources/favicon.png">
     <link rel="stylesheet" href="/styles.css">
-	<script src="/script.js" defer></script>
-    <script src="/nav-visibility.js"></script>
-    <script src="/detector.js"></script>
+	<script src="/scripts/main.js" defer></script>
+    <script src="/scripts/nav-visibility.js"></script>
+    <script src="/scripts/cookies.js"></script>
 
     <style>
 		 body {
@@ -327,7 +328,7 @@
             // Create a new option for the uploaded file
             const option = document.createElement('div');
             option.className = 'custom-option';
-            option.innerHTML = `<img src="/resources/icon.png" alt="${filename} Icon">
+            option.innerHTML = `<img src="/resources/images/icon.png" alt="${filename} Icon">
                                 <span>${filename}</span>`;
             option.onclick = function() {
                 loadUploadedFile(fileContent);
@@ -357,35 +358,35 @@
                 <nav>
                     <ul>
                         <li class="nav-item" onclick="redirectToUpdates()">
-                            <img src="/resources/news-icon.png" alt="News Icon" class="nav-icon">
+                            <img src="/resources/images/news-icon.png" alt="News Icon" class="nav-icon">
                             <span class="nav-text">Updates</span>
                         </li>
                         <li class="nav-item selected" >
-                            <img src="/resources/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
+                            <img src="/resources/images/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
                             <span class="nav-text">Game</span>
                         </li>
                         <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="/resources/settings-icon.png" alt="Settings Icon" class="nav-icon">
+                            <img src="/resources/images/settings-icon.png" alt="Settings Icon" class="nav-icon">
                             <span class="nav-text">Settings</span>
                         </li>
                         <li class="nav-item" onclick="redirectToList()">
-                            <img src="/resources/serverlist-icon.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/images/serverlist-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Server List</span>
                         </li>
 						<li class="nav-item" onclick="redirectToClientDownload()">
-							<img src="/resources/offlinedownloads.png" alt="Offline Download Icon" class="nav-icon">
+							<img src="/resources/images/offlinedownloads.png" alt="Offline Download Icon" class="nav-icon">
 							<span class="nav-text">Client Downloads</span>
 						</li>
                         <li class="nav-item" id="modMakerItem" onclick="openEaglerForgeModMaker()">
-                            <img src="/resources/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/images/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">EaglerForge Mod Maker</span>
                         </li>
                         <li class="nav-item" id="apiItem"  onclick="openEaglerForgeApi()">
-                            <img src="/resources/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/images/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">EaglerForge API</span>
                         </li>
 						<li class="nav-item" onclick="redirectToOtherClients()">
-                            <img src="/resources/otherclients.png" alt="List Icon" class="nav-icon">
+                            <img src="/resources/images/otherclients.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Other Clients</span>
                         </li>
 						
@@ -398,7 +399,7 @@
                     <span class="game-title">Game</span>
                 </div>
                 <div class="main-content">
-                    <img src="/resources/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
+                    <img src="/resources/images/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
                     <div class="installations">
                         <div class="custom-select-wrapper">
                             <div id="custom-select" class="custom-select" onclick="toggleOptions()">
@@ -406,43 +407,43 @@
                             </div>
                             <div class="custom-options">
 								<div class="custom-option" onclick="selectVersion('/main_versions/zpvp')">
-                                    <img src="/resources/zlauncher-icon.png">
+                                    <img src="/resources/images/zlauncher-icon.png">
                                     <span>ZPvP Client (coming soon)</span>
                                 </div>
 								<div class="custom-option" onclick="selectVersion('/main_versions/1.9')">
-                                    <img src="/resources/icon.png">
+                                    <img src="/resources/images/icon.png">
                                     <span>1.9 (Unstable)</span>
                                 </div>
 								<div class="custom-option" onclick="selectVersion('/main_versions/1.8.8')">
-                                    <img src="/resources/icon.png">
+                                    <img src="/resources/images/icon.png">
                                     <span>1.8.8</span>
                                 </div>
 								<div class="custom-option" onclick="selectVersion('/main_versions/1.5.2')">
-                                    <img src="/resources/icon.png">
+                                    <img src="/resources/images/icon.png">
                                     <span>1.5.2</span>
                                 </div>
-								<div class="custom-option" onclick="selectVersion('/main_versions/0.3')">
-                                    <img src="/resources/icon.png">
-                                    <span>0.3</span>
-                                </div>
 								<div class="custom-option" onclick="selectVersion('/main_versions/beta_1.7.3')">
-                                    <img src="/resources/icon.png">
+                                    <img src="/resources/images/icon.png">
                                     <span>Beta 1.7.3</span>
                                 </div>
 								<div class="custom-option" onclick="selectVersion('/main_versions/beta_1.3')">
-                                    <img src="/resources/icon.png">
+                                    <img src="/resources/images/icon.png">
                                     <span>Beta 1.3</span>
                                 </div>
 								<div class="custom-option" onclick="selectVersion('/main_versions/alpha_1.2.6')">
-                                    <img src="/resources/icon.png">
+                                    <img src="/resources/images/icon.png">
                                     <span>Alpha 1.2.6</span>
                                 </div>
-								<div class="custom-option" onclick="selectVersion('/main_versions/infdev')">
-                                    <img src="/resources/icon.png">
-                                    <span>Infdev</span>
+								<div class="custom-option" onclick="selectVersion('/main_versions/infdev_20100630')">
+                                    <img src="/resources/images/icon.png">
+                                    <span>Infdev 20100630</span>
+                                </div>
+								<div class="custom-option" onclick="selectVersion('/main_versions/classic_0.0.3')">
+                                    <img src="/resources/images/icon.png">
+                                    <span>Classic 0.0.3</span>
                                 </div>
 								<div class="custom-option" onclick="selectVersion('/other/archive')">
-                                    <img src="/resources/eaglerarchive-icon.png">
+                                    <img src="/resources/images/eaglerarchive-icon.png">
                                     <span>Eagler Archive</span>
                                 </div>
                             </div>

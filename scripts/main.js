@@ -17,7 +17,7 @@ function playGame() {
         alert('Please select a version to play.');
         return;
     }
-    window.location.href = 'main_versions' + selectedVersion + '/';
+    window.location.href = selectedVersion + '/';
 }
 
 function createAbout(url, title, faviconURL) {
@@ -72,10 +72,10 @@ function redirectToClientDownload() {
     window.location.href = '/clientdownload/';
 }
 function openEaglerForgeModMaker() {
-    createAbout('https://eaglerforge-builder.vercel.app', "EaglerForge Builder - Make mods with blocks", "/resources/eaglerforge-builder.png")
+    createAbout('https://eaglerforge-builder.vercel.app', "EaglerForge Builder - Make mods with blocks", "/resources/images/eaglerforge-builder.png")
 }
 function openEaglerForgeApi() {
-    createAbout('https://eaglerforge.github.io/apidocs/', "Mod API | EaglerForge", "/resources/eaglerforge-icon.png")
+    createAbout('https://eaglerforge.github.io/apidocs/', "Mod API | EaglerForge", "/resources/images/eaglerforge-icon.png")
 }
 function redirectToOtherClients() {
     window.location.href = '/other/';

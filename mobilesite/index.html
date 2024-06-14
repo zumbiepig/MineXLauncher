@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZLauncher</title>
+	<title>ZLauncher</title>
+	<link rel="icon" type="image/x-icon" href="/resources/favicon.png">
     <link rel="stylesheet" href="./styles.css">
-	<script src="/script.js" defer></script>
-    <script src="/nav-visibility.js"></script>
+	<script src="/scripts/main.js" defer></script>
+    <script src="/scripts/nav-visibility.js"></script>
 
     <style>
 		 body {
@@ -327,7 +328,7 @@ window.onload = function() {
             // Create a new option for the uploaded file
             const option = document.createElement('div');
             option.className = 'custom-option';
-            option.innerHTML = `<img src="/resources/icon.png" alt="${filename} Icon">
+            option.innerHTML = `<img src="/resources/images/icon.png" alt="${filename} Icon">
                                 <span>${filename}</span>`;
             option.onclick = function() {
                 loadUploadedFile(fileContent);
@@ -364,7 +365,7 @@ window.onload = function() {
                     <span class="game-title">Game</span>
                 </div>
                 <div class="main-content">
-                    <img src="/resources/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
+                    <img src="/resources/images/coverimage.png" alt="Minecraft Cover Image" class="minecraft-image">
                     <div class="installations">
                         <button class="play-button" onclick="playMobileGame()">Play Mobile</button>
                     </div>
