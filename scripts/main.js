@@ -6,9 +6,9 @@ function toggleOptions() {
     document.querySelector('.custom-select').classList.toggle('open');
 }
 
-function selectVersion(version) {
-    selectedVersion = version;
-    document.querySelector('.custom-select').textContent = `Selected: ${version}`;
+function selectVersion(path, name) {
+    selectedVersion = path;
+    document.querySelector('.custom-select').textContent = `Selected: ${name}`;
     toggleOptions();
 }
 
@@ -17,26 +17,26 @@ function playGame() {
         alert('Please select a version to play.');
         return;
     }
-    window.location.href = selectedVersion + '/';
+    window.location.href = selectedVersion;
 }
 
-function createAbout(url, title, faviconURL) {
+function createAbout(url, title, favicon) {
     var win = window.open();
     win.document.body.style.margin = '0';
     win.document.body.style.height = '100vh';
     
-    if (faviconURL) {
-        var favicon = win.document.createElement('link');
-        favicon.rel = 'shortcut icon';
-        favicon.type = 'image/x-icon';
-        favicon.href = faviconURL;
-        win.document.head.appendChild(favicon);
-    }
-    
     if (title) {
         win.document.title = title;
     }
-    
+
+    if (favicon) {
+        var favicon = win.document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/x-icon';
+        favicon.href = favicon;
+        win.document.head.appendChild(favicon);
+    }
+
     var iframe = win.document.createElement('iframe');
     iframe.style.border = 'none';
     iframe.style.width = '100%';
@@ -46,15 +46,6 @@ function createAbout(url, title, faviconURL) {
     
     win.document.body.appendChild(iframe);
 }
-
-// Example usage:
-// With title and favicon
-// createAbout('about.html', 'About Page', 'path_to_favicon.ico');
-
-// Without title and favicon
-// createAbout('about.html');
-
-
 
 function redirectToMain() {
     window.location.href = '/';
@@ -81,6 +72,6 @@ function redirectToOtherClients() {
     window.location.href = '/other/';
 }
 function redirectToArchive() {
-    window.location.href ='/other/archive';
+    window.location.href ='/other/archive/';
 }
 
