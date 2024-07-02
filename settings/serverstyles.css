@@ -1,0 +1,168 @@
+ 
+        .tabs {
+            display: flex;
+        }
+        .tab {
+            margin-left: 20px;
+            cursor: pointer;
+            color: #888;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .tab:hover,
+        .tab.selected {
+            color: #00cc00;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #202020;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .installations {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background-color: #292929;
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 10px 20px;
+            border-top: 1px solid #333;
+        }
+        .custom-select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 250px;
+            z-index: 9999;
+        }
+        .custom-select {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'MinecraftRegular', sans-serif;
+            font-size: 1em;
+            padding: 7px;
+            border: 2px solid #000;
+            background-color: #048239;
+            color: #FFF;
+            cursor: pointer;
+            box-shadow: 4px 4px #4E4E50;
+            user-select: none;
+            z-index: 9999;
+        }
+        .custom-select.open {
+            border-radius: 5px 5px 0 0;
+        }
+        .custom-options {
+            position: absolute;
+            top: calc(100% + -238px);
+            left: 0;
+            right: 0;
+            border: 2px solid #000;
+            border-top: none;
+            background-color: #035525;
+            box-shadow: 4px 4px #4E4E50;
+            z-index: 9999;
+            display: none;
+            border-radius: 0 0 5px 5px;
+            color: #FFF;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .custom-options.open {
+            display: block;
+        }
+        .custom-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #000;
+            z-index: 9999;
+        }
+        .custom-option:last-child {
+            border-bottom: none;
+        }
+        .custom-option:hover {
+            background-color: #127e3f;
+        }
+        .custom-option img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+        .play-button {
+            background-color: #00cc00;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+        }
+        .play-button:hover {
+            background-color: #00ff00;
+        }
+        .bottom-bar {
+            background-color: #2c2c2c;
+            padding: 10px 20px;
+            text-align: right;
+            color: #ddd;
+            border-top: 1px solid #333;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .usernameSelect {
+            font-size: 14px;
+        }
+        /* Minecraft-themed checkbox styles */
+        .mod-maker-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .mod-maker-checkbox input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .mod-maker-checkbox .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .mod-maker-checkbox .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        .mod-maker-checkbox input:checked + .slider {
+            background-color: #00cc00;
+        }
+        .mod-maker-checkbox input:checked + .slider:before {
+            transform: translateX(26px);
+        }

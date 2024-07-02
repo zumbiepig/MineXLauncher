@@ -5,86 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ZLauncher</title>
 	<link rel="icon" type="image/x-icon" href="/resources/favicon.png">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
+
     <script src="/serverlist.js" defer></script>
     <script src="/scripts/main.js"></script>
     <script src="/scripts/cookies.js"></script>
 </head>
-<style>/* serverlist.css */
-
-    /* Scrollbar styling */
-    .server-list {
-        max-height: 400px; /* Adjust this height as needed */
-        overflow-y: auto;
-        padding: 10px;
-    }
-    
-    .server-list::-webkit-scrollbar {
-        width: 8px;
-    }
-    
-    .server-list::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-    
-    .server-list::-webkit-scrollbar-thumb {
-        background: #1f9207;
-        border-radius: 4px;
-    }
-    
-    .server-list::-webkit-scrollbar-thumb:hover {
-        background: #107a0c;
-    }
-    
-    /* Button styling */
-    .copy-button, .play-button {
-        background-color: #4CAF50; /* Green background */
-        border: none; /* Remove borders */
-        color: white; /* White text */
-        padding: 10px 20px; /* Some padding */
-        text-align: center; /* Center the text */
-        text-decoration: none; /* Remove underline */
-        display: inline-block; /* Get the element to fit the content */
-        margin: 4px 2px; /* Small margin */
-        cursor: pointer; /* Pointer cursor on hover */
-        border-radius: 5px; /* Rounded corners */
-        font-size: 14px; /* Font size */
-    }
-    
-    .copy-button:hover, .play-button:hover {
-        background-color: #45a049; /* Darker green on hover */
-    }
-    
-    /* Server entry styling */
-    .server-entry {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-    
-    .server-image {
-        width: 50px;
-        height: 50px;
-        border-radius: 5px;
-        margin-right: 10px;
-    }
-    
-    .server-details {
-        flex-grow: 1;
-    }
-    
-    .server-name {
-        font-weight: bold;
-        display: block;
-    }
-    
-    .server-address {
-        font-family: monospace;
-    }
+<style>
     </style>
 <body>
     <div class="launcher">
@@ -117,14 +45,7 @@
                         <li class="nav-item" onclick="redirectToClientDownload()">
                             <img src="/resources/images/offlinedownloads.png" alt="News Icon" class="nav-icon"> <span class="nav-text">Client Downloads</span>
                         </li>
-                        <li class="nav-item" id="modMakerItem" onclick="openEaglerForgeModMaker()">
-                            <img src="/resources/images/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge Mod Maker</span>
-                        </li>
-                        <li class="nav-item" id="apiItem" onclick="openEaglerForgeApi()">
-                            <img src="/resources/images/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge API</span>
-                        </li>
+                        
                         <li class="nav-item" onclick="redirectToOtherClients()">
                             <img src="/resources/images/otherclients.png" alt="List Icon" class="nav-icon">
                             <span class="nav-text">Other Clients</span>

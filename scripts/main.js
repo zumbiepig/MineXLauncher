@@ -75,3 +75,16 @@ function redirectToArchive() {
     window.location.href ='/other/archive/';
 }
 
+function showTab(tabId) {
+    var contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+
+    var activeContent = document.getElementById(tabId);
+    activeContent.classList.add('active');
+
+    var tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => tab.classList.remove('active-tab'));
+
+    var activeTab = document.querySelector(`.tab[onclick="showTab('${tabId}')"]`);
+    activeTab.classList.add('active-tab');
+}

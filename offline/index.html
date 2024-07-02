@@ -3,43 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ZLauncher</title>
+	<title>MineXLauncher</title>
 	<link rel="icon" type="image/x-icon" href="/resources/favicon.png">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <script src="/scripts/main.js"></script>
     <script src="/scripts/nav-visibility.js"></script>
     <script src="/scripts/cookies.js" defer></script>
 
-    <style>
-        /* Existing styles */
-        /* Additional styles for download section */
-        .downloads {
-            margin-top: 20px;
-        }
-
-        .download-link {
-            display: block;
-            background-color: #048239;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .download-link:hover {
-            background-color: #00cc00;
-        }
-    </style>
-    <script>
-        // Existing script and new functions
-    </script>
 </head>
 <body onload="detection()">
     <div class="launcher">
         <div class="title-bar">
-            <span>ZLauncher 0.4.0</span>
+            <span>MineXLauncher 0.5.0</span>
         </div>
         
         <div class="content">
@@ -68,14 +43,7 @@
                         <img src="/resources/images/offlinedownloads.png" alt="News Icon" class="nav-icon">
                         <span class="nav-text">Client Downloads</span>
                     </li>
-                    <li class="nav-item" id="modMakerItem" style="display: none;" onclick="openEaglerForgeModMaker()">
-                        <img src="/resources/images/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
-                        <span class="nav-text">EaglerForge Mod Maker</span>
-                    </li>
-                    <li class="nav-item" id="apiItem" style="display: none;" onclick="openEaglerForgeApi()">
-                        <img src="/resources/images/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
-                        <span class="nav-text">EaglerForge API</span>
-                    </li>
+                   
                     <li class="nav-item" onclick="redirectToOtherClients()" >
                         <img src="/resources/images/otherclients.png" alt="List Icon" class="nav-icon">
                         <span class="nav-text">Other Clients</span>
@@ -98,7 +66,7 @@
             </div>
         </div>
         <div class="bottom-bar">
-            <span class="username" id="profile-name">ZLauncher</span>
+            <span class="username" id="profile-name">MineXLauncher</span>
         </div>
     </div>
 </body>
