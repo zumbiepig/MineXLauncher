@@ -6,5 +6,5 @@ N other
 N reorder resources
 N servers
 N settings
-N updates
+Y updates
 N versions reorder
