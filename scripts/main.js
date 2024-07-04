@@ -28,25 +28,25 @@ function playGame() {
 }
 
 function navigateToHome() {
-    replaceFullscreenEmbed('/home/');
+    window.parent.replaceFullscreenEmbed('/home/');
 }
 function navigateToUpdates() {
-    replaceFullscreenEmbed('/updates/');
+    window.parent.replaceFullscreenEmbed('/updates/');
 }
 function navigateToSettings() {
-    replaceFullscreenEmbed('/settings/');
+    window.parent.replaceFullscreenEmbed('/settings/');
 }
 function navigateToServers() {
-    replaceFullscreenEmbed('/servers/');
+    window.parent.replaceFullscreenEmbed('/servers/');
 }
 function navigateToDownloads() {
-    replaceFullscreenEmbed('/downloads/');
+    window.parent.replaceFullscreenEmbed('/downloads/');
 }
 function navigateToOther() {
-    replaceFullscreenEmbed('/other/');
+    window.parent.replaceFullscreenEmbed('/other/');
 }
 function navigateToArchive() {
-    replaceFullscreenEmbed('/archive/');
+    window.parent.replaceFullscreenEmbed('/archive/');
 }
 
 function getCookie(name) {
