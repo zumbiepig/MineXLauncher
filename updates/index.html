@@ -1,78 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ZLauncher</title>
-	<link rel="icon" type="image/x-icon" href="/resources/favicon.png">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="/scripts/main.js"></script>
-    <script src="/scripts/cookies.js"></script>
-    
 </head>
-
 <body>
     <div class="launcher">
         <div class="title-bar">
-            <span>ZLauncher 0.4.0</span>
+            <span>MineXLauncher 0.5.0</span>
         </div>
         <div class="content">
             <div class="sidebar">
-                <div class="profile" style="font-weight: bold;">
+                <div class="profile">
                     <span class="profile-name" id="profile-name">Default</span>
                 </div>
                 <nav>
-                    <ul>
-                        <li class="nav-item selected" onclick="redirectToUpdates()">
-                            <img src="/resources/images/news-icon.png" alt="News Icon" class="nav-icon">
-                            <span class="nav-text">Updates</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToMain()">
-                            <img src="/resources/images/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
-                            <span class="nav-text">Game</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="/resources/images/settings-icon.png" alt="Settings Icon" class="nav-icon">
-                            <span class="nav-text">Settings</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToList()">
-                            <img src="/resources/images/serverlist-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Server List</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToClientDownload()">
-                            <img src="/resources/images/offlinedownloads.png" alt="Offline Downloads Icon" class="nav-icon">
-                            <span class="nav-text">Client Downloads</span>
-                        </li>
-                        <li class="nav-item" id="modMakerItem" onclick="openEaglerForgeModMaker()">
-                            <img src="/resources/images/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge Mod Maker</span>
-                        </li>
-                        <li class="nav-item" id="apiItem"  onclick="openEaglerForgeApi()">
-                            <img src="/resources/images/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge API</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToOtherClients()">
-                            <img src="/resources/images/otherclients.png" alt="Other Clients Icon" class="nav-icon">
-                            <span class="nav-text">Other Clients</span>
-                        </li>
-                    </ul>
+                    <li class="nav-item selected" onclick="navigateToUpdates()">
+                        <img src="/resources/images/news-icon.png" class="nav-icon">
+                        <span class="nav-text">Updates</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToHome()">
+                        <img src="/resources/images/minecraft-icon.png" class="nav-icon">
+                        <span class="nav-text">Game</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToSettings()">
+                        <img src="/resources/images/settings-icon.png" class="nav-icon">
+                        <span class="nav-text">Settings</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToServers()">
+                        <img src="/resources/images/serverlist-icon.png" class="nav-icon">
+                        <span class="nav-text">Server List</span>
+                    </li>
+					<li class="nav-item" onclick="navigateToDownloads()">
+						<img src="/resources/images/offlinedownloads.png" class="nav-icon">
+						<span class="nav-text">Client Downloads</span>
+					</li>
+					<li class="nav-item" onclick="navigateToOther()">
+                        <img src="/resources/images/otherclients.png" class="nav-icon">
+                        <span class="nav-text">Other Clients</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToArchive()">
+                        <img src="/resources/images/otherclients.png" class="nav-icon">
+                        <span class="nav-text">Archive</span>
+                    </li>
                 </nav>
             </div>
             <div class="main-panel">
                 <div class="top-bar">
-                    <span class="game-title">News</span>
+                    <span class="game-title">Updates</span>
                 </div>
                 <div class="main-content">
                     <div class="news-item">
-                        <h3>News and Updates</h3>
-                            <strong>Release 0.4.0</strong>
-                                <li>Rebrand to ZLauncher</li>
+                        <h3>Updates</h3>
+                            <strong>MineXLauncher 0.4.0</strong>
                                 <li>Add many old versions of Eaglercraft</li>
                             <br>
-                            <strong>Release 0.3.1</strong>
+                            <strong>MineXLauncher 0.3.1</strong>
                                 <li>Fix missing icons</li>
                             <br>
-                            <strong>Release 0.3.0</strong>
+                            <strong>MineXLauncher 0.3.0</strong>
                                 <li>Eagler Mobile</li>
                                 <li>Eaglercraft Archive/Other Menu</li>
                                 <li>Improved Server List</li>
@@ -82,20 +68,20 @@
                                 <li>Updated Site Paths</li>
                                 <li>Bugfixes</li>
                             <br>
-                            <strong>Release 0.2.2</strong>
+                            <strong>MineXLauncher 0.2.2</strong>
                                 <li>Fixed up-to-date version name</li>
                                 <li>Fixed bad performance on server list tab</li>
                                 <li>Fixed bad performance on the Mod Maker Kit setting enabled</li>
                             <br>
-                            <strong>Release 0.2.1</strong>
+                            <strong>MineXLauncher 0.2.1</strong>
                                 <li>Turned window.open() to a custom function that opens in about:blank</li>
                             <br>
-                            <strong>Release 0.2.0</strong>
+                            <strong>MineXLauncher 0.2.0</strong>
                                 <li>Settings menu</li>
                                 <li>Mod Maker Kit</li>
                                 <li>Fixed JS and added server list</li>
                             <br>
-                            <strong>Release 0.1.0</strong>
+                            <strong>MineXLauncher 0.1.0</strong>
                                 <li>First release of MineXLauncher</li>
                             <br>
                     </div>
