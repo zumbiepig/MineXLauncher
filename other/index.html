@@ -1,120 +1,57 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>MineXLauncher</title>
-	<link rel="icon" type="image/x-icon" href="/resources/favicon.png">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
 	<script src="/scripts/main.js" defer></script>
-    <script src="/scripts/nav-visibility.js"></script>
-	<script src="/scripts/cookies.js" defer></script>
-
-    
-    <script>
-      
-
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (file && file.type === 'text/html') {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const fileContent = e.target.result;
-                    addVersion(file.name, fileContent);
-                };
-                reader.readAsText(file);
-            } else {
-                alert("Please upload a valid HTML file.");
-            }
-        }
-		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-  				document.write("mobile");
-				location.href="/mobilesite/index.html"
-		}	
-		else{
-			console.log("not mobile");
-		} 
-window.onload = function() {
-	checker();
-}
-  function addVersion(filename, fileContent) {
-            const customOptions = document.querySelector('.custom-options');
-
-            // Create a new option for the uploaded file
-            const option = document.createElement('div');
-            option.className = 'custom-option';
-            option.innerHTML = `<img src="/resources/images/icon.png" alt="${filename} Icon">
-                                <span>${filename}</span>`;
-            option.onclick = function() {
-                loadUploadedFile(fileContent);
-            };
-
-            customOptions.appendChild(option);
-        }
-
-        function loadUploadedFile(content) {
-            const newWindow = window.open();
-            newWindow.document.write(content);
-            newWindow.document.close();
-        }
-    </script>
-	
 </head>
-<body onload="detection()">
+<body>
     <div class="launcher">
         <div class="title-bar">
             <span>MineXLauncher 0.5.0</span>
         </div>
-        
         <div class="content">
             <div class="sidebar">
                 <div class="profile">
                     <span class="profile-name" id="profile-name">Default</span>
                 </div>
                 <nav>
-                    <ul>
-                        <li class="nav-item" onclick="redirectToUpdates()">
-                            <img src="/resources/images/news-icon.png" alt="News Icon" class="nav-icon">
-                            <span class="nav-text">Updates</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToMain()">
-                            <img src="/resources/images/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
-                            <span class="nav-text">Game</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="/resources/images/settings-icon.png" alt="Settings Icon" class="nav-icon">
-                            <span class="nav-text">Settings</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToList()">
-                            <img src="/resources/images/serverlist-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Server List</span>
-                        </li>
-						<li class="nav-item" onclick="redirectToClientDownload()">
-							<img src="/resources/images/offlinedownloads.png" alt="News Icon" class="nav-icon">
-							<span class="nav-text">Client Downloads</span>
-						</li>
-                        <li class="nav-item" id="modMakerItem" style="display: none;" onclick="openEaglerForgeModMaker()">
-                            <img src="/resources/images/eaglerforge-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge Mod Maker</span>
-                        </li>
-                        <li class="nav-item" id="apiItem" style="display: none;" onclick="openEaglerForgeApi()">
-                            <img src="/resources/images/eaglerforge-builder.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">EaglerForge API</span>
-                        </li>
-						<li class="nav-item selected">
-                            <img src="/resources/images/otherclients.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Other Clients</span>
-                        </li>
-                    </ul>
+                    <li class="nav-item" onclick="navigateToUpdates()">
+                        <img src="/resources/images/news-icon.png" class="nav-icon">
+                        <span class="nav-text">Updates</span>
+                    </li>
+                    <li class="nav-item selected" onclick="navigateToHome()">
+                        <img src="/resources/images/minecraft-icon.png" class="nav-icon">
+                        <span class="nav-text">Game</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToSettings()">
+                        <img src="/resources/images/settings-icon.png" class="nav-icon">
+                        <span class="nav-text">Settings</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToServers()">
+                        <img src="/resources/images/serverlist-icon.png" class="nav-icon">
+                        <span class="nav-text">Server List</span>
+                    </li>
+					<li class="nav-item" onclick="navigateToDownloads()">
+						<img src="/resources/images/offlinedownloads.png" class="nav-icon">
+						<span class="nav-text">Client Downloads</span>
+					</li>
+					<li class="nav-item" onclick="navigateToOther()">
+                        <img src="/resources/images/otherclients.png" class="nav-icon">
+                        <span class="nav-text">Other Clients</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToArchive()">
+                        <img src="/resources/images/otherclients.png" class="nav-icon">
+                        <span class="nav-text">Archive</span>
+                    </li>
                 </nav>
             </div>
 			<div class="main-panel">
                 <div class="top-bar">
+                    <span class="game-title">Eaglercraft</span>
                     <span class="game-title">Other Clients</span>
-                    <span class="game-title">Game</span>
                 </div>
                 <div class="main-content">
-                    <img src="/resources/images/otherclientscover.png" alt="Minecraft Cover Image" class="minecraft-image">
+                    <img src="/resources/images/otherclientscover.png" class="minecraft-image">
                     <div class="installations">
                         <div class="custom-select-wrapper">
                             <div id="custom-select" class="custom-select" onclick="toggleOptions()">
@@ -122,37 +59,35 @@ window.onload = function() {
                             </div>
                             <div class="custom-options">
 								<div class="custom-option" onclick="selectVersion('/other/archive/', 'Eagler Archive')">
-									<img src="/resources/images/eaglerarchive-icon.png" alt="1.5.2 Icon">
+									<img src="/resources/images/eaglerarchive-icon.png">
 									<span>Eagler Archive</span>
 								</div>
 								<div class="custom-option" onclick="selectVersion('/other/otherclients/eaglerforge/', 'EaglerForge')">
-                                    <img src="/resources/images/eaglerforge-icon.png" alt="EaglerForge Icon">
+                                    <img src="/resources/images/eaglerforge-icon.png">
                                     <span>EaglerForge</span>
                                 </div>
                                 <div class="custom-option" onclick="selectVersion('/other/otherclients/resent/', 'Resent Client')">
-                                    <img src="/resources/images/resent-icon.png" alt="Resent Icon">
+                                    <img src="/resources/images/resent-icon.png">
                                     <span>Resent Client</span>
                                 </div>
                                 <div class="custom-option" onclick="selectVersion('/other/otherclients/shadowclient/', 'Shadow Client')">
-                                    <img src="/resources/images/icon.png" alt="1.8.8 Icon">
+                                    <img src="/resources/images/icon.png">
                                     <span>Shadow Client</span>
                                 </div>
                                 <div class="custom-option" onclick="selectVersion('/other/otherclients/koneclient/', 'Kone Client')">
-                                    <img src="/resources/images/koneclient.png" alt="1.5.2 Icon">
+                                    <img src="/resources/images/koneclient.png">
                                     <span>Kone Client</span>
                                 </div>
                             </div>
                         </div>
                         <button class="play-button" onclick="playGame()">Play</button>
                     </div>
-              
                 </div>
             </div>
         </div>
         <div class="bottom-bar">
-            <span class="username" id="profile-name">ZLauncher</span>
+            <span class="username" id="profile-name">MineXLauncher</span>
         </div>
     </div>
 </body>
-
 </html>

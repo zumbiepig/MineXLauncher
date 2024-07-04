@@ -2,7 +2,7 @@ Home is template
 Y archive
 Y downloads
 N mobilesite
-N other
+Y other
 N reorder resources
 N servers
 N settings
