@@ -1,5 +1,8 @@
 let selectedVersion = '';
 
+document.addEventListener('DOMContentLoaded', function() {
+    // start scripts here
+});
 
 function toggleOptions() {
     document.querySelector('.custom-options').classList.toggle('open');
@@ -8,7 +11,11 @@ function toggleOptions() {
 
 function selectVersion(path, name) {
     selectedVersion = path;
-    document.querySelector('.custom-select').textContent = `Selected: ${name}`;
+    if (name) {
+        document.querySelector('.custom-select').textContent = `Selected: ${name}`;
+    } else {
+        document.querySelector('.custom-select').textContent = `Selected: ${path}`;
+    }
     toggleOptions();
 }
 
@@ -20,71 +27,58 @@ function playGame() {
     window.location.href = selectedVersion;
 }
 
-function createAbout(url, title, favicon) {
-    var win = window.open();
-    win.document.body.style.margin = '0';
-    win.document.body.style.height = '100vh';
-    
-    if (title) {
-        win.document.title = title;
-    }
+function navigateToHome() {
+    replaceFullscreenEmbed('/home/');
+}
+function navigateToUpdates() {
+    replaceFullscreenEmbed('/updates/');
+}
+function navigateToSettings() {
+    replaceFullscreenEmbed('/settings/');
+}
+function navigateToServers() {
+    replaceFullscreenEmbed('/servers/');
+}
+function navigateToDownloads() {
+    replaceFullscreenEmbed('/downloads/');
+}
+function navigateToOther() {
+    replaceFullscreenEmbed('/other/');
+}
+function navigateToArchive() {
+    replaceFullscreenEmbed('/archive/');
+}
 
-    if (favicon) {
-        var favicon = win.document.createElement('link');
-        favicon.rel = 'icon';
-        favicon.type = 'image/x-icon';
-        favicon.href = favicon;
-        win.document.head.appendChild(favicon);
+function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
+    for(let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if(name === cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
     }
+    return null;
+}
 
-    var iframe = win.document.createElement('iframe');
-    iframe.style.border = 'none';
+function createFullscreenEmbed(url) {
+    var iframe = document.createElement('iframe');
+    iframe.id = 'fullscreenEmbed';
+
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
     iframe.style.width = '100%';
     iframe.style.height = '100%';
-    iframe.style.margin = '0';
+    iframe.style.border = 'none';
+
     iframe.src = url;
-    
-    win.document.body.appendChild(iframe);
+    document.body.appendChild(iframe);
 }
 
-function redirectToMain() {
-    window.location.href = '/';
-}
-function redirectToUpdates() {
-    window.location.href = '/updates/';
-}
-function redirectToSettings() {
-    window.location.href = '/settings/';
-}
-function redirectToList() {
-    window.location.href = '/serverlist/';
-}
-function redirectToClientDownload() {
-    window.location.href = '/offline/';
-}
-function openEaglerForgeModMaker() {
-    createAbout('https://eaglerforge-builder.vercel.app', "EaglerForge Builder - Make mods with blocks", "/resources/images/eaglerforge-builder.png")
-}
-function openEaglerForgeApi() {
-    createAbout('https://eaglerforge.github.io/apidocs/', "Mod API | EaglerForge", "/resources/images/eaglerforge-icon.png")
-}
-function redirectToOtherClients() {
-    window.location.href = '/other/';
-}
-function redirectToArchive() {
-    window.location.href ='/other/archive/';
+function replaceFullscreenEmbed(url) {
+    document.getElementById('fullscreenEmbed').src = url;
 }
 
-function showTab(tabId) {
-    var contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => content.classList.remove('active'));
-
-    var activeContent = document.getElementById(tabId);
-    activeContent.classList.add('active');
-
-    var tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => tab.classList.remove('active-tab'));
-
-    var activeTab = document.querySelector(`.tab[onclick="showTab('${tabId}')"]`);
-    activeTab.classList.add('active-tab');
+function removeFullscreenEmbed() {
+    document.getElementById('fullscreenEmbed').remove();
 }
