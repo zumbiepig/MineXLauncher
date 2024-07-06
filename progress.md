@@ -1,5 +1,6 @@
 Home is template
 Y archive
+Y archive js
 Y downloads
 N mobilesite
 Y other

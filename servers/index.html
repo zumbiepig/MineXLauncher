@@ -1,23 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ZLauncher</title>
-	<link rel="icon" type="image/x-icon" href="/resources/favicon.png">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../styles.css">
-
-    <script src="/serverlist.js" defer></script>
-    <script src="/scripts/main.js"></script>
-    <script src="/scripts/cookies.js"></script>
+    <script src="/scripts/main.js" defer></script>
 </head>
-<style>
-    </style>
 <body>
     <div class="launcher">
         <div class="title-bar">
-            <span>ZLauncher 0.4.0</span>
+            <span>MineXLauncher 0.5.0</span>
         </div>
         <div class="content">
             <div class="sidebar">
@@ -25,40 +15,42 @@
                     <span class="profile-name" id="profile-name">Default</span>
                 </div>
                 <nav>
-                    <ul>
-                        <li class="nav-item" onclick="redirectToUpdates()">
-                            <img src="/resources/images/news-icon.png" alt="News Icon" class="nav-icon">
-                            <span class="nav-text">Updates</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToMain()">
-                            <img src="/resources/images/minecraft-icon.png" alt="Minecraft Icon" class="nav-icon">
-                            <span class="nav-text">Game</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToSettings()">
-                            <img src="/resources/images/settings-icon.png" alt="Settings Icon" class="nav-icon">
-                            <span class="nav-text">Settings</span>
-                        </li>
-                        <li class="nav-item selected" onclick="redirectToList()">
-                            <img src="/resources/images/serverlist-icon.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Server List</span>
-                        </li>
-                        <li class="nav-item" onclick="redirectToClientDownload()">
-                            <img src="/resources/images/offlinedownloads.png" alt="News Icon" class="nav-icon"> <span class="nav-text">Client Downloads</span>
-                        </li>
-                        
-                        <li class="nav-item" onclick="redirectToOtherClients()">
-                            <img src="/resources/images/otherclients.png" alt="List Icon" class="nav-icon">
-                            <span class="nav-text">Other Clients</span>
-                        </li>
-                    </ul>
+                    <li class="nav-item" onclick="navigateToUpdates()">
+                        <img src="/resources/images/news-icon.png" class="nav-icon">
+                        <span class="nav-text">Updates</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToHome()">
+                        <img src="/resources/images/minecraft-icon.png" class="nav-icon">
+                        <span class="nav-text">Game</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToSettings()">
+                        <img src="/resources/images/settings-icon.png" class="nav-icon">
+                        <span class="nav-text">Settings</span>
+                    </li>
+                    <li class="nav-item selected" onclick="navigateToServers()">
+                        <img src="/resources/images/serverlist-icon.png" class="nav-icon">
+                        <span class="nav-text">Server List</span>
+                    </li>
+					<li class="nav-item" onclick="navigateToDownloads()">
+						<img src="/resources/images/offlinedownloads.png" class="nav-icon">
+						<span class="nav-text">Client Downloads</span>
+					</li>
+					<li class="nav-item" onclick="navigateToOther()">
+                        <img src="/resources/images/otherclients.png" class="nav-icon">
+                        <span class="nav-text">Other Clients</span>
+                    </li>
+                    <li class="nav-item" onclick="navigateToArchive()">
+                        <img src="/resources/images/otherclients.png" class="nav-icon">
+                        <span class="nav-text">Archive</span>
+                    </li>
                 </nav>
             </div>
             <div class="main-panel">
                 <div class="top-bar">
+                    <span class="game-title">Eaglercraft</span>
                     <span class="game-title">Game</span>
                 </div>
                 <div class="server-list minecraft-scrollbar">
-                    <!-- Server entries -->
                     <div class="server-entry">
                         <div class="server-details">
                             <span class="server-name">ArchMC</span>
@@ -115,8 +107,7 @@
                         <button class="copy-button">Copy</button>
                         <button class="play-button" onclick="location.href='/1.8.8/?server=wss://play.vanilanetwork.uk.to'">Play</button>
                     </div>
-                    <div class="server-entry">
-                        
+                    <div class="server-entry">                        
                         <div class="server-details">
                             <span class="server-name">VanillaMC Legacy</span>
                             <span class="server-address">wss://vanillacraft.kones.tech</span>
@@ -140,33 +131,26 @@
                         <button class="copy-button">Copy</button>
                         <button class="play-button" onclick="location.href='/1.8.8/?server=wss://mc.zyth.me'">Play</button>
                     </div>
-                    <!-- Add more server entries as needed -->
                 </div>
             </div>
         </div>
         <div class="bottom-bar">
-            <span class="username" id="bottom-profile-name">ZLauncher</span>
+            <span class="username" id="bottom-profile-name">MineXLauncher</span>
         </div>
     </div>
     <script>
-        // Add event listeners to all copy buttons
         document.querySelectorAll('.copy-button').forEach(button => {
             button.addEventListener('click', () => {
                 const serverAddress = button.parentNode.querySelector('.server-address').innerText;
-                copyToClipboard(serverAddress);
+                const textarea = document.createElement('textarea');
+                textarea.value = serverAddress;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Server address copied to clipboard!');
             });
         });
-
-        // Function to copy text to clipboard
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            alert('Server address copied to clipboard!');
-        }
     </script>
 </body>
 </html>
