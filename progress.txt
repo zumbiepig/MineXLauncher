@@ -1,11 +1,12 @@
 Home is template
 Y archive
-Y archive js
+N archive js
 Y downloads
 N mobilesite
 Y other
 N reorder resources
-N servers
-N settings
+Y servers
+N servers rewrite
+Y settings
 Y updates
 N versions reorder
