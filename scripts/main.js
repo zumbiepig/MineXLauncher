@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (window.location.pathname == '/home/') {
         // idk
     } else if (window.location.pathname == '/mobile/') {
-        selectVersion('/versions/mobile/', 'EaglerMobile 1.8.8');
+        selectVersion('https://irv77.github.io/EaglerPocketMobile/demo/', 'EaglerMobile 1.8.8');
         toggleOptions();
     }
 });
@@ -68,6 +68,16 @@ function getCookie(name) {
         }
     }
     return null;
+}
+
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/; domain=" + window.location.hostname.replace(/^www\./, '');
 }
 
 function createFullscreenEmbed(url) {
