@@ -1,7 +1,14 @@
 let selectedVersion = '';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // start scripts here
+    if (window.location.pathname == '/') {
+        createFullscreenEmbed('/home/');
+    } else if (window.location.pathname == '/home/') {
+        // idk
+    } else if (window.location.pathname == '/mobile/') {
+        selectVersion('/versions/mobile/', 'EaglerMobile 1.8.8');
+        toggleOptions();
+    }
 });
 
 function toggleOptions() {
@@ -29,6 +36,9 @@ function playGame() {
 
 function navigateToHome() {
     window.parent.replaceFullscreenEmbed('/home/');
+}
+function navigateToMobile() {
+    window.parent.replaceFullscreenEmbed('/mobile/');
 }
 function navigateToUpdates() {
     window.parent.replaceFullscreenEmbed('/updates/');
