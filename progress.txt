@@ -8,6 +8,7 @@ Y settings
 Y updates
 Y versions reorder
 
+N loading icon
 N archive js
 
 N servers rewrite
