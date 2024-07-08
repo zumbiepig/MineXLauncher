@@ -1,12 +1,16 @@
 Home is template
 Y archive
-N archive js
 Y downloads
-N mobilesite
+Y mobilesite
 Y other
-N reorder resources
 Y servers
-N servers rewrite
 Y settings
 Y updates
-N versions reorder
+Y versions reorder
+
+N archive js
+
+N servers rewrite
+N reorder resources
+N add eaglerforge offline
+N add peyton versions
