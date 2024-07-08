@@ -11,6 +11,8 @@ Y versions reorder
 N loading icon
 N archive js
 
+N format all files
+
 N servers rewrite
 N reorder resources
 N add eaglerforge offline
