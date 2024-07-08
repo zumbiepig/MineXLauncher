@@ -7,9 +7,8 @@ Y servers
 Y settings
 Y updates
 Y versions reorder
-Y archive js (zombie)
-
-N loading icon (zombie)
+Y archive js
+Y loading icon and background
 
 N auto-format all files (zombie)
 

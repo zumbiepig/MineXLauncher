@@ -2,7 +2,7 @@ let selectedVersion = '';
 
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname == '/') {
-        createFullscreenEmbed('/home/');
+        //createFullscreenEmbed('/home/');
     } else if (window.location.pathname == '/mobile/') {
         selectVersion('/game/web/mobile/1.8.8/', '1.8.8');
         toggleOptions();
