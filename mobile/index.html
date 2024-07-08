@@ -1,52 +1,54 @@
 <!DOCTYPE html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="/scripts/main.js" defer></script>
-</head>
-<body>
-  <div class="launcher">
-    <div class="title-bar">
-      <span>MineXLauncher 0.5.0</span>
-    </div>
-    <div class="content">
-      <div class="sidebar">
-        <div class="profile">
-          <span class="profile-name" id="profile-name">Default</span>
-        </div>
-        <nav>
-          <li class="nav-item selected" onclick="navigateToMobile()">
-            <img src="/resources/images/minecraft-icon.png" class="nav-icon" />
-            <span class="nav-text">Mobile Site</span>
-          </li>
-        </nav>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/scripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="launcher">
+      <div class="title-bar">
+        <span>MineXLauncher 0.5.0</span>
       </div>
-      <div class="main-panel">
-        <div class="top-bar">
-          <span class="game-title">Eaglercraft</span>
-          <span class="game-title">Mobile</span>
+      <div class="content">
+        <div class="sidebar">
+          <div class="profile">
+            <span class="profile-name" id="profile-name">Default</span>
+          </div>
+          <nav>
+            <li class="nav-item selected" onclick="navigateToMobile()">
+              <img src="/resources/images/minecraft-icon.png" class="nav-icon" />
+              <span class="nav-text">Mobile Site</span>
+            </li>
+          </nav>
         </div>
-        <div class="main-content">
-          <img src="/resources/images/coverimage.png" class="minecraft-image" />
-          <div class="installations">
-            <div class="custom-select-wrapper">
-              <div id="custom-select" class="custom-select" onclick="toggleOptions()">
-                <span class="custom-select-trigger">Select a version</span>
-              </div>
-              <div class="custom-options">
-                <div class="custom-option" onclick="selectVersion('/game/web/mobile/1.8.8/', '1.8.8')">
-                  <img src="/resources/images/eaglerpocketmobile-icon.png" />
-                  <span>1.8.8</span>
+        <div class="main-panel">
+          <div class="top-bar">
+            <span class="game-title">Eaglercraft</span>
+            <span class="game-title">Mobile</span>
+          </div>
+          <div class="main-content">
+            <img src="/resources/images/coverimage.png" class="minecraft-image" />
+            <div class="installations">
+              <div class="custom-select-wrapper">
+                <div id="custom-select" class="custom-select" onclick="toggleOptions()">
+                  <span class="custom-select-trigger">Select a version</span>
+                </div>
+                <div class="custom-options">
+                  <div class="custom-option" onclick="selectVersion('/game/web/mobile/1.8.8/', '1.8.8')">
+                    <img src="/resources/images/eaglerpocketmobile-icon.png" />
+                    <span>1.8.8</span>
+                  </div>
                 </div>
               </div>
+              <button class="play-button" onclick="playGame()">Play</button>
             </div>
-            <button class="play-button" onclick="playGame()">Play</button>
           </div>
         </div>
       </div>
+      <div class="bottom-bar">
+        <span class="username" id="profile-name">MineXLauncher</span>
+      </div>
     </div>
-    <div class="bottom-bar">
-      <span class="username" id="profile-name">MineXLauncher</span>
-    </div>
-  </div>
-</body>
+  </body>
+</html>

@@ -1,62 +1,64 @@
 <!DOCTYPE html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="/scripts/main.js" defer></script>
-</head>
-<body>
-  <div class="launcher">
-    <div class="title-bar">
-      <span>MineXLauncher 0.5.0</span>
-    </div>
-    <div class="content">
-      <div class="sidebar">
-        <div class="profile">
-          <span class="profile-name" id="profile-name">Default</span>
-        </div>
-        <nav>
-          <li class="nav-item" onclick="navigateToUpdates()">
-            <img src="/resources/images/news-icon.png" class="nav-icon" />
-            <span class="nav-text">Updates</span>
-          </li>
-          <li class="nav-item" onclick="navigateToHome()">
-            <img src="/resources/images/minecraft-icon.png" class="nav-icon" />
-            <span class="nav-text">Game</span>
-          </li>
-          <li class="nav-item selected" onclick="navigateToSettings()">
-            <img src="/resources/images/settings-icon.png" class="nav-icon" />
-            <span class="nav-text">Settings</span>
-          </li>
-          <li class="nav-item" onclick="navigateToServers()">
-            <img src="/resources/images/serverlist-icon.png" class="nav-icon" />
-            <span class="nav-text">Server List</span>
-          </li>
-          <li class="nav-item" onclick="navigateToDownloads()">
-            <img src="/resources/images/offlinedownloads.png" class="nav-icon" />
-            <span class="nav-text">Client Downloads</span>
-          </li>
-          <li class="nav-item" onclick="navigateToOther()">
-            <img src="/resources/images/otherclients.png" class="nav-icon" />
-            <span class="nav-text">Other Clients</span>
-          </li>
-          <li class="nav-item" onclick="navigateToArchive()">
-            <img src="/resources/images/otherclients.png" class="nav-icon" />
-            <span class="nav-text">Archive</span>
-          </li>
-        </nav>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/scripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="launcher">
+      <div class="title-bar">
+        <span>MineXLauncher 0.5.0</span>
       </div>
-      <div class="main-panel">
-        <div class="top-bar">
-          <span class="game-title">Eaglercraft</span>
-          <span class="game-title">Settings</span>
+      <div class="content">
+        <div class="sidebar">
+          <div class="profile">
+            <span class="profile-name" id="profile-name">Default</span>
+          </div>
+          <nav>
+            <li class="nav-item" onclick="navigateToUpdates()">
+              <img src="/resources/images/news-icon.png" class="nav-icon" />
+              <span class="nav-text">Updates</span>
+            </li>
+            <li class="nav-item" onclick="navigateToHome()">
+              <img src="/resources/images/minecraft-icon.png" class="nav-icon" />
+              <span class="nav-text">Game</span>
+            </li>
+            <li class="nav-item selected" onclick="navigateToSettings()">
+              <img src="/resources/images/settings-icon.png" class="nav-icon" />
+              <span class="nav-text">Settings</span>
+            </li>
+            <li class="nav-item" onclick="navigateToServers()">
+              <img src="/resources/images/serverlist-icon.png" class="nav-icon" />
+              <span class="nav-text">Server List</span>
+            </li>
+            <li class="nav-item" onclick="navigateToDownloads()">
+              <img src="/resources/images/offlinedownloads.png" class="nav-icon" />
+              <span class="nav-text">Client Downloads</span>
+            </li>
+            <li class="nav-item" onclick="navigateToOther()">
+              <img src="/resources/images/otherclients.png" class="nav-icon" />
+              <span class="nav-text">Other Clients</span>
+            </li>
+            <li class="nav-item" onclick="navigateToArchive()">
+              <img src="/resources/images/otherclients.png" class="nav-icon" />
+              <span class="nav-text">Archive</span>
+            </li>
+          </nav>
         </div>
-        <div class="main-content">
-          <h2>Coming Soon</h2>
+        <div class="main-panel">
+          <div class="top-bar">
+            <span class="game-title">Eaglercraft</span>
+            <span class="game-title">Settings</span>
+          </div>
+          <div class="main-content">
+            <h2>Coming Soon</h2>
+          </div>
         </div>
       </div>
+      <div class="bottom-bar">
+        <span class="username" id="profile-name">MineXLauncher</span>
+      </div>
     </div>
-    <div class="bottom-bar">
-      <span class="username" id="profile-name">MineXLauncher</span>
-    </div>
-  </div>
-</body>
+  </body>
+</html>
