@@ -13,5 +13,5 @@ Y loading icon and background
 N auto-format all files (zombie)
 
 N embed eagler server list (shaun)
-N reorder resources (zombie)
+
 N add peyton versions, waiting for DM response (zombie)
