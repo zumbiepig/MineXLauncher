@@ -3,11 +3,8 @@ let selectedVersion = '';
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname == '/') {
         createFullscreenEmbed('/home/');
-    } else if (window.location.pathname == '/home/') {
-        // idk
     } else if (window.location.pathname == '/mobile/') {
-        selectVersion('https://irv77.github.io/EaglerPocketMobile/demo/', 'EaglerMobile 1.8.8');
-        toggleOptions();
+        // stuff
     }
 });
 
@@ -18,11 +15,7 @@ function toggleOptions() {
 
 function selectVersion(path, name) {
     selectedVersion = path;
-    if (name) {
-        document.querySelector('.custom-select').textContent = `Selected: ${name}`;
-    } else {
-        document.querySelector('.custom-select').textContent = `Selected: ${path}`;
-    }
+    document.querySelector('.custom-select').textContent = `Selected: ${name}`;
     toggleOptions();
 }
 
@@ -31,7 +24,7 @@ function playGame() {
         alert('Please select a version to play.');
         return;
     }
-    window.location.href = selectedVersion;
+    window.parent.replaceFullscreenEmbed(selectedVersion);
 }
 
 function navigateToHome() {
