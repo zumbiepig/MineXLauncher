@@ -16,7 +16,9 @@ function toggleOptions() {
 
 function selectVersion(path, name) {
     selectedVersion = path;
-    document.querySelector('.custom-select').textContent = `Selected: ${name}`;
+    if (document.querySelector('.custom-select') != null) {
+        document.querySelector('.custom-select').textContent = `Selected: ${name}`;
+    }
     toggleOptions();
 }
 
@@ -26,6 +28,19 @@ function playGame() {
         return;
     }
     window.parent.replaceFullscreenEmbed(selectedVersion);
+}
+
+function openOldClient(client) {
+    if (client == '1.8.8') {
+        selectedVersion = `https://archive.eaglercraft.rip/EaglercraftX_1.8/client/${document.getElementById('18-client-version').value}/index.html`;
+        playGame();
+    } else if (client == '1.5.2') {
+        selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_1.5/client/${document.getElementById('15-client-version').value}/index.html`;
+        playGame();
+    } else if (client == 'b1.3') {
+        selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_b1.3/client/${document.getElementById('b13-client-version').value}/index.html`;
+        playGame();
+    }
 }
 
 function navigateToHome() {

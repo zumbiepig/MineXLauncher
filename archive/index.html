@@ -3,7 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="/scripts/main.js" defer></script>
-    <script src="archive.js" defer></script>
 </head>
 <body>
     <div class="launcher">
@@ -54,7 +53,7 @@
                 <div class="main-content">
                     <div class="upload-section">
                         <label for="client-version">Select 1.8 version:</label>
-                        <select id="client-version">
+                        <select id="18-client-version">
                             <!-- Pre Alpha-->
                             <option value="pre-alpha">pre-alpha</option>
                             <!-- Release Candidates-->
@@ -98,7 +97,7 @@
                             <option value="u33">u33</option>
                             <option value="u34">u34</option>
                         </select>
-                        <button class="upload-button" onclick="openOldClient()">Open</button>
+                        <button class="upload-button" onclick="openOldClient('1.8.8')">Open</button>
                     </div>
                     <div class="upload-section">
                         <label for="client-version">Select 1.5 version:</label>
@@ -171,17 +170,17 @@
                             <option value="sp1">sp1</option>
                             <option value="sp1.01">sp1.01</option>
                             </select>
-                        <button class="upload-button" onclick="openOld15Client()">Open</button>
+                        <button class="upload-button" onclick="openOldClient('1.5.2')">Open</button>
                     </div>
                     <div class="upload-section">
                         <label for="client-version">Select Beta 1.3 version:</label>
-                        <select id="13-client-version">
+                        <select id="b13-client-version">
                             <option value="22w17a">22w17a</option>
                             <option value="22w22a">22w22a</option>
                             <option value="22w22b">22w22b</option>
                             <option value="23w49a">23w49a</option>
                             </select>
-                        <button class="upload-button" onclick="openOldB13Client()">Open</button>
+                        <button class="upload-button" onclick="openOldClient('b1.3')">Open</button>
                     </div>
                     <br>
                     <button class="upload-button" onclick="window.open('https://archive.eaglercraft.rip/EaglercraftX_1.8/server/')">1.8 EaglerXBungee Jar</button>
