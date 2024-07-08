@@ -2,7 +2,11 @@ let selectedVersion = "";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname == "/") {
-    createFullscreenEmbed("/home/");
+    if (isMobile()) {
+      createFullscreenEmbed("/mobile/");
+    } else {
+      createFullscreenEmbed("/home/");
+    }
   } else if (window.location.pathname == "/mobile/") {
     selectVersion("/game/web/mobile/1.8.8/", "1.8.8");
     toggleOptions();
@@ -23,7 +27,7 @@ function selectVersion(path, name) {
 }
 
 function playGame() {
-  if (!selectedVersion || selectedVersion == "") {
+  if (selectedVersion == "") {
     alert("Please select a version to play.");
     return;
   }
@@ -52,26 +56,42 @@ function openOldClient(client) {
 function navigateToHome() {
   window.parent.replaceFullscreenEmbed("/home/");
 }
+
 function navigateToMobile() {
   window.parent.replaceFullscreenEmbed("/mobile/");
 }
+
 function navigateToUpdates() {
   window.parent.replaceFullscreenEmbed("/updates/");
 }
+
 function navigateToSettings() {
   window.parent.replaceFullscreenEmbed("/settings/");
 }
+
 function navigateToServers() {
   window.parent.replaceFullscreenEmbed("/servers/");
 }
+
 function navigateToDownloads() {
   window.parent.replaceFullscreenEmbed("/downloads/");
 }
+
 function navigateToOther() {
   window.parent.replaceFullscreenEmbed("/other/");
 }
+
 function navigateToArchive() {
   window.parent.replaceFullscreenEmbed("/archive/");
+}
+
+function isMobile() {
+  try {
+    document.exitPointerLock();
+    return /Mobi/i.test(window.navigator.userAgent);
+  } catch (e) {
+    return true;
+  }
 }
 
 function getCookie(name) {
