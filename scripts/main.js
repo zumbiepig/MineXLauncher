@@ -113,7 +113,12 @@ function setCookie(name, value, days) {
     expires = "; expires=" + date.toUTCString();
   }
   document.cookie =
-    name + "=" + (value || "") + expires + "; path=/; domain=" + window.location.hostname.replace(/^www\./, "");
+    name +
+    "=" +
+    (value || "") +
+    expires +
+    "; path=/; domain=" +
+    window.location.hostname.replace(/^www\./, "");
 }
 
 function createFullscreenEmbed(url) {

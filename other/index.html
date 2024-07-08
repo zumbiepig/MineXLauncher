@@ -21,7 +21,10 @@
               <span class="nav-text">Updates</span>
             </li>
             <li class="nav-item" onclick="navigateToHome()">
-              <img src="/resources/images/minecraft-icon.png" class="nav-icon" />
+              <img
+                src="/resources/images/minecraft-icon.png"
+                class="nav-icon"
+              />
               <span class="nav-text">Game</span>
             </li>
             <li class="nav-item" onclick="navigateToSettings()">
@@ -29,11 +32,17 @@
               <span class="nav-text">Settings</span>
             </li>
             <li class="nav-item" onclick="navigateToServers()">
-              <img src="/resources/images/serverlist-icon.png" class="nav-icon" />
+              <img
+                src="/resources/images/serverlist-icon.png"
+                class="nav-icon"
+              />
               <span class="nav-text">Server List</span>
             </li>
             <li class="nav-item" onclick="navigateToDownloads()">
-              <img src="/resources/images/offlinedownloads.png" class="nav-icon" />
+              <img
+                src="/resources/images/offlinedownloads.png"
+                class="nav-icon"
+              />
               <span class="nav-text">Client Downloads</span>
             </li>
             <li class="nav-item selected" onclick="navigateToOther()">
@@ -52,22 +61,38 @@
             <span class="game-title">Other Clients</span>
           </div>
           <div class="main-content">
-            <img src="/resources/images/otherclientscover.png" class="minecraft-image" />
+            <img
+              src="/resources/images/otherclientscover.png"
+              class="minecraft-image"
+            />
             <div class="installations">
               <div class="custom-select-wrapper">
-                <div id="custom-select" class="custom-select" onclick="toggleOptions()">
+                <div
+                  id="custom-select"
+                  class="custom-select"
+                  onclick="toggleOptions()"
+                >
                   <span class="custom-select-trigger">Select a client</span>
                 </div>
                 <div class="custom-options">
-                  <div class="custom-option" onclick="selectVersion('/game/web/other/eaglerforge/', 'EaglerForge')">
+                  <div
+                    class="custom-option"
+                    onclick="selectVersion('/game/web/other/eaglerforge/', 'EaglerForge')"
+                  >
                     <img src="/resources/images/eaglerforge-icon.png" />
                     <span>EaglerForge</span>
                   </div>
-                  <div class="custom-option" onclick="selectVersion('/game/web/other/resent/', 'Resent Client')">
+                  <div
+                    class="custom-option"
+                    onclick="selectVersion('/game/web/other/resent/', 'Resent Client')"
+                  >
                     <img src="/resources/images/resent-icon.png" />
                     <span>Resent Client</span>
                   </div>
-                  <div class="custom-option" onclick="selectVersion('/game/web/other/shadow/', 'Shadow Client')">
+                  <div
+                    class="custom-option"
+                    onclick="selectVersion('/game/web/other/shadow/', 'Shadow Client')"
+                  >
                     <img src="/resources/images/shadowclient-icon.png" />
                     <span>Shadow Client</span>
                   </div>
