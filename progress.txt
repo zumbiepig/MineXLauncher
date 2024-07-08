@@ -1,4 +1,4 @@
-Home is template
+Y home
 Y archive
 Y downloads
 Y mobilesite
@@ -7,13 +7,12 @@ Y servers
 Y settings
 Y updates
 Y versions reorder
+Y archive js (zombie)
 
-N loading icon
-N archive js
+N loading icon (zombie)
 
-N format all files
+N auto-format all files (zombie)
 
-N servers rewrite
-N reorder resources
-N add eaglerforge offline
-N add peyton versions
+N embed eagler server list (shaun)
+N reorder resources (zombie)
+N add peyton versions, waiting for DM response (zombie)
