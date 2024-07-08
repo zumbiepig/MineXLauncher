@@ -23,7 +23,7 @@ function selectVersion(path, name) {
 }
 
 function playGame() {
-    if (!selectedVersion) {
+    if (!selectedVersion || selectedVersion == '') {
         alert('Please select a version to play.');
         return;
     }
