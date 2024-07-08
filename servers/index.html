@@ -32,9 +32,7 @@
             <span class="nav-text">Server List</span>
           </li>
           <li class="nav-item" onclick="navigateToDownloads()">
-            <img
-              src="/resources/images/offlinedownloads.png"
-              class="nav-icon" />
+            <img src="/resources/images/offlinedownloads.png" class="nav-icon" />
             <span class="nav-text">Client Downloads</span>
           </li>
           <li class="nav-item" onclick="navigateToOther()">
@@ -59,11 +57,7 @@
               <span class="server-address">wss://mc.arch.lol</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://mc.arch.lol'">
-              Play
-            </button>
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://mc.arch.lol'">Play</button>
           </div>
           <div class="server-entry">
             <div class="server-details">
@@ -71,9 +65,7 @@
               <span class="server-address">wss://asianf4rmer.minecraft.pe</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://asianf4rmer.minecraft.pe'">
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://asianf4rmer.minecraft.pe'">
               Play
             </button>
           </div>
@@ -83,11 +75,7 @@
               <span class="server-address">wss://mc.asspixel.net</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://mc.asspixel.net'">
-              Play
-            </button>
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://mc.asspixel.net'">Play</button>
           </div>
           <div class="server-entry">
             <div class="server-details">
@@ -95,9 +83,7 @@
               <span class="server-address">wss://sus.shhnowisnottheti.me</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://sus.shhnowisnottheti.me'">
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://sus.shhnowisnottheti.me'">
               Play
             </button>
           </div>
@@ -107,11 +93,7 @@
               <span class="server-address">wss://eg.cloudwars.club</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://eg.cloudwars.club'">
-              Play
-            </button>
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://eg.cloudwars.club'">Play</button>
           </div>
           <div class="server-entry">
             <div class="server-details">
@@ -119,11 +101,7 @@
               <span class="server-address">wss://mc.firenetwork.lol</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://mc.firenetwork.lol'">
-              Play
-            </button>
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://mc.firenetwork.lol'">Play</button>
           </div>
           <div class="server-entry">
             <div class="server-details">
@@ -131,9 +109,7 @@
               <span class="server-address">wss://play.vanilanetwork.uk.to</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://play.vanilanetwork.uk.to'">
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://play.vanilanetwork.uk.to'">
               Play
             </button>
           </div>
@@ -143,11 +119,7 @@
               <span class="server-address">wss://vanillacraft.kones.tech</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://mc.asspixel.net'">
-              Play
-            </button>
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://mc.asspixel.net'">Play</button>
           </div>
           <div class="server-entry">
             <div class="server-details">
@@ -155,11 +127,7 @@
               <span class="server-address">wss://zentic.cc</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://zentic.cc'">
-              Play
-            </button>
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://zentic.cc'">Play</button>
           </div>
           <div class="server-entry">
             <div class="server-details">
@@ -167,11 +135,7 @@
               <span class="server-address">wss://mc.zyth.me</span>
             </div>
             <button class="copy-button">Copy</button>
-            <button
-              class="play-button"
-              onclick="location.href='/1.8.8/?server=wss://mc.zyth.me'">
-              Play
-            </button>
+            <button class="play-button" onclick="location.href='/1.8.8/?server=wss://mc.zyth.me'">Play</button>
           </div>
         </div>
       </div>
@@ -183,8 +147,7 @@
   <script>
     document.querySelectorAll(".copy-button").forEach((button) => {
       button.addEventListener("click", () => {
-        const serverAddress =
-          button.parentNode.querySelector(".server-address").innerText;
+        const serverAddress = button.parentNode.querySelector(".server-address").innerText;
         const textarea = document.createElement("textarea");
         textarea.value = serverAddress;
         document.body.appendChild(textarea);
