@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       createFullscreenEmbed("/home/");
     }
-  } else if (window.location.pathname == "/mobile/") {
+  } else {
+    // any other page
+  }
+  if (window.location.pathname == "/mobile/") {
     selectVersion("/game/web/mobile/1.8.8/", "1.8.8");
     toggleOptions();
   }
@@ -32,6 +35,13 @@ function playGame() {
     return;
   }
   window.parent.replaceFullscreenEmbed(selectedVersion);
+  enterFullscreen();
+
+  //document.getElementById("fullscreenEmbed").onload = window.top.document
+  //  .getElementById("fullscreenEmbed")
+  //  .contentWindow.focus();
+  //document.getElementById("fullscreenEmbed").contentWindow.focus();
+  //window.top.document.getElementById("fullscreenEmbed").contentWindow.focus();
 }
 
 function openOldClient(client) {
@@ -142,4 +152,24 @@ function replaceFullscreenEmbed(url) {
 
 function removeFullscreenEmbed() {
   document.getElementById("fullscreenEmbed").remove();
+}
+
+function enterFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  }
+}
+
+function exitFullscreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+}
+
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
 }
