@@ -34,14 +34,16 @@ function playGame() {
     alert("Please select a version to play.");
     return;
   }
-  window.parent.replaceFullscreenEmbed(selectedVersion);
-  enterFullscreen();
+  replaceFullscreenEmbed(selectedVersion);
+  //enterFullscreen(); disabled for easier debugging below
 
-  //document.getElementById("fullscreenEmbed").onload = window.top.document
-  //  .getElementById("fullscreenEmbed")
-  //  .contentWindow.focus();
-  //document.getElementById("fullscreenEmbed").contentWindow.focus();
-  //window.top.document.getElementById("fullscreenEmbed").contentWindow.focus();
+  // shaun pls help me
+  // u cant type bc its not focused
+  // if you focus yourself from console it works
+  // but i cant get it to work by itself
+  window.top.document.getElementById("fullscreenEmbed").onload = "this.focus()";
+  window.top.document.getElementById("fullscreenEmbed").focus();
+  this.focus();
 }
 
 function openOldClient(client) {
@@ -64,35 +66,35 @@ function openOldClient(client) {
 }
 
 function navigateToHome() {
-  window.parent.replaceFullscreenEmbed("/home/");
+  window.location.href = "/home/";
 }
 
 function navigateToMobile() {
-  window.parent.replaceFullscreenEmbed("/mobile/");
+  window.location.href = "/mobile/";
 }
 
 function navigateToUpdates() {
-  window.parent.replaceFullscreenEmbed("/updates/");
+  window.location.href = "/updates/";
 }
 
 function navigateToSettings() {
-  window.parent.replaceFullscreenEmbed("/settings/");
+  window.location.href = "/settings/";
 }
 
 function navigateToServers() {
-  window.parent.replaceFullscreenEmbed("/servers/");
+  window.location.href = "/servers/";
 }
 
 function navigateToDownloads() {
-  window.parent.replaceFullscreenEmbed("/downloads/");
+  window.location.href = "/downloads/";
 }
 
 function navigateToOther() {
-  window.parent.replaceFullscreenEmbed("/other/");
+  window.location.href = "/other/";
 }
 
 function navigateToArchive() {
-  window.parent.replaceFullscreenEmbed("/archive/");
+  window.location.href = "/archive/";
 }
 
 function isMobile() {
@@ -147,11 +149,11 @@ function createFullscreenEmbed(url) {
 }
 
 function replaceFullscreenEmbed(url) {
-  document.getElementById("fullscreenEmbed").src = url;
+  window.parent.document.getElementById("fullscreenEmbed").src = url;
 }
 
 function removeFullscreenEmbed() {
-  document.getElementById("fullscreenEmbed").remove();
+  window.parent.document.getElementById("fullscreenEmbed").remove();
 }
 
 function enterFullscreen() {
