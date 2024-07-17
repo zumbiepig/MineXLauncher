@@ -227,7 +227,8 @@ nav {
   color: #fff;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out,
+    opacity 0.3s ease-out;
 }
 
 .custom-options.open {
@@ -262,7 +263,7 @@ nav {
 
 .play-button {
   background-color: #0f990f;
-  border: 2px solid #007700; 
+  border: 2px solid #007700;
   padding: 10px 40px;
   border-radius: 5px;
   cursor: pointer;
@@ -276,7 +277,7 @@ nav {
 }
 
 .play-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -297,7 +298,7 @@ nav {
 .play-button:hover {
   background-color: #17b117;
   border-color: #005500;
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .play-button span {
@@ -317,7 +318,6 @@ nav {
     transform: scale(1.1);
   }
 }
-
 
 .bottom-bar {
   background-color: #2c2c2c;
@@ -414,4 +414,37 @@ nav {
 
 .download-link:hover {
   background-color: #00cc00;
+}
+
+.top-menu {
+  background-color: #2c2c2c;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.top-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.top-menu ul li {
+  margin-right: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #ccc;
+  transition: color 0.2s;
+}
+.top-menu ul li.selected {
+  color: #fff;
+  font-weight: bold;
+}
+.top-menu ul li:hover {
+  color: #fff;
 }
