@@ -12,8 +12,7 @@ Y loading icon and background
 Y Fix buttons on archive (shaun)
 Y Archive icon (shaun)
 Y Small Anims (shaun)
-
-N mod library/eaglerforge dedicated section (shaun/zombie)
+Y mod library/eaglerforge dedicated section (shaun/zombie)
 
 N introduction (shaun)
 
