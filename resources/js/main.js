@@ -94,7 +94,9 @@ function navigateToOther() {
 function navigateToArchive() {
   window.location.href = "/archive/";
 }
-
+function navigateToMods() {
+  window.location.href = "/mods/";
+}
 function isMobile() {
   try {
     document.exitPointerLock();
