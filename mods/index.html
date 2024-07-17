@@ -4,13 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="/resources/js/main.js" defer></script>
-    <script src="/resources/js/mods.js"></script>
+    <script src="/resources/js/mods/mods.js"></script>
   </head>
   <body>
     <div class="launcher">
       <div class="title-bar">
         <span>MineXLauncher 1.0.0</span>
       </div>
+
       <div class="content">
         <div class="sidebar">
           <div class="profile">
@@ -63,6 +64,29 @@
         <div class="main-panel">
           <div class="top-bar">
             <span class="game-title">Mods</span>
+          </div>
+          <div class="top-menu">
+            <ul>
+              <li class="menu-item selected" onclick="navigateToMods()">
+                Mods
+              </li>
+              <li class="menu-item" onclick="navigateToResource()">
+                Resource Packs
+              </li>
+              <li class="menu-item" onclick="navigateToModClient()">Client</li>
+              <li
+                class="menu-item"
+                onclick="window.open('https://eaglerforge.github.io')"
+              >
+                API
+              </li>
+              <li
+                class="menu-item"
+                onclick="window.open('https://eaglerforge-builder.vercel.app/')"
+              >
+                EaglerforgeBuilder
+              </li>
+            </ul>
           </div>
           <div class="mod-list minecraft-scrollbar"></div>
         </div>

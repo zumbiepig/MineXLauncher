@@ -36,14 +36,14 @@ function playGame() {
   window.open("/temp/");
   replaceFullscreenEmbed(selectedVersion);
 
-   enterFullscreen();
-
-  
-  
+  enterFullscreen();
 }
+function openClientManually(clientName) {
+  window.open("/temp/");
+  replaceFullscreenEmbed(clientName);
 
-
-
+  enterFullscreen();
+}
 function openOldClient(client) {
   if (client == "1.8.8") {
     selectedVersion = `https://archive.eaglercraft.rip/EaglercraftX_1.8/client/${
@@ -90,12 +90,18 @@ function navigateToDownloads() {
 function navigateToOther() {
   window.location.href = "/other/";
 }
-
+function navigateToResource() {
+  window.location.href = "/mods/resourcepacks/";
+}
 function navigateToArchive() {
   window.location.href = "/archive/";
 }
 function navigateToMods() {
   window.location.href = "/mods/";
+}
+
+function navigateToModClient() {
+  window.location.href = "/mods/modclient/";
 }
 function isMobile() {
   try {
@@ -149,28 +155,27 @@ function createFullscreenEmbed(url) {
 }
 
 function replaceFullscreenEmbed(url) {
-  var fullscreenEmbed = window.parent.document.getElementById("fullscreenEmbed");
+  var fullscreenEmbed =
+    window.parent.document.getElementById("fullscreenEmbed");
   fullscreenEmbed.src = url;
-  
+
   fullscreenEmbed.focus();
 }
-
 
 function removeFullscreenEmbed() {
   window.parent.document.getElementById("fullscreenEmbed").remove();
 }
 function enterFullscreen() {
-  var element = document.getElementById("fullscreenEmbed"); 
+  var element = document.getElementById("fullscreenEmbed");
 
   if (element.requestFullscreen) {
-    element.requestFullscreen(); 
+    element.requestFullscreen();
   } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();  
+    element.webkitRequestFullscreen();
   } else if (element.msRequestFullscreen) {
-    element.msRequestFullscreen(); 
+    element.msRequestFullscreen();
   }
 }
-
 
 function exitFullscreen() {
   if (document.fullscreenElement) {
