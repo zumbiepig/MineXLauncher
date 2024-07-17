@@ -28,23 +28,21 @@ function selectVersion(path, name) {
   }
   toggleOptions();
 }
-
 function playGame() {
-  if (selectedVersion == "") {
+  if (selectedVersion === "") {
     alert("Please select a version to play.");
     return;
   }
+  window.open("/temp/");
   replaceFullscreenEmbed(selectedVersion);
-  //enterFullscreen(); disabled for easier debugging below
 
-  // shaun pls help me
-  // u cant type bc its not focused
-  // if you focus yourself from console it works
-  // but i cant get it to work by itself
-  window.top.document.getElementById("fullscreenEmbed").onload = "this.focus()";
-  window.top.document.getElementById("fullscreenEmbed").focus();
-  this.focus();
+   enterFullscreen();
+
+  
+  
 }
+
+
 
 function openOldClient(client) {
   if (client == "1.8.8") {
@@ -149,18 +147,28 @@ function createFullscreenEmbed(url) {
 }
 
 function replaceFullscreenEmbed(url) {
-  window.parent.document.getElementById("fullscreenEmbed").src = url;
+  var fullscreenEmbed = window.parent.document.getElementById("fullscreenEmbed");
+  fullscreenEmbed.src = url;
+  
+  fullscreenEmbed.focus();
 }
+
 
 function removeFullscreenEmbed() {
   window.parent.document.getElementById("fullscreenEmbed").remove();
 }
-
 function enterFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
+  var element = document.getElementById("fullscreenEmbed"); 
+
+  if (element.requestFullscreen) {
+    element.requestFullscreen(); 
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();  
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen(); 
   }
 }
+
 
 function exitFullscreen() {
   if (document.fullscreenElement) {

@@ -142,7 +142,7 @@ nav {
   padding: 20px;
   box-sizing: border-box;
   position: relative;
-  overflow-y: auto;
+  overflow-y: hidden;
   scrollbar-width: thin;
   scrollbar-color: #048239 #035525;
 }

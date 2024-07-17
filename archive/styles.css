@@ -392,3 +392,18 @@ select {
   cursor: pointer;
   transition: box-shadow 0.2s, background-color 0.2s;
 }
+.upload-button {
+  background-color: #075f07;
+  border: none;
+  padding: 5px 11px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: none;
+  transition: background-color 0.2s;
+}
+.upload-button:hover {
+  background-color: #197d19;
+}
