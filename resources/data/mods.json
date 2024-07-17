@@ -1,6 +1,5 @@
 {
   "mods": [
-    
     {
       "display-name": "StatsHud",
       "mod-name": "statshud",
@@ -91,6 +90,36 @@
       "icon": "https://logolook.net/wp-content/uploads/2021/06/Symbol-Minecraft.png",
       "repo-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/tree/main/CommunityMods",
       "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/ChatShortcuts.js"
+    },
+    {
+      "display-name": "Eagler Mobile (eaglerforge)",
+      "mod-name": "eaglermobile",
+      "author": "FlameDogo99",
+      "author-link": "https://github.com/FlamedDogo99",
+      "description": "A touch version of eaglercraft mod",
+      "icon": "https://raw.githubusercontent.com/FlamedDogo99/EaglerMobile/main/images/logo128.png",
+      "repo-link": "https://github.com/FlamedDogo99/EaglerMobile",
+      "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/EaglerMobile.js"
+    },
+    {
+      "display-name": "PlayerVision",
+      "mod-name": "playervision",
+      "author": "Oeil-de-Lynx",
+      "author-link": "https://discord.gg/9VsWx5mkGs",
+      "description": "This is a mod to view what other players are currently seeing as them.",
+      "icon": "https://cdn.discordapp.com/attachments/1256553723467923477/1256553723598213170/image.png?ex=66984299&is=6696f119&hm=69036f61140bc186b59084ce753b9bff81b9b545e28278614176ec6d7cd464d0&",
+      "repo-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/",
+      "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/PlayerVision.js"
+    },
+    {
+      "display-name": "Tab Masker (v2)",
+      "mod-name": "tbmskerv2",
+      "author": "Oeil-de-Lynx",
+      "author-link": "https://discord.gg/9VsWx5mkGs",
+      "description": "Press 'Escape' to transform the game in a Wikipedia page!Reload the page to return to the game.",
+      "icon": "https://cdn.discordapp.com/attachments/1256553723467923477/1256553723598213170/image.png?ex=66984299&is=6696f119&hm=69036f61140bc186b59084ce753b9bff81b9b545e28278614176ec6d7cd464d0&",
+      "repo-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/",
+      "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/TabMasker.js"
     }
- ]
+  ]
 }
