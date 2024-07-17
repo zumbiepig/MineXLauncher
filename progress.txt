@@ -13,6 +13,7 @@ Y Fix buttons on archive (shaun)
 Y Archive icon (shaun)
 Y Small Anims (shaun)
 Y mod library/eaglerforge dedicated section (shaun/zombie)
+Y Label 1.0.0 on all tabs (shaun)
 
 N introduction thing (shaun)
 
@@ -24,7 +25,6 @@ N Set username (zombie)
 
 N embed eagler server list, waiting embed specialized update (shaun)
 
-N Label 1.0.0 on all tabs (shaun)
 
 N add peyton versions, waiting for DM response (zombie)
 
