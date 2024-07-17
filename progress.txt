@@ -9,9 +9,23 @@ Y updates
 Y versions reorder
 Y archive js
 Y loading icon and background
+Y Fix buttons on archive (shaun)
+Y Archive icon (shaun)
+Y Small Anims (shaun)
+Y mod library/eaglerforge dedicated section (shaun/zombie)
+Y Label 1.0.0 on all tabs (shaun)
+
+N introduction thing (shaun)
 
 N auto-format all files (zombie)
+ 
+N Style scrollbar (zombie)
 
-N embed eagler server list (shaun)
+N Set username (zombie)
+
+N embed eagler server list, waiting embed specialized update (shaun)
+
 
 N add peyton versions, waiting for DM response (zombie)
+
+N launch promotion [reddit/eagler community, finding partners, etc] (zombie and shaun)

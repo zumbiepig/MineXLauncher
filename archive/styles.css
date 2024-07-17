@@ -270,11 +270,16 @@ nav {
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .play-button:hover {
   background-color: #00ff00;
+  transform: scale(1.05);
+}
+
+.play-button:active {
+  transform: scale(0.95);
 }
 
 .bottom-bar {
@@ -332,14 +337,17 @@ nav {
   text-transform: uppercase;
   cursor: pointer;
   outline: none;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .minecraft-button:hover {
   background-color: #bdbdbd;
+  transform: scale(1.05);
 }
 
 .minecraft-button:active {
   background-color: #8a8a8a;
+  transform: scale(0.95);
 }
 
 .bottom-bar {
@@ -367,11 +375,12 @@ nav {
   padding: 10px 20px;
   border-radius: 5px;
   margin-bottom: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .download-link:hover {
   background-color: #00cc00;
+  transform: scale(1.05);
 }
 
 select {
@@ -391,4 +400,35 @@ select {
   background-size: 15px auto, 100%;
   cursor: pointer;
   transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+select:hover {
+  background-color: #0a8338;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px #00cc00;
+}
+
+.upload-button {
+  background-color: #075f07;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.upload-button:hover {
+  background-color: #197d19;
+  transform: scale(1.05);
+}
+
+.upload-button:active {
+  transform: scale(0.95);
 }

@@ -142,7 +142,7 @@ nav {
   padding: 20px;
   box-sizing: border-box;
   position: relative;
-  overflow-y: auto;
+  overflow-y: hidden;
   scrollbar-width: thin;
   scrollbar-color: #048239 #035525;
 }
@@ -183,12 +183,10 @@ nav {
   padding: 10px 20px;
   border-top: 1px solid #333;
 }
-
 .custom-select-wrapper {
   position: relative;
   display: inline-block;
   width: 250px;
-  z-index: 9999;
 }
 
 .custom-select {
@@ -204,37 +202,40 @@ nav {
   cursor: pointer;
   box-shadow: 4px 4px #4e4e50;
   user-select: none;
-  z-index: 9999;
+  transition: box-shadow 0.3s;
+}
+
+.custom-select:hover {
+  box-shadow: 6px 6px #4e4e50;
 }
 
 .custom-select.open {
-  border-radius: 5px 5px 0 0;
+  border-radius: 0 0 5px 5px;
 }
 
 .custom-options {
   position: absolute;
-  top: calc(100% + -238px);
+  bottom: calc(100% + 2px);
   left: 0;
   right: 0;
   border: 2px solid #000;
-  border-top: none;
+  border-bottom: none;
   background-color: #035525;
   box-shadow: 4px 4px #4e4e50;
-  z-index: 9999;
   display: none;
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px 5px 0 0;
   color: #fff;
-  max-height: 200px;
-  overflow-y: auto;
-  direction: rtl;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out,
+    opacity 0.3s ease-out;
 }
 
 .custom-options.open {
   display: block;
-}
-
-.custom-options div {
-  direction: ltr;
+  max-height: 200px;
+  padding: 10px 0;
+  opacity: 1;
 }
 
 .custom-option {
@@ -243,7 +244,7 @@ nav {
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #000;
-  z-index: 9999;
+  transition: background-color 0.3s;
 }
 
 .custom-option:last-child {
@@ -261,8 +262,8 @@ nav {
 }
 
 .play-button {
-  background-color: #00cc00;
-  border: none;
+  background-color: #0f990f;
+  border: 2px solid #007700;
   padding: 10px 40px;
   border-radius: 5px;
   cursor: pointer;
@@ -270,11 +271,52 @@ nav {
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+  overflow: hidden;
+  position: relative;
+}
+
+.play-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease-out;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.play-button:hover::before {
+  width: 0;
+  height: 0;
 }
 
 .play-button:hover {
-  background-color: #00ff00;
+  background-color: #17b117;
+  border-color: #005500;
+  transform: scale(1.05);
+}
+
+.play-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.play-button:hover span {
+  animation: fluid 1.5s infinite alternate;
+}
+
+@keyframes fluid {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
 }
 
 .bottom-bar {
@@ -373,3 +415,4 @@ nav {
 .download-link:hover {
   background-color: #00cc00;
 }
+/* try fix 1 */
