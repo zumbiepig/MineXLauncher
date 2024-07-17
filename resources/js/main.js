@@ -36,13 +36,11 @@ function playGame() {
   window.open("/temp/");
   replaceFullscreenEmbed(selectedVersion);
 
-  enterFullscreen();
+  //enterFullscreen();
 }
 function openClientManually(clientName) {
   window.open("/temp/");
   replaceFullscreenEmbed(clientName);
-
-  enterFullscreen();
 }
 function openOldClient(client) {
   if (client == "1.8.8") {
