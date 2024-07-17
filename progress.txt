@@ -29,3 +29,27 @@ N embed eagler server list, waiting embed specialized update (shaun)
 N add peyton versions, waiting for DM response (zombie)
 
 N launch promotion [reddit/eagler community, finding partners, etc] (zombie and shaun)
+
+N
+Finish Pasting:
+ <div class="top-menu">
+            <ul>
+              <li class="menu-item selected" onclick="navigateToHome()">Game</li>
+              <li class="menu-item" onclick="navigateToOther()">
+                Other Versions
+              </li>
+             
+              <li
+                class="menu-item"
+                onclick="navigateToArchive();"
+              > Archive
+              </li>
+              <li
+                class="menu-item"
+                onclick="navigateToDownloads();"
+              >
+                Client Downloads
+              </li>
+            </ul>
+          </div>
+          on top of those
