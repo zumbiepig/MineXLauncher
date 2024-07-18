@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/resources/js/main.js" defer></script>
+    <script src="/resources/js/mods/mods.js"></script>
+  </head>
+  <body>
+    <div class="launcher">
+      <div class="title-bar">
+        <span>MineXLauncher 1.0.0</span>
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <div class="profile">
+            <span class="profile-name" id="profile-name">Default</span>
+          </div>
+          <nav>
+            <li class="nav-item" onclick="navigateToUpdates()">
+              <img src="/resources/images/news-icon.png" class="nav-icon" />
+              <span class="nav-text">Updates</span>
+            </li>
+            <li class="nav-item" onclick="navigateToHome()">
+              <img src="/resources/images/minecraft-icon.png" class="nav-icon" />
+              <span class="nav-text">Game</span>
+            </li>
+            <li class="nav-item" onclick="navigateToServers()">
+              <img src="/resources/images/serverlist-icon.png" class="nav-icon" />
+              <span class="nav-text">Server List</span>
+            </li>
+            <li class="nav-item selected" onclick="navigateToMods()">
+              <img src="/resources/images/mods.png" class="nav-icon" />
+              <span class="nav-text">Mods</span>
+            </li>
+            <li class="nav-item" onclick="navigateToSettings()">
+              <img src="/resources/images/settings-icon.png" class="nav-icon" />
+              <span class="nav-text">Settings</span>
+            </li>
+          </nav>
+        </div>
+        <div class="main-panel">
+          <div class="top-bar">
+            <span class="game-title">Mods</span>
+          </div>
+          <div class="top-menu">
+            <ul>
+              <li class="menu-item selected" onclick="navigateToMods()">Mods</li>
+              <li class="menu-item" onclick="navigateToResource()">Resource Packs</li>
+              <li class="menu-item" onclick="navigateToModClient()">Client</li>
+              <li class="menu-item" onclick="window.open('https://eaglerforge.github.io')">API</li>
+              <li class="menu-item" onclick="window.open('https://eaglerforge-builder.vercel.app/')">EaglerforgeBuilder</li>
+            </ul>
+          </div>
+          <div class="mod-list minecraft-scrollbar"></div>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <span class="username" id="bottom-profile-name">MineXLauncher</span>
+      </div>
+    </div>
+  </body>
+</html>

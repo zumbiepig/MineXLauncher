@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/resources/js/main.js" defer></script>
+  </head>
+  <body>
+    <div class="launcher">
+      <div class="title-bar">
+        <span>MineXLauncher 1.0.0</span>
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <div class="profile">
+            <span class="profile-name" id="profile-name">Default</span>
+          </div>
+          <nav>
+            <li class="nav-item" onclick="navigateToUpdates()">
+              <img src="/resources/images/news-icon.png" class="nav-icon" />
+              <span class="nav-text">Updates</span>
+            </li>
+            <li class="nav-item selected" onclick="navigateToHome()">
+              <img src="/resources/images/minecraft-icon.png" class="nav-icon" />
+              <span class="nav-text">Game</span>
+            </li>
+            <li class="nav-item" onclick="navigateToServers()">
+              <img src="/resources/images/serverlist-icon.png" class="nav-icon" />
+              <span class="nav-text">Server List</span>
+            </li>
+            <li class="nav-item" onclick="navigateToMods()">
+              <img src="/resources/images/mods.png" class="nav-icon" />
+              <span class="nav-text">Mods</span>
+            </li>
+            <li class="nav-item" onclick="navigateToSettings()">
+              <img src="/resources/images/settings-icon.png" class="nav-icon" />
+              <span class="nav-text">Settings</span>
+            </li>
+          </nav>
+        </div>
+
+        <div class="main-panel">
+          <div class="top-bar">
+            <span class="game-title">Offline Downloads</span>
+          </div>
+          <div class="top-menu">
+            <ul>
+              <li class="menu-item" onclick="navigateToHome()">Game</li>
+              <li class="menu-item" onclick="navigateToOther()">Other Versions</li>
+
+              <li class="menu-item" onclick="navigateToArchive()">Archive</li>
+              <li class="menu-item selected" onclick="navigateToDownloads()">Client Downloads</li>
+            </ul>
+          </div>
+          <div class="main-content">
+            <br />
+            <h2>Client Downloads</h2>
+            <div class="downloads">
+              <a href="/game/offline/main/1.9.4/EaglercraftL_1.9_Offline_Signed_Client.html" class="download-link" download>1.9.4</a>
+              <a href="/game/offline/main/1.8.8/EaglercraftX_1.8_Offline_Signed_Client.html" class="download-link" download>1.8.8</a>
+              <a href="/game/offline/main/1.5.2/Eaglercraft_1.5_Offline_Download.html" class="download-link" download>1.5.2</a>
+              <a href="/game/offline/main/b1.7.3/Beta_Offline_Download.html" class="download-link" download>Beta 1.7.3</a>
+              <a href="/game/offline/main/b1.3/Eaglercraft_b1.3_Offline_Download.html" class="download-link" download>Beta 1.3</a>
+              <a href="/game/offline/main/a1.2.6/Alpha_Offline_Download.html" class="download-link" download>Alpha 1.2.6</a>
+              <br /><br />
+              <a href="/game/offline/main/indev/Indev.html" class="download-link" download>Indev</a>
+              <a href="/game/offline/other/eaglerforge/EaglerForge_v1.3.2_1.8_Offline_International.html" class="download-link" download>EaglerForge</a>
+              <a href="/game/offline/other/resent/Resent-Signed.html" class="download-link" download>Resent Client</a>
+              <a href="/game/offline/other/shadow/Shadow_Client_International.html" class="download-link" download>Shadow Client</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <span class="username" id="profile-name">MineXLauncher</span>
+      </div>
+    </div>
+  </body>
+</html>

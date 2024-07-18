@@ -3,5 +3,5 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
-  "livePreview.defaultPreviewPath": "/index.html"
+  "livePreview.serverRoot": "public"
 }
