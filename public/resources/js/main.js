@@ -42,19 +42,13 @@ function openClientManually(clientName) {
 }
 function openOldClient(client) {
   if (client == "1.8.8") {
-    selectedVersion = `https://archive.eaglercraft.rip/EaglercraftX_1.8/client/${
-      document.getElementById("18-client-version").value
-    }/index.html`;
+    selectedVersion = `https://archive.eaglercraft.rip/EaglercraftX_1.8/client/${document.getElementById("18-client-version").value}/index.html`;
     playGame();
   } else if (client == "1.5.2") {
-    selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_1.5/client/${
-      document.getElementById("15-client-version").value
-    }/index.html`;
+    selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_1.5/client/${document.getElementById("15-client-version").value}/index.html`;
     playGame();
   } else if (client == "b1.3") {
-    selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_b1.3/client/${
-      document.getElementById("b13-client-version").value
-    }/index.html`;
+    selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_b1.3/client/${document.getElementById("b13-client-version").value}/index.html`;
     playGame();
   }
 }
@@ -126,13 +120,7 @@ function setCookie(name, value, days) {
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     expires = "; expires=" + date.toUTCString();
   }
-  document.cookie =
-    name +
-    "=" +
-    (value || "") +
-    expires +
-    "; path=/; domain=" +
-    window.location.hostname.replace(/^www\./, "");
+  document.cookie = name + "=" + (value || "") + expires + "; path=/; domain=" + window.location.hostname.replace(/^www\./, "");
 }
 
 function createFullscreenEmbed(url) {
@@ -151,8 +139,7 @@ function createFullscreenEmbed(url) {
 }
 
 function replaceFullscreenEmbed(url) {
-  var fullscreenEmbed =
-    window.parent.document.getElementById("fullscreenEmbed");
+  var fullscreenEmbed = window.parent.document.getElementById("fullscreenEmbed");
   fullscreenEmbed.src = url;
 
   fullscreenEmbed.focus();
