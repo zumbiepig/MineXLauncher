@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/resources/js/main.js"></script>
+  </head>
+  <body>
+    <div class="launcher">
+      <div class="title-bar">
+        <span>MineXLauncher 1.0.0</span>
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <div class="profile">
+            <span class="profile-name" id="profile-name">Default</span>
+          </div>
+          <nav>
+            <li class="nav-item selected" onclick="navigateToUpdates()">
+              <img src="/resources/images/news-icon.png" class="nav-icon" />
+              <span class="nav-text">Updates</span>
+            </li>
+            <li class="nav-item" onclick="navigateToHome()">
+              <img
+                src="/resources/images/minecraft-icon.png"
+                class="nav-icon"
+              />
+              <span class="nav-text">Game</span>
+            </li>
+           
+            <li class="nav-item" onclick="navigateToServers()">
+              <img
+                src="/resources/images/serverlist-icon.png"
+                class="nav-icon"
+              />
+              <span class="nav-text">Server List</span>
+            </li>
+            
+               <li class="nav-item" onclick="navigateToMods()">
+              <img src="/resources/images/mods.png" class="nav-icon" />
+              <span class="nav-text">Mods</span>
+            </li>
+             <li class="nav-item" onclick="navigateToSettings()">
+              <img src="/resources/images/settings-icon.png" class="nav-icon" />
+              <span class="nav-text">Settings</span>
+            </li>
+         </li>
+
+          </nav>
+        </div>
+        <div class="main-panel">
+          <div class="top-bar">
+            <span class="game-title">Updates</span>
+          </div>
+          <div class="main-content">
+            <div class="news-item">
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <h3>Updates</h3>
+              
+              <strong>MineXLauncher 1.0.0</strong>
+              <li>Major rewrite, check it out yourself!</li>
+              <br />
+              <strong>MineXLauncher 0.4.0</strong>
+              <li>Add many old versions of Eaglercraft</li>
+              <br />
+              <strong>MineXLauncher 0.3.1</strong>
+              <li>Fix missing icons</li>
+              <br />
+              <strong>MineXLauncher 0.3.0</strong>
+              <li>Eagler Mobile</li>
+              <li>Eaglercraft Archive/Other Menu</li>
+              <li>Improved Server List</li>
+              <li>Client Downloads</li>
+              <li>Cookie Fixes</li>
+              <li>Reduced Clutter</li>
+              <li>Updated Site Paths</li>
+              <li>Bugfixes</li>
+              <br />
+              <strong>MineXLauncher 0.2.2</strong>
+              <li>Fixed up-to-date version name</li>
+              <li>Fixed bad performance on server list tab</li>
+              <li>
+                Fixed bad performance on the Mod Maker Kit setting enabled
+              </li>
+              <br />
+              <strong>MineXLauncher 0.2.1</strong>
+              <li>
+                Turned window.open() to a custom function that opens in
+                about:blank
+              </li>
+              <br />
+              <strong>MineXLauncher 0.2.0</strong>
+              <li>Settings menu</li>
+              <li>Mod Maker Kit</li>
+              <li>Fixed JS and added server list</li>
+                 <br />
+              <strong>MineXLauncher 0.1.0</strong>
+              <li>First release of MineXLauncher</li>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <span class="username" id="bottom-profile-name">MineXLauncher</span>
+      </div>
+    </div>
+  </body>
+</html>
