@@ -1,6 +1,29 @@
+# MineXLauncher
+## A cool eagler launcher
+Check us out at:
+https://minex.speedslicer.dev
+https://minexlauncher.vercel.app
 ## How to Run
-do
-```git clone https://github.com/zumbiepig/MineXLauncher
-   npm install
-   npm start
+### To run dev build (local):
 ```
+git clone https://github.com/zumbiepig/MineXLauncher
+npm install
+npm start
+```
+go to https://localhost:3000
+==============================================================
+### To run stable (local):
+Download zip from releases
+unzip it in the folder you want
+```
+npm install
+npm start
+```
+=============================================================
+### Host on pages:
+fork repo
+set up pages
+### Host on Vercel
+fork repo
+go to https://vercel.com
+set up from there
