@@ -10,7 +10,8 @@ git clone https://github.com/zumbiepig/MineXLauncher
 npm install
 npm start
 ```
-go to https://localhost:3000
+
+#### go to https://localhost:3000
 ==============================================================
 ### To run stable (local):
 Download zip from releases
@@ -19,6 +20,7 @@ unzip it in the folder you want
 npm install
 npm start
 ```
+#### go to localhost:3000
 =============================================================
 ### Host on pages:
 fork repo
