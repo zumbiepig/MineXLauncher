@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: "off" */
-
 let selectedVersion = "";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -194,8 +192,8 @@ function toggleFullScreen() {
   }
 }
 
-if (window.location.hostname === "0.0.0.0") { fuckESLint() };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// so there are no errors just put all functions here
+if (window.location.hostname === null) { fuckESLint() };
 function fuckESLint() {
   openClientManually
   openOldClient
