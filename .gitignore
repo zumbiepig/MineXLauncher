@@ -1,5 +1,6 @@
 .DS_Store
 public/resources/scripts/
+public/javascripts/
 
 # Logs
 logs
