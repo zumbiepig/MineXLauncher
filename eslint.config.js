@@ -6,8 +6,9 @@ export default tseslint.config(
   ...tseslint.configs.strict,
   ...tseslint.configs.stylistic,
   {
-    "rules": {
-      "no-misused-promises": "off"
-    }
-  }
+    ignores: [
+        "**/*",
+        "!src/"
+    ]
+}
 );
