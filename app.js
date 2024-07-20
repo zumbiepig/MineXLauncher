@@ -13,7 +13,6 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-// view engine setup
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "pug");
 

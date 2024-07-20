@@ -89,7 +89,9 @@ function navigateToArchive() {
 function navigateToMods() {
   window.location.href = "/mods/";
 }
-
+function navigateToTutorial() {
+  window.location.href = "/tutorial/";
+}
 function navigateToModClient() {
   window.location.href = "/mods/modclient/";
 }
@@ -173,3 +175,45 @@ function toggleFullScreen() {
     document.exitFullscreen();
   }
 }
+document.addEventListener("DOMContentLoaded", function () {
+  const usernameForm = document.getElementById("username-form");
+  const usernameInput = document.getElementById("username-input");
+  const profileName = document.getElementById("profile-name");
+
+  function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  }
+
+  function getCookie(name) {
+    const cname = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(cname) == 0) {
+        return c.substring(cname.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  const savedUsername = getCookie("username");
+  if (savedUsername) {
+    profileName.textContent = savedUsername;
+  }
+
+  usernameForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const username = usernameInput.value.trim();
+    if (username) {
+      profileName.textContent = username;
+      setCookie("username", username, 365);
+    }
+  });
+});
