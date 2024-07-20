@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const usernameForm = document.getElementById("username-form") as HTMLFormElement | null;
   const usernameInput = document.getElementById("username-input") as HTMLInputElement | null;
-  const profileName = document.getElementById("profile-name") as HTMLElement | null;
+  const profileName = document.getElementById("profile-name");
 
   const savedUsername = getCookie("username");
   if (savedUsername && profileName) {
@@ -44,7 +44,7 @@ function toggleOptions() {
 function selectVersion(path: string, name: string) {
   selectedVersion = path;
   const selector = document.querySelector(".custom-select");
-  if (selector && selector.textContent) {
+  if (selector?.textContent) {
     selector.textContent = `Selected: ${name}`;
   }
   toggleOptions();
@@ -69,8 +69,8 @@ function openOldClient(client: string) {
     "b1.3": "b13-client-version"
   };
 
-  const dropdown = document.getElementById(clients[client] as keyof typeof clients) as HTMLSelectElement | null;
-  if (dropdown && dropdown.value) {
+  const dropdown = clients[client] ? document.getElementById(clients[client]) as HTMLSelectElement : null;
+  if (dropdown?.value) {
     selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === 'b1.3' ? '_b1.3' : `_${client}`}/client/${dropdown.value}/index.html`;
     playGame();
   }
@@ -152,33 +152,22 @@ function removeFullscreenEmbed() {
   }
 }
 
-function enterFullscreen() {
-  const element = document.getElementById("fullscreenEmbed");
-  if (element) {
-    if (!document.fullscreenElement) {
-      element.requestFullscreen();
-    }
-  }
-}
-
-function exitFullscreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  }
-}
-
-function toggleFullScreen() {
+async function enterFullscreen() {
   const element = document.getElementById("fullscreenEmbed");
   if (!document.fullscreenElement) {
     if (element) {
-      document.documentElement.requestFullscreen();
+      await element.requestFullscreen();
     }
-  } else if (document.fullscreenElement) {
-    document.exitFullscreen();
   }
 }
 
-if (window.location.hostname === null) { noUnusedFunctions }
+async function exitFullscreen() {
+  if (document.fullscreenElement) {
+    await document.exitFullscreen();
+  }
+}
+
+if (window.location.hostname === '0.0.0.0') { noUnusedFunctions }
 function noUnusedFunctions() {
   openClientManually
   openOldClient
@@ -188,7 +177,6 @@ function noUnusedFunctions() {
   removeFullscreenEmbed
   enterFullscreen
   exitFullscreen
-  toggleFullScreen
   navigateToArchive
   navigateToHome
   navigateToMobile
