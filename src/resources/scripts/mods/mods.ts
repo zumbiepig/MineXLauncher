@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("/resources/data/resourcepacks.json")
+  fetch("/resources/data/mods.json")
     .then((response) => response.json())
     .then((data) => {
       const modListElement = document.querySelector(".mod-list");
 
-      data.mods.forEach((mod) => {
+      data.mods.forEach((mod: { [x: string]: string; icon: string; author: string; description: string; }) => {
         const modItem = document.createElement("div");
         modItem.classList.add("mod-item");
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         `;
 
-        modListElement.appendChild(modItem);
+        modListElement?.appendChild(modItem);
       });
     })
     .catch((error) => console.error("Error fetching mods:", error));

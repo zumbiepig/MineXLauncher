@@ -3,7 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "npm": ">=10"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,5 +19,14 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "@tsconfig/node-lts": "^20.1.3",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^8.57.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.16.1"
   }
 }
