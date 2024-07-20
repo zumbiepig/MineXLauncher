@@ -9,7 +9,7 @@
     "lint:fix": "eslint --fix"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20 || <=20"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
