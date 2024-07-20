@@ -177,7 +177,6 @@ function noUnusedFunctions() {
   removeFullscreenEmbed
   enterFullscreen
   exitFullscreen
-  toggleFullScreen
   navigateToArchive
   navigateToHome
   navigateToMobile
