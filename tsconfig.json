@@ -1,5 +1,5 @@
 {
-  "extends": ["@tsconfig/node-lts/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
+  "extends": ["@tsconfig/node20/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
   "compilerOptions": {
       "lib": ["es2023", "dom"],
       "rootDir": "src",

@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: "off" */
 
-let selectedVersion: string = "";
+let selectedVersion = "";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname === "/") {
@@ -65,13 +65,13 @@ function openClientManually(clientName: string) {
 }
 
 function openOldClient(client: string) {
-  const clients: { [key: string]: string } = {
+  const clients: Record<string, string> = {
     "1.8.8": "18-client-version",
     "1.5.2": "15-client-version",
     "b1.3": "b13-client-version"
   };
 
-  const dropdown = document.getElementById(clients[client]) as HTMLSelectElement | null;
+  const dropdown = document.getElementById(clients[client] as keyof typeof clients) as HTMLSelectElement | null;
   if (dropdown && dropdown.value) {
     selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === 'b1.3' ? '_b1.3' : `_${client}`}/client/${dropdown.value}/index.html`;
     playGame();
@@ -81,6 +81,18 @@ function openOldClient(client: string) {
 function navigateTo(path: string) {
   window.location.href = path;
 }
+
+function navigateToHome() { navigateTo("/home/"); }
+function navigateToMobile() { navigateTo("/mobile/"); }
+function navigateToUpdates() { navigateTo("/updates/"); }
+function navigateToSettings() { navigateTo("/settings/"); }
+function navigateToServers() { navigateTo("/servers/"); }
+function navigateToDownloads() { navigateTo("/downloads/"); }
+function navigateToOther() { navigateTo("/other/"); }
+function navigateToResource() { navigateTo("/mods/resourcepacks/"); }
+function navigateToArchive() { navigateTo("/archive/"); }
+function navigateToMods() { navigateTo("/mods/"); }
+function navigateToModClient() { navigateTo("/mods/modclient/"); }
 
 function isMobile(): boolean {
   try {
@@ -168,26 +180,26 @@ function toggleFullScreen() {
   }
 }
 
-function fuckESLint() {
-  openClientManually("");
-  openOldClient("");
-  navigateTo("");
-  getCookie("");
-  setCookie("", "", 0);
-  removeFullscreenEmbed();
-  enterFullscreen();
-  exitFullscreen();
-  toggleFullScreen();
+if (window.location.hostname === null) { noUnusedFunctions }
+function noUnusedFunctions() {
+  openClientManually
+  openOldClient
+  navigateTo
+  getCookie
+  setCookie
+  removeFullscreenEmbed
+  enterFullscreen
+  exitFullscreen
+  toggleFullScreen
+  navigateToArchive
+  navigateToHome
+  navigateToMobile
+  navigateToUpdates
+  navigateToSettings
+  navigateToServers
+  navigateToDownloads
+  navigateToOther
+  navigateToResource
+  navigateToMods
+  navigateToModClient
 }
-
-function navigateToHome() { navigateTo("/home/"); }
-function navigateToMobile() { navigateTo("/mobile/"); }
-function navigateToUpdates() { navigateTo("/updates/"); }
-function navigateToSettings() { navigateTo("/settings/"); }
-function navigateToServers() { navigateTo("/servers/"); }
-function navigateToDownloads() { navigateTo("/downloads/"); }
-function navigateToOther() { navigateTo("/other/"); }
-function navigateToResource() { navigateTo("/mods/resourcepacks/"); }
-function navigateToArchive() { navigateTo("/archive/"); }
-function navigateToMods() { navigateTo("/mods/"); }
-function navigateToModClient() { navigateTo("/mods/modclient/"); }
