@@ -1,0 +1,125 @@
+{
+  "mods": [
+    {
+      "display-name": "StatsHud",
+      "mod-name": "statshud",
+      "author": "Neverflagastralis",
+      "author-link": "https://github.com/AstralisLLC",
+      "description": "An all-new StatsHud, soon to be updated with customization functionality!",
+      "icon": "https://eaglerrinth.github.io/images/newstatHUD.png",
+      "repo-link": "https://github.com/AstralisLLC/EaglerForge-Mods/blob/main/StatsHudV3.js",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/StatsHudV3.js"
+    },
+    {
+      "display-name": "FreshEaglerUI",
+      "mod-name": "freshui",
+      "author": "Murturtle",
+      "author-link": "https://github.com/Murturtle",
+      "description": "Makes the UIs slide in and re works the main screen!",
+      "icon": "https://logolook.net/wp-content/uploads/2021/06/Symbol-Minecraft.png",
+      "repo-link": "https://github.com/Murturtle/MursMods/blob/main/FreshEaglerUI.js",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/FreshEaglerUI.js"
+    },
+    {
+      "display-name": "Chat commands mod",
+      "mod-name": "chatcmd",
+      "author": "Neverflagastralis",
+      "author-link": "https://github.com/AstralisLLC",
+      "description": "An open source mod with a built in customizable bug reports system!",
+      "icon": "https://logolook.net/wp-content/uploads/2021/06/Symbol-Minecraft.png",
+      "repo-link": "https://github.com/AstralisLLC/EaglerForge-Mods/main/chat%20utils.js",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/chat.utils.js"
+    },
+
+    {
+      "display-name": "Blur",
+      "mod-name": "blur",
+      "author": "Murturtle",
+      "author-link": "https://github.com/Murturtle",
+      "description": "Makes your fps 5 when unfocused!",
+      "icon": "https://raw.githubusercontent.com/Murturtle/MursMods/main/Blur.png",
+      "repo-link": "https://github.com/Murturtle/MursMods/blob/main/Blur.js",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/Blur.js"
+    },
+    {
+      "display-name": "Barney's Music Mod",
+      "mod-name": "barneysmusicmod",
+      "author": "BarneyTheGod",
+      "author-link": "https://github.com/BarneyCompiler",
+      "description": "Plays a users music through a direct mp3 link. Saves music through Local Browser storage.",
+      "icon": "https://encrypted-tbn0.gstatic.com/resources/images/images?q=tbn:ANd9GcQNY9cuS9betbnjFw2W_ZCXs_hW9IPgxtIXKUPYxIV1mw&s",
+      "repo-link": "https://github.com/BarneyCompiler/barneysmods/blob/main/Barneys%20Music%20Player",
+      "download-link": "https://raw.githubusercontent.com/BarneyCompiler/barneysmods/main/Barneys%20Music%20Player"
+    },
+    {
+      "display-name": "Blink",
+      "mod-name": "blinkmod",
+      "author": "radmanplays",
+      "author-link": "https://github.com/radmanplays",
+      "description": "use by typing the .blinkon and .blinkoff commands and sending it",
+      "icon": "https://logolook.net/wp-content/uploads/2021/06/Symbol-Minecraft.png",
+      "repo-link": "https://github.com/radmanplays/eaglerreborn-plugins",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/blink.js"
+    },
+    {
+      "display-name": "GrappleHook",
+      "mod-name": "graplehookmod",
+      "author": "radmanplays",
+      "author-link": "https://github.com/radmanplays",
+      "description": "grappling hook mod. how to use: 1.grab a fishing rod 2.use the fishing rod 3.grappling hook! ",
+      "icon": "https://eaglerrinth.github.io/images/grappling-gun.png",
+      "repo-link": "https://github.com/radmanplays/eaglerreborn-plugins",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/grapplehook.js"
+    },
+    {
+      "display-name": "Fullbright",
+      "mod-name": "fullbright",
+      "author": "radmanplays",
+      "author-link": "https://github.com/radmanplays",
+      "description": "full bright mod for eaglerforge. keybind(enabled by default): f",
+      "icon": "https://eaglerrinth.github.io/images/fullBright.png",
+      "repo-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/tree/main/CommunityMods",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/fullbright.js"
+    },
+    {
+      "display-name": "Chat Shortcuts",
+      "mod-name": "chatshortcutsmod",
+      "author": "radmanplays",
+      "author-link": "https://github.com/radmanplays",
+      "description": "shortcuts: {health}, {pos}, {name}, {me}, {x}, {y}, {z}, {level}, {walked}, {chunk}",
+      "icon": "https://logolook.net/wp-content/uploads/2021/06/Symbol-Minecraft.png",
+      "repo-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/tree/main/CommunityMods",
+      "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/ChatShortcuts.js"
+    },
+    {
+      "display-name": "Eagler Mobile (eaglerforge)",
+      "mod-name": "eaglermobile",
+      "author": "FlameDogo99",
+      "author-link": "https://github.com/FlamedDogo99",
+      "description": "A touch version of eaglercraft mod",
+      "icon": "https://raw.githubusercontent.com/FlamedDogo99/EaglerMobile/main/resources/images/images/logo128.png",
+      "repo-link": "https://github.com/FlamedDogo99/EaglerMobile",
+      "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/EaglerMobile.js"
+    },
+    {
+      "display-name": "PlayerVision",
+      "mod-name": "playervision",
+      "author": "Oeil-de-Lynx",
+      "author-link": "https://discord.gg/9VsWx5mkGs",
+      "description": "This is a mod to view what other players are currently seeing as them.",
+      "icon": "https://cdn.discordapp.com/attachments/1256553723467923477/1256553723598213170/image.png?ex=66984299&is=6696f119&hm=69036f61140bc186b59084ce753b9bff81b9b545e28278614176ec6d7cd464d0&",
+      "repo-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/",
+      "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/PlayerVision.js"
+    },
+    {
+      "display-name": "Tab Masker (v2)",
+      "mod-name": "tbmskerv2",
+      "author": "Oeil-de-Lynx",
+      "author-link": "https://discord.gg/9VsWx5mkGs",
+      "description": "Press 'Escape' to transform the game in a Wikipedia page!Reload the page to return to the game.",
+      "icon": "https://lh3.googleusercontent.com/-nsTEFatj_mxjfqotKQQLpHtK-cj2sl7MwK_7NSQq-0Xvh4QT_jZk9VNoUg4sKGLwSap30ahubuWu1HTrOIXanzsRA=w640-h400-e365-rj-sc0x00ffffff",
+      "repo-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/",
+      "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/TabMasker.js"
+    }
+  ]
+}
