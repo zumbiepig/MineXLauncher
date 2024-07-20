@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: "off" */
-
 let selectedVersion = "";
 
 document.addEventListener("DOMContentLoaded", function () {
