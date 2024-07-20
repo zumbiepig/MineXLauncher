@@ -1,4 +1,6 @@
-let selectedVersion = "";
+/* eslint no-unused-vars: "off" */
+
+let selectedVersion: string = "";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname === "/") {
@@ -12,11 +14,33 @@ document.addEventListener("DOMContentLoaded", function () {
     selectVersion("/game/web/mobile/1.8.8/", "1.8.8");
     toggleOptions();
   }
+
+  const usernameForm = document.getElementById("username-form") as HTMLFormElement | null;
+  const usernameInput = document.getElementById("username-input") as HTMLInputElement | null;
+  const profileName = document.getElementById("profile-name") as HTMLElement | null;
+
+  const savedUsername = getCookie("username");
+  if (savedUsername && profileName) {
+    profileName.textContent = savedUsername;
+  }
+
+  if (usernameForm && usernameInput && profileName) {
+    usernameForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const username = usernameInput.value.trim();
+      if (username) {
+        profileName.textContent = username;
+        setCookie("username", username, 365);
+      }
+    });
+  }
 });
 
 function toggleOptions() {
-  document.querySelector(".custom-options")?.classList.toggle("open");
-  document.querySelector(".custom-select")?.classList.toggle("open");
+  const customOptions = document.querySelector(".custom-options");
+  const customSelect = document.querySelector(".custom-select");
+  if (customOptions) customOptions.classList.toggle("open");
+  if (customSelect) customSelect.classList.toggle("open");
 }
 
 function selectVersion(path: string, name: string) {
@@ -41,72 +65,24 @@ function openClientManually(clientName: string) {
 }
 
 function openOldClient(client: string) {
-  if (client === "1.8.8") {
-    const dropdown = document.getElementById("18-client-version") as HTMLSelectElement;
-    if (dropdown.value) {
-      selectedVersion = `https://archive.eaglercraft.rip/EaglercraftX_1.8/client/${dropdown.value}/index.html`;
-      playGame();
-    }
-  } else if (client === "1.5.2") {
-    const dropdown = document.getElementById("15-client-version") as HTMLSelectElement;
-    if (dropdown.value) {
-      selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_1.5/client/${dropdown.value}/index.html`;
-      playGame();
-    }
-  } else if (client === "b1.3") {
-    const dropdown = document.getElementById("b13-client-version") as HTMLSelectElement;
-    if (dropdown.value) {
-      selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft_b1.3/client/${dropdown.value}/index.html`;
-      playGame();
-    }
+  const clients: { [key: string]: string } = {
+    "1.8.8": "18-client-version",
+    "1.5.2": "15-client-version",
+    "b1.3": "b13-client-version"
+  };
+
+  const dropdown = document.getElementById(clients[client]) as HTMLSelectElement | null;
+  if (dropdown && dropdown.value) {
+    selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === 'b1.3' ? '_b1.3' : `_${client}`}/client/${dropdown.value}/index.html`;
+    playGame();
   }
 }
 
-function navigateToHome() {
-  window.location.href = "/home/";
+function navigateTo(path: string) {
+  window.location.href = path;
 }
 
-function navigateToMobile() {
-  window.location.href = "/mobile/";
-}
-
-function navigateToUpdates() {
-  window.location.href = "/updates/";
-}
-
-function navigateToSettings() {
-  window.location.href = "/settings/";
-}
-
-function navigateToServers() {
-  window.location.href = "/servers/";
-}
-
-function navigateToDownloads() {
-  window.location.href = "/downloads/";
-}
-
-function navigateToOther() {
-  window.location.href = "/other/";
-}
-
-function navigateToResource() {
-  window.location.href = "/mods/resourcepacks/";
-}
-
-function navigateToArchive() {
-  window.location.href = "/archive/";
-}
-
-function navigateToMods() {
-  window.location.href = "/mods/";
-}
-
-function navigateToModClient() {
-  window.location.href = "/mods/modclient/";
-}
-
-function isMobile() {
+function isMobile(): boolean {
   try {
     document.exitPointerLock();
     return /Mobi/i.test(window.navigator.userAgent);
@@ -115,7 +91,7 @@ function isMobile() {
   }
 }
 
-function getCookie(name: string) {
+function getCookie(name: string): string | null {
   const cookieArr = document.cookie.split(";");
   for (const cookie of cookieArr) {
     const cookiePair = cookie.split("=");
@@ -152,7 +128,7 @@ function createFullscreenEmbed(url: string) {
 }
 
 function replaceFullscreenEmbed(url: string) {
-  const fullscreenEmbed = window.parent.document.getElementById("fullscreenEmbed") as HTMLIFrameElement;
+  const fullscreenEmbed = window.parent.document.getElementById("fullscreenEmbed") as HTMLIFrameElement | null;
   if (fullscreenEmbed) {
     fullscreenEmbed.src = url;
     fullscreenEmbed.focus();
@@ -192,26 +168,26 @@ function toggleFullScreen() {
   }
 }
 
-// so there are no errors just put all functions here
-if (window.location.hostname === null) { fuckESLint() };
 function fuckESLint() {
-  openClientManually
-  openOldClient
-  navigateToHome
-  navigateToArchive
-  navigateToDownloads
-  navigateToMobile
-  navigateToUpdates
-  navigateToModClient
-  navigateToSettings
-  navigateToMods
-  getCookie
-  navigateToServers
-  removeFullscreenEmbed
-  enterFullscreen
-  navigateToOther
-  navigateToResource
-  setCookie
-  exitFullscreen
-  toggleFullScreen
+  openClientManually("");
+  openOldClient("");
+  navigateTo("");
+  getCookie("");
+  setCookie("", "", 0);
+  removeFullscreenEmbed();
+  enterFullscreen();
+  exitFullscreen();
+  toggleFullScreen();
 }
+
+function navigateToHome() { navigateTo("/home/"); }
+function navigateToMobile() { navigateTo("/mobile/"); }
+function navigateToUpdates() { navigateTo("/updates/"); }
+function navigateToSettings() { navigateTo("/settings/"); }
+function navigateToServers() { navigateTo("/servers/"); }
+function navigateToDownloads() { navigateTo("/downloads/"); }
+function navigateToOther() { navigateTo("/other/"); }
+function navigateToResource() { navigateTo("/mods/resourcepacks/"); }
+function navigateToArchive() { navigateTo("/archive/"); }
+function navigateToMods() { navigateTo("/mods/"); }
+function navigateToModClient() { navigateTo("/mods/modclient/"); }
