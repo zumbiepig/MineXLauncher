@@ -2,7 +2,7 @@
 ## A cool eagler launcher
 Check us out at:
 https://minex.speedslicer.dev
-https://minexlauncher.vercel.app
+https://launcher.speedslicer,dev
 ## How to Run
 ### To run dev build (local):
 ```
