@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node ./bin/www.js",
+    "start": "node ./bin/www",
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
