@@ -56,6 +56,8 @@ function playGame() {
     return;
   }
   replaceFullscreenEmbed(selectedVersion);
+  enterFullscreen();
+  window.open('/temp.html');
 }
 
 function openClientManually(clientName: string) {
@@ -152,18 +154,18 @@ function removeFullscreenEmbed() {
   }
 }
 
-async function enterFullscreen() {
+function enterFullscreen() {
   const element = document.getElementById("fullscreenEmbed");
   if (!document.fullscreenElement) {
     if (element) {
-      await element.requestFullscreen();
+      void element.requestFullscreen();
     }
   }
 }
 
-async function exitFullscreen() {
+function exitFullscreen() {
   if (document.fullscreenElement) {
-    await document.exitFullscreen();
+    void document.exitFullscreen();
   }
 }
 
