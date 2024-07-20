@@ -6,6 +6,7 @@ export default tseslint.config(
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
   {
+    ignores: ['node_modules'],
     languageOptions: {
       parserOptions: {
         project: true,
