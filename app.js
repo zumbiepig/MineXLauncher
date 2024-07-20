@@ -1,15 +1,13 @@
 import createError from "http-errors";
 import express, { json, urlencoded, static as serveStatic } from "express";
-import { fileURLToPath } from "url";
-import { join, dirname } from "path";
+import { join } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
 import indexRouter from "./routes/index.js";
 import usersRouter from "./routes/users.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = import.meta.dirname;
 
 const app = express();
 

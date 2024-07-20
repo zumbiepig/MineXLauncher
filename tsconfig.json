@@ -1,0 +1,9 @@
+{
+  "extends": ["@tsconfig/node-lts/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
+  "compilerOptions": {
+      "lib": ["es2023", "dom"],
+      "rootDir": "src",
+      "outDir": "public",
+  },
+  "include": ["src"],
+}
