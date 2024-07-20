@@ -6,7 +6,7 @@
       "author": "Neverflagastralis",
       "author-link": "https://github.com/AstralisLLC",
       "description": "An all-new StatsHud, soon to be updated with customization functionality!",
-      "icon": "https://eaglerrinth.github.io/resources/images/images/newstatHUD.png",
+      "icon": "https://eaglerrinth.github.io/images/newstatHUD.png",
       "repo-link": "https://github.com/AstralisLLC/EaglerForge-Mods/blob/main/StatsHudV3.js",
       "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/StatsHudV3.js"
     },
@@ -67,7 +67,7 @@
       "author": "radmanplays",
       "author-link": "https://github.com/radmanplays",
       "description": "grappling hook mod. how to use: 1.grab a fishing rod 2.use the fishing rod 3.grappling hook! ",
-      "icon": "https://eaglerrinth.github.io/resources/images/images/grappling-gun.png",
+      "icon": "https://eaglerrinth.github.io/images/grappling-gun.png",
       "repo-link": "https://github.com/radmanplays/eaglerreborn-plugins",
       "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/grapplehook.js"
     },
@@ -77,7 +77,7 @@
       "author": "radmanplays",
       "author-link": "https://github.com/radmanplays",
       "description": "full bright mod for eaglerforge. keybind(enabled by default): f",
-      "icon": "https://eaglerrinth.github.io/resources/images/images/fullBright.png",
+      "icon": "https://eaglerrinth.github.io/images/fullBright.png",
       "repo-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/tree/main/CommunityMods",
       "download-link": "https://github.com/EaglerRinth/eaglerrinth.github.io/releases/download/1.0/fullbright.js"
     },
@@ -97,7 +97,7 @@
       "author": "FlameDogo99",
       "author-link": "https://github.com/FlamedDogo99",
       "description": "A touch version of eaglercraft mod",
-      "icon": "https://raw.githubusercontent.com/FlamedDogo99/EaglerMobile/main/resources/images/images/logo128.png",
+      "icon": "https://raw.githubusercontent.com/FlamedDogo99/EaglerMobile/main/resources/images/logo128.png",
       "repo-link": "https://github.com/FlamedDogo99/EaglerMobile",
       "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/EaglerMobile.js"
     },

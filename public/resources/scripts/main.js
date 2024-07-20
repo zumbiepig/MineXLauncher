@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: "off" */
-
 let selectedVersion = "";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -166,20 +164,6 @@ function toggleFullScreen() {
   }
 }
 
-// Placeholder function to avoid ESLint errors during development
-function fuckESLint() {
-  openClientManually();
-  openOldClient();
-  navigateTo();
-  getCookie();
-  setCookie();
-  removeFullscreenEmbed();
-  enterFullscreen();
-  exitFullscreen();
-  toggleFullScreen();
-}
-
-// Dynamic navigation functions
 function navigateToHome() { navigateTo("/home/"); }
 function navigateToMobile() { navigateTo("/mobile/"); }
 function navigateToUpdates() { navigateTo("/updates/"); }
