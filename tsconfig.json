@@ -1,5 +1,5 @@
 {
-  "extends": ["@tsconfig/node20/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
+  "extends": ["@tsconfig/node20/tsconfig", "@tsconfig/strictest/tsconfig"],
   "compilerOptions": {
     "moduleResolution": "bundler",
     "module": "preserve",
