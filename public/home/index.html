@@ -16,23 +16,23 @@
             <span class="profile-name" id="profile-name">Default</span>
           </div>
           <nav>
-            <li class="nav-item" onclick="navigateToUpdates()">
+            <li class="nav-item" onclick="navigate.updates()">
               <img src="/resources/images/images/news-icon.png" class="nav-icon" />
               <span class="nav-text">Updates</span>
             </li>
-            <li class="nav-item selected" onclick="navigateToHome()">
+            <li class="nav-item selected" onclick="navigate.home()">
               <img src="/resources/images/images/minecraft-icon.png" class="nav-icon" />
               <span class="nav-text">Game</span>
             </li>
-            <li class="nav-item" onclick="navigateToServers()">
+            <li class="nav-item" onclick="navigate.servers()">
               <img src="/resources/images/images/serverlist-icon.png" class="nav-icon" />
               <span class="nav-text">Server List</span>
             </li>
-            <li class="nav-item" onclick="navigateToMods()">
+            <li class="nav-item" onclick="navigate.mods()">
               <img src="/resources/images/images/mods.png" class="nav-icon" />
               <span class="nav-text">Mods</span>
             </li>
-            <li class="nav-item" onclick="navigateToSettings()">
+            <li class="nav-item" onclick="navigate.settings()">
               <img src="/resources/images/images/settings-icon.png" class="nav-icon" />
               <span class="nav-text">Settings</span>
             </li>
@@ -45,10 +45,10 @@
           </div>
           <div class="top-menu">
             <ul>
-              <li class="menu-item selected" onclick="navigateToHome()">Game</li>
-              <li class="menu-item" onclick="navigateToOther()">Other Versions</li>
-              <li class="menu-item" onclick="navigateToArchive()">Archive</li>
-              <li class="menu-item" onclick="navigateToDownloads()">Client Downloads</li>
+              <li class="menu-item selected" onclick="navigate.home()">Game</li>
+              <li class="menu-item" onclick="navigate.other()">Other Versions</li>
+              <li class="menu-item" onclick="navigate.archive()">Archive</li>
+              <li class="menu-item" onclick="navigate.downloads()">Client Downloads</li>
             </ul>
           </div>
           <div class="main-content">
@@ -56,41 +56,41 @@
               <img src="/resources/images/images/coverimage.png" class="minecraft-image" />
               <div class="installations">
                 <div class="custom-select-wrapper">
-                  <div id="custom-select" class="custom-select" onclick="toggleOptions()">
+                  <div id="custom-select" class="custom-select" onclick="versionSelector.open()">
                     <span class="custom-select-trigger">Select a version</span>
                   </div>
                   <div class="custom-options">
-                    <div class="custom-option" onclick="selectVersion('/game/web/main/1.9.4/', '1.9.4')">
+                    <div class="custom-option" onclick="game.select('/game/web/main/1.9.4/', '1.9.4')">
                       <img src="/resources/images/images/icon.png" />
                       <span>1.9.4</span>
                     </div>
-                    <div class="custom-option" onclick="selectVersion('/game/web/main/1.8.8/', '1.8.8')">
+                    <div class="custom-option" onclick="game.select('/game/web/main/1.8.8/', '1.8.8')">
                       <img src="/resources/images/images/icon.png" />
                       <span>1.8.8</span>
                     </div>
-                    <div class="custom-option" onclick="selectVersion('/game/web/main/1.5.2/', '1.5.2')">
+                    <div class="custom-option" onclick="game.select('/game/web/main/1.5.2/', '1.5.2')">
                       <img src="/resources/images/images/icon.png" />
                       <span>1.5.2</span>
                     </div>
-                    <div class="custom-option" onclick="selectVersion('/game/web/main/b1.7.3/', 'Beta 1.7.3')">
+                    <div class="custom-option" onclick="game.select('/game/web/main/b1.7.3/', 'Beta 1.7.3')">
                       <img src="/resources/images/images/icon.png" />
                       <span>Beta 1.7.3</span>
                     </div>
-                    <div class="custom-option" onclick="selectVersion('/game/web/main/b1.3/', 'Beta 1.3')">
+                    <div class="custom-option" onclick="game.select('/game/web/main/b1.3/', 'Beta 1.3')">
                       <img src="/resources/images/images/icon.png" />
                       <span>Beta 1.3</span>
                     </div>
-                    <div class="custom-option" onclick="selectVersion('/game/web/main/a1.2.6/', 'Alpha')">
+                    <div class="custom-option" onclick="game.select('/game/web/main/a1.2.6/', 'Alpha')">
                       <img src="/resources/images/images/icon.png" />
                       <span>Alpha 1.2.6</span>
                     </div>
-                    <div class="custom-option" onclick="selectVersion('/game/web/main/indev/', 'Indev')">
+                    <div class="custom-option" onclick="game.select('/game/web/main/indev/', 'Indev')">
                       <img src="/resources/images/images/icon.png" />
                       <span>Indev</span>
                     </div>
                   </div>
                 </div>
-                <button class="play-button" onclick="playGame()">Play</button>
+                <button class="play-button" onclick="game.play()">Play</button>
               </div>
             </div>
           </div>

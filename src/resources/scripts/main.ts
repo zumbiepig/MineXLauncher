@@ -1,98 +1,148 @@
-let selectedVersion = "";
+let selectedVersion = '';
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.location.pathname === "/") {
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.location.pathname === '/') {
     if (isMobile()) {
-      createFullscreenEmbed("/mobile/");
+      embed.create('/mobile/');
     } else {
-      createFullscreenEmbed("/home/");
+      embed.create('/home/');
     }
   }
-  if (window.location.pathname === "/mobile/") {
-    selectVersion("/game/web/mobile/1.8.8/", "1.8.8");
-    toggleOptions();
+  if (window.location.pathname === '/mobile/') {
+    game.select('/game/web/mobile/1.8.8/', '1.8.8');
   }
 
-  const usernameForm = document.getElementById("username-form") as HTMLFormElement | null;
-  const usernameInput = document.getElementById("username-input") as HTMLInputElement | null;
-  const profileName = document.getElementById("profile-name");
+  const usernameForm = document.getElementById('username-form') as HTMLFormElement | null;
+  const usernameInput = document.getElementById('username-input') as HTMLInputElement | null;
+  const profileName = document.getElementById('profile-name');
 
-  const savedUsername = getCookie("username");
+  const savedUsername = cookie.get('username');
   if (savedUsername && profileName) {
     profileName.textContent = savedUsername;
   }
 
   if (usernameForm && usernameInput && profileName) {
-    usernameForm.addEventListener("submit", function (event) {
+    usernameForm.addEventListener('submit', function (event) {
       event.preventDefault();
       const username = usernameInput.value.trim();
       if (username) {
         profileName.textContent = username;
-        setCookie("username", username, 365);
+        cookie.set('username', username, 365);
       }
     });
   }
 });
 
-function toggleOptions() {
-  const customOptions = document.querySelector(".custom-options");
-  const customSelect = document.querySelector(".custom-select");
-  if (customOptions) customOptions.classList.toggle("open");
-  if (customSelect) customSelect.classList.toggle("open");
-}
-
-function selectVersion(path: string, name: string) {
-  selectedVersion = path;
-  const selector = document.querySelector(".custom-select");
-  if (selector?.textContent) {
-    selector.textContent = `Selected: ${name}`;
-  }
-  toggleOptions();
-}
-
-function playGame() {
-  if (!selectedVersion) {
-    alert("Please select a version to play.");
-    return;
-  }
-  replaceFullscreenEmbed(selectedVersion);
-  enterFullscreen();
-  window.open('/temp.html');
-}
-
-function openClientManually(clientName: string) {
-  replaceFullscreenEmbed(clientName);
-}
-
-function openOldClient(client: string) {
-  const clients: Record<string, string> = {
-    "1.8.8": "18-client-version",
-    "1.5.2": "15-client-version",
-    "b1.3": "b13-client-version"
-  };
-
-  const dropdown = clients[client] ? document.getElementById(clients[client]) as HTMLSelectElement : null;
-  if (dropdown?.value) {
-    selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === 'b1.3' ? '_b1.3' : `_${client}`}/client/${dropdown.value}/index.html`;
-    playGame();
+const versionSelector = {
+  open() {
+    const customOptions = document.querySelector('.custom-options');
+    const customSelect = document.querySelector('.custom-select');
+    if (customOptions && customSelect) {
+      customOptions.classList.add('open');
+      customSelect.classList.add('open');
+    }
+  },
+  close() {
+    const customOptions = document.querySelector('.custom-options');
+    const customSelect = document.querySelector('.custom-select');
+    if (customOptions && customSelect) {
+      customOptions.classList.remove('open');
+      customSelect.classList.remove('open');
+    }
+  },
+  toggle() {
+    const customOptions = document.querySelector('.custom-options');
+    const customSelect = document.querySelector('.custom-select');
+    if (customOptions && customSelect) {
+      customOptions.classList.toggle('open');
+      customSelect.classList.toggle('open');
+    }
   }
 }
 
-function navigateTo(path: string) {
-  window.location.href = path;
+const game = {
+  play() {
+    if (!selectedVersion) {
+      alert('Please select a version to play.');
+    }
+    window.location.href = selectedVersion;
+    window.open('/temp.html');
+  },
+  select(path: string, name: string) {
+    selectedVersion = path;
+    const selector = document.querySelector('.custom-select');
+    if (selector?.textContent) {
+      if (name) {
+        selector.textContent = `Selected: ${name}`;
+      } else {
+        selector.textContent = `Selected: ${path}`;
+      };
+    }
+    versionSelector.close();
+  },
+  archive(client: string) {
+    const clients: Record<string, string> = {
+      '1.8.8': '18-client-version',
+      '1.5.2': '15-client-version',
+      'b1.3': 'b13-client-version'
+    };
+    const dropdown = clients[client] ? document.getElementById(clients[client]) as HTMLSelectElement : null;
+    if (dropdown?.value) {
+      selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === 'b1.3' ? '_b1.3' : `_${client}`}/client/${dropdown.value}/index.html`;
+      game.play();
+    }
+  }
 }
 
-function navigateToHome() { navigateTo("/home/"); }
-function navigateToMobile() { navigateTo("/mobile/"); }
-function navigateToUpdates() { navigateTo("/updates/"); }
-function navigateToSettings() { navigateTo("/settings/"); }
-function navigateToServers() { navigateTo("/servers/"); }
-function navigateToDownloads() { navigateTo("/downloads/"); }
-function navigateToOther() { navigateTo("/other/"); }
-function navigateToResource() { navigateTo("/mods/resourcepacks/"); }
-function navigateToArchive() { navigateTo("/archive/"); }
-function navigateToMods() { navigateTo("/mods/"); }
-function navigateToModClient() { navigateTo("/mods/modclient/"); }
+const navigate = {
+  home() { window.location.href = '/home/'; },
+  mobile() { window.location.href = '/mobile/'; },
+  updates() { window.location.href = '/updates/'; },
+  settings() { window.location.href = '/settings/'; },
+  servers() { window.location.href = '/servers/'; },
+  downloads() { window.location.href = '/downloads/'; },
+  other() { window.location.href = '/other/'; },
+  resource() { window.location.href = '/mods/resourcepacks/'; },
+  archive() { window.location.href = '/archive/'; },
+  mods() { window.location.href = '/mods/'; },
+  modClient() { window.location.href = '/mods/modclient/'; }
+}
+
+const cookie = {
+  get(name: string): string | null {
+    const cookieArr = document.cookie.split(';');
+    for (const cookie of cookieArr) {
+      const cookiePair = cookie.split('=');
+      if (name === cookiePair[0]?.trim()) {
+        return decodeURIComponent(cookiePair[1] ?? '');
+      }
+    }
+    return null;
+  },
+  set(name: string, value: string, days: number) {
+    let expires = '';
+    if (days) {
+      const date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie = name + '=' + (value || '') + expires + '; path=/; domain=' + window.location.hostname.replace(/^www\./, '');
+  }
+}
+
+const embed = {
+  create(url: string) {
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.src = url;
+    document.body.appendChild(iframe);
+  }
+}
 
 function isMobile(): boolean {
   try {
@@ -103,91 +153,8 @@ function isMobile(): boolean {
   }
 }
 
-function getCookie(name: string): string | null {
-  const cookieArr = document.cookie.split(";");
-  for (const cookie of cookieArr) {
-    const cookiePair = cookie.split("=");
-    if (name === cookiePair[0]?.trim()) {
-      return decodeURIComponent(cookiePair[1] ?? "");
-    }
-  }
-  return null;
-}
-
-function setCookie(name: string, value: string, days: number) {
-  let expires = "";
-  if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/; domain=" + window.location.hostname.replace(/^www\./, "");
-}
-
-function createFullscreenEmbed(url: string) {
-  const iframe = document.createElement("iframe");
-  iframe.id = "fullscreenEmbed";
-
-  iframe.style.position = "fixed";
-  iframe.style.top = "0";
-  iframe.style.left = "0";
-  iframe.style.width = "100%";
-  iframe.style.height = "100%";
-  iframe.style.border = "none";
-
-  iframe.src = url;
-  document.body.appendChild(iframe);
-}
-
-function replaceFullscreenEmbed(url: string) {
-  const fullscreenEmbed = window.parent.document.getElementById("fullscreenEmbed") as HTMLIFrameElement | null;
-  if (fullscreenEmbed) {
-    fullscreenEmbed.src = url;
-    fullscreenEmbed.focus();
-  }
-}
-
-function removeFullscreenEmbed() {
-  const iframe = window.parent.document.getElementById("fullscreenEmbed");
-  if (iframe) {
-    iframe.remove();
-  }
-}
-
-function enterFullscreen() {
-  const element = document.getElementById("fullscreenEmbed");
-  if (!document.fullscreenElement) {
-    if (element) {
-      void element.requestFullscreen();
-    }
-  }
-}
-
-function exitFullscreen() {
-  if (document.fullscreenElement) {
-    void document.exitFullscreen();
-  }
-}
-
-if (window.location.hostname === '0.0.0.0') { noUnusedFunctions }
-function noUnusedFunctions() {
-  openClientManually
-  openOldClient
-  navigateTo
-  getCookie
-  setCookie
-  removeFullscreenEmbed
-  enterFullscreen
-  exitFullscreen
-  navigateToArchive
-  navigateToHome
-  navigateToMobile
-  navigateToUpdates
-  navigateToSettings
-  navigateToServers
-  navigateToDownloads
-  navigateToOther
-  navigateToResource
-  navigateToMods
-  navigateToModClient
+if (window.location.hostname === '0.0.0.0') {
+  versionSelector
+  game
+  navigate
 }

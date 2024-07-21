@@ -17,23 +17,23 @@
             <span class="profile-name" id="profile-name">Default</span>
           </div>
           <nav>
-            <li class="nav-item" onclick="navigateToUpdates()">
+            <li class="nav-item" onclick="navigate.updates()">
               <img src="/resources/images/images/news-icon.png" class="nav-icon" />
               <span class="nav-text">Updates</span>
             </li>
-            <li class="nav-item" onclick="navigateToHome()">
+            <li class="nav-item" onclick="navigate.home()">
               <img src="/resources/images/images/minecraft-icon.png" class="nav-icon" />
               <span class="nav-text">Game</span>
             </li>
-            <li class="nav-item" onclick="navigateToServers()">
+            <li class="nav-item" onclick="navigate.servers()">
               <img src="/resources/images/images/serverlist-icon.png" class="nav-icon" />
               <span class="nav-text">Server List</span>
             </li>
-            <li class="nav-item selected" onclick="navigateToMods()">
+            <li class="nav-item selected" onclick="navigate.mods()">
               <img src="/resources/images/images/mods.png" class="nav-icon" />
               <span class="nav-text">Mods</span>
             </li>
-            <li class="nav-item" onclick="navigateToSettings()">
+            <li class="nav-item" onclick="navigate.settings()">
               <img src="/resources/images/images/settings-icon.png" class="nav-icon" />
               <span class="nav-text">Settings</span>
             </li>
@@ -45,9 +45,9 @@
           </div>
           <div class="top-menu">
             <ul>
-              <li class="menu-item selected" onclick="navigateToMods()">Mods</li>
-              <li class="menu-item" onclick="navigateToResource()">Resource Packs</li>
-              <li class="menu-item" onclick="navigateToModClient()">Client</li>
+              <li class="menu-item selected" onclick="navigate.mods()">Mods</li>
+              <li class="menu-item" onclick="navigate.resource()">Resource Packs</li>
+              <li class="menu-item" onclick="navigate.modClient()">Client</li>
               <li class="menu-item" onclick="window.open('https://eaglerforge.github.io')">API</li>
               <li class="menu-item" onclick="window.open('https://eaglerforge-builder.vercel.app/')">EaglerforgeBuilder</li>
             </ul>
