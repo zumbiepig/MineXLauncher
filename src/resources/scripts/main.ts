@@ -1,19 +1,12 @@
 let selectedVersion = '';
 
 document.addEventListener('DOMContentLoaded', function () {
-  if (window.location.pathname === '/') {
-    if (isMobile()) {
-      embed.create('/mobile/');
-    } else {
-      embed.create('/home/');
-    }
-  }
   if (window.location.pathname === '/mobile/') {
-    game.select('/game/web/mobile/1.8.8/', '1.8.8');
+    game.select('../game/web/mobile/1.8.8/', '1.8.8');
   }
 
-  const usernameForm = document.getElementById('username-form') as HTMLFormElement | null;
-  const usernameInput = document.getElementById('username-input') as HTMLInputElement | null;
+  const usernameForm = document.getElementById('username-form') as HTMLFormElement;
+  const usernameInput = document.getElementById('username-input') as HTMLInputElement;
   const profileName = document.getElementById('profile-name');
 
   const savedUsername = cookie.get('username');
@@ -21,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     profileName.textContent = savedUsername;
   }
 
-  if (usernameForm && usernameInput && profileName) {
+  if (profileName) {
     usernameForm.addEventListener('submit', function (event) {
       event.preventDefault();
       const username = usernameInput.value.trim();
@@ -130,17 +123,10 @@ const cookie = {
   }
 }
 
-const embed = {
-  create(url: string) {
-    const iframe = document.createElement('iframe');
-    iframe.style.position = 'fixed';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-    iframe.src = url;
-    document.body.appendChild(iframe);
+const query = {
+  get(name: string) {
+    const urlParams = new URLSearchParams(top?.location.search);
+    return urlParams.get(name);
   }
 }
 
@@ -157,4 +143,6 @@ if (window.location.hostname === '0.0.0.0') {
   versionSelector
   game
   navigate
+  query
+  isMobile
 }

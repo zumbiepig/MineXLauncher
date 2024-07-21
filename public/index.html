@@ -3,9 +3,43 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MineXLauncher</title>
-    <link rel="icon" type="image/x-icon" href="/resources/images/icons/favicon.png" />
-    <link rel="stylesheet" href="/resources/styles/index.css" />
-    <script src="/resources/scripts/main.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="./resources/images/icons/favicon.png" />
     <meta name="theme-color" content="#000000" />
+    <style>
+      body {
+        overflow: hidden;
+        background-color: #1e1e1e;
+        background-image: url("/resources/images/gifs/loading.gif");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: 15vh;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        function isMobile() {
+          try {
+            document.exitPointerLock();
+            return /Mobi/i.test(window.navigator.userAgent);
+          } catch (e) {
+            return true;
+          }
+        }
+        const iframe = document.createElement('iframe');
+        iframe.style.position = 'fixed';
+        iframe.style.top = '0';
+        iframe.style.left = '0';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        if (isMobile()) {
+          iframe.src = './mobile/';
+        } else {
+          iframe.src = './home/';
+        }
+        document.body.appendChild(iframe);
+      });
+    </script>
   </head>
 </html>
