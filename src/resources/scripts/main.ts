@@ -57,9 +57,12 @@ const game = {
   play() {
     if (!selectedVersion) {
       alert('Please select a version to play.');
+      return;
     }
-    window.location.href = selectedVersion;
-    window.open('/temp.html');
+    // window.location.href = selectedVersion;
+    // @ts-expect-error 1234567890
+    window.top.location.href = selectedVersion;
+    // window.open('/temp.html');
   },
   select(path: string, name: string) {
     selectedVersion = path;
@@ -94,7 +97,7 @@ const navigate = {
   settings() { window.location.href = '/settings/'; },
   servers() { window.location.href = '/servers/'; },
   downloads() { window.location.href = '/downloads/'; },
-  other() { window.location.href = '/other/'; },
+  clients() { window.location.href = '/clients/'; },
   resource() { window.location.href = '/mods/resourcepacks/'; },
   archive() { window.location.href = '/archive/'; },
   mods() { window.location.href = '/mods/'; },
