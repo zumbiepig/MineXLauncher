@@ -2,7 +2,7 @@ let selectedVersion = '';
 
 document.addEventListener('DOMContentLoaded', function () {
   if (window.location.pathname === '/mobile/') {
-    game.select('../game/web/mobile/1.8.8/', '1.8.8');
+    game.select('/game/web/mobile/1.8.8/', '1.8.8');
   }
 
   const usernameForm = document.getElementById('username-form') as HTMLFormElement;

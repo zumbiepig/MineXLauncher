@@ -393,7 +393,7 @@ select {
   box-shadow: 4px 4px 0px #2a2a2a, -4px -4px 0px #2a2a2a;
   border-radius: 3px;
   appearance: none;
-  background-image: url("https://static.thenounproject.com/png/538451-200.png"), linear-gradient(45deg, #0a8338, #086126);
+  background-image: url("/resources/images/icons/dropdown-selector.png"), linear-gradient(45deg, #0a8338, #086126);
   background-repeat: no-repeat, repeat;
   background-position: right 10px center, 0 0;
   background-size: 15px auto, 100%;

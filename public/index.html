@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MineXLauncher</title>
-    <link rel="icon" type="image/x-icon" href="./resources/images/icons/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/resources/images/icons/favicon.png" />
     <meta name="theme-color" content="#000000" />
     <style>
       body {
@@ -34,9 +34,9 @@
         iframe.style.height = '100%';
         iframe.style.border = 'none';
         if (isMobile()) {
-          iframe.src = './mobile/';
+          iframe.src = '/mobile/';
         } else {
-          iframe.src = './home/';
+          iframe.src = '/home/';
         }
         document.body.appendChild(iframe);
       });
