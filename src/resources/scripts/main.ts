@@ -51,7 +51,7 @@ const versionSelector = {
       customSelect.classList.toggle('open');
     }
   }
-}
+};
 
 const game = {
   play() {
@@ -59,9 +59,10 @@ const game = {
       alert('Please select a version to play.');
       return;
     }
-    // window.location.href = selectedVersion;
+    embed.remove();
     // @ts-expect-error 1234567890
     window.top.location.href = selectedVersion;
+    // window.location.href = selectedVersion;
     // window.open('/temp.html');
   },
   select(path: string, name: string) {
@@ -88,7 +89,30 @@ const game = {
       game.play();
     }
   }
-}
+};
+
+const embed = {
+  create() {
+    const iframe = document.createElement('iframe');
+    iframe.id = 'embed'
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    if (isMobile()) {
+      iframe.src = '/mobile/';
+    } else {
+      iframe.src = '/home/';
+    }
+    document.body.appendChild(iframe);
+  },
+  remove() {
+    const iframe = document.getElementById('embed');
+    iframe?.remove();
+  }
+};
 
 const navigate = {
   home() { window.location.href = '/home/'; },
@@ -102,7 +126,7 @@ const navigate = {
   archive() { window.location.href = '/archive/'; },
   mods() { window.location.href = '/mods/'; },
   modClient() { window.location.href = '/mods/modclient/'; }
-}
+};
 
 const cookie = {
   get(name: string): string | null {
@@ -124,14 +148,14 @@ const cookie = {
     }
     document.cookie = name + '=' + (value || '') + expires + '; path=/; domain=' + window.location.hostname.replace(/^www\./, '');
   }
-}
+};
 
 const query = {
   get(name: string) {
     const urlParams = new URLSearchParams(top?.location.search);
     return urlParams.get(name);
   }
-}
+};
 
 function isMobile(): boolean {
   try {
