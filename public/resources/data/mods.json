@@ -97,7 +97,7 @@
       "author": "FlameDogo99",
       "author-link": "https://github.com/FlamedDogo99",
       "description": "A touch version of eaglercraft mod",
-      "icon": "https://raw.githubusercontent.com/FlamedDogo99/EaglerMobile/main/resources/images/images/logo128.png",
+      "icon": "/resources/images/icons/eaglermobile.png",
       "repo-link": "https://github.com/FlamedDogo99/EaglerMobile",
       "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/EaglerMobile.js"
     },
@@ -116,7 +116,7 @@
       "mod-name": "tbmskerv2",
       "author": "Oeil-de-Lynx",
       "author-link": "https://discord.gg/9VsWx5mkGs",
-      "description": "Press 'Escape' to transform the game in a Wikipedia page!Reload the page to return to the game.",
+      "description": "Press 'Escape' to transform the game in a Wikipedia page! Reload the page to return to the game.",
       "icon": "https://lh3.googleusercontent.com/-nsTEFatj_mxjfqotKQQLpHtK-cj2sl7MwK_7NSQq-0Xvh4QT_jZk9VNoUg4sKGLwSap30ahubuWu1HTrOIXanzsRA=w640-h400-e365-rj-sc0x00ffffff",
       "repo-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/",
       "download-link": "https://github.com/SpeedSlicer/QuiteTheModsListMayISay/releases/download/aefaef/TabMasker.js"

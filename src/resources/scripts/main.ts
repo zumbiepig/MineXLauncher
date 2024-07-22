@@ -115,15 +115,15 @@ const embed = {
 };
 
 const navigate = {
-  home() { window.location.href = '/home/'; },
+  home() { window.location.href = '/home/game/'; },
   mobile() { window.location.href = '/mobile/'; },
   updates() { window.location.href = '/updates/'; },
   settings() { window.location.href = '/settings/'; },
   servers() { window.location.href = '/servers/'; },
-  downloads() { window.location.href = '/downloads/'; },
-  clients() { window.location.href = '/clients/'; },
+  downloads() { window.location.href = '/home/downloads/'; },
+  clients() { window.location.href = '/home/clients/'; },
   resource() { window.location.href = '/mods/resourcepacks/'; },
-  archive() { window.location.href = '/archive/'; },
+  archive() { window.location.href = '/home/archive/'; },
   mods() { window.location.href = '/mods/'; },
   modClient() { window.location.href = '/mods/modclient/'; }
 };
