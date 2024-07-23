@@ -4,7 +4,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="/resources/styles/main.css" />
 		<script src="/resources/scripts/main.js" defer></script>
-		<script src="/resources/scripts/mods/resourcepacks.js"></script>
 	</head>
 	<body>
 		<div class="launcher">
@@ -42,12 +41,17 @@
 				<div class="main-panel">
 					<div class="top-menu">
 						<ul>
-							<li class="menu-item" onclick="navigate.mods.client()">Client</li>
+							<li class="menu-item selected" onclick="navigate.mods.client()">Client</li>
 							<li class="menu-item" onclick="navigate.mods.mods()">Mods</li>
-							<li class="menu-item selected" onclick="navigate.mods.resourcepacks()">Resource Packs</li>
+							<li class="menu-item" onclick="navigate.mods.resourcepacks()">Resource Packs</li>
 						</ul>
 					</div>
-					<div class="mod-list minecraft-scrollbar"></div>
+					<div class="main-content">
+						<img src="/resources/images/images/eaglerforge-cover.png" class="cover-image" />
+						<div class="installations">
+							<button class="play-button" onclick="game.play('/game/web/clients/eaglerforge/')">Play</button>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="bottom-bar">

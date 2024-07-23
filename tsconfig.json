@@ -1,12 +1,12 @@
 {
-  "extends": ["@tsconfig/node20/tsconfig", "@tsconfig/strictest/tsconfig"],
-  "compilerOptions": {
-    "moduleResolution": "bundler",
-    "module": "preserve",
-    "lib": ["es2023", "dom"],
-    "rootDir": "src",
-    "outDir": "public",
-    "removeComments": true,
-  },
-  "include": ["src"],
+	"extends": ["@tsconfig/node20/tsconfig", "@tsconfig/strictest/tsconfig"],
+	"compilerOptions": {
+		"moduleResolution": "bundler",
+		"module": "preserve",
+		"lib": ["es2023", "dom"],
+		"rootDir": "src",
+		"outDir": "public",
+		"removeComments": true
+	},
+	"include": ["src"]
 }

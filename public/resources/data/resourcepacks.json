@@ -1,74 +1,74 @@
 {
-  "mods": [
-    {
-      "display-name": "Barebones Bossbars",
-      "mod-name": "barebonebossbar",
-      "author": "vexcenot",
-      "author-link": "https://modrinth.com/user/vexcenot",
-      "description": "Custom bossbars with the bare bones look!",
-      "icon": "https://cdn.modrinth.com/data/Fv0dWWtc/9c8b6048d6ca0e5165d1276322cc776513ea7d53.png",
-      "repo-link": "https://modrinth.com/resourcepack/barebones-bossbars",
-      "download-link": "/resources/resourcepacks/BarebonesBossbars.zip"
-    },
-    {
-      "display-name": "Daggers",
-      "mod-name": "daggers",
-      "author": "devin",
-      "author-link": "https://modrinth.com/user/devin",
-      "description": "Shorter swords for better viewablility!",
-      "icon": "https://cdn.modrinth.com/data/50CqnmS1/5d8f4b0d28caf77a6d219e129babc9825ff36e5b.png",
-      "repo-link": "https://modrinth.com/resourcepack/daggers",
-      "download-link": "/resources/resourcepacks/Daggers.zip"
-    },
-    {
-      "display-name": "Faithful (32x)",
-      "mod-name": "faithful32",
-      "author": "Faithful Resource Pack",
-      "author-link": "https://modrinth.com/user/Faithful-Resource-Pack",
-      "description": "The goto 32x resource pack!",
-      "icon": "https://cdn.modrinth.com/data/w0TnApzs/icon.png",
-      "repo-link": "https://modrinth.com/resourcepack/faithful-32x",
-      "download-link": "/resources/resourcepacks/Faithful32.zip"
-    },
-    {
-      "display-name": "Sweet Cherry (16x)",
-      "mod-name": "sweetcherry",
-      "author": "VanillaSpooks",
-      "author-link": "https://www.planetminecraft.com/member/vanillaspooks/",
-      "description": "A red pvp texture pack",
-      "icon": "https://static.planetminecraft.com/files/image/minecraft/texture-pack/2022/558/15881328-alcheraske_l.webp",
-      "repo-link": "https://www.planetminecraft.com/texture-pack/sweet-cherry-16x/",
-      "download-link": "/resources/resourcepacks/SweetCherry.zip"
-    },
-    {
-      "display-name": "Cotton Candy Fade (16x)",
-      "mod-name": "cottoncandy",
-      "author": "Neverflagastralis",
-      "author-link": "https://github.com/AstralisLLC",
-      "description": "Another PVP texture pack",
-      "icon": "https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/806/14267229-untitled_l.webp",
-      "repo-link": "https://www.planetminecraft.com/texture-pack/default-edit-cotton-candy-fade/",
-      "download-link": "/resources/resourcepacks/CottonCandy.zip"
-    },
-    {
-      "display-name": "Low On Fire",
-      "mod-name": "lowonfire",
-      "author": "haikis",
-      "author-link": "https://www.curseforge.com/members/haikis/projects",
-      "description": "Lowers the fire texture",
-      "icon": "https://media.forgecdn.net/avatars/thumbnails/494/548/256/256/637806308919001110.png",
-      "repo-link": "https://www.curseforge.com/minecraft/texture-packs/low-on-fire",
-      "download-link": "/resources/resourcepacks/LowOnFire.zip"
-    },
-    {
-      "display-name": "Serified Font",
-      "mod-name": "serifiedfont",
-      "author": "bebebea_loste",
-      "author-link": "https://modrinth.com/user/bebebea_loste",
-      "description": "A fancy font for minecraft",
-      "icon": "https://cdn.modrinth.com/data/L0iIXINl/58337aaed77bf06b7913e415438730f6210c38d9.png",
-      "repo-link": "https://modrinth.com/resourcepack/serified-font",
-      "download-link": "/resources/resourcepacks/SerifiedFont.zip"
-    }
-  ]
+	"mods": [
+		{
+			"display-name": "Barebones Bossbars",
+			"mod-name": "barebonebossbar",
+			"author": "vexcenot",
+			"author-link": "https://modrinth.com/user/vexcenot",
+			"description": "Custom bossbars with the bare bones look!",
+			"icon": "https://cdn.modrinth.com/data/Fv0dWWtc/9c8b6048d6ca0e5165d1276322cc776513ea7d53.png",
+			"repo-link": "https://modrinth.com/resourcepack/barebones-bossbars",
+			"download-link": "/resources/resourcepacks/BarebonesBossbars.zip"
+		},
+		{
+			"display-name": "Daggers",
+			"mod-name": "daggers",
+			"author": "devin",
+			"author-link": "https://modrinth.com/user/devin",
+			"description": "Shorter swords for better viewablility!",
+			"icon": "https://cdn.modrinth.com/data/50CqnmS1/5d8f4b0d28caf77a6d219e129babc9825ff36e5b.png",
+			"repo-link": "https://modrinth.com/resourcepack/daggers",
+			"download-link": "/resources/resourcepacks/Daggers.zip"
+		},
+		{
+			"display-name": "Faithful (32x)",
+			"mod-name": "faithful32",
+			"author": "Faithful Resource Pack",
+			"author-link": "https://modrinth.com/user/Faithful-Resource-Pack",
+			"description": "The goto 32x resource pack!",
+			"icon": "https://cdn.modrinth.com/data/w0TnApzs/icon.png",
+			"repo-link": "https://modrinth.com/resourcepack/faithful-32x",
+			"download-link": "/resources/resourcepacks/Faithful32.zip"
+		},
+		{
+			"display-name": "Sweet Cherry (16x)",
+			"mod-name": "sweetcherry",
+			"author": "VanillaSpooks",
+			"author-link": "https://www.planetminecraft.com/member/vanillaspooks/",
+			"description": "A red pvp texture pack",
+			"icon": "https://static.planetminecraft.com/files/image/minecraft/texture-pack/2022/558/15881328-alcheraske_l.webp",
+			"repo-link": "https://www.planetminecraft.com/texture-pack/sweet-cherry-16x/",
+			"download-link": "/resources/resourcepacks/SweetCherry.zip"
+		},
+		{
+			"display-name": "Cotton Candy Fade (16x)",
+			"mod-name": "cottoncandy",
+			"author": "Neverflagastralis",
+			"author-link": "https://github.com/AstralisLLC",
+			"description": "Another PVP texture pack",
+			"icon": "https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/806/14267229-untitled_l.webp",
+			"repo-link": "https://www.planetminecraft.com/texture-pack/default-edit-cotton-candy-fade/",
+			"download-link": "/resources/resourcepacks/CottonCandy.zip"
+		},
+		{
+			"display-name": "Low On Fire",
+			"mod-name": "lowonfire",
+			"author": "haikis",
+			"author-link": "https://www.curseforge.com/members/haikis/projects",
+			"description": "Lowers the fire texture",
+			"icon": "https://media.forgecdn.net/avatars/thumbnails/494/548/256/256/637806308919001110.png",
+			"repo-link": "https://www.curseforge.com/minecraft/texture-packs/low-on-fire",
+			"download-link": "/resources/resourcepacks/LowOnFire.zip"
+		},
+		{
+			"display-name": "Serified Font",
+			"mod-name": "serifiedfont",
+			"author": "bebebea_loste",
+			"author-link": "https://modrinth.com/user/bebebea_loste",
+			"description": "A fancy font for minecraft",
+			"icon": "https://cdn.modrinth.com/data/L0iIXINl/58337aaed77bf06b7913e415438730f6210c38d9.png",
+			"repo-link": "https://modrinth.com/resourcepack/serified-font",
+			"download-link": "/resources/resourcepacks/SerifiedFont.zip"
+		}
+	]
 }

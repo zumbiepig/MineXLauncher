@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("/resources/data/mods.json")
-    .then((response) => response.json())
-    .then((data: { mods: { [x: string]: string; icon: string; author: string; description: string; }[] }) => {
-      const modListElement = document.querySelector(".mod-list");
+	fetch("/resources/data/mods.json")
+		.then((response) => response.json())
+		.then((data: { mods: { [x: string]: string; icon: string; author: string; description: string }[] }) => {
+			const modListElement = document.querySelector(".mod-list");
 
-      data.mods.forEach((mod: { [x: string]: string; icon: string; author: string; description: string; }) => {
-        const modItem = document.createElement("div");
-        modItem.classList.add("mod-item");
+			data.mods.forEach((mod: { [x: string]: string; icon: string; author: string; description: string }) => {
+				const modItem = document.createElement("div");
+				modItem.classList.add("mod-item");
 
-        modItem.innerHTML = `
+				modItem.innerHTML = `
           <div class="mod-icon">
             <img src="${mod.icon}" alt="${mod["display-name"] ?? ""}" />
           </div>
@@ -23,8 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         `;
 
-        modListElement?.appendChild(modItem);
-      });
-    })
-    .catch((error: unknown) => { console.error("Error fetching mods:", error); });
+				modListElement?.appendChild(modItem);
+			});
+		})
+		.catch((error: unknown) => {
+			console.error("Error fetching mods:", error);
+		});
 });

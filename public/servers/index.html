@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/resources/styles/servers.css" />
-    <script src="/resources/scripts/main.js" defer></script>
-  </head>
-  <body>
-    <div class="launcher">
-      <div class="title-bar">
-        <span>MineXLauncher 1.0</span>
-      </div>
-      <div class="content">
-        <div class="sidebar">
-          <div class="profile">
-            <span class="profile-name" id="profile-name">Default</span>
-          </div>
-          <nav>
-            <li class="nav-item" onclick="navigate.updates()">
-              <img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
-              <span class="nav-text">Updates</span>
-            </li>
-            <li class="nav-item" onclick="navigate.home()">
-              <img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
-              <span class="nav-text">Game</span>
-            </li>
-            <li class="nav-item selected" onclick="navigate.servers()">
-              <img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
-              <span class="nav-text">Server List</span>
-            </li>
-            <li class="nav-item" onclick="navigate.mods()">
-              <img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
-              <span class="nav-text">Mods</span>
-            </li>
-            <li class="nav-item" onclick="navigate.settings()">
-              <img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
-              <span class="nav-text">Settings</span>
-            </li>
-          </nav>
-        </div>
-        <div class="main-panel">
-          <div class="top-bar">
-            <span class="game-title">Server List</span>
-          </div>
-          <div class="server-list">
-            <iframe src="https://servers.eaglercraft.com/"></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="bottom-bar">
-        <span class="username" id="bottom-profile-name">MineXLauncher</span>
-      </div>
-    </div>
-  </body>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/resources/styles/main.css" />
+		<script src="/resources/scripts/main.js" defer></script>
+	</head>
+	<body>
+		<div class="launcher">
+			<div class="title-bar">
+				<span>MineXLauncher 1.0</span>
+			</div>
+			<div class="content">
+				<div class="sidebar">
+					<div class="profile">
+						<span class="profile-name" id="profile-name"></span>
+					</div>
+					<nav>
+						<li class="nav-item" onclick="navigate.updates()">
+							<img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
+							<span class="nav-text">Updates</span>
+						</li>
+						<li class="nav-item" onclick="navigate.home.game()">
+							<img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
+							<span class="nav-text">Game</span>
+						</li>
+						<li class="nav-item selected" onclick="navigate.servers()">
+							<img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
+							<span class="nav-text">Server List</span>
+						</li>
+						<li class="nav-item" onclick="navigate.mods.mods()">
+							<img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
+							<span class="nav-text">Mods</span>
+						</li>
+						<li class="nav-item" onclick="navigate.settings()">
+							<img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
+							<span class="nav-text">Settings</span>
+						</li>
+					</nav>
+				</div>
+				<div class="main-panel">
+					<div class="server-list">
+						<iframe src="https://servers.eaglercraft.com/"></iframe>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-bar">
+				<div class="bottom-bar-links">
+					<a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Discord</a>
+				</div>
+				<div class="bottom-bar-links">
+					<span class="bottom-bar-right">MineXLauncher</span>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
