@@ -601,23 +601,23 @@ select:focus {
 }
 
 .upload-button {
-  background-color: #075f07;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: none;
-  transition: background-color 0.2s, transform 0.2s;
+	background-color: #075f07;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: none;
+	transition: background-color 0.2s, transform 0.2s;
 }
 
 .upload-button:hover {
-  background-color: #197d19;
-  transform: scale(1.05);
+	background-color: #197d19;
+	transform: scale(1.05);
 }
 
 .upload-button:active {
-  transform: scale(0.95);
+	transform: scale(0.95);
 }
