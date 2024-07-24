@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/resources/styles/main.css" />
+		<script src="/resources/scripts/main.js" defer></script>
+	</head>
+	<body>
+		<div class="launcher">
+			<div class="title-bar">
+				<span>MineXLauncher 1.1</span>
+			</div>
+			<div class="content">
+				<div class="sidebar">
+					<div class="profile">
+						<span class="profile-name" id="profile-name"></span>
+					</div>
+					<nav>
+						<li class="nav-item" onclick="navigate.updates()">
+							<img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
+							<span class="nav-text">Updates</span>
+						</li>
+						<li class="nav-item selected" onclick="navigate.home.game()">
+							<img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
+							<span class="nav-text">Game</span>
+						</li>
+						<li class="nav-item" onclick="navigate.servers()">
+							<img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
+							<span class="nav-text">Server List</span>
+						</li>
+						<li class="nav-item" onclick="navigate.mods.mods()">
+							<img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
+							<span class="nav-text">Mods</span>
+						</li>
+						<li class="nav-item" onclick="navigate.settings()">
+							<img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
+							<span class="nav-text">Settings</span>
+						</li>
+					</nav>
+				</div>
+				<div class="main-panel">
+					<div class="top-menu">
+						<ul>
+							<li class="menu-item selected" onclick="navigate.home.game()">Game</li>
+							<li class="menu-item" onclick="navigate.home.clients()">Clients</li>
+							<li class="menu-item" onclick="navigate.home.archive()">Archive</li>
+							<li class="menu-item" onclick="navigate.home.downloads()">Offline Downloads</li>
+						</ul>
+					</div>
+					<div class="main-content">
+						<img src="/resources/images/covers/mc.png" class="cover-image" />
+						<div class="installations">
+							<div class="custom-select-wrapper">
+								<div id="custom-select" class="custom-select" onclick="versionSelector.toggle()">
+									<span class="custom-select-trigger">Select a version</span>
+								</div>
+								<div class="custom-options">
+									<div class="custom-option" onclick="game.select('/game/web/main/1.9.4/', '1.9.4')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>1.9.4</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/1.8.8/', '1.8.8')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>1.8.8</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/1.5.2/', '1.5.2')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>1.5.2</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/b1.7.3/', 'Beta 1.7.3')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>Beta 1.7.3</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/b1.3/', 'Beta 1.3')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>Beta 1.3</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/a1.2.6/', 'Alpha')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>Alpha 1.2.6</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/infdev/', 'Infdev')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>Infdev</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/indev/', 'Indev')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>Indev</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/main/classic/', 'Classic')">
+										<img src="/resources/images/icons/clients/all.png" />
+										<span>Classic</span>
+									</div>
+								</div>
+							</div>
+							<button class="play-button" onclick="game.play()">Play</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-bar">
+				<div class="bottom-bar-links">
+					<a class="bottom-bar-left" href="https://discord.gg/YKgfuFvKhA">Join the MineXLauncher Discord</a>
+				</div>
+				<div class="bottom-bar-links">
+					<span class="bottom-bar-right">MineXLauncher</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
