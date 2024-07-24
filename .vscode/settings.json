@@ -1,0 +1,5 @@
+{
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"livePreview.serverRoot": "/public/",
+	"livePreview.defaultPreviewPath": "/home/"
+}

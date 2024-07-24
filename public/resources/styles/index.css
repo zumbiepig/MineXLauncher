@@ -1,9 +1,0 @@
-body {
-  overflow: hidden;
-  background-color: #1e1e1e;
-  background-image: url("/resources/images/gifs/loading.gif");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: 15vh;
-}
