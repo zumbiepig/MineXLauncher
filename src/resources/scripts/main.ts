@@ -1,10 +1,6 @@
 let selectedVersion = "";
 
 document.addEventListener("DOMContentLoaded", function () {
-	if (window.location.pathname === "/mobile/") {
-		game.select("/game/web/mobile/1.8.8/", "EaglerPocketMobile 1.8.8");
-	}
-
 	const usernameForm = document.getElementById("username-form") as HTMLFormElement;
 	const usernameInput = document.getElementById("username-input") as HTMLInputElement;
 	const profileName = document.getElementById("profile-name");

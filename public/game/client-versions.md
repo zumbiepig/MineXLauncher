@@ -1,0 +1,18 @@
+# Client versions
+
+- Update both web and offline at the same time if possible
+- Offline preference order: Signed, International, en_US
+
+| Name | Version/commit | Date updated | Link |
+| --- | --- | --- | --- |
+| 1.9.4 | v0.6.1 | 07/24/2024 | [Gitea](https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases)
+| 1.8.8 | u35 | 07/24/2024 | [Archive](https://archive.eaglercraft.rip/EaglercraftX_1.8/client/?sort=time&order=desc)
+| 1.5.2 | sp1.01 | 07/24/2024 | [Archive](https://archive.eaglercraft.rip/Eaglercraft_1/5/client/?sort=time&order=desc)
+| b1.7.3 | `e66bcfa` | 07/24/2024 | [GitHub](https://github.com/PeytonPlayz595/Beta-1.7.3)
+| b1.3 | 23w49a | 07/24/2024 | [Archive](https://archive.eaglercraft.rip/Eaglercraft_b1.3/client/?sort=time&order=desc)
+| a1.2.6 | `3b165b2` | 07/24/2024 | [GitHub](https://github.com/PeytonPlayz595/Alpha-v1.2.6)
+| Indev | `3f9ff32` | 07/24/2024 | [GitHub](https://github.com/PeytonPlayz595/Minecraft-Indev-WebGL)
+| EaglerPocketMobile | v1.40 | 07/24/2024 | [GitHub](https://github.com/irv77/EaglerPocketMobile)
+| EaglerForge | v1.3.2 | 07/24/2024 | [GitHub Releases](https://github.com/eaglerforge/EaglerForge-builds/releases)
+| Resent Client | 4.0 Patch 4 | 07/24/2024 | [Discord](https://discord.gg/6UdYQWpkfh)
+| Shadow Client | 4.5 snapshot-24w27a | 07/24/2024 | [GitHub](https://github.com/PeytonPlayz595/Shadow-4.0/tree/main/javascript)
