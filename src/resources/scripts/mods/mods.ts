@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <p class="mod-description">${mod.description}</p>
             <div class="mod-links">
               <a href="${mod["repo-link"] ?? ""}" class="mod-link" target="_blank">Repository</a>
-              <a href="${mod["download-link"] ?? ""}" class="mod-link" target="_blank">Download</a>
+              <a href="${mod["download-link"] ?? ""}" class="mod-link" download>Download</a>
             </div>
           </div>
         `;

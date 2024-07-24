@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-	fetch("/resources/data/resourcepacks.json")
+	fetch("/resources/data/mods.json")
 		.then((response) => response.json())
-		.then((data: { mods: { [x: string]: string; icon: string; author: string; description: string }[] }) => {
+		.then((data: { resourcepacks: { [x: string]: string; icon: string; author: string; description: string }[] }) => {
 			const modListElement = document.querySelector(".mod-list");
 
-			data.mods.forEach((mod: { [x: string]: string; icon: string; author: string; description: string }) => {
+			data.resourcepacks.forEach((mod: { [x: string]: string; icon: string; author: string; description: string }) => {
 				const modItem = document.createElement("div");
 				modItem.classList.add("mod-item");
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <p class="mod-description">${mod.description}</p>
             <div class="mod-links">
               <a href="${mod["repo-link"] ?? ""}" class="mod-link" target="_blank">Repository</a>
-              <a href="${mod["download-link"] ?? ""}" class="mod-link" target="_blank">Download</a>
+              <a href="${mod["download-link"] ?? ""}" class="mod-link" download>Download</a>
             </div>
           </div>
         `;
@@ -27,6 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		})
 		.catch((error: unknown) => {
-			console.error("Error fetching mods:", error);
+			console.error("Error fetching resource packs:", error);
 		});
 });
