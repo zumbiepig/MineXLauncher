@@ -1,82 +1,71 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/resources/styles/updates.css" />
-    <script src="/resources/scripts/main.js"></script>
-  </head>
-  <body>
-    <div class="launcher">
-      <div class="title-bar">
-        <span>MineXLauncher 1.0</span>
-      </div>
-      <div class="content">
-        <div class="sidebar">
-          <div class="profile">
-            <span class="profile-name" id="profile-name">Default</span>
-          </div>
-          <nav>
-            <li class="nav-item selected" onclick="navigateToUpdates()">
-              <img src="/resources/images/images/news-icon.png" class="nav-icon" />
-              <span class="nav-text">Updates</span>
-            </li>
-            <li class="nav-item" onclick="navigateToHome()">
-              <img src="/resources/images/images/minecraft-icon.png" class="nav-icon" />
-              <span class="nav-text">Game</span>
-            </li>
-            <li class="nav-item" onclick="navigateToServers()">
-              <img src="/resources/images/images/serverlist-icon.png" class="nav-icon" />
-              <span class="nav-text">Server List</span>
-            </li>
-
-            <li class="nav-item" onclick="navigateToMods()">
-              <img src="/resources/images/images/mods.png" class="nav-icon" />
-              <span class="nav-text">Mods</span>
-            </li>
-            <li class="nav-item" onclick="navigateToSettings()">
-              <img src="/resources/images/images/settings-icon.png" class="nav-icon" />
-              <span class="nav-text">Settings</span>
-            </li>
-          </nav>
-        </div>
-        <div class="main-panel">
-          <div class="top-bar">
-            <span class="game-title">Updates</span>
-          </div>
-          <div class="main-content">
-            <div class="news-item">
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-                <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-
-              <h3>Updates</h3>
-
-              <strong>MineXLauncher 1.0</strong>
-              <li>Major rewrite, check it out yourself!</li>
-              <br />
-              <br />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bottom-bar">
-        <span class="username" id="bottom-profile-name">MineXLauncher</span>
-      </div>
-    </div>
-  </body>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/resources/styles/main.css" />
+		<script src="/resources/scripts/main.js"></script>
+	</head>
+	<body>
+		<div class="launcher">
+			<div class="title-bar">
+				<span>MineXLauncher 1.1</span>
+			</div>
+			<div class="content">
+				<div class="sidebar">
+					<div class="profile">
+						<span class="profile-name" id="profile-name"></span>
+					</div>
+					<nav>
+						<li class="nav-item selected" onclick="navigate.updates()">
+							<img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
+							<span class="nav-text">Updates</span>
+						</li>
+						<li class="nav-item" onclick="navigate.home.game()">
+							<img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
+							<span class="nav-text">Game</span>
+						</li>
+						<li class="nav-item" onclick="navigate.servers()">
+							<img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
+							<span class="nav-text">Server List</span>
+						</li>
+						<li class="nav-item" onclick="navigate.mods.mods()">
+							<img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
+							<span class="nav-text">Mods</span>
+						</li>
+						<li class="nav-item" onclick="navigate.settings()">
+							<img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
+							<span class="nav-text">Settings</span>
+						</li>
+					</nav>
+				</div>
+				<div class="main-panel">
+					<div class="top-bar">
+						<span class="game-title">Updates</span>
+					</div>
+					<div class="main-content">
+						<div class="news-item">
+							<strong>MineXLauncher 1.1</strong>
+							<li>Temporary workaround for keyboard not working in the game</li>
+							<li>Moved most images and assets to this websites in case they are blocked</li>
+							<li>Added a 404 page</li>
+							<li>Added Discord link to bottom bar</li>
+							<li>Added Peyton's Infdev and Classic versions</li>
+							<li>Updated client versions</li>
+							<br />
+							<strong>MineXLauncher 1.0</strong>
+							<li>Major rewrite, check it out yourself!</li>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-bar">
+				<div class="bottom-bar-links">
+					<a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Join the MineXLauncher Discord</a>
+				</div>
+				<div class="bottom-bar-links">
+					<span class="bottom-bar-right">MineXLauncher</span>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
