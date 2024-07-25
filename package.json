@@ -2,9 +2,9 @@
 	"name": "minexlauncher",
 	"private": true,
 	"type": "module",
-	"main": "./bin/www",
+	"main": "./server.js",
 	"scripts": {
-		"start": "node ./bin/www",
+		"start": "node ./server.js",
 		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate",
 		"build:clean": "rimraf ./public/resources/scripts",
 		"build:compile": "tsc",
