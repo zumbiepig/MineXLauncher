@@ -2,7 +2,8 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>404 Page Not Found</title>
+		<link rel="stylesheet" href="/resources/styles/default.css" />
+		<script src="/resources/scripts/main.js"></script>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-972V2NZ2ZK"></script>
 		<script>
@@ -16,8 +17,55 @@
 		<!-- End Google tag -->
 	</head>
 	<body>
-		<h1>404 Page Not Found</h1>
-		<p>Sorry, the page you are looking for does not exist.</p>
-		<p><a href="/">Go Home?</a></p>
+		<div class="launcher">
+			<div class="title-bar">
+				<span>MineXLauncher 1.1</span>
+			</div>
+			<div class="content">
+				<div class="sidebar">
+					<div class="profile">
+						<span class="profile-name" id="profile-name"></span>
+					</div>
+					<nav>
+						<li class="nav-item" onclick="navigate.updates()">
+							<img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
+							<span class="nav-text">Updates</span>
+						</li>
+						<li class="nav-item" onclick="navigate.home.game()">
+							<img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
+							<span class="nav-text">Game</span>
+						</li>
+						<li class="nav-item" onclick="navigate.servers()">
+							<img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
+							<span class="nav-text">Server List</span>
+						</li>
+						<li class="nav-item" onclick="navigate.mods.mods()">
+							<img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
+							<span class="nav-text">Mods</span>
+						</li>
+						<li class="nav-item" onclick="navigate.settings()">
+							<img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
+							<span class="nav-text">Settings</span>
+						</li>
+					</nav>
+				</div>
+				<div class="main-panel">
+					<div class="main-content">
+						<div class="page-not-found">
+							<h1>404 Not Found</h1>
+							<p>The page you are looking for does not exist.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-bar">
+				<div class="bottom-bar-links">
+					<a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Join the MineXLauncher Discord</a>
+				</div>
+				<div class="bottom-bar-links">
+					<span class="bottom-bar-right">MineXLauncher</span>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
