@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const usernameInput = document.getElementById("username-input") as HTMLInputElement;
 	const profileName = document.getElementById("profile-name");
 
-	const savedUsername = cookie.get("launcherUsername");
+	const savedUsername = cookie.get("launcher_username");
 	if (profileName && savedUsername) {
 		profileName.textContent = savedUsername;
 	} else if (profileName && !savedUsername) {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			const username = usernameInput.value.trim();
 			if (username) {
 				profileName.textContent = username;
-				cookie.set("launcherUsername", username, 365);
+				cookie.set("launcher_username", username, 30);
 			}
 		});
 	}
