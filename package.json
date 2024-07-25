@@ -4,13 +4,17 @@
 	"type": "module",
 	"main": "bin/www",
 	"scripts": {
-		"start": "node bin/www",
-		"build": "tsc",
-		"lint": "eslint src",
-		"lint:fix": "eslint --fix src"
+		"start": "node ./bin/www",
+		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate",
+		"build:clean": "rimraf ./public",
+		"build:compile": "tsc",
+		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts --output ./public/resources/scripts --options-preset high-obfuscation",
+		"build:minify": "",
+		"lint": "eslint ./src",
+		"lint:fix": "eslint --fix ./src"
 	},
 	"engines": {
-		"node": ">=20.11"
+		"node": "^20.0.0 || ^22.0.0"
 	},
 	"dependencies": {
 		"cookie-parser": "~1.4.4",
@@ -26,6 +30,8 @@
 		"@tsconfig/strictest": "^2.0.5",
 		"@types/eslint__js": "^8.42.3",
 		"eslint": "^8.57.0",
+		"javascript-obfuscator": "^4.1.1",
+		"rimraf": "^6.0.1",
 		"typescript": "^5.5.3",
 		"typescript-eslint": "^7.16.1"
 	}
