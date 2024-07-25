@@ -2,14 +2,13 @@
 	"name": "minexlauncher",
 	"private": true,
 	"type": "module",
-	"main": "bin/www",
+	"main": "./bin/www",
 	"scripts": {
 		"start": "node ./bin/www",
 		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate",
-		"build:clean": "rimraf ./public",
+		"build:clean": "rimraf ./public/resources/scripts",
 		"build:compile": "tsc",
 		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts --output ./public/resources/scripts --options-preset high-obfuscation",
-		"build:minify": "",
 		"lint": "eslint ./src",
 		"lint:fix": "eslint --fix ./src"
 	},
