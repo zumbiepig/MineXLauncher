@@ -1,0 +1,9 @@
+.launcher {
+	width: 95vw;
+	height: 95vh;
+}
+
+.play-button {
+	text-decoration: none;
+	padding: 10px 10px;
+}
