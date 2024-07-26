@@ -1,12 +1,18 @@
 const theme = {
 	load() {
+		if (window.location.pathname === '/mobile/') {
+			const link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.href = '/resources/styles/mobile.css';
+			document.head.appendChild(link);
+		}
 		const setTheme = cookie.get('minexlauncher.theme');
 		if (setTheme === null) {
 			theme.set('default');
 		} else if (setTheme !== 'default') {
 			const link = document.createElement('link');
 			link.rel = 'stylesheet';
-			link.href = '/resources/styles/' + setTheme + '.css';
+			link.href = `/resources/styles/${setTheme}.css`;
 			document.head.appendChild(link);
 		}
 	},
