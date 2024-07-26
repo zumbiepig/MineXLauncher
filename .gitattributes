@@ -1,5 +1,2 @@
-/public/game/ filter=lfs diff=lfs merge=lfs -text
-/public/game filter=lfs diff=lfs merge=lfs -text
-/public/game/* filter=lfs diff=lfs merge=lfs -text
 /public/game/** filter=lfs diff=lfs merge=lfs -text
 /public/game/** !text !filter !merge !diff
