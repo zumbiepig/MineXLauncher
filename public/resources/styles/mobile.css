@@ -1,6 +1,7 @@
 .launcher {
 	width: 95vw;
 	height: 95vh;
+	margin: 10px auto 0 auto;
 }
 
 .play-button {
