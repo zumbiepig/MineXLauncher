@@ -140,7 +140,7 @@ nav {
 	background-color: #202020;
 	box-sizing: border-box;
 	position: relative;
-	overflow-y: hidden;
+	overflow: auto;
 	scrollbar-width: thin;
 	scrollbar-color: #555 #333;
 }
@@ -350,7 +350,6 @@ nav {
 	flex: 1;
 	padding: 20px;
 	text-align: left;
-	overflow: auto;
 }
 
 .news-item li {
@@ -382,10 +381,10 @@ nav {
 }
 
 .downloads {
-	margin-top: 20px;
+	padding: 25px;
+	padding-top: 5px;
 	justify-content: center;
 	align-items: center;
-	overflow: auto;
 }
 
 .download-link {
@@ -465,25 +464,12 @@ select:focus {
 	box-shadow: 0 0 5px 2px #00cc00;
 }
 
-.container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: #1f1f1f;
-	color: #e0e0e0;
-	overflow-x: auto;
-	overflow-y: auto;
-	max-height: 600px;
-}
-
 .mod-list {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
-	overflow-y: auto;
 	max-height: 100%;
 	padding: 10px;
-	overflow-x: auto;
 	text-align: center;
 	scrollbar-width: thin;
 	scrollbar-color: #555 #333;
