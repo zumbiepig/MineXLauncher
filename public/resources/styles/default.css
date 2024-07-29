@@ -617,3 +617,110 @@ select:focus {
 .upload-button:active {
 	transform: scale(0.95);
 }
+.upload-section {
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #3c3c3c;
+    border-radius: 8px;
+    background-color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.version-label {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.version-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #4a4a4a;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none; /* Removes default arrow */
+    background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%),
+                      linear-gradient(135deg, #1e1e1e 50%, transparent 50%);
+    background-position: right 0.7rem center, right 0.7rem center;
+    background-repeat: no-repeat;
+    background-size: 0.65rem auto, 0.65rem auto;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.version-select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    background-color: #2e2e2e;
+}
+
+.version-select option {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.version-select::-ms-expand {
+    display: none; 
+}
+
+.upload-section {
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #3c3c3c;
+    border-radius: 8px;
+    background-color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.version-label {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.upload-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #357abd;
+}
+
+.upload-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #357abd;
+}
+
+
+.upload-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #357abd;
+}
+
+.upload-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #357abd;
+}

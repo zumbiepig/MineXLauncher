@@ -76,18 +76,39 @@ const game = {
 		}
 		versionSelector.close();
 	},
+	//did this bc it broke the site org
 	archive(client: string) {
 		const clients: Record<string, string> = {
 			'1.8.8': '18-client-version',
-			'1.5.2': '15-client-version',
+			'1.5': '15-client-version',
 			'b1.3': 'b13-client-version',
 		};
 		const dropdown = clients[client] ? (document.getElementById(clients[client]) as HTMLSelectElement) : null;
+	
 		if (dropdown?.value) {
-			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === 'b1.3' ? '_b1.3' : `_${client}`}/client/${dropdown.value}/index.html`;
-			game.play();
+			let url: string;
+			switch (client) {
+				case '1.8.8':
+					url = `https://archive.eaglercraft.rip/EaglercraftX_1.8/client/${dropdown.value}/index.html`;
+					break;
+				case '1.5':
+					url = `https://archive.eaglercraft.rip/Eaglercraft_1.5/client/${dropdown.value}/index.html`;
+					break;
+				case 'b1.3':
+					url = `https://archive.eaglercraft.rip/Eaglercraft_b1.3/client/${dropdown.value}/index.html`;
+					break;
+				default:
+					console.error('Unsupported client version:', client);
+					return;
+			}
+			window.open(url, '_blank');
+		} else {
+			console.error('Dropdown value is missing for client:', client);
 		}
-	},
+	}
+	
+	
+	
 };
 
 const embed = {
