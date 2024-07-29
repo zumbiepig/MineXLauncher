@@ -28,7 +28,7 @@
 		"pug": "^3.0.3"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.7.0",
+		"@eslint/js": "^9.8.0",
 		"@tsconfig/node20": "^20.1.4",
 		"@tsconfig/strictest": "^2.0.5",
 		"@types/eslint__js": "^8.42.3",
