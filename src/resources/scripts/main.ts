@@ -48,6 +48,7 @@ const versionSelector = {
 		}
 	},
 };
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 const game = {
 	play(version?: string) {
@@ -110,6 +111,7 @@ const game = {
 	
 	
 };
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 const embed = {
 	create() {
