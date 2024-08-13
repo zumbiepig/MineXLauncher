@@ -21,14 +21,14 @@
 	},
 	"dependencies": {
 		"cookie-parser": "~1.4.4",
-		"debug": "~2.6.9",
+		"debug": "~4.3.6",
 		"express": "~4.19.2",
 		"http-errors": "~1.6.3",
 		"morgan": "~1.9.1",
 		"pug": "^3.0.3"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.8.0",
+		"@eslint/js": "^9.9.0",
 		"@tsconfig/node20": "^20.1.4",
 		"@tsconfig/strictest": "^2.0.5",
 		"@types/eslint__js": "^8.42.3",
