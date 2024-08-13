@@ -78,13 +78,13 @@ const game = {
 	},
 	archive(client: string) {
 		const clients: Record<string, string> = {
-			'1.8.8': '18-client-version',
-			'1.5.2': '15-client-version',
+			'1.8': '18-client-version',
+			'1.5': '15-client-version',
 			'b1.3': 'b13-client-version',
 		};
 		const dropdown = clients[client] ? (document.getElementById(clients[client]) as HTMLSelectElement) : null;
 		if (dropdown?.value) {
-			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === 'b1.3' ? '_b1.3' : `_${client}`}/client/${dropdown.value}/index.html`;
+			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === '1.8' ? 'X_1.8' : `_${client}`}/client/${dropdown.value}/index.html`;
 			game.play();
 		}
 	},
@@ -93,7 +93,7 @@ const game = {
 const embed = {
 	create() {
 		const iframe = document.createElement('iframe');
-		iframe.id = 'embed';
+		iframe.id = 'iframe-container';
 		iframe.style.position = 'fixed';
 		iframe.style.top = '0';
 		iframe.style.left = '0';
@@ -108,7 +108,7 @@ const embed = {
 		document.body.appendChild(iframe);
 	},
 	remove() {
-		const iframe = document.getElementById('embed');
+		const iframe = window.top?.document.getElementById('iframe-container');
 		iframe?.remove();
 	},
 };
