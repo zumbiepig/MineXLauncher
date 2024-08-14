@@ -1,29 +1,13 @@
-const CACHE_NAME = 'minexlauncher-v1.3';
-const urlsToCache = ['/offline.html', '/resources/images/icons/favicon.png', '/resources/styles/default.css'];
+const CACHE_VERSION = 'v1.4'
+const CACHE_NAME = `minexlauncher-${CACHE_VERSION}`;
+const OFFLINE_URL = '/offline.html';
+const ASSETS_TO_CACHE = [OFFLINE_URL, '/resources/images/icons/favicon.png', '/resources/styles/themes/default.css', '/resources/scripts/google-tag.js'];
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open(CACHE_NAME).then((cache) => {
-			return cache.addAll(urlsToCache);
-		})
-	);
-});
-
-self.addEventListener('fetch', (event) => {
-	event.respondWith(
-		caches.match(event.request).then((response) => {
-			if (response) {
-				return response;
-			}
-			return fetch(event.request).then((response) => {
-				if (!response || response.status !== 200 || response.type !== 'basic') {
-					return response;
-				}
-				const responseToCache = response.clone();
-				caches.open(CACHE_NAME).then((cache) => {
-					cache.put(event.request, responseToCache);
-				});
-				return response;
+			return cache.addAll(ASSETS_TO_CACHE).catch((error) => {
+				console.error('Failed to install service worker: ', error);
 			});
 		})
 	);
@@ -33,14 +17,28 @@ self.addEventListener('activate', (event) => {
 	event.waitUntil(
 		caches.keys().then((cacheNames) => {
 			return Promise.all(
-				cacheNames
-					.filter((cacheName) => {
-						return cacheName !== CACHE_NAME;
-					})
-					.map((cacheName) => {
+				cacheNames.map((cacheName) => {
+					if (cacheName !== CACHE_NAME) {
 						return caches.delete(cacheName);
-					})
+					}
+				})
 			);
 		})
 	);
+});
+
+self.addEventListener('fetch', (event) => {
+	if (event.request.mode === 'navigate') {
+		event.respondWith(
+			fetch(event.request).catch(() => {
+				return caches.match(OFFLINE_URL);
+			})
+		);
+	} else {
+		event.respondWith(
+			caches.match(event.request).then((response) => {
+				return response || fetch(event.request);
+			})
+		);
+	}
 });

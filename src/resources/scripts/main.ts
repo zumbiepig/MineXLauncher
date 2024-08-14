@@ -1,24 +1,33 @@
 const theme = {
-	load() {
-		if (window.location.pathname === '/mobile/') {
-			const link = document.createElement('link');
-			link.rel = 'stylesheet';
-			link.href = '/resources/styles/mobile.css';
-			document.head.appendChild(link);
-		}
-		const setTheme = cookie.get('minexlauncher.theme');
-		if (setTheme === null) {
-			theme.set('default');
-		} else if (setTheme !== 'default') {
-			const link = document.createElement('link');
-			link.rel = 'stylesheet';
-			link.href = `/resources/styles/${setTheme}.css`;
-			document.head.appendChild(link);
+	append(appendTheme: string | null) {
+		if (appendTheme !== null) {
+			append.stylesheet(`/resources/styles/themes/${appendTheme}.css`);
 		}
 	},
-	set(setTheme: string) {
-		cookie.set('minexlauncher.theme', setTheme, 30);
-		window.location.reload();
+	load() {
+		if (window.location.pathname.startsWith('/mobile/')) {
+			theme.append('mobile');
+		}
+		const savedTheme = cookie.get('minexlauncher.theme');
+		theme.append(savedTheme);
+	},
+	set(newTheme: string) {
+		cookie.set('minexlauncher.theme', newTheme, 365);
+		theme.append(newTheme);
+	},
+};
+
+const append = {
+	script(pathTo: string) {
+		const script = document.createElement('script');
+		script.src = pathTo;
+		document.head.appendChild(script);
+	},
+	stylesheet(pathTo: string) {
+		const link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = pathTo;
+		document.head.appendChild(link);
 	},
 };
 
@@ -64,7 +73,7 @@ const game = {
 			return;
 		}
 	},
-	select(path: string, name: string) {
+	select(path: string, name?: string) {
 		selectedVersion = path;
 		const selector = document.querySelector('.custom-select');
 		if (selector?.textContent) {
@@ -91,7 +100,7 @@ const game = {
 };
 
 const embed = {
-	create() {
+	create(path?: string) {
 		const iframe = document.createElement('iframe');
 		iframe.id = 'iframe-container';
 		iframe.style.position = 'fixed';
@@ -100,10 +109,14 @@ const embed = {
 		iframe.style.width = '100%';
 		iframe.style.height = '100%';
 		iframe.style.border = 'none';
-		if (isMobile()) {
+		if (path) {
+			iframe.src = path;
+		} else if (cookie.get('minexlauncher.setup_complete') !== 'true') {
+			iframe.src = '/welcome.html';
+		} else if (detect.mobile()) {
 			iframe.src = '/mobile/';
 		} else {
-			iframe.src = '/home/';
+			iframe.src = '/home/game/';
 		}
 		document.body.appendChild(iframe);
 	},
@@ -179,47 +192,78 @@ const cookie = {
 
 const query = {
 	get(name: string) {
-		const urlParams = new URLSearchParams(top?.location.search);
+		const urlParams = new URLSearchParams(window.top?.location.search);
 		return urlParams.get(name);
 	},
 };
 
-function isMobile(): boolean {
-	try {
-		document.exitPointerLock();
-		return /Mobi/i.test(window.navigator.userAgent);
-	} catch (e) {
-		return true;
-	}
-}
+const detect = {
+	mobile(): boolean {
+		try {
+			document.exitPointerLock();
+			return /Mobi/i.test(window.navigator.userAgent);
+		} catch (e) {
+			return true;
+		}
+	},
+};
 
 if (window.location.hostname === '0.0.0.0') {
 	navigate;
 	query;
 }
 
-let selectedVersion: string;
+let selectedVersion: string | undefined;
+
 theme.load();
 
 document.addEventListener('DOMContentLoaded', function () {
 	const usernameForm = document.getElementById('username-form') as HTMLFormElement;
 	const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 	const profileName = document.getElementById('profile-name');
-
 	const savedUsername = cookie.get('minexlauncher.username');
+
+	const themeForm = document.getElementById('theme-form') as HTMLFormElement;
+	const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
+
+	const setupForm = document.getElementById('setup-form') as HTMLFormElement;
+
 	if (profileName && savedUsername) {
 		profileName.textContent = savedUsername;
-	} else if (profileName && !savedUsername) {
-		profileName.textContent = 'Default';
 	}
 
-	if (profileName && window.location.pathname === '/settings/') {
+	if (window.location.pathname === '/settings/') {
 		usernameForm.addEventListener('submit', function (event) {
 			event.preventDefault();
 			const username = usernameInput.value.trim();
 			if (username) {
-				cookie.set('minexlauncher.username', username, 30);
-				profileName.textContent = cookie.get('minexlauncher.username');
+				cookie.set('minexlauncher.username', username, 365);
+				if (profileName) {
+					profileName.textContent = cookie.get('minexlauncher.username');
+				}
+			}
+		});
+		themeForm.addEventListener('submit', function (event) {
+			event.preventDefault();
+			const newTheme = themeSelect.value;
+			cookie.set('minexlauncher.theme', newTheme, 365);
+			theme.load();
+		});
+	} else if (window.location.pathname === '/welcome.html') {
+		setupForm.addEventListener('submit', function (event) {
+			event.preventDefault();
+			const username = usernameInput.value.trim();
+			const newTheme = themeSelect.value;
+
+			if (!username) {
+				alert('Please type a username.');
+				return;
+			} else {
+				cookie.set('minexlauncher.username', username, 365);
+				cookie.set('minexlauncher.theme', newTheme, 365);
+				cookie.set('minexlauncher.setup_complete', 'true', 365);
+				// @ts-expect-error 1234567890
+				window.top.location.href = '/';
 			}
 		});
 	}
