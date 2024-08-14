@@ -1,9 +1,17 @@
+:root {
+    --background-image: url('/resources/images/backgrounds/default.png');
+}
 body {
-	margin: 0;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-color: #1e1e1e;
 	color: #fff;
 	overflow: hidden;
+    background-image: var(--background-image);
+	background-size: cover;
+	height: 100vh;
+    padding:0;
+    margin:0;
+
 }
 
 .launcher {
@@ -145,7 +153,7 @@ nav {
 	scrollbar-color: #555 #333;
 }
 
-.error-page {
+.page-not-found {
 	display: flex;
 	flex: 1;
 	flex-direction: column;
@@ -596,71 +604,131 @@ select:focus {
 	justify-content: center;
 }
 
-.version-select {
-	width: 100%;
-	padding: 0.5rem;
-	border: 2px solid #4a4a4a;
+.upload-button {
+	background-color: #075f07;
+	border: none;
+	padding: 8px 16px;
 	border-radius: 5px;
-	background-color: #1e1e1e;
-	color: #ffffff;
-	font-size: 1rem;
 	cursor: pointer;
-	appearance: none;
-	background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%), linear-gradient(135deg, #1e1e1e 50%, transparent 50%);
-	background-position: right 0.7rem center, right 0.7rem center;
-	background-repeat: no-repeat;
-	background-size: 0.65rem auto, 0.65rem auto;
-	transition: border-color 0.3s, background-color 0.3s;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: none;
+	transition: background-color 0.2s, transform 0.2s;
 }
 
-.version-select:focus {
-	border-color: #4a90e2;
-	outline: none;
-	background-color: #2e2e2e;
+.upload-button:hover {
+	background-color: #197d19;
+	transform: scale(1.05);
 }
 
-.version-select option {
-	background-color: #1e1e1e;
-	color: #ffffff;
+.upload-button:active {
+	transform: scale(0.95);
+}
+.upload-section {
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #3c3c3c;
+    border-radius: 8px;
+    background-color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .version-label {
-	font-size: 1rem;
-	color: #ffffff;
-	margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
 }
 
-.archive-section {
-	margin: 1rem;
-	padding: 1rem;
-	border: 2px solid #3c3c3c;
-	border-radius: 8px;
-	background-color: #2e2e2e;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+.version-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #4a4a4a;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none; /* Removes default arrow */
+    background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%),
+                      linear-gradient(135deg, #1e1e1e 50%, transparent 50%);
+    background-position: right 0.7rem center, right 0.7rem center;
+    background-repeat: no-repeat;
+    background-size: 0.65rem auto, 0.65rem auto;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
-.archive-button {
-	padding: 0.5rem 1rem;
-	border: none;
-	border-radius: 5px;
-	background-color: #4a90e2;
-	color: #ffffff;
-	font-size: 1rem;
-	cursor: pointer;
-	transition: background-color 0.3s;
+.version-select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    background-color: #2e2e2e;
 }
 
-.archive-button:hover {
-	background-color: #357abd;
+.version-select option {
+    background-color: #1e1e1e;
+    color: #ffffff;
 }
 
-.archive-button:focus {
-	outline: none;
-	box-shadow: 0 0 0 2px #357abd;
+.version-select::-ms-expand {
+    display: none; 
 }
 
-.archive-button:active {
-	transform: scale(0.95);
+.upload-section {
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #3c3c3c;
+    border-radius: 8px;
+    background-color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.version-label {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.upload-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #357abd;
+}
+
+.upload-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #357abd;
+}
+
+
+.upload-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #357abd;
+}
+
+.upload-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #357abd;
 }

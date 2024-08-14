@@ -4,10 +4,14 @@
 	"type": "module",
 	"main": "./server.js",
 	"scripts": {
+		"desktop-app": "npm install && npm run build && concurrently --kill-others \"npm start\" \"npm run construct-app\"",
 		"start": "node ./server.js",
 		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate",
 		"build:clean": "rimraf ./public/resources/scripts",
 		"build:compile": "tsc",
+		"construct-app": "npm run construct-app:main && npm run construct-app:build-app",
+		"construct-app:main": "electron main.cjs",
+		"construct-app:build-app": "npx electron-packager . MineXLauncher --platform=win32 --arch=x64 --out=dist/ --overwrite",
 		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts --output ./public/resources/scripts --options-preset high-obfuscation",
 		"lint": "eslint ./src",
 		"lint:fix": "eslint --fix ./src"
@@ -17,17 +21,20 @@
 	},
 	"dependencies": {
 		"cookie-parser": "~1.4.4",
-		"debug": "~4.3.6",
+		"debug": "~2.6.9",
 		"express": "~4.19.2",
 		"http-errors": "~1.6.3",
 		"morgan": "~1.9.1",
 		"pug": "^3.0.3"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.9.0",
+		"@eslint/js": "^9.8.0",
 		"@tsconfig/node20": "^20.1.4",
 		"@tsconfig/strictest": "^2.0.5",
 		"@types/eslint__js": "^8.42.3",
+		"concurrently": "^8.2.2",
+		"electron": "^31.3.0",
+		"electron-packager": "^17.1.2",
 		"eslint": "^8.57.0",
 		"javascript-obfuscator": "^4.1.1",
 		"rimraf": "^6.0.1",
