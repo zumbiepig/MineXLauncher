@@ -1,3 +1,4 @@
+// Theme management
 const theme = {
 	load() {
 		if (window.location.pathname === '/mobile/') {
@@ -8,7 +9,7 @@ const theme = {
 		}
 		const setTheme = cookie.get('minexlauncher.theme');
 		if (setTheme === null) {
-			theme.set('default');
+			this.set('default');
 		} else if (setTheme !== 'default') {
 			const link = document.createElement('link');
 			link.rel = 'stylesheet';
@@ -22,6 +23,7 @@ const theme = {
 	},
 };
 
+// Version Selector Logic
 const versionSelector = {
 	open() {
 		const customOptions = document.querySelector('.custom-options');
@@ -48,23 +50,11 @@ const versionSelector = {
 		}
 	},
 };
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
+// Game Logic
 const game = {
 	play(version?: string) {
-		window.open(selectedVersion)
-		//if (version) {
-		//	embed.remove();
-		//	// @ts-expect-error 123
-		//	window.top.location.href = version;
-		//} else if (selectedVersion) {
-		//	embed.remove();
-		//	// @ts-expect-error 123
-		//	window.top.location.href = selectedVersion;
-		//} else {
-		//	alert('Please select a version to play.');
-		//	return;
-		//}
+		window.open(selectedVersion);
 	},
 	select(path: string, name: string) {
 		selectedVersion = path;
@@ -78,7 +68,6 @@ const game = {
 		}
 		versionSelector.close();
 	},
-	//did this bc it broke the site org
 	archive(client: string) {
 		const clients: Record<string, string> = {
 			'1.8.8': '18-client-version',
@@ -86,7 +75,7 @@ const game = {
 			'b1.3': 'b13-client-version',
 		};
 		const dropdown = clients[client] ? (document.getElementById(clients[client]) as HTMLSelectElement) : null;
-	
+
 		if (dropdown?.value) {
 			let url: string;
 			switch (client) {
@@ -107,13 +96,10 @@ const game = {
 		} else {
 			console.error('Dropdown value is missing for client:', client);
 		}
-	}
-	
-	
-	
+	},
 };
-/* eslint-enable @typescript-eslint/no-unused-vars */
 
+// Embed Logic
 const embed = {
 	create() {
 		const iframe = document.createElement('iframe');
@@ -137,6 +123,81 @@ const embed = {
 	},
 };
 
+// Cookie Management
+const cookie = {
+	get(key: string): string | null {
+		const cookieStr = document.cookie
+			.split('; ')
+			.find((row) => row.startsWith(`${encodeURIComponent(key)}=`));
+		return cookieStr ? decodeURIComponent(cookieStr.split('=')[1]) : null;
+	},
+	set(key: string, value: string, days: number) {
+		const maxAge = days * 60 * 60 * 24;
+		document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; max-age=${maxAge}; path=/; secure`;
+	},
+	delete(key: string) {
+		document.cookie = `${encodeURIComponent(key)}=; max-age=0; path=/`;
+	},
+};
+
+// Utility Functions
+function isMobile(): boolean {
+	return /Mobi/i.test(window.navigator.userAgent);
+}
+
+let selectedVersion: string;
+
+// Initial Theme Load
+theme.load();
+
+// Event Listeners and DOMContentLoaded Logic
+document.addEventListener('DOMContentLoaded', function () {
+    // Apply the saved background when the page loads
+    const savedBackground = cookie.get('minexlauncher.background');
+    if (savedBackground) {
+        changeBackgroundGif(savedBackground);
+    }
+
+    // Background selection functionality
+    const backgroundSelect = document.getElementById('background-select');
+    const customOptions = document.querySelectorAll('.custom-option');
+
+    if (backgroundSelect && customOptions) {
+        if (savedBackground) {
+            const displayName = savedBackground.split('/').pop()?.replace('.gif', '');
+            backgroundSelect.textContent = `Selected: ${displayName}`;
+        }
+
+        backgroundSelect.addEventListener('click', function () {
+            versionSelector.toggle();
+        });
+
+        customOptions.forEach(option => {
+            option.addEventListener('click', (event) => {
+                const target = event.target as HTMLElement;
+                const selectedBackground = target.getAttribute('data-value');
+                if (selectedBackground) {
+                    const displayName = selectedBackground.replace('.gif', '');
+                    backgroundSelect.textContent = `Selected: ${displayName}`;
+                    setBackground(selectedBackground);
+                    changeBackgroundGif(`/resources/images/backgrounds/${selectedBackground}`);
+                    versionSelector.close();
+                }
+            });
+        });
+    }
+
+    function changeBackgroundGif(backgroundPath: string) {
+        document.documentElement.style.setProperty('--background-image', `url('${backgroundPath}')`);
+    }
+
+    function setBackground(background: string) {
+        cookie.set('minexlauncher.background', background, 365);
+    }
+});
+
+
+// Navigation Logic
 const navigate = {
 	home: {
 		game() {
@@ -177,30 +238,7 @@ const navigate = {
 	},
 };
 
-const cookie = {
-	get(key: string): string | null {
-		for (const cookie of document.cookie.replaceAll('; ', ';').split(';')) {
-			const cookiePair = cookie.split('=');
-			if (encodeURIComponent(key) === cookiePair[0]) {
-				return decodeURIComponent(cookiePair[1]);
-			}
-		}
-		return null;
-	},
-	set(key: string, value: string, days: number) {
-		let maxAge;
-		if (days) {
-			maxAge = days * 60 * 60 * 24;
-		} else {
-			maxAge = 31536000;
-		}
-		document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; max-age=${maxAge}; path=/; secure`;
-	},
-	delete(key: string) {
-		document.cookie = `${encodeURIComponent(key)}=; max-age=0; path=/`;
-	},
-};
-
+// Query String Utility
 const query = {
 	get(name: string) {
 		const urlParams = new URLSearchParams(top?.location.search);
@@ -208,43 +246,15 @@ const query = {
 	},
 };
 
-function isMobile(): boolean {
-	try {
-		document.exitPointerLock();
-		return /Mobi/i.test(window.navigator.userAgent);
-	} catch (e) {
-		return true;
-	}
+// Background Management Functions
+function loadBackground() {
+	cookie.get('minexlauncher.background');
 }
 
-if (window.location.hostname === '0.0.0.0') {
-	navigate;
-	query;
+function setBackground(dynamicUrl: string) {
+	cookie.set('minexlauncher.background', dynamicUrl, 365);
 }
 
-let selectedVersion: string;
-theme.load();
-
-document.addEventListener('DOMContentLoaded', function () {
-	const usernameForm = document.getElementById('username-form') as HTMLFormElement;
-	const usernameInput = document.getElementById('username-input') as HTMLInputElement;
-	const profileName = document.getElementById('profile-name');
-
-	const savedUsername = cookie.get('minexlauncher.username');
-	if (profileName && savedUsername) {
-		profileName.textContent = savedUsername;
-	} else if (profileName && !savedUsername) {
-		profileName.textContent = 'Default';
-	}
-
-	if (profileName && window.location.pathname === '/settings/') {
-		usernameForm.addEventListener('submit', function (event) {
-			event.preventDefault();
-			const username = usernameInput.value.trim();
-			if (username) {
-				cookie.set('minexlauncher.username', username, 30);
-				profileName.textContent = cookie.get('minexlauncher.username');
-			}
-		});
-	}
-});
+function changeBackgroundGif(dynamicUrl: string) {
+	document.documentElement.style.setProperty('--background-image', `url('${dynamicUrl}')`);
+}
