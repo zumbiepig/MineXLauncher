@@ -52,18 +52,18 @@ const versionSelector = {
 
 const game = {
 	play(version?: string) {
-		if (version) {
-			embed.remove();
-			// @ts-expect-error 123
-			window.top.location.href = version;
-		} else if (selectedVersion) {
-			embed.remove();
-			// @ts-expect-error 123
-			window.top.location.href = selectedVersion;
-		} else {
-			alert('Please select a version to play.');
-			return;
-		}
+		window.open(selectedVersion)
+		//if (version) {
+		//	embed.remove();
+		//	window.top.location.href = version;
+		//} else if (selectedVersion) {
+		//	embed.remove();
+		//	// @ts-expect-error 123
+		//	window.top.location.href = selectedVersion;
+		//} else {
+		//	alert('Please select a version to play.');
+		//	return;
+		//}
 	},
 	select(path: string, name: string) {
 		selectedVersion = path;
