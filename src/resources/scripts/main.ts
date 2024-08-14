@@ -55,6 +55,7 @@ const game = {
 		window.open(selectedVersion)
 		//if (version) {
 		//	embed.remove();
+		//	// @ts-expect-error 123
 		//	window.top.location.href = version;
 		//} else if (selectedVersion) {
 		//	embed.remove();
