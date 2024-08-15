@@ -6,8 +6,6 @@
 body {
 	margin: 0;
 	font-family: sans-serif;
-	/* font-family: Minecraftia-Regular;
-	font-size: 12px; */
 	background-color: #1e1e1e;
 	color: #fff;
 	overflow: hidden;
@@ -306,10 +304,10 @@ nav {
 }
 
 .play-button:hover span {
-	animation: fluid 1.5s infinite alternate;
+	animation: play-button 1.5s infinite alternate;
 }
 
-@keyframes fluid {
+@keyframes play-button {
 	0% {
 		transform: scale(1);
 	}
@@ -634,7 +632,6 @@ nav {
 	outline: none;
 }
 
-.username-submit,
 .setup-submit {
 	width: 100%;
 	padding: 10px;
@@ -646,7 +643,6 @@ nav {
 	transition: background-color 0.2s;
 }
 
-.username-submit:hover,
 .setup-submit:hover {
 	background-color: #00ff00;
 }

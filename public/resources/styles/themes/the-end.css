@@ -1,0 +1,115 @@
+@import url('/resources/styles/themes/default.css');
+
+body {
+	background-image: url('/resources/images/backgrounds/themes/the-end.gif');
+	background-color: #0b001a;
+	color: #e0d8ff;
+}
+
+.launcher {
+	background-color: #1a0033;
+	box-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
+}
+
+.title-bar,
+.top-bar,
+.top-menu,
+.bottom-bar {
+	background-color: #22004d;
+	color: #e0d8ff;
+	box-shadow: 0 2px 4px rgba(128, 0, 128, 0.2);
+}
+
+.sidebar {
+	background-color: #1a0033;
+	border-right: 1px solid #330066;
+}
+
+.profile {
+	border-bottom: 1px solid #330066;
+}
+
+.nav-item:hover,
+.nav-item.selected {
+	background-color: #330066;
+}
+
+.main-panel,
+.main-content {
+	background-color: #0b001a;
+}
+
+.tabs .tab:hover,
+.tabs .tab.selected {
+	color: #b300b3;
+}
+
+.installations {
+	background-color: #22004d;
+	border-top: 1px solid #330066;
+}
+
+.custom-select {
+	background-color: #4d0099;
+	border: 2px solid #330066;
+	box-shadow: 4px 4px #6600cc;
+}
+
+.custom-select:hover {
+	box-shadow: 6px 6px #6600cc;
+}
+
+.custom-options {
+	background-color: #330066;
+	border: 2px solid #22004d;
+	box-shadow: 4px 4px #6600cc;
+}
+
+.custom-option:hover {
+	background-color: #4d0099;
+}
+
+.play-button {
+	background-color: #6600cc;
+	border: 2px solid #330066;
+}
+
+.play-button:hover {
+	background-color: #8000ff;
+	border-color: #22004d;
+}
+
+.bottom-bar .bottom-bar-left:hover {
+	text-decoration: underline;
+	color: #b300b3;
+}
+
+.minecraft-button {
+	background-color: #8000ff;
+	border: 1px solid #330066;
+}
+
+.minecraft-button:hover {
+	background-color: #9933ff;
+}
+
+.minecraft-button:active {
+	background-color: #6600cc;
+}
+
+.download-link {
+	background-color: #4d0099;
+}
+
+.download-link:hover {
+	background-color: #8000ff;
+}
+
+.top-menu ul li:hover,
+.top-menu ul li.selected {
+	color: #e0d8ff;
+}
+
+.mod-list {
+	background-color: #0b001a;
+}

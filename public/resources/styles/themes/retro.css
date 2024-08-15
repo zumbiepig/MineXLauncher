@@ -1,7 +1,7 @@
 @import url('/resources/styles/themes/default.css');
 
 body {
-	background-image: url('/resources/images/backgrounds/retro.gif');
+	background-image: url('/resources/images/backgrounds/themes/retro.gif');
 	background-color: #000;
 	color: #00ff00;
 	font-family: 'Courier New', Courier, monospace;

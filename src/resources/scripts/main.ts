@@ -197,7 +197,6 @@ function onLoad() {
 	theme.load();
 
 	const lastVersion = cookie.get('minexlauncher.last_version');
-	/* remove this line in v1.5, its so ppl see the changelog */ if (lastVersion === null) cookie.set('minexlauncher.last_version', '1.3', 365);
 	if (lastVersion !== null && lastVersion < launcherVersion) {
 		alert(`MineXLauncher has been updated to v${launcherVersion}!
 

@@ -49,6 +49,15 @@
 				iframe.style.border = 'none';
 				if (cookie.get('minexlauncher.last_version') === null) {
 					iframe.src = '/welcome.html';
+					alert(`MineXLauncher has been updated to v1.4!
+
+Changes in v1.4:
+  - Added welcome and setup screen
+  - Show changelog when MineXLauncher is updated
+  - Added themes and backgrounds
+  - Settings now update automatically without saving them
+  - Username rules have been updated to match Minecraft
+  - Added Starlike Client`);
 				} else if (detect.mobile()) {
 					iframe.src = '/mobile/';
 				} else {

@@ -1,7 +1,7 @@
 @import url('/resources/styles/themes/default.css');
 
 body {
-	background-image: url('/resources/images/backgrounds/room.gif');
+	background-image: url('/resources/images/backgrounds/themes/room.gif');
 	background-color: #2b1b0f;
 	color: #f5e0c3;
 }
