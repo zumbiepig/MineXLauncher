@@ -99,6 +99,7 @@ const game = {
 	},
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const embed = {
 	create(path?: string) {
 		const iframe = document.createElement('iframe');
