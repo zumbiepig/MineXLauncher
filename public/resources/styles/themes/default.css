@@ -624,7 +624,8 @@ nav {
 	justify-content: center;
 }
 
-#username-input {
+#username-input,
+#theme-select {
 	width: calc(100% - 22px);
 	padding: 10px;
 	margin-bottom: 10px;
@@ -632,6 +633,7 @@ nav {
 	border-radius: 3px;
 	background-color: #333;
 	color: #fff;
+	appearance: none;
 }
 
 #username-input:focus,
@@ -640,7 +642,6 @@ nav {
 }
 
 .username-submit,
-.theme-submit,
 .setup-submit {
 	width: 100%;
 	padding: 10px;
@@ -653,27 +654,8 @@ nav {
 }
 
 .username-submit:hover,
-.theme-submit:hover,
 .setup-submit:hover {
 	background-color: #00ff00;
-}
-
-#theme-select {
-	width: 100%;
-	padding: 10px;
-	font-weight: bold;
-	color: #fff;
-	background-color: #333;
-	appearance: none;
-	margin-bottom: 10px;
-	border: none;
-	border-radius: 3px;
-	cursor: pointer;
-	transition: box-shadow 0.2s, background-color 0.2s;
-}
-
-#theme-select:hover {
-	background-color: #3f3f3f;
 }
 
 .setup-page,

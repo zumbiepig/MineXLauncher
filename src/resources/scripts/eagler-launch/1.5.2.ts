@@ -8,7 +8,7 @@ window.addEventListener('load', function () {
 		serverWorkerURI: 'worker_bootstrap.js',
 		worldsFolder: 'MAIN',
 		servers: [
-			/* { serverName: 'put partnered 1.5 servers here', serverAddress: 'wss://example.com', hideAddress: false }, */
+			{ serverName: 'BrickMC', serverAddress: 'wss://play.brickmc.net', hideAddress: false },
 		],
 		relays: [
 			{ addr: 'wss://relay.deev.is/', name: 'lax1dude relay #1', primary: relayId == 0 },

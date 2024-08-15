@@ -2,18 +2,31 @@ let selectedVersion: string | undefined;
 const launcherVersion = '1.4';
 
 const theme = {
-	load() {
-		const savedTheme = cookie.get('minexlauncher.theme');
-		if (savedTheme !== null) {
+	load(themeToLoad?: string) {
+		if (themeToLoad) {
 			const themeElement = document.getElementById('theme') as HTMLLinkElement;
 			if (themeElement) {
-				themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
+				themeElement.href = `/resources/styles/themes/${themeToLoad}.css`;
 			} else {
 				const link = document.createElement('link');
 				link.rel = 'stylesheet';
-				link.href = `/resources/styles/themes/${savedTheme}.css`;
+				link.href = `/resources/styles/themes/${themeToLoad}.css`;
 				link.id = 'theme';
 				document.head.appendChild(link);
+			}
+		} else {
+			const savedTheme = cookie.get('minexlauncher.theme');
+			if (savedTheme !== null) {
+				const themeElement = document.getElementById('theme') as HTMLLinkElement;
+				if (themeElement) {
+					themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
+				} else {
+					const link = document.createElement('link');
+					link.rel = 'stylesheet';
+					link.href = `/resources/styles/themes/${savedTheme}.css`;
+					link.id = 'theme';
+					document.head.appendChild(link);
+				}
 			}
 		}
 	},

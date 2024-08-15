@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
 		assetsURI: 'assets.epk',
 		servers: [
 			{ addr: 'wss://electronmc.club', name: 'Electron Network' },
-			/* { addr: 'wss://example.com', name: 'BrickMC' }, */
+			{ addr: 'wss://play.brickmc.net', name: 'BrickMC' },
 		],
 		relays: [
 			{ addr: 'wss://relay.deev.is/', comment: 'lax1dude relay #1', primary: relayId == 0 },

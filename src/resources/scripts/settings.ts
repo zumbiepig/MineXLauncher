@@ -1,31 +1,22 @@
 if (window.location.pathname === '/settings/') {
 	document.addEventListener('DOMContentLoaded', function () {
 		const profileName = document.getElementById('profile-name');
-		const usernameForm = document.getElementById('username-form') as HTMLFormElement;
-		const themeForm = document.getElementById('theme-form') as HTMLFormElement;
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 
-		usernameForm.addEventListener('submit', function (event) {
-			event.preventDefault();
+		usernameInput.placeholder = cookie.get('minexlauncher.username') ?? '';
+		themeSelect.value = cookie.get('minexlauncher.theme') ?? '';
 
-			const username = usernameInput.value.trim();
-
-			if (username) {
-				cookie.set('minexlauncher.username', username, 365);
-				if (profileName) {
-					profileName.textContent = cookie.get('minexlauncher.username');
-				}
+		usernameInput.addEventListener('change', function () {
+			const username = usernameInput.value;
+			cookie.set('minexlauncher.username', username, 365);
+			if (profileName) {
+				profileName.textContent = username;
 			}
 		});
 
-		themeForm.addEventListener('submit', function (event) {
-			event.preventDefault();
-
-			const newTheme = themeSelect.value;
-
-			cookie.set('minexlauncher.theme', newTheme, 365);
-			theme.load();
+		themeSelect.addEventListener('change', function () {
+			theme.set(themeSelect.value);
 		});
 	});
 }
@@ -36,10 +27,14 @@ if (window.location.pathname === '/welcome.html') {
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 
+		themeSelect.addEventListener('change', function () {
+			theme.load(themeSelect.value);
+		});
+
 		setupForm.addEventListener('submit', function (event) {
 			event.preventDefault();
 
-			const username = usernameInput.value.trim();
+			const username = usernameInput.value;
 			const newTheme = themeSelect.value;
 
 			if (!username) {
