@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: Minecraftia-Regular;
     src: url(/resources/fonts/Minecraftia-Regular.ttf);
@@ -7,10 +6,10 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    background-color: #fef0f5; /* Soft pink background */
-    color: #333; /* Darker text for contrast */
+    background-color: #121212; 
+    color: #e0e0e0;
     overflow: hidden;
-    background-image: url('/resources/images/backgrounds/cherry-blossom.gif');
+	background-image: none;
 
     background-size: cover;
 }
@@ -19,22 +18,22 @@ body {
     width: 75vw;
     height: 95vh;
     margin: 15px auto 0 auto;
-    background-color: #fdf0f5; /* Light pinkish background */
+    background-color: #1e1e1e; 
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); 
     display: flex;
     flex-direction: column;
 }
 
 .title-bar {
-    background-color: #f6e7f3; /* Pale lavender */
+    background-color: #1a1a1a; 
     padding: 10px;
     text-align: center;
-    color: #333; /* Darker text */
+    color: #e0e0e0;
     font-size: 14px;
     font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .content {
@@ -44,17 +43,17 @@ body {
 }
 
 .sidebar {
-    background-color: #f9f0f4; /* Light pink background */
+    background-color: #262626;
     width: 200px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    border-right: 1px solid #e0d1e3; /* Subtle pink border */
+    border-right: 1px solid #333;
 }
 
 .profile {
     padding: 20px 10px;
-    border-bottom: 1px solid #e0d1e3; /* Subtle pink border */
+    border-bottom: 1px solid #333; 
     text-align: center;
 }
 
@@ -66,7 +65,7 @@ body {
 
 .profile-status {
     font-size: 12px;
-    color: #00cc00;
+    color: #00cc00; 
     display: block;
     margin-top: 5px;
 }
@@ -88,7 +87,7 @@ nav {
 
 .nav-item:hover,
 .nav-item.selected {
-    background-color: #f4c6d0; /* Light rosy color */
+    background-color: #333; /* Darker gray */
 }
 
 .nav-icon {
@@ -105,28 +104,28 @@ nav {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: #fef0f5; /* Light pinkish background */
+    background-color: #1e1e1e; /* Darker gray */
 }
 
 .top-bar {
-    background-color: #f6e7f3; /* Pale lavender */
+    background-color: #1a1a1a; /* Dark gray */
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #333; /* Darker text */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0; /* Light gray text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     flex-shrink: 0;
 }
 
 .top-menu {
-    background-color: #f6e7f3; /* Pale lavender */
+    background-color: #1a1a1a; /* Dark gray */
     padding: 10px 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: #333; /* Darker text */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0; /* Light gray text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     flex-shrink: 0;
 }
 
@@ -142,7 +141,7 @@ nav {
 .tab {
     margin-left: 20px;
     cursor: pointer;
-    color: #888;
+    color: #888; /* Medium gray */
     text-transform: uppercase;
     font-size: 14px;
     transition: color 0.2s;
@@ -150,19 +149,19 @@ nav {
 
 .tab:hover,
 .tab.selected {
-    color: #e5a1b8; /* Cherry blossom pink */
+    color: #00cc00; /* Green */
 }
 
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: #fef0f5; /* Light pinkish background */
+    background-color: #121212; /* Very dark gray */
     box-sizing: border-box;
     position: relative;
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color: #f2c8d5 #fef0f5; /* Light pink scrollbar */
+    scrollbar-color: #333 #121212; /* Dark gray scrollbar */
 }
 
 .error-page {
@@ -189,13 +188,13 @@ nav {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    background-color: #f9e6f1; /* Soft pink background */
+    background-color: #1c1c1c; /* Dark gray */
     box-sizing: border-box;
     position: absolute;
     bottom: 0;
     left: 0;
     padding: 10px 20px;
-    border-top: 1px solid #e0d1e3; /* Subtle pink border */
+    border-top: 1px solid #333; /* Subtle border */
 }
 
 .custom-select-wrapper {
@@ -211,17 +210,17 @@ nav {
     font-family: sans-serif;
     font-size: 1em;
     padding: 7px;
-    border: 2px solid #f2c8d5; /* Light pink border */
-    background-color: #f9e6f1; /* Soft pink background */
-    color: #333; /* Darker text */
+    border: 2px solid #444; /* Dark gray border */
+    background-color: #333; /* Dark gray background */
+    color: #e0e0e0; /* Light gray text */
     cursor: pointer;
-    box-shadow: 4px 4px #e0d1e3;
+    box-shadow: 4px 4px #111; /* Very dark shadow */
     user-select: none;
     transition: box-shadow 0.3s;
 }
 
 .custom-select:hover {
-    box-shadow: 6px 6px #e0d1e3;
+    box-shadow: 6px 6px #111;
 }
 
 .custom-select.open {
@@ -233,15 +232,15 @@ nav {
     bottom: calc(100% + 2px);
     left: 0;
     right: 0;
-    border: 2px solid #f2c8d5; /* Light pink border */
+    border: 2px solid #444; /* Dark gray border */
     border-bottom: none;
-    background-color: #fceef2; /* Very light pink */
-    box-shadow: 4px 4px #e0d1e3;
+    background-color: #222; /* Darker gray */
+    box-shadow: 4px 4px #111; /* Very dark shadow */
     display: none;
     border-radius: 5px 5px 0 0;
-    color: #333; /* Darker text */
+    color: #e0e0e0; /* Light gray text */
     scrollbar-width: thin;
-    scrollbar-color: #f2c8d5 #fceef2; /* Light pink scrollbar */
+    scrollbar-color: #333 #222; /* Dark gray scrollbar */
     max-height: 0;
     overflow: auto;
     transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out;
@@ -259,7 +258,7 @@ nav {
     align-items: center;
     padding: 10px;
     cursor: pointer;
-    border-bottom: 1px solid #f2c8d5; /* Light pink border */
+    border-bottom: 1px solid #444; /* Dark gray border */
     transition: background-color 0.3s;
 }
 
@@ -268,7 +267,7 @@ nav {
 }
 
 .custom-option:hover {
-    background-color: #f8d4e4; /* Slightly darker pink */
+    background-color: #333; /* Darker gray */
 }
 
 .custom-option img {
@@ -278,12 +277,12 @@ nav {
 }
 
 .play-button {
-    background-color: #e5a1b8; /* Cherry blossom pink */
-    border: 2px solid #d0808e; /* Slightly darker pink */
+    background-color: #444; /* Dark gray */
+    border: 2px solid #333; /* Darker gray border */
     padding: 10px 40px;
     border-radius: 5px;
     cursor: pointer;
-    color: #fff;
+    color: #e0e0e0; /* Light gray text */
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
@@ -312,8 +311,8 @@ nav {
 }
 
 .play-button:hover {
-    background-color: #f7b7bc; /* Lightened pink */
-    border-color: #d0808e; /* Slightly darker pink */
+    background-color: #555; /* Slightly lighter dark gray */
+    border-color: #444; /* Dark gray border */
     transform: scale(1.05);
 }
 
@@ -331,21 +330,21 @@ nav {
         transform: scale(1);
     }
 
-    100% {
+     100% {
         transform: scale(1.1);
     }
 }
 
 .bottom-bar {
-    background-color: #f6e7f3; /* Pale lavender */
+    background-color: #1a1a1a; /* Dark gray */
     padding: 10px 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-size: 14px;
     text-decoration: none;
-    border-top: 1px solid #e0d1e3; /* Subtle pink border */
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid #333; /* Subtle border */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .bottom-bar .bottom-bar-links {
@@ -353,18 +352,18 @@ nav {
 }
 
 .bottom-bar .bottom-bar-left {
-    color: #333; /* Darker text */
+    color: #e0e0e0; /* Light gray text */
     margin-right: 10px;
     text-decoration: none;
 }
 
 .bottom-bar .bottom-bar-left:hover {
     text-decoration: underline;
-    color: #e5a1b8; /* Cherry blossom pink */
+    color: #aaa; /* Lighter gray */
 }
 
 .bottom-bar .bottom-bar-right {
-    color: #333; /* Darker text */
+    color: #e0e0e0; /* Light gray text */
 }
 
 .news-item {
@@ -378,8 +377,8 @@ nav {
 }
 
 .minecraft-button {
-    background-color: #f2c8d5; /* Light pink */
-    border: 1px solid #e0d1e3; /* Subtle pink border */
+    background-color: #333; /* Dark gray */
+    border: 1px solid #444; /* Darker gray border */
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
@@ -390,11 +389,11 @@ nav {
 }
 
 .minecraft-button:hover {
-    background-color: #e5a1b8; /* Cherry blossom pink */
+    background-color: #444; /* Slightly lighter dark gray */
 }
 
 .minecraft-button:active {
-    background-color: #d0808e; /* Slightly darker pink */
+    background-color: #555; /* Even lighter dark gray */
 }
 
 .version-label {
@@ -410,8 +409,8 @@ nav {
 
 .download-link {
     display: inline-block;
-    background-color: #f2c8d5; /* Light pink */
-    color: #fff;
+    background-color: #333; /* Dark gray */
+    color: #e0e0e0; /* Light gray text */
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
@@ -422,7 +421,7 @@ nav {
 }
 
 .download-link:hover {
-    background-color: #e5a1b8; /* Cherry blossom pink */
+    background-color: #444; /* Slightly lighter dark gray */
 }
 
 .settings {
@@ -445,20 +444,20 @@ select {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    border: 1px solid #e0d1e3; /* Subtle pink border */
-    background-color: #f9e6f1; /* Soft pink background */
-    color: #333; /* Darker text */
+    border: 1px solid #444; /* Dark gray border */
+    background-color: #1e1e1e; /* Dark gray background */
+    color: #e0e0e0; /* Light gray text */
     font-size: 14px;
 }
 
 input[type="text"]::placeholder,
 select option {
-    color: #888;
+    color: #888; /* Medium gray */
 }
 
 button {
-    background-color: #f2c8d5; /* Light pink */
-    color: #fff;
+    background-color: #333; /* Dark gray */
+    color: #e0e0e0; /* Light gray text */
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -468,7 +467,7 @@ button {
 }
 
 button:hover {
-    background-color: #e5a1b8; /* Cherry blossom pink */
+    background-color: #444; /* Slightly lighter dark gray */
 }
 
 .username-submit,
