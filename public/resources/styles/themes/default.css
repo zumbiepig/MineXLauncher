@@ -579,7 +579,7 @@ nav {
 
 .archive-button {
 	padding: 0.5rem 1rem;
-	margin: 0 1rem;
+	margin-top: 0.5rem;
 	border: none;
 	border-radius: 5px;
 	background-color: #4a90e2;
@@ -589,16 +589,31 @@ nav {
 	transition: background-color 0.3s;
 }
 
-.archive-button:hover {
+.archive-link {
+	padding: 0.5rem 1rem;
+	margin: 0.5rem 1rem;
+	border: none;
+	border-radius: 5px;
+	background-color: #4a90e2;
+	color: #ffffff;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.archive-button:hover,
+.archive-link:hover {
 	background-color: #357abd;
 }
 
-.archive-button:focus {
+.archive-button:focus,
+.archive-link:focus {
 	outline: none;
 	box-shadow: 0 0 0 2px #357abd;
 }
 
-.archive-button:active {
+.archive-button:active,
+.archive-link:active {
 	transform: scale(0.95);
 }
 
