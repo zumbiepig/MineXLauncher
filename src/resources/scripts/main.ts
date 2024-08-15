@@ -61,13 +61,11 @@ const versionSelector = {
 const game = {
 	play(version?: string) {
 		if (version) {
-			//embed.remove();
-			//// @ts-expect-error 123
-			window.open(version);
+			// @ts-expect-error 1234567890
+			window.top.location.href = version;
 		} else if (selectedVersion) {
-			//embed.remove();
-			//// @ts-expect-error 123
-			window.open(selectedVersion);
+			// @ts-expect-error 1234567890
+			window.top.location.href = selectedVersion;
 		} else {
 			alert('Please select a version to play.');
 			return;
@@ -127,6 +125,7 @@ const embed = {
 	},
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const navigate = {
 	home: {
 		game() {
@@ -172,6 +171,7 @@ const cookie = {
 		for (const cookie of document.cookie.replaceAll('; ', ';').split(';')) {
 			const cookiePair = cookie.split('=');
 			if (encodeURIComponent(key) === cookiePair[0]) {
+				// @ts-expect-error 1234567890
 				return decodeURIComponent(cookiePair[1]);
 			}
 		}
@@ -191,6 +191,7 @@ const cookie = {
 	},
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const query = {
 	get(name: string) {
 		const urlParams = new URLSearchParams(window.top?.location.search);
@@ -208,11 +209,6 @@ const detect = {
 		}
 	},
 };
-
-if (window.location.hostname === '0.0.0.0') {
-	navigate;
-	query;
-}
 
 let selectedVersion: string | undefined;
 
