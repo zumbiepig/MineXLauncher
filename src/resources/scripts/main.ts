@@ -61,13 +61,13 @@ const versionSelector = {
 const game = {
 	play(version?: string) {
 		if (version) {
-			embed.remove();
-			// @ts-expect-error 123
-			window.top.location.href = version;
+			//embed.remove();
+			//// @ts-expect-error 123
+			window.open(version);
 		} else if (selectedVersion) {
-			embed.remove();
-			// @ts-expect-error 123
-			window.top.location.href = selectedVersion;
+			//embed.remove();
+			//// @ts-expect-error 123
+			window.open(selectedVersion);
 		} else {
 			alert('Please select a version to play.');
 			return;
