@@ -7,9 +7,10 @@ if (window.location.pathname === '/settings/') {
 		usernameInput.placeholder = cookie.get('minexlauncher.username') ?? '';
 		themeSelect.value = cookie.get('minexlauncher.theme') ?? '';
 
-		usernameInput.addEventListener('change', function () {
-			const username = usernameInput.value;
+		usernameInput.addEventListener('input', function () {
+			const username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
 			cookie.set('minexlauncher.username', username, 365);
+			usernameInput.value = username;
 			if (profileName) {
 				profileName.textContent = username;
 			}

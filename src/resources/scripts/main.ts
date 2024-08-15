@@ -197,13 +197,17 @@ function onLoad() {
 	theme.load();
 
 	const lastVersion = cookie.get('minexlauncher.last_version');
+	/* remove this line in v1.5, its so ppl see the changelog */ if (lastVersion === null) cookie.set('minexlauncher.last_version', '1.3', 365);
 	if (lastVersion !== null && lastVersion < launcherVersion) {
 		alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
-  - Bugfixes
-  - Added welcome screen
-  - Added themes and backgrounds`);
+  - Added welcome and setup screen
+  - Show changelog when MineXLauncher is updated
+  - Added themes and backgrounds
+  - Settings now update automatically without saving them
+  - Username rules have been updated to match Minecraft
+  - Added Starlike Client`);
 		cookie.set('minexlauncher.last_version', launcherVersion, 365);
 	}
 }
