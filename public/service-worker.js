@@ -1,14 +1,15 @@
-const CACHE_VERSION = 'v1.4'
-const CACHE_NAME = `minexlauncher-${CACHE_VERSION}`;
+const CACHE_NAME = `minexlauncher`;
 const OFFLINE_URL = '/offline.html';
 const ASSETS_TO_CACHE = [OFFLINE_URL, '/resources/images/icons/favicon.png', '/resources/styles/themes/default.css', '/resources/scripts/google-tag.js'];
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
-		caches.open(CACHE_NAME).then((cache) => {
-			return cache.addAll(ASSETS_TO_CACHE).catch((error) => {
-				console.error('Failed to install service worker: ', error);
-			});
+		caches.open(CACHE_NAME).then(async (cache) => {
+			try {
+				return await cache.addAll(ASSETS_TO_CACHE);
+			} catch (error) {
+				console.error('Failed to install service worker:', error);
+			}
 		})
 	);
 });

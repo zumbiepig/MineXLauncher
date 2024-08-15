@@ -1,85 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings | MineXLauncher</title>
-    <link rel="icon" type="image/png" href="/resources/images/icons/favicon.png" />
-    <link rel="stylesheet" href="/resources/styles/themes/default.css" />
-    <script src="/resources/scripts/google-tag.js"></script>
-    <script src="/resources/scripts/main.js"></script>
-</head>
-<body>
-    <div class="launcher">
-        <div class="title-bar">
-            <span>MineXLauncher 1.4</span>
-        </div>
-        <div class="content">
-            <div class="sidebar">
-                <div class="profile">
-                    <span class="profile-name" id="profile-name"></span>
-                </div>
-                <nav>
-                    <li class="nav-item" onclick="navigate.updates()">
-                        <img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
-                        <span class="nav-text">Updates</span>
-                    </li>
-                    <li class="nav-item" onclick="navigate.home.game()">
-                        <img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
-                        <span class="nav-text">Game</span>
-                    </li>
-                    <li class="nav-item" onclick="navigate.servers()">
-                        <img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
-                        <span class="nav-text">Server List</span>
-                    </li>
-                    <li class="nav-item" onclick="navigate.mods.mods()">
-                        <img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
-                        <span class="nav-text">Mods</span>
-                    </li>
-                    <li class="nav-item selected" onclick="navigate.settings()">
-                        <img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
-                        <span class="nav-text">Settings</span>
-                    </li>
-                </nav>
-            </div>
-            <div class="main-panel">
-                <div class="top-bar">
-                    <span class="game-title">Settings</span>
-                </div>
-                <div class="main-content">
-                    <div class="settings">
-                        <form id="username-form">
-                            <label for="username-input">Username:</label>
-                            <input type="text" id="username-input" placeholder="Enter username" />
-                            <button type="submit" class="username-submit">Save</button>
-                        </form>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Settings | MineXLauncher</title>
+		<link rel="icon" type="image/png" href="/resources/images/icons/favicon.png" />
+		<link rel="stylesheet" href="/resources/styles/themes/default.css" />
+		<script src="/resources/scripts/google-tag.js"></script>
+		<script src="/resources/scripts/main.js"></script>
+		<script src="/resources/scripts/settings.js"></script>
+	</head>
+	<body>
+		<div class="launcher">
+			<div class="title-bar">
+				<span>MineXLauncher 1.4</span>
 			</div>
-			<div class="settings">
-						<form id="theme-form">
-                            <label for="theme-select">Theme:</label>
-                            <select id="theme-select">
-                                <option value="default">Default</option>
-                                <option value="overworld">Overworld</option>
-                                <option value="nether">Nether</option>
-                                <option value="cherry-blossom">Cherry Blossom</option>
-                                <option value="retro">Retro</option>
-                                <option value="starfall">Starfall</option>
-                                <option value="room">Room</option>
-                            </select>
-                            <button type="submit" class="theme-submit">Save</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bottom-bar">
-            <div class="bottom-bar-links">
-                <a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Join the MineXLauncher Discord</a>
-            </div>
-            <div class="bottom-bar-links">
-                <span class="bottom-bar-right">MineXLauncher</span>
-            </div>
-        </div>
-    </div>
-</body>
+			<div class="content">
+				<div class="sidebar">
+					<div class="profile">
+						<span class="profile-name" id="profile-name"></span>
+					</div>
+					<nav>
+						<li class="nav-item" onclick="navigate.updates()">
+							<img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
+							<span class="nav-text">Updates</span>
+						</li>
+						<li class="nav-item" onclick="navigate.home.game()">
+							<img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
+							<span class="nav-text">Game</span>
+						</li>
+						<li class="nav-item" onclick="navigate.servers()">
+							<img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
+							<span class="nav-text">Server List</span>
+						</li>
+						<li class="nav-item" onclick="navigate.mods.mods()">
+							<img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
+							<span class="nav-text">Mods</span>
+						</li>
+						<li class="nav-item selected" onclick="navigate.settings()">
+							<img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
+							<span class="nav-text">Settings</span>
+						</li>
+					</nav>
+				</div>
+				<div class="main-panel">
+					<div class="top-bar">
+						<span class="game-title">Settings</span>
+					</div>
+					<div class="main-content">
+						<div class="settings">
+							<form id="username-form">
+								<label for="username-input">Username:</label>
+								<input type="text" id="username-input" placeholder="Enter username" />
+								<button type="submit" class="username-submit">Save</button>
+							</form>
+						</div>
+						<div class="settings">
+							<form id="theme-form">
+								<label for="theme-select">Theme:</label>
+								<select id="theme-select">
+									<option value="default">Default</option>
+									<option value="overworld">Overworld</option>
+									<option value="nether">Nether</option>
+									<option value="cherry-blossom">Cherry Blossom</option>
+									<option value="hyperdark">Hyperdark</option>
+									<option value="retro">Retro</option>
+									<option value="starfall">Starfall</option>
+									<option value="room">Room</option>
+								</select>
+								<button type="submit" class="theme-submit">Save</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-bar">
+				<div class="bottom-bar-links">
+					<a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Join the MineXLauncher Discord</a>
+				</div>
+				<div class="bottom-bar-links">
+					<span class="bottom-bar-right">MineXLauncher</span>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

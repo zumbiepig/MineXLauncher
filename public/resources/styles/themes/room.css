@@ -1,3 +1,6 @@
+@import url('/resources/styles/themes/default.css');
+@import url('/resources/styles/themes/hyperdark.css');
+
 body {
 	background-image: url('/resources/images/backgrounds/room.gif');
 }

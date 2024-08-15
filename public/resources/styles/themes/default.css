@@ -579,6 +579,7 @@ nav {
 
 .archive-button {
 	padding: 0.5rem 1rem;
+	margin: 0 1rem;
 	border: none;
 	border-radius: 5px;
 	background-color: #4a90e2;

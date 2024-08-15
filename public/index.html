@@ -47,7 +47,7 @@
 				iframe.style.width = '100%';
 				iframe.style.height = '100%';
 				iframe.style.border = 'none';
-				if (cookie.get('minexlauncher.setup_complete') !== 'true') {
+				if (cookie.get('minexlauncher.last_version') === null) {
 					iframe.src = '/welcome.html'
 				} else if (detect.mobile()) {
 					iframe.src = '/mobile/';

@@ -1,3 +1,5 @@
+@import url('/resources/styles/themes/default.css');
+
 body {
 	background-image: url('/resources/images/backgrounds/cherry-blossom.gif');
 	background-color: #fef0f5;
@@ -39,6 +41,14 @@ body {
 .top-menu {
 	background-color: #f6e7f3;
 	color: #333;
+}
+
+.top-menu ul li {
+	color: #333;
+}
+
+.top-menu ul li.selected {
+	color: #e5a1b8;
 }
 
 .tab:hover,
@@ -92,16 +102,13 @@ body {
 	border-top: 1px solid #e0d1e3;
 }
 
-.bottom-bar .bottom-bar-left {
+.bottom-bar .bottom-bar-left,
+.bottom-bar .bottom-bar-right {
 	color: #333;
 }
 
 .bottom-bar .bottom-bar-left:hover {
 	color: #e5a1b8;
-}
-
-.bottom-bar .bottom-bar-right {
-	color: #333;
 }
 
 .minecraft-button {
@@ -118,7 +125,7 @@ body {
 }
 
 .download-link {
-	background-color: #f2c8d5;
+	background-color: #d0808e;
 }
 
 .download-link:hover {

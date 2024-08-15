@@ -1,33 +1,25 @@
+let selectedVersion: string | undefined;
+const launcherVersion = '1.4';
+
 const theme = {
-	append(appendTheme: string | null) {
-		if (appendTheme !== null) {
-			append.stylesheet(`/resources/styles/themes/${appendTheme}.css`);
-		}
-	},
 	load() {
-		if (window.location.pathname.startsWith('/mobile/')) {
-			theme.append('mobile');
-		}
 		const savedTheme = cookie.get('minexlauncher.theme');
-		theme.append(savedTheme);
+		if (savedTheme !== null) {
+			const themeElement = document.getElementById('theme') as HTMLLinkElement;
+			if (themeElement) {
+				themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
+			} else {
+				const link = document.createElement('link');
+				link.rel = 'stylesheet';
+				link.href = `/resources/styles/themes/${savedTheme}.css`;
+				link.id = 'theme';
+				document.head.appendChild(link);
+			}
+		}
 	},
 	set(newTheme: string) {
 		cookie.set('minexlauncher.theme', newTheme, 365);
-		theme.append(newTheme);
-	},
-};
-
-const append = {
-	script(pathTo: string) {
-		const script = document.createElement('script');
-		script.src = pathTo;
-		document.head.appendChild(script);
-	},
-	stylesheet(pathTo: string) {
-		const link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = pathTo;
-		document.head.appendChild(link);
+		theme.load();
 	},
 };
 
@@ -61,10 +53,10 @@ const versionSelector = {
 const game = {
 	play(version?: string) {
 		if (version) {
-			// @ts-expect-error 1234567890
+			// @ts-expect-error 123
 			window.top.location.href = version;
 		} else if (selectedVersion) {
-			// @ts-expect-error 1234567890
+			// @ts-expect-error 123
 			window.top.location.href = selectedVersion;
 		} else {
 			alert('Please select a version to play.');
@@ -94,34 +86,6 @@ const game = {
 			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === '1.8' ? 'X_1.8' : `_${client}`}/client/${dropdown.value}/index.html`;
 			game.play();
 		}
-	},
-};
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const embed = {
-	create(path?: string) {
-		const iframe = document.createElement('iframe');
-		iframe.id = 'iframe-container';
-		iframe.style.position = 'fixed';
-		iframe.style.top = '0';
-		iframe.style.left = '0';
-		iframe.style.width = '100%';
-		iframe.style.height = '100%';
-		iframe.style.border = 'none';
-		if (path) {
-			iframe.src = path;
-		} else if (cookie.get('minexlauncher.setup_complete') !== 'true') {
-			iframe.src = '/welcome.html';
-		} else if (detect.mobile()) {
-			iframe.src = '/mobile/';
-		} else {
-			iframe.src = '/home/game/';
-		}
-		document.body.appendChild(iframe);
-	},
-	remove() {
-		const iframe = window.top?.document.getElementById('iframe-container');
-		iframe?.remove();
 	},
 };
 
@@ -171,7 +135,7 @@ const cookie = {
 		for (const cookie of document.cookie.replaceAll('; ', ';').split(';')) {
 			const cookiePair = cookie.split('=');
 			if (encodeURIComponent(key) === cookiePair[0]) {
-				// @ts-expect-error 1234567890
+				// @ts-expect-error 123
 				return decodeURIComponent(cookiePair[1]);
 			}
 		}
@@ -210,58 +174,33 @@ const detect = {
 	},
 };
 
-let selectedVersion: string | undefined;
+function onLoad() {
+	if (detect.mobile()) {
+		const link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = '/resources/styles/mobile.css';
+		document.head.appendChild(link);
+	}
+	theme.load();
 
-theme.load();
+	const lastVersion = cookie.get('minexlauncher.last_version');
+	if (lastVersion !== null && lastVersion < launcherVersion) {
+		alert(`MineXLauncher has been updated to v${launcherVersion}!
+
+Changes in v${launcherVersion}:
+  - Bugfixes
+  - Added welcome screen
+  - Added themes and backgrounds`);
+		cookie.set('minexlauncher.last_version', launcherVersion, 365);
+	}
+}
+
+onLoad();
 
 document.addEventListener('DOMContentLoaded', function () {
-	const usernameForm = document.getElementById('username-form') as HTMLFormElement;
-	const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 	const profileName = document.getElementById('profile-name');
-	const savedUsername = cookie.get('minexlauncher.username');
 
-	const themeForm = document.getElementById('theme-form') as HTMLFormElement;
-	const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
-
-	const setupForm = document.getElementById('setup-form') as HTMLFormElement;
-
-	if (profileName && savedUsername) {
-		profileName.textContent = savedUsername;
-	}
-
-	if (window.location.pathname === '/settings/') {
-		usernameForm.addEventListener('submit', function (event) {
-			event.preventDefault();
-			const username = usernameInput.value.trim();
-			if (username) {
-				cookie.set('minexlauncher.username', username, 365);
-				if (profileName) {
-					profileName.textContent = cookie.get('minexlauncher.username');
-				}
-			}
-		});
-		themeForm.addEventListener('submit', function (event) {
-			event.preventDefault();
-			const newTheme = themeSelect.value;
-			cookie.set('minexlauncher.theme', newTheme, 365);
-			theme.load();
-		});
-	} else if (window.location.pathname === '/welcome.html') {
-		setupForm.addEventListener('submit', function (event) {
-			event.preventDefault();
-			const username = usernameInput.value.trim();
-			const newTheme = themeSelect.value;
-
-			if (!username) {
-				alert('Please type a username.');
-				return;
-			} else {
-				cookie.set('minexlauncher.username', username, 365);
-				cookie.set('minexlauncher.theme', newTheme, 365);
-				cookie.set('minexlauncher.setup_complete', 'true', 365);
-				// @ts-expect-error 1234567890
-				window.top.location.href = '/';
-			}
-		});
+	if (profileName) {
+		profileName.textContent = cookie.get('minexlauncher.username');
 	}
 });
