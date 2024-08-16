@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
 	}
 	if (mobile === 'true') {
 		const script = document.createElement('script');
-		script.src = '/game/web/mobile/eaglerpocketmobile.user.js';
+		script.src = '/resources/scripts/mobile/eaglerpocketmobile.user.js';
 		document.head.appendChild(script);
 	}
 
