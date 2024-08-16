@@ -1,6 +1,5 @@
 /* eslint-disable */
 // @ts-nocheck
-
 // Removed brainless unsafeWindow
 console.log('Eagler Pocket Mobile v1.40');
 // TODO: remove the mobile check is implement the dynamic enabling and disabling of individual features
