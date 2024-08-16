@@ -1,6 +1,6 @@
 const CACHE_NAME = 'minexlauncher';
 const OFFLINE_URL = '/offline.html';
-const ASSETS_TO_CACHE = [OFFLINE_URL, '/resources/images/icons/favicon.png', '/resources/styles/themes/default.css', '/resources/scripts/google-tag.js'];
+const ASSETS_TO_CACHE = [OFFLINE_URL, '/resources/images/icons/favicon.webp', '/resources/styles/themes/default.css', '/resources/scripts/google-tag.js'];
 
 self.addEventListener('activate', (event) => {
 	event.waitUntil(
