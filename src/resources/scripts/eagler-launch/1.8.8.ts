@@ -18,10 +18,10 @@ window.addEventListener('load', () => {
 
 	const urlParams = new URLSearchParams(window.location.search);
 	const server = urlParams.get('server');
+	const mobile = urlParams.get('mobile');
 	if (server) {
 		window.eaglercraftXOpts.joinServer = server;
 	}
-	const mobile = urlParams.get('mobile');
 	if (mobile === 'true') {
 		const script = document.createElement('script');
 		script.src = '/game/web/mobile/eaglerpocketmobile.user.js';
