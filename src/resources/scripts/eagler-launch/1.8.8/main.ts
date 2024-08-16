@@ -18,15 +18,8 @@ window.addEventListener('load', () => {
 
 	const urlParams = new URLSearchParams(window.location.search);
 	const server = urlParams.get('server');
-	const mobile = urlParams.get('mobile');
 	if (server) {
 		window.eaglercraftXOpts.joinServer = server;
 	}
-	if (mobile === 'true') {
-		const script = document.createElement('script');
-		script.src = '/resources/scripts/mobile/eaglerpocketmobile.user.js';
-		document.head.appendChild(script);
-	}
-
 	main();
 });
