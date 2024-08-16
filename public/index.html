@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>MineXLauncher</title>
 		<link rel="icon" type="image/webp" href="/resources/images/icons/favicon.webp" />
+		<link rel="stylesheet" href="/resources/styles/index.css" />
 		<link rel="canonical" href="https://launcher.orionzleon.me/" />
 		<meta name="theme-color" content="#333" />
 		<meta name="description" content="Custom launcher for Eaglercraft, which contains many versions and clients." />
@@ -17,56 +18,6 @@
 		<meta property="og:locale" content="en-US" />
 		<script src="/resources/scripts/google-tag.js"></script>
 		<script src="/sw-register.js"></script>
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				const detect = {
-					mobile() {
-						try {
-							document.exitPointerLock();
-							return /Mobi/i.test(window.navigator.userAgent);
-						} catch (e) {
-							return true;
-						}
-					},
-				};
-				const cookie = {
-					get(key) {
-						for (const cookie of document.cookie.replaceAll('; ', ';').split(';')) {
-							const cookiePair = cookie.split('=');
-							if (encodeURIComponent(key) === cookiePair[0]) {
-								return decodeURIComponent(cookiePair[1]);
-							}
-						}
-						return null;
-					},
-				};
-				const iframe = document.createElement('iframe');
-				iframe.id = 'iframe-container';
-				iframe.style.position = 'fixed';
-				iframe.style.top = '0';
-				iframe.style.left = '0';
-				iframe.style.width = '100%';
-				iframe.style.height = '100%';
-				iframe.style.border = 'none';
-				if (cookie.get('minexlauncher.last_version') === null) {
-					iframe.src = '/welcome.html';
-					alert(`MineXLauncher has been updated to v1.4!
-
-Changes in v1.4:
-  - Added welcome and setup screen
-  - Show changelog when MineXLauncher is updated
-  - Added themes and backgrounds
-  - Settings now update automatically without saving them
-  - Username rules have been updated to match Minecraft
-  - Added Starlike Client`);
-				} else if (detect.mobile()) {
-					iframe.src = '/mobile/';
-				} else {
-					iframe.src = '/home/game/';
-				}
-				document.body.appendChild(iframe);
-			});
-		</script>
+		<script src="/resources/scripts/main.js"></script>
 	</head>
-	<body style="overflow: hidden; background-color: #1e1e1e; background-image: url('/resources/images/icons/loading.webp'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: 15vh"></body>
 </html>

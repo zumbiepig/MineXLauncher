@@ -136,7 +136,7 @@ select {
 
 input[type='text']::placeholder,
 select option {
-	color: #888;
+	color: #e0e0e0;
 }
 
 button {

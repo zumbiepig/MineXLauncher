@@ -2,7 +2,7 @@ let selectedVersion: string | undefined;
 const launcherVersion = '1.4';
 
 const theme = {
-	load(themeToLoad?: string) {
+	load: function (themeToLoad?: string) {
 		if (themeToLoad) {
 			const themeElement = document.getElementById('theme') as HTMLLinkElement;
 			if (themeElement) {
@@ -15,7 +15,7 @@ const theme = {
 				document.head.appendChild(link);
 			}
 		} else {
-			const savedTheme = cookie.get('minexlauncher.theme');
+			const savedTheme = storage.local.get('theme');
 			if (savedTheme !== null) {
 				const themeElement = document.getElementById('theme') as HTMLLinkElement;
 				if (themeElement) {
@@ -30,14 +30,14 @@ const theme = {
 			}
 		}
 	},
-	set(newTheme: string) {
-		cookie.set('minexlauncher.theme', newTheme, 365);
+	set: function (newTheme: string) {
+		storage.local.set('theme', newTheme);
 		theme.load();
 	},
 };
 
 const versionSelector = {
-	open() {
+	open: function () {
 		const customOptions = document.querySelector('.custom-options');
 		const customSelect = document.querySelector('.custom-select');
 		if (customOptions && customSelect) {
@@ -45,7 +45,7 @@ const versionSelector = {
 			customSelect.classList.add('open');
 		}
 	},
-	close() {
+	close: function () {
 		const customOptions = document.querySelector('.custom-options');
 		const customSelect = document.querySelector('.custom-select');
 		if (customOptions && customSelect) {
@@ -53,7 +53,7 @@ const versionSelector = {
 			customSelect.classList.remove('open');
 		}
 	},
-	toggle() {
+	toggle: function () {
 		const customOptions = document.querySelector('.custom-options');
 		const customSelect = document.querySelector('.custom-select');
 		if (customOptions && customSelect) {
@@ -64,7 +64,7 @@ const versionSelector = {
 };
 
 const game = {
-	play(version?: string) {
+	play: function (version?: string) {
 		if (version) {
 			// @ts-expect-error 123
 			window.top.location.href = version;
@@ -76,7 +76,7 @@ const game = {
 			return;
 		}
 	},
-	select(path: string, name?: string) {
+	select: function (path: string, name?: string) {
 		selectedVersion = path;
 		const selector = document.querySelector('.custom-select');
 		if (selector?.textContent) {
@@ -88,7 +88,7 @@ const game = {
 		}
 		versionSelector.close();
 	},
-	archive(client: string) {
+	archive: function (client: string) {
 		const clients: Record<string, string> = {
 			'1.8': '18-client-version',
 			'1.5': '15-client-version',
@@ -105,47 +105,57 @@ const game = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const navigate = {
 	home: {
-		game() {
+		game: function () {
 			window.location.href = '/home/game/';
 		},
-		clients() {
+		clients: function () {
 			window.location.href = '/home/clients/';
 		},
-		archive() {
+		archive: function () {
 			window.location.href = '/home/archive/';
 		},
-		downloads() {
+		downloads: function () {
 			window.location.href = '/home/downloads/';
 		},
 	},
 	mods: {
-		client() {
+		client: function () {
 			window.location.href = '/mods/client/';
 		},
-		mods() {
+		mods: function () {
 			window.location.href = '/mods/mods/';
 		},
-		resourcepacks() {
+		resourcepacks: function () {
 			window.location.href = '/mods/resourcepacks/';
 		},
 	},
-	mobile() {
+	mobile: function () {
 		window.location.href = '/mobile/';
 	},
-	updates() {
+	updates: function () {
 		window.location.href = '/updates/';
 	},
-	servers() {
+	servers: function () {
 		window.location.href = '/servers/';
 	},
-	settings() {
+	settings: function () {
 		window.location.href = '/settings/';
 	},
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const cookie = {
-	get(key: string): string | null {
-		for (const cookie of document.cookie.replaceAll('; ', ';').split(';')) {
+	set: function (key: string, value: string, days: number) {
+		let maxAge;
+		if (days) {
+			maxAge = days * 60 * 60 * 24;
+		} else {
+			maxAge = 31536000;
+		}
+		document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax; Secure`;
+	},
+	get: function (key: string): string | null {
+		for (const cookie of document.cookie.split('; ')) {
 			const cookiePair = cookie.split('=');
 			if (encodeURIComponent(key) === cookiePair[0]) {
 				// @ts-expect-error 123
@@ -154,30 +164,89 @@ const cookie = {
 		}
 		return null;
 	},
-	set(key: string, value: string, days: number) {
-		let maxAge;
-		if (days) {
-			maxAge = days * 60 * 60 * 24;
-		} else {
-			maxAge = 31536000;
-		}
-		document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; max-age=${maxAge}; path=/; secure`;
+	delete: function (key: string) {
+		document.cookie = `${encodeURIComponent(key)}=; Max-Age=0; Path=/`;
 	},
-	delete(key: string) {
-		document.cookie = `${encodeURIComponent(key)}=; max-age=0; path=/`;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const storage = {
+	local: {
+		get: function (key: string) {
+			const item = localStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				if (json[key] !== undefined) {
+					return json[key];
+				} else {
+					return null;
+				}
+			} else {
+				return null;
+			}
+		},
+		set: function (key: string, value: string) {
+			let item = localStorage.getItem('minexlauncher');
+			if (item === null) {
+				item = '{}';
+			}
+			const json = JSON.parse(item);
+			json[key] = value;
+			localStorage.setItem('minexlauncher', JSON.stringify(json));
+		},
+		delete: function (key: string) {
+			const item = localStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				delete json[key];
+				localStorage.setItem('minexlauncher', JSON.stringify(json));
+			}
+		},
+	},
+	session: {
+		get: function (key: string) {
+			const item = sessionStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				if (json[key] !== undefined) {
+					return json[key];
+				} else {
+					return null;
+				}
+			} else {
+				return null;
+			}
+		},
+		set: function (key: string, value: string) {
+			let item = sessionStorage.getItem('minexlauncher');
+			if (item === null) {
+				item = '{}';
+			}
+			const json = JSON.parse(item);
+			json[key] = value;
+			sessionStorage.setItem('minexlauncher', JSON.stringify(json));
+		},
+		delete: function (key: string) {
+			const item = sessionStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				delete json[key];
+				sessionStorage.setItem('minexlauncher', JSON.stringify(json));
+			}
+		},
 	},
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const query = {
-	get(name: string) {
+	get: function (name: string) {
 		const urlParams = new URLSearchParams(window.top?.location.search);
 		return urlParams.get(name);
 	},
 };
 
 const detect = {
-	mobile(): boolean {
+	mobile: function (): boolean {
 		try {
 			document.exitPointerLock();
 			return /Mobi/i.test(window.navigator.userAgent);
@@ -187,7 +256,29 @@ const detect = {
 	},
 };
 
-function onLoad() {
+if (window.location.pathname === '/') {
+	const iframe = document.createElement('iframe');
+
+	if (storage.local.get('minexlauncher.lastVersion') === null) {
+		iframe.src = '/welcome.html';
+		alert(`MineXLauncher has been updated to v1.4!
+
+Changes in v1.4:
+  - Added welcome and setup screen
+  - Show changelog when MineXLauncher is updated
+  - Added themes and backgrounds
+  - Settings now update automatically without saving them
+  - Username rules have been updated to match Minecraft
+  - Added Starlike Client`);
+	} else if (detect.mobile()) {
+		iframe.src = '/mobile/';
+	} else {
+		iframe.src = '/home/game/';
+	}
+	document.addEventListener('DOMContentLoaded', function () {
+		document.body.appendChild(iframe);
+	});
+} else {
 	if (detect.mobile()) {
 		const link = document.createElement('link');
 		link.rel = 'stylesheet';
@@ -196,7 +287,7 @@ function onLoad() {
 	}
 	theme.load();
 
-	const lastVersion = cookie.get('minexlauncher.last_version');
+	const lastVersion = storage.local.get('lastVersion');
 	if (lastVersion !== null && lastVersion < launcherVersion) {
 		alert(`MineXLauncher has been updated to v${launcherVersion}!
 
@@ -207,16 +298,13 @@ Changes in v${launcherVersion}:
   - Settings now update automatically without saving them
   - Username rules have been updated to match Minecraft
   - Added Starlike Client`);
-		cookie.set('minexlauncher.last_version', launcherVersion, 365);
+		storage.local.set('lastVersion', launcherVersion);
 	}
+
+	document.addEventListener('DOMContentLoaded', function () {
+		const profileName = document.getElementById('profile-name');
+		if (profileName) {
+			profileName.textContent = storage.local.get('username');
+		}
+	});
 }
-
-onLoad();
-
-document.addEventListener('DOMContentLoaded', function () {
-	const profileName = document.getElementById('profile-name');
-
-	if (profileName) {
-		profileName.textContent = cookie.get('minexlauncher.username');
-	}
-});

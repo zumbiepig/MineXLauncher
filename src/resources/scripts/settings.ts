@@ -4,8 +4,8 @@ if (window.location.pathname === '/settings/') {
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 
-		usernameInput.placeholder = cookie.get('minexlauncher.username') ?? '';
-		themeSelect.value = cookie.get('minexlauncher.theme') ?? '';
+		usernameInput.placeholder = storage.local.get('username') ?? '';
+		themeSelect.value = storage.local.get('theme') ?? '';
 
 		usernameInput.addEventListener('input', function () {
 			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
@@ -13,7 +13,7 @@ if (window.location.pathname === '/settings/') {
 			while (username.length < 3) {
 				username += '_';
 			}
-			cookie.set('minexlauncher.username', username, 365);
+			storage.local.set('username', username);
 			if (profileName) {
 				profileName.textContent = username;
 			}
@@ -53,9 +53,9 @@ if (window.location.pathname === '/welcome.html') {
 				while (username.length < 3) {
 					username += '_';
 				}
-				cookie.set('minexlauncher.username', username, 365);
-				cookie.set('minexlauncher.theme', themeSelect.value, 365);
-				cookie.set('minexlauncher.last_version', launcherVersion, 365);
+				storage.local.set('username', username);
+				storage.local.set('theme', themeSelect.value);
+				storage.local.set('lastVersion', launcherVersion);
 				// @ts-expect-error 123
 				window.top.location.href = '/';
 			}
