@@ -3,30 +3,12 @@ const launcherVersion = '1.4';
 
 const theme = {
 	load: function (themeToLoad?: string) {
-		if (themeToLoad) {
-			const themeElement = document.getElementById('theme') as HTMLLinkElement;
-			if (themeElement) {
+		const themeElement = document.getElementById('theme') as HTMLLinkElement;
+		if (themeElement) {
+			if (themeToLoad) {
 				themeElement.href = `/resources/styles/themes/${themeToLoad}.css`;
 			} else {
-				const link = document.createElement('link');
-				link.rel = 'stylesheet';
-				link.href = `/resources/styles/themes/${themeToLoad}.css`;
-				link.id = 'theme';
-				document.head.appendChild(link);
-			}
-		} else {
-			const savedTheme = storage.local.get('theme');
-			if (savedTheme !== null) {
-				const themeElement = document.getElementById('theme') as HTMLLinkElement;
-				if (themeElement) {
-					themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
-				} else {
-					const link = document.createElement('link');
-					link.rel = 'stylesheet';
-					link.href = `/resources/styles/themes/${savedTheme}.css`;
-					link.id = 'theme';
-					document.head.appendChild(link);
-				}
+				themeElement.href = `/resources/styles/themes/${storage.local.get('theme')}.css`;
 			}
 		}
 	},
