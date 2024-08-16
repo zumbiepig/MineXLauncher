@@ -240,8 +240,7 @@ const storage = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const query = {
 	get: function (name: string) {
-		const urlParams = new URLSearchParams(window.top?.location.search);
-		return urlParams.get(name);
+		return new URLSearchParams(window.top?.location.search).get(name);
 	},
 };
 
