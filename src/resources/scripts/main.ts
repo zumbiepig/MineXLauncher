@@ -259,7 +259,7 @@ const detect = {
 if (window.location.pathname === '/') {
 	const iframe = document.createElement('iframe');
 
-	if (storage.local.get('minexlauncher.lastVersion') === null) {
+	if (storage.local.get('lastVersion') === null) {
 		iframe.src = '/welcome.html';
 		alert(`MineXLauncher has been updated to v1.4!
 
