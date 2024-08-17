@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Infdev</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <script type="text/javascript" charset="utf-8" src="app.js"></script>
-    <script type = text/javascript>
-	window.addEventListener("load", function() {
-		window.minecraftOpts = ["game","resources.epk"];
-  		main();
-	});
-    </script>
-  </head>
-<body style="margin:0px;width:100vw;height:100vh;" id="game">
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Eaglercraft Infdev</title>
+		<link rel="icon" type="image/webp" href="/resources/images/icons/clients/eagler.webp" />
+		<link rel="stylesheet" href="/resources/styles/eagler.css" />
+		<script src="/resources/scripts/google-tag.js"></script>
+		<script src="/game/web/main/infdev/app.js"></script>
+		<script>
+			window.addEventListener('load', function () {
+				window.minecraftOpts = ['game_frame', '/game/web/main/infdev/resources.epk'];
+				main();
+			});
+		</script>
+	</head>
+	<body id="game_frame"></body>
 </html>

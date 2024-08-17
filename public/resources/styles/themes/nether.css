@@ -1,0 +1,116 @@
+body {
+	background-image: url('/resources/images/backgrounds/themes/nether.webp');
+	color: #ffcc00;
+}
+
+.launcher {
+	background-color: #3c2c2c;
+	box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+}
+
+.title-bar,
+.top-bar,
+.top-menu {
+	background-color: #4c2c2c;
+	color: #ffcc00;
+	box-shadow: 0 2px 4px rgba(255, 69, 0, 0.2);
+}
+
+.sidebar {
+	background-color: #3a2a2a;
+	border-right: 1px solid #4c2c2c;
+}
+
+.profile-status {
+	color: #ff4500;
+}
+
+.nav-item:hover,
+.nav-item.selected {
+	background-color: #5c3c3c;
+}
+
+.main-panel,
+.main-content {
+	background-color: #2e1a1a;
+}
+
+.tabs .tab:hover,
+.tabs .tab.selected {
+	color: #ff4500;
+}
+
+.installations {
+	background-color: #4c2c2c;
+	border-top: 1px solid #5c3c3c;
+}
+
+.custom-select {
+	background-color: #8b0000;
+	border: 2px solid #4c2c2c;
+	box-shadow: 4px 4px #5c3c3c;
+}
+
+.custom-select:hover {
+	box-shadow: 6px 6px #5c3c3c;
+}
+
+.custom-options {
+	background-color: #4c2c2c;
+	border: 2px solid #4c2c2c;
+	box-shadow: 4px 4px #5c3c3c;
+}
+
+.custom-option:hover {
+	background-color: #8b0000;
+}
+
+.play-button {
+	background-color: #ff4500;
+	border: 2px solid #8b0000;
+}
+
+.play-button:hover {
+	background-color: #ff6347;
+	border-color: #8b0000;
+}
+
+.bottom-bar {
+	background-color: #4c2c2c;
+	border-top: 1px solid #5c3c3c;
+	box-shadow: 0 -2px 4px rgba(255, 69, 0, 0.2);
+}
+
+.bottom-bar .bottom-bar-left,
+.bottom-bar .bottom-bar-right {
+	color: #ffcc00;
+}
+
+.minecraft-button {
+	background-color: #8b0000;
+	border: 1px solid #4c2c2c;
+}
+
+.minecraft-button:hover {
+	background-color: #a52a2a;
+}
+
+.minecraft-button:active {
+	background-color: #5c3c3c;
+}
+
+.download-link {
+	background-color: #8b0000;
+}
+
+.download-link:hover {
+	background-color: #ff4500;
+}
+
+.top-menu ul li {
+	color: #ffcc00;
+}
+
+.top-menu ul li.selected {
+	color: #fff;
+}

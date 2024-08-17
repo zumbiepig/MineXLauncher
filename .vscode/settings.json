@@ -1,5 +1,5 @@
 {
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"livePreview.serverRoot": "/public/",
-	"livePreview.defaultPreviewPath": "/home/"
+	"editor.formatOnPaste": true,
+	"livePreview.serverRoot": "public",
 }
