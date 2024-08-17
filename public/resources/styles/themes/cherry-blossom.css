@@ -1,0 +1,146 @@
+body {
+	background-image: url('/resources/images/backgrounds/themes/cherry-blossom.webp');
+	background-color: #fef0f5;
+	color: #333;
+}
+
+.launcher {
+	background-color: #fdf0f5;
+}
+
+.title-bar {
+	background-color: #f6e7f3;
+	color: #333;
+}
+
+.sidebar {
+	background-color: #f9f0f4;
+	border-right: 1px solid #e0d1e3;
+}
+
+.profile {
+	border-bottom: 1px solid #e0d1e3;
+}
+
+.nav-item:hover,
+.nav-item.selected {
+	background-color: #f4c6d0;
+}
+
+.main-panel {
+	background-color: #fef0f5;
+}
+
+.top-bar {
+	background-color: #f6e7f3;
+	color: #333;
+}
+
+.top-menu {
+	background-color: #f6e7f3;
+	color: #333;
+}
+
+.top-menu ul li {
+	color: #333;
+}
+
+.top-menu ul li.selected {
+	color: #e5a1b8;
+}
+
+.tab:hover,
+.tab.selected {
+	color: #e5a1b8;
+}
+
+.main-content {
+	background-color: #fef0f5;
+	scrollbar-color: #f2c8d5 #fef0f5;
+}
+
+.installations {
+	background-color: #f9e6f1;
+	border-top: 1px solid #e0d1e3;
+}
+
+.custom-select {
+	border: 2px solid #f2c8d5;
+	background-color: #f9e6f1;
+	color: #333;
+}
+
+.custom-options {
+	border: 2px solid #f2c8d5;
+	background-color: #fceef2;
+	color: #333;
+	scrollbar-color: #f2c8d5 #fceef2;
+}
+
+.custom-option {
+	border-bottom: 1px solid #f2c8d5;
+}
+
+.custom-option:hover {
+	background-color: #f8d4e4;
+}
+
+.play-button {
+	background-color: #e5a1b8;
+	border: 2px solid #d0808e;
+}
+
+.play-button:hover {
+	background-color: #f7b7bc;
+	border-color: #d0808e;
+}
+
+.bottom-bar {
+	background-color: #f6e7f3;
+	border-top: 1px solid #e0d1e3;
+}
+
+.bottom-bar .bottom-bar-left,
+.bottom-bar .bottom-bar-right {
+	color: #333;
+}
+
+.bottom-bar .bottom-bar-left:hover {
+	color: #e5a1b8;
+}
+
+.minecraft-button {
+	background-color: #f2c8d5;
+	border: 1px solid #e0d1e3;
+}
+
+.minecraft-button:hover {
+	background-color: #e5a1b8;
+}
+
+.minecraft-button:active {
+	background-color: #d0808e;
+}
+
+.download-link {
+	background-color: #d0808e;
+}
+
+.download-link:hover {
+	background-color: #e5a1b8;
+}
+
+input[type='text'],
+select {
+	border: 1px solid #e0d1e3;
+	background-color: #f9e6f1;
+	color: #333;
+}
+
+button {
+	background-color: #f2c8d5;
+}
+
+button:hover {
+	background-color: #e5a1b8;
+}

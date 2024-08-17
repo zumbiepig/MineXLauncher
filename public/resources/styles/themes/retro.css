@@ -1,0 +1,87 @@
+body {
+	background-image: url('/resources/images/backgrounds/themes/retro.webp');
+	background-color: #000;
+	color: #00ff00;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.launcher {
+	background-color: #111;
+	box-shadow: none;
+	border: 2px solid #00ff00;
+}
+
+.title-bar,
+.top-bar,
+.top-menu,
+.bottom-bar {
+	background-color: #222;
+	color: #00ff00;
+	box-shadow: none;
+}
+
+.sidebar {
+	background-color: #111;
+	border-right: 2px solid #00ff00;
+}
+
+.profile,
+.nav-item,
+.installations,
+.custom-select,
+.custom-options,
+.play-button,
+.minecraft-button,
+.download-link {
+	background-color: #111;
+	border: 2px solid #00ff00;
+	color: #00ff00;
+}
+
+.nav-item:hover,
+.nav-item.selected,
+.tab:hover,
+.tab.selected,
+.custom-option:hover,
+.play-button:hover,
+.minecraft-button:hover,
+.download-link:hover {
+	background-color: #333;
+}
+
+.custom-select:hover,
+.custom-select.open,
+.play-button:hover,
+.minecraft-button:hover,
+.download-link:hover {
+	box-shadow: none;
+}
+
+.custom-option {
+	border-bottom: 1px solid #00ff00;
+}
+
+.custom-option:last-child {
+	border-bottom: none;
+}
+
+.play-button::before {
+	background-color: rgba(0, 255, 0, 0.1);
+}
+
+.play-button:hover::before {
+	background-color: rgba(0, 255, 0, 0.2);
+}
+
+.play-button span {
+	animation: none;
+}
+
+.bottom-bar .bottom-bar-left:hover {
+	text-decoration: none;
+	color: #00ff00;
+}
+
+.scrollbar-color {
+	scrollbar-color: #00ff00 #111;
+}

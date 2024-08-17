@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/resources/styles/default.css" />
-		<script src="/resources/scripts/main.js" defer></script>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-972V2NZ2ZK"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-			gtag('config', 'G-972V2NZ2ZK');
-		</script>
-		<!-- End Google tag -->
+		<title>Mobile | MineXLauncher</title>
+		<link rel="icon" type="image/webp" href="/resources/images/icons/favicon.webp" />
+		<link rel="stylesheet" href="/resources/styles/themes/default.css" />
+		<link rel="stylesheet" id="theme" />
+		<script src="/resources/scripts/google-tag.js"></script>
+		<script src="/resources/scripts/main.js"></script>
 	</head>
 	<body>
 		<div class="launcher">
 			<div class="title-bar">
-				<span>MineXLauncher 1.3</span>
+				<span>MineXLauncher 1.4</span>
 			</div>
 			<div class="content">
 				<div class="sidebar">
@@ -28,7 +22,7 @@
 					</div>
 					<nav>
 						<li class="nav-item selected" onclick="navigate.mobile()">
-							<img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
+							<img src="/resources/images/icons/nav/game.webp" class="nav-icon" />
 							<span class="nav-text">Mobile Site</span>
 						</li>
 					</nav>
@@ -38,10 +32,10 @@
 						<span class="game-title">Mobile</span>
 					</div>
 					<div class="main-content">
-						<img src="/resources/images/covers/minecraft.png" class="cover-image" />
+						<img src="/resources/images/covers/minecraft.webp" class="cover-image" />
 						<div class="installations">
-							<button class="play-button" onclick="game.play('/game/web/mobile/eaglerpocketmobile-1.8.8/')">Play</button>
-							<a class="play-button" href="/game/offline/mobile/EaglerPocketMobile_1.8.8.html" download>Download Offline</a>
+							<button class="play-button" onclick="game.play('/game/web/main/1.8.8/?mobile=true')">Play</button>
+							<a class="play-button" style="text-decoration: none" href="/game/offline/mobile/EaglerPocketMobile_1.8.8.html" download>Download Offline</a>
 						</div>
 					</div>
 				</div>
@@ -51,7 +45,7 @@
 					<a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Join the MineXLauncher Discord</a>
 				</div>
 				<div class="bottom-bar-links">
-					<span class="bottom-bar-right">MineXLauncher</span>
+					<span class="bottom-bar-right">© 2024 MineXLauncher. All rights reserved.</span>
 				</div>
 			</div>
 		</div>

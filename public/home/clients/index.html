@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/resources/styles/default.css" />
-		<meta name="robots" content="noindex">
-		<script src="/resources/scripts/main.js" defer></script>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-972V2NZ2ZK"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-			gtag('config', 'G-972V2NZ2ZK');
-		</script>
-		<!-- End Google tag -->
+		<title>Clients | MineXLauncher</title>
+		<link rel="icon" type="image/webp" href="/resources/images/icons/favicon.webp" />
+		<link rel="stylesheet" href="/resources/styles/themes/default.css" />
+		<link rel="stylesheet" id="theme" />
+		<script src="/resources/scripts/google-tag.js"></script>
+		<script src="/resources/scripts/main.js"></script>
 	</head>
 	<body>
 		<div class="launcher">
 			<div class="title-bar">
-				<span>MineXLauncher 1.3</span>
+				<span>MineXLauncher 1.4</span>
 			</div>
 			<div class="content">
 				<div class="sidebar">
@@ -29,23 +22,23 @@
 					</div>
 					<nav>
 						<li class="nav-item" onclick="navigate.updates()">
-							<img src="/resources/images/icons/nav/updates.png" class="nav-icon" />
+							<img src="/resources/images/icons/nav/updates.webp" class="nav-icon" />
 							<span class="nav-text">Updates</span>
 						</li>
 						<li class="nav-item selected" onclick="navigate.home.game()">
-							<img src="/resources/images/icons/minexlauncher-trans.png" class="nav-icon" />
+							<img src="/resources/images/icons/nav/game.webp" class="nav-icon" />
 							<span class="nav-text">Game</span>
 						</li>
 						<li class="nav-item" onclick="navigate.servers()">
-							<img src="/resources/images/icons/nav/servers.png" class="nav-icon" />
+							<img src="/resources/images/icons/nav/servers.webp" class="nav-icon" />
 							<span class="nav-text">Server List</span>
 						</li>
 						<li class="nav-item" onclick="navigate.mods.mods()">
-							<img src="/resources/images/icons/nav/mods.png" class="nav-icon" />
+							<img src="/resources/images/icons/nav/mods.webp" class="nav-icon" />
 							<span class="nav-text">Mods</span>
 						</li>
 						<li class="nav-item" onclick="navigate.settings()">
-							<img src="/resources/images/icons/nav/settings.png" class="nav-icon" />
+							<img src="/resources/images/icons/nav/settings.webp" class="nav-icon" />
 							<span class="nav-text">Settings</span>
 						</li>
 					</nav>
@@ -60,7 +53,7 @@
 						</ul>
 					</div>
 					<div class="main-content">
-						<img src="/resources/images/covers/clients.png" class="cover-image" />
+						<img src="/resources/images/covers/clients.webp" class="cover-image" />
 						<div class="installations">
 							<div class="custom-select-wrapper">
 								<div id="custom-select" class="custom-select" onclick="versionSelector.toggle()">
@@ -68,16 +61,24 @@
 								</div>
 								<div class="custom-options">
 									<div class="custom-option" onclick="game.select('/game/web/clients/eaglerforge/', 'EaglerForge')">
-										<img src="/resources/images/icons/clients/eaglerforge.png" />
+										<img src="/resources/images/icons/clients/eaglerforge.webp" />
 										<span>EaglerForge</span>
 									</div>
 									<div class="custom-option" onclick="game.select('/game/web/clients/resent/', 'Resent Client')">
-										<img src="/resources/images/icons/clients/resent.png" />
+										<img src="/resources/images/icons/clients/resent.webp" />
 										<span>Resent Client</span>
 									</div>
 									<div class="custom-option" onclick="game.select('/game/web/clients/shadow/', 'Shadow Client')">
-										<img src="/resources/images/icons/clients/shadow.png" />
+										<img src="/resources/images/icons/clients/shadow.webp" />
 										<span>Shadow Client</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/clients/astra/', 'Astra Client')">
+										<img src="/resources/images/icons/clients/astra.webp" />
+										<span>Astra Client</span>
+									</div>
+									<div class="custom-option" onclick="game.select('/game/web/clients/starlike/', 'Starlike Client')">
+										<img src="/resources/images/icons/clients/starlike.webp" />
+										<span>Starlike Client</span>
 									</div>
 								</div>
 							</div>
@@ -91,7 +92,7 @@
 					<a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Join the MineXLauncher Discord</a>
 				</div>
 				<div class="bottom-bar-links">
-					<span class="bottom-bar-right">MineXLauncher</span>
+					<span class="bottom-bar-right">© 2024 MineXLauncher. All rights reserved.</span>
 				</div>
 			</div>
 		</div>

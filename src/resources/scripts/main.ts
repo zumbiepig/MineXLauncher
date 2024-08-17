@@ -1,29 +1,28 @@
+let selectedVersion: string | undefined;
+const launcherVersion = '1.4';
+
 const theme = {
-	load() {
-		if (window.location.pathname === '/mobile/') {
-			const link = document.createElement('link');
-			link.rel = 'stylesheet';
-			link.href = '/resources/styles/mobile.css';
-			document.head.appendChild(link);
-		}
-		const setTheme = cookie.get('minexlauncher.theme');
-		if (setTheme === null) {
-			theme.set('default');
-		} else if (setTheme !== 'default') {
-			const link = document.createElement('link');
-			link.rel = 'stylesheet';
-			link.href = `/resources/styles/${setTheme}.css`;
-			document.head.appendChild(link);
+	load: function (themeToLoad?: string) {
+		const themeElement = document.getElementById('theme') as HTMLLinkElement;
+		if (themeElement) {
+			if (themeToLoad) {
+				themeElement.href = `/resources/styles/themes/${themeToLoad}.css`;
+			} else {
+				const savedTheme = storage.local.get('theme');
+				if (savedTheme !== null) {
+					themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
+				}
+			}
 		}
 	},
-	set(setTheme: string) {
-		cookie.set('minexlauncher.theme', setTheme, 30);
-		window.location.reload();
+	set: function (newTheme: string) {
+		storage.local.set('theme', newTheme);
+		theme.load();
 	},
 };
 
 const versionSelector = {
-	open() {
+	open: function () {
 		const customOptions = document.querySelector('.custom-options');
 		const customSelect = document.querySelector('.custom-select');
 		if (customOptions && customSelect) {
@@ -31,7 +30,7 @@ const versionSelector = {
 			customSelect.classList.add('open');
 		}
 	},
-	close() {
+	close: function () {
 		const customOptions = document.querySelector('.custom-options');
 		const customSelect = document.querySelector('.custom-select');
 		if (customOptions && customSelect) {
@@ -39,7 +38,7 @@ const versionSelector = {
 			customSelect.classList.remove('open');
 		}
 	},
-	toggle() {
+	toggle: function () {
 		const customOptions = document.querySelector('.custom-options');
 		const customSelect = document.querySelector('.custom-select');
 		if (customOptions && customSelect) {
@@ -50,13 +49,11 @@ const versionSelector = {
 };
 
 const game = {
-	play(version?: string) {
+	play: function (version?: string) {
 		if (version) {
-			embed.remove();
 			// @ts-expect-error 123
 			window.top.location.href = version;
 		} else if (selectedVersion) {
-			embed.remove();
 			// @ts-expect-error 123
 			window.top.location.href = selectedVersion;
 		} else {
@@ -64,7 +61,7 @@ const game = {
 			return;
 		}
 	},
-	select(path: string, name: string) {
+	select: function (path: string, name?: string) {
 		selectedVersion = path;
 		const selector = document.querySelector('.custom-select');
 		if (selector?.textContent) {
@@ -76,7 +73,7 @@ const game = {
 		}
 		versionSelector.close();
 	},
-	archive(client: string) {
+	archive: function (client: string) {
 		const clients: Record<string, string> = {
 			'1.8': '18-client-version',
 			'1.5': '15-client-version',
@@ -90,137 +87,211 @@ const game = {
 	},
 };
 
-const embed = {
-	create() {
-		const iframe = document.createElement('iframe');
-		iframe.id = 'iframe-container';
-		iframe.style.position = 'fixed';
-		iframe.style.top = '0';
-		iframe.style.left = '0';
-		iframe.style.width = '100%';
-		iframe.style.height = '100%';
-		iframe.style.border = 'none';
-		if (isMobile()) {
-			iframe.src = '/mobile/';
-		} else {
-			iframe.src = '/home/';
-		}
-		document.body.appendChild(iframe);
-	},
-	remove() {
-		const iframe = window.top?.document.getElementById('iframe-container');
-		iframe?.remove();
-	},
-};
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const navigate = {
 	home: {
-		game() {
-			window.location.href = '/home/game/';
+		game: function () {
+			const navUrl = '/home/game/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
-		clients() {
-			window.location.href = '/home/clients/';
+		clients: function () {
+			const navUrl = '/home/clients/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
-		archive() {
-			window.location.href = '/home/archive/';
+		archive: function () {
+			const navUrl = '/home/archive/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
-		downloads() {
-			window.location.href = '/home/downloads/';
+		downloads: function () {
+			const navUrl = '/home/downloads/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 	},
 	mods: {
-		client() {
-			window.location.href = '/mods/client/';
+		client: function () {
+			const navUrl = '/mods/client/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
-		mods() {
-			window.location.href = '/mods/mods/';
+		mods: function () {
+			const navUrl = '/mods/mods/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
-		resourcepacks() {
-			window.location.href = '/mods/resourcepacks/';
+		resourcepacks: function () {
+			const navUrl = '/mods/resourcepacks/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 	},
-	mobile() {
-		window.location.href = '/mobile/';
+	mobile: function () {
+		const navUrl = '/mobile/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
-	updates() {
-		window.location.href = '/updates/';
+	updates: function () {
+		const navUrl = '/updates/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
-	servers() {
-		window.location.href = '/servers/';
+	servers: function () {
+		const navUrl = '/servers/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
-	settings() {
-		window.location.href = '/settings/';
+	settings: function () {
+		const navUrl = '/settings/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const cookie = {
-	get(key: string): string | null {
-		for (const cookie of document.cookie.replaceAll('; ', ';').split(';')) {
-			const cookiePair = cookie.split('=');
-			if (encodeURIComponent(key) === cookiePair[0]) {
-				return decodeURIComponent(cookiePair[1]);
-			}
-		}
-		return null;
-	},
-	set(key: string, value: string, days: number) {
+	set: function (key: string, value: string, days: number) {
 		let maxAge;
 		if (days) {
 			maxAge = days * 60 * 60 * 24;
 		} else {
 			maxAge = 31536000;
 		}
-		document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; max-age=${maxAge}; path=/; secure`;
+		document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax; Secure`;
 	},
-	delete(key: string) {
-		document.cookie = `${encodeURIComponent(key)}=; max-age=0; path=/`;
+	get: function (key: string): string | null {
+		for (const cookie of document.cookie.split('; ')) {
+			const cookiePair = cookie.split('=');
+			if (encodeURIComponent(key) === cookiePair[0]) {
+				// @ts-expect-error 123
+				return decodeURIComponent(cookiePair[1]);
+			}
+		}
+		return null;
+	},
+	delete: function (key: string) {
+		document.cookie = `${encodeURIComponent(key)}=; Max-Age=0; Path=/`;
 	},
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const storage = {
+	local: {
+		get: function (key: string) {
+			const item = localStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				if (json[key] !== undefined) {
+					return json[key];
+				} else {
+					return null;
+				}
+			} else {
+				return null;
+			}
+		},
+		set: function (key: string, value: string) {
+			let item = localStorage.getItem('minexlauncher');
+			if (item === null) {
+				item = '{}';
+			}
+			const json = JSON.parse(item);
+			json[key] = value;
+			localStorage.setItem('minexlauncher', JSON.stringify(json));
+		},
+		delete: function (key: string) {
+			const item = localStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				delete json[key];
+				localStorage.setItem('minexlauncher', JSON.stringify(json));
+			}
+		},
+	},
+	session: {
+		get: function (key: string) {
+			const item = sessionStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				if (json[key] !== undefined) {
+					return json[key];
+				} else {
+					return null;
+				}
+			} else {
+				return null;
+			}
+		},
+		set: function (key: string, value: string) {
+			let item = sessionStorage.getItem('minexlauncher');
+			if (item === null) {
+				item = '{}';
+			}
+			const json = JSON.parse(item);
+			json[key] = value;
+			sessionStorage.setItem('minexlauncher', JSON.stringify(json));
+		},
+		delete: function (key: string) {
+			const item = sessionStorage.getItem('minexlauncher');
+			if (item !== null) {
+				const json = JSON.parse(item);
+				delete json[key];
+				sessionStorage.setItem('minexlauncher', JSON.stringify(json));
+			}
+		},
+	},
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const query = {
-	get(name: string) {
-		const urlParams = new URLSearchParams(top?.location.search);
-		return urlParams.get(name);
+	get: function (name: string) {
+		return new URLSearchParams(window.top?.location.search).get(name);
 	},
 };
 
-function isMobile(): boolean {
-	try {
-		document.exitPointerLock();
-		return /Mobi/i.test(window.navigator.userAgent);
-	} catch (e) {
-		return true;
-	}
-}
+const detect = {
+	mobile: function (): boolean {
+		try {
+			document.exitPointerLock();
+			return /Mobi/i.test(window.navigator.userAgent);
+		} catch (e) {
+			return true;
+		}
+	},
+};
 
-if (window.location.hostname === '0.0.0.0') {
-	navigate;
-	query;
+if (detect.mobile()) {
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = '/resources/styles/mobile.css';
+	document.head.appendChild(link);
 }
-
-let selectedVersion: string;
 theme.load();
 
-document.addEventListener('DOMContentLoaded', function () {
-	const usernameForm = document.getElementById('username-form') as HTMLFormElement;
-	const usernameInput = document.getElementById('username-input') as HTMLInputElement;
-	const profileName = document.getElementById('profile-name');
+if (window.location.pathname !== '/') {
+	document.addEventListener('DOMContentLoaded', function () {
+		const profileName = document.getElementById('profile-name');
+		if (profileName) {
+			profileName.textContent = storage.local.get('username');
+		}
+	});
 
-	const savedUsername = cookie.get('minexlauncher.username');
-	if (profileName && savedUsername) {
-		profileName.textContent = savedUsername;
-	} else if (profileName && !savedUsername) {
-		profileName.textContent = 'Default';
-	}
+	document.addEventListener('DOMContentLoaded', function () {
+		const lastVersion = storage.local.get('lastVersion');
+		if (lastVersion !== null && lastVersion < launcherVersion) {
+			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
-	if (profileName && window.location.pathname === '/settings/') {
-		usernameForm.addEventListener('submit', function (event) {
-			event.preventDefault();
-			const username = usernameInput.value.trim();
-			if (username) {
-				cookie.set('minexlauncher.username', username, 30);
-				profileName.textContent = cookie.get('minexlauncher.username');
-			}
-		});
-	}
-});
+Changes in v${launcherVersion}:
+  - Added welcome and setup screen
+  - Show changelog when MineXLauncher is updated
+  - Added themes and backgrounds
+  - Settings now update automatically without saving them
+	- You will now stay on the same page when reloading
+  - Username rules have been updated to match Minecraft
+  - Added Starlike Client`);
+			storage.local.set('lastVersion', launcherVersion);
+		}
+	});
+}

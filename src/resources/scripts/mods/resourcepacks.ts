@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				modItem.classList.add('mod-item');
 				modItem.innerHTML = `
           <div class="mod-icon">
-            <img src="${mod.icon}" />
+            <img loading="lazy" src="${mod.icon}" />
           </div>
           <div class="mod-details">
             <h3 class="mod-name">${mod['display-name'] ?? ''}</h3>
