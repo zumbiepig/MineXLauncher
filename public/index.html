@@ -24,6 +24,7 @@
 		<script src="/resources/scripts/main.js"></script>
 		<script>
 			const iframe = document.createElement('iframe');
+			const lastPage = storage.session.get('lastPage');
 
 			if (storage.local.get('lastVersion') === null) {
 				iframe.src = '/welcome.html';
@@ -36,6 +37,8 @@ Changes in v1.4:
   - Settings now update automatically without saving them
   - Username rules have been updated to match Minecraft
   - Added Starlike Client`);
+			} else if (lastPage !== null) {
+				iframe.src = lastPage;
 			} else if (detect.mobile()) {
 				iframe.src = '/mobile/';
 			} else {

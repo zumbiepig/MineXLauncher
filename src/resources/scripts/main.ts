@@ -91,40 +91,62 @@ const game = {
 const navigate = {
 	home: {
 		game: function () {
-			window.location.href = '/home/game/';
+			const navUrl = '/home/game/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 		clients: function () {
-			window.location.href = '/home/clients/';
+			const navUrl = '/home/clients/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 		archive: function () {
-			window.location.href = '/home/archive/';
+			const navUrl = '/home/archive/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 		downloads: function () {
-			window.location.href = '/home/downloads/';
+			const navUrl = '/home/downloads/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 	},
 	mods: {
 		client: function () {
-			window.location.href = '/mods/client/';
+			const navUrl = '/mods/client/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 		mods: function () {
-			window.location.href = '/mods/mods/';
+			const navUrl = '/mods/mods/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 		resourcepacks: function () {
-			window.location.href = '/mods/resourcepacks/';
+			const navUrl = '/mods/resourcepacks/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
 		},
 	},
 	mobile: function () {
-		window.location.href = '/mobile/';
+		const navUrl = '/mobile/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
 	updates: function () {
-		window.location.href = '/updates/';
+		const navUrl = '/updates/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
 	servers: function () {
-		window.location.href = '/servers/';
+		const navUrl = '/servers/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
 	settings: function () {
-		window.location.href = '/settings/';
+		const navUrl = '/settings/';
+		storage.session.set('lastPage', navUrl);
+		window.location.href = navUrl;
 	},
 };
 
@@ -256,19 +278,20 @@ if (window.location.pathname !== '/') {
 		}
 	});
 
-	document.addEventListener('load', function () {
+	document.addEventListener('DOMContentLoaded', function () {
 		const lastVersion = storage.local.get('lastVersion');
-		//if (lastVersion !== null && lastVersion < launcherVersion) {
-		alert(`MineXLauncher has been updated to v${launcherVersion}!
+		if (lastVersion !== null && lastVersion < launcherVersion) {
+			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
   - Added welcome and setup screen
   - Show changelog when MineXLauncher is updated
   - Added themes and backgrounds
   - Settings now update automatically without saving them
+	- You will now stay on the same page when reloading
   - Username rules have been updated to match Minecraft
   - Added Starlike Client`);
-		storage.local.set('lastVersion', launcherVersion);
-		//}
+			storage.local.set('lastVersion', launcherVersion);
+		}
 	});
 }
