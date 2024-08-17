@@ -25,7 +25,7 @@ const ASSETS_TO_CACHE = [
 	'/resources/images/backgrounds/themes/campfire.webp',
 ];
 
-this.addEventListener('install', (event) => {
+self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.delete(CACHE_NAME),
 		caches.open(CACHE_NAME).then(async (cache) => {
@@ -34,7 +34,7 @@ this.addEventListener('install', (event) => {
 	);
 });
 
-this.addEventListener('activate', (event) => {
+self.addEventListener('activate', (event) => {
 	event.waitUntil(
 		caches.keys().then((keyList) => {
 			return Promise.all(
@@ -48,7 +48,7 @@ this.addEventListener('activate', (event) => {
 	);
 });
 
-this.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
 	if (event.request.mode === 'navigate') {
 		event.respondWith(
 			fetch(event.request).catch(() => {
