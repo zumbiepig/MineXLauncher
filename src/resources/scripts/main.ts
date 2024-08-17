@@ -8,7 +8,10 @@ const theme = {
 			if (themeToLoad) {
 				themeElement.href = `/resources/styles/themes/${themeToLoad}.css`;
 			} else {
-				themeElement.href = `/resources/styles/themes/${storage.local.get('theme')}.css`;
+				const savedTheme = storage.local.get('theme');
+				if (savedTheme !== null) {
+					themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
+				}
 			}
 		}
 	},
@@ -237,39 +240,25 @@ const detect = {
 	},
 };
 
-if (window.location.pathname === '/') {
-	const iframe = document.createElement('iframe');
+if (detect.mobile()) {
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = '/resources/styles/mobile.css';
+	document.head.appendChild(link);
+}
+theme.load();
 
-	if (storage.local.get('lastVersion') === null) {
-		iframe.src = '/welcome.html';
-		alert(`MineXLauncher has been updated to v1.4!
-
-Changes in v1.4:
-  - Added welcome and setup screen
-  - Show changelog when MineXLauncher is updated
-  - Added themes and backgrounds
-  - Settings now update automatically without saving them
-  - Username rules have been updated to match Minecraft
-  - Added Starlike Client`);
-	} else if (detect.mobile()) {
-		iframe.src = '/mobile/';
-	} else {
-		iframe.src = '/home/game/';
-	}
+if (window.location.pathname !== '/') {
 	document.addEventListener('DOMContentLoaded', function () {
-		document.body.appendChild(iframe);
+		const profileName = document.getElementById('profile-name');
+		if (profileName) {
+			profileName.textContent = storage.local.get('username');
+		}
 	});
-} else {
-	if (detect.mobile()) {
-		const link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = '/resources/styles/mobile.css';
-		document.head.appendChild(link);
-	}
-	theme.load();
 
-	const lastVersion = storage.local.get('lastVersion');
-	if (lastVersion !== null && lastVersion < launcherVersion) {
+	document.addEventListener('load', function () {
+		const lastVersion = storage.local.get('lastVersion');
+		//if (lastVersion !== null && lastVersion < launcherVersion) {
 		alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
@@ -280,12 +269,6 @@ Changes in v${launcherVersion}:
   - Username rules have been updated to match Minecraft
   - Added Starlike Client`);
 		storage.local.set('lastVersion', launcherVersion);
-	}
-
-	document.addEventListener('DOMContentLoaded', function () {
-		const profileName = document.getElementById('profile-name');
-		if (profileName) {
-			profileName.textContent = storage.local.get('username');
-		}
+		//}
 	});
 }
