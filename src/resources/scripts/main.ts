@@ -1,5 +1,5 @@
 let selectedVersion: string | undefined;
-const launcherVersion = '1.4';
+const launcherVersion = '1.5';
 
 const theme = {
 	load: function (themeToLoad?: string) {
@@ -284,13 +284,7 @@ if (window.location.pathname !== '/') {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
-  - Added welcome and setup screen
-  - Show changelog when MineXLauncher is updated
-  - Added themes and backgrounds
-  - Settings now update automatically without saving them
-	- You will now stay on the same page when reloading
-  - Username rules have been updated to match Minecraft
-  - Added Starlike Client`);
+  - hello there`);
 			storage.local.set('lastVersion', launcherVersion);
 		}
 	});
