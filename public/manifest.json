@@ -1,19 +1,40 @@
 {
 	"name": "MineXLauncher",
+	"short_name": "MineX",
+	"description": "Custom launcher for Eaglercraft, which contains many versions and clients.",
+	"id": "/",
+	"start_url": "/",
+	"theme_color": "#333",
+	"background_color": "#333",
+	"orientation": "landscape",
+	"display": "standalone",
+	"display_override": ["fullscreen"],
+	"categories": ["games"],
 	"icons": [
 		{
-			"src": "/resources/images/icons/minexlauncher-192x192.webp",
-			"sizes": "192x192",
+			"src": "/resources/images/icons/minexlauncher.webp",
+			"sizes": "192x192 512x512 2048x2048",
 			"type": "image/webp"
 		},
 		{
-			"src": "/resources/images/icons/minexlauncher-512x512.webp",
-			"sizes": "512x512",
-			"type": "image/webp"
+			"src": "/resources/manifest/icons/maskable-2275x2275.webp",
+			"sizes": "192x192 512x512 2275x2275",
+			"type": "image/webp",
+			"purpose": "maskable"
 		}
 	],
-	"start_url": "/",
-	"display": "standalone",
-	"background_color": "#333",
-	"theme_color": "#333"
+	"screenshots": [
+		{
+			"src": "/resources/manifest/screenshots/desktop/later.webp",
+			"sizes": "1280x720",
+			"type": "image/webp",
+			"form_factor": "wide"
+		},
+		{
+			"src": "/resources/manifest/screenshots/mobile/later.webp",
+			"sizes": "1280x720",
+			"type": "image/webp",
+			"form_factor": "narrow"
+		}
+	]
 }
