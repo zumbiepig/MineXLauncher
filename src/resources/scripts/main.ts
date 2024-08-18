@@ -260,6 +260,9 @@ const detect = {
 			return true;
 		}
 	},
+	landscape: function () {
+		return window.innerWidth > window.innerHeight;
+	},
 };
 
 if (detect.mobile()) {
@@ -284,7 +287,7 @@ if (window.location.pathname !== '/') {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
-  - hello there`);
+  - You can now install MineXLauncher as a PWA web app`);
 			storage.local.set('lastVersion', launcherVersion);
 		}
 	});

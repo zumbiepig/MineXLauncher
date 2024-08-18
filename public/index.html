@@ -26,12 +26,13 @@
 		<script>
 			const iframe = document.createElement('iframe');
 			const lastPage = storage.session.get('lastPage');
+			const isMobile = detect.mobile();
 
 			if (storage.local.get('lastVersion') === null) {
 				iframe.src = '/welcome.html';
 			} else if (lastPage !== null) {
 				iframe.src = lastPage;
-			} else if (detect.mobile()) {
+			} else if (isMobile) {
 				iframe.src = '/mobile/';
 			} else {
 				iframe.src = '/home/game/';
