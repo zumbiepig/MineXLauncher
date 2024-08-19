@@ -287,6 +287,7 @@ if (window.location.pathname === '/') {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
+  - MineXLauncher now works offline!
   - You can now install MineXLauncher as a PWA web app`);
 			storage.local.set('lastVersion', launcherVersion);
 		}
