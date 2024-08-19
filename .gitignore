@@ -1,5 +1,6 @@
 .DS_Store
 /public/resources/scripts/
+/public/cacheAssets.json
 
 # Logs
 logs
