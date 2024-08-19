@@ -1,7 +1,7 @@
 import { readdirSync, statSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const directoryPath = join(import.meta.dirname, 'public'); // Adjust the path to your assets folder
+const directoryPath = join(import.meta.dirname, 'public');
 
 function getFiles(dir, files_) {
 	files_ = files_ || [];
@@ -11,7 +11,7 @@ function getFiles(dir, files_) {
 		if (statSync(name).isDirectory()) {
 			getFiles(name, files_);
 		} else {
-			files_.push(name.replace(`${import.meta.dirname}/public`, '')); // Adjust the path to match your public folder
+			files_.push(name.replace(`${import.meta.dirname}/public`, '').replace('/index.html', '/'));
 		}
 	}
 	return files_;
