@@ -1,5 +1,13 @@
+interface BeforeInstallPromptEvent extends Event {
+	readonly platforms: string[];
+	readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+	prompt(): Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+}
+
 let selectedVersion: string | undefined;
 const launcherVersion = '1.5';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+let installPwaEvent: BeforeInstallPromptEvent;
 
 const theme = {
 	load: function (themeToLoad?: string) {
@@ -265,23 +273,22 @@ const detect = {
 	},
 };
 
-if (detect.mobile()) {
-	const link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.href = '/resources/styles/mobile.css';
-	document.head.appendChild(link);
-}
-theme.load();
+if (window.location.pathname === '/') {
+	window.addEventListener('beforeinstallprompt', (event) => {
+		installPwaEvent = event as BeforeInstallPromptEvent;
+	});
+} else {
+	document.addEventListener('DOMContentLoaded', () => {
+		// @ts-expect-error 123
+		delete window.installPwaEvent;
 
-if (window.location.pathname !== '/') {
-	document.addEventListener('DOMContentLoaded', function () {
 		const profileName = document.getElementById('profile-name');
 		if (profileName) {
 			profileName.textContent = storage.local.get('username');
 		}
 	});
 
-	document.addEventListener('DOMContentLoaded', function () {
+	document.addEventListener('DOMContentLoaded', () => {
 		const lastVersion = storage.local.get('lastVersion');
 		if (lastVersion !== null && lastVersion < launcherVersion) {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
@@ -292,3 +299,11 @@ Changes in v${launcherVersion}:
 		}
 	});
 }
+
+if (detect.mobile()) {
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = '/resources/styles/mobile.css';
+	document.head.appendChild(link);
+}
+theme.load();

@@ -1,49 +1,34 @@
-const cacheAssets = [
-	'/offline.html',
-	'/resources/images/icons/favicon.webp',
-	'/resources/scripts/google-tag.js',
-	'/resources/scripts/main.js',
-	'/resources/styles/mobile.css',
-	'/resources/styles/themes/default.css',
-	'/resources/styles/themes/light.css',
-	'/resources/styles/themes/hyperdark.css',
-	'/resources/styles/themes/overworld.css',
-	'/resources/styles/themes/nether.css',
-	'/resources/styles/themes/the-end.css',
-	'/resources/styles/themes/cherry-blossom.css',
-	'/resources/styles/themes/retro.css',
-	'/resources/styles/themes/starfall.css',
-	'/resources/styles/themes/campfire.css',
-	'/resources/images/backgrounds/themes/overworld.webp',
-	'/resources/images/backgrounds/themes/nether.webp',
-	'/resources/images/backgrounds/themes/the-end.webp',
-	'/resources/images/backgrounds/themes/cherry-blossom.webp',
-	'/resources/images/backgrounds/themes/retro.webp',
-	'/resources/images/backgrounds/themes/starfall.webp',
-	'/resources/images/backgrounds/themes/campfire.webp',
-];
+const cacheVersion = 'v1.5';
+const cacheName = `minexlauncher-${cacheVersion}`;
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
-		caches.delete('minexlauncher'),
-		caches.open('minexlauncher').then(async (cache) => {
+		caches.open(cacheName).then(async (cache) => {
+			const response = await fetch('/cacheAssets.json');
+			const cacheAssets = await response.json();
 			return await cache.addAll(cacheAssets);
 		})
 	);
 });
 
+self.addEventListener('activate', (event) => {
+	event.waitUntil(
+		caches.keys().then((keyList) => {
+			return Promise.all(
+				keyList.map((key) => {
+					if (key !== cacheName) {
+						return caches.delete(key);
+					}
+				})
+			);
+		})
+	);
+});
+
 self.addEventListener('fetch', (event) => {
-	if (event.request.mode === 'navigate') {
-		event.respondWith(
-			fetch(event.request).catch(() => {
-				return caches.match('/offline.html');
-			})
-		);
-	} else {
-		event.respondWith(
-			fetch(event.request).catch(() => {
-				return caches.match(event.request);
-			})
-		);
-	}
+	event.respondWith(
+		caches.open(cacheName).then(async (cache) => {
+			return (await cache.match(event.request)) || fetch(event.request);
+		})
+	);
 });

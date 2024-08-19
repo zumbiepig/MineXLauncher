@@ -5,8 +5,9 @@
 	"main": "./server.js",
 	"scripts": {
 		"start": "node ./server.js",
-		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate",
-		"build:clean": "rimraf ./public/resources/scripts",
+		"build": "npm run build:clean && npm run build:generateCacheAssetsList && npm run build:compile && npm run build:obfuscate",
+		"build:clean": "rimraf ./public/resources/scripts ./public/cacheAssets.json",
+		"build:generateCacheAssetsList": "node ./generateCacheAssetsList.js",
 		"build:compile": "tsc",
 		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts --output ./public/resources/scripts --options-preset high-obfuscation",
 		"lint": "eslint ./src",
