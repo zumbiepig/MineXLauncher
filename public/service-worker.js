@@ -6,22 +6,50 @@ self.addEventListener('install', (event) => {
 		caches.open(cacheName).then(async (cache) => {
 			const response = await fetch('/cacheAssets.json');
 			const cacheAssets = await response.json();
-			return await cache.addAll(cacheAssets);
+			const totalAssets = cacheAssets.length;
+			let cachedAssets = 0;
+
+			for (const asset of cacheAssets) {
+				await cache.add(asset);
+				const progress = `${++cachedAssets}/${totalAssets}`;
+
+				const clients = await self.clients.matchAll();
+				clients.forEach((client) => {
+					client.postMessage({
+						type: 'sw-install-progress',
+						msg: progress,
+					});
+				});
+			}
 		})
 	);
 });
 
 self.addEventListener('activate', (event) => {
 	event.waitUntil(
-		caches.keys().then((keyList) => {
-			return Promise.all(
-				keyList.map((key) => {
-					if (key !== cacheName) {
-						return caches.delete(key);
-					}
-				})
-			);
-		})
+		caches
+			.keys()
+			.then((keyList) => {
+				return Promise.all(
+					keyList.map((key) => {
+						if (key !== cacheName) {
+							return caches.delete(key);
+						}
+					})
+				);
+			})
+			.then(() => {
+				return self.clients.claim();
+			})
+			.then(() => {
+				return self.clients.matchAll().then((clients) => {
+					clients.forEach((client) => {
+						client.postMessage({
+							type: 'sw-activation-complete',
+						});
+					});
+				});
+			})
 	);
 });
 
