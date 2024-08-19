@@ -58,8 +58,12 @@ if (window.location.pathname === '/welcome.html') {
 				storage.local.set('theme', themeSelect.value);
 				storage.local.set('lastVersion', launcherVersion);
 
-				// @ts-expect-error
-				installPwaEvent?.prompt();
+				try {
+					// @ts-expect-error
+					installPwaEvent.prompt();
+				} catch (error) {
+					console.log('Failed to prompt PWA install:', error);
+				}
 
 				// @ts-expect-error
 				window.top.location.href = '/';

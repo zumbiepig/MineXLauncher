@@ -1,5 +1,5 @@
-const cacheVersion = 'v1.5';
-const cacheName = `minexlauncher-${cacheVersion}`;
+const cacheVersion = '1.5';
+const cacheName = `minexlauncher-v${cacheVersion}`;
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
