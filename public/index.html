@@ -24,9 +24,11 @@
 		<script src="/sw-register.js"></script>
 		<script src="/resources/scripts/main.js"></script>
 		<script>
-			const iframe = document.createElement('iframe');
 			const lastPage = storage.session.get('lastPage');
 			const isMobile = detect.mobile();
+			const iframe = document.createElement('iframe');
+
+			iframe.id = 'main_frame'
 
 			if (storage.local.get('lastVersion') === null) {
 				iframe.src = '/welcome.html';
