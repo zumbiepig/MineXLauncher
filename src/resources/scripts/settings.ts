@@ -53,16 +53,15 @@ if (window.location.pathname === '/welcome.html') {
 				while (username.length < 3) {
 					username += '_';
 				}
+
 				storage.local.set('username', username);
 				storage.local.set('theme', themeSelect.value);
 				storage.local.set('lastVersion', launcherVersion);
-				try {
-					// @ts-expect-error 123
-					window.top?.installPwaEvent.prompt();
-				} catch (error) {
-					console.warn('Failed to prompt PWA install:', error);
-				}
-				// @ts-expect-error 123
+
+				// @ts-expect-error
+				installPwaEvent?.prompt();
+
+				// @ts-expect-error
 				window.top.location.href = '/';
 			}
 		});

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const data = await response.json();
 	const modListElement = document.querySelector('.mod-list');
 
-	// @ts-expect-error 123
+	// @ts-expect-error
 	data.resourcepacks.forEach(({ id, name, description, author, authorLink, source }) => {
 		const div = document.createElement('div');
 		div.classList.add('mod-item');

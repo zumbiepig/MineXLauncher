@@ -1,13 +1,5 @@
-interface BeforeInstallPromptEvent extends Event {
-	readonly platforms: string[];
-	readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
-	prompt(): Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
-}
-
 let selectedVersion: string | undefined;
 const launcherVersion = '1.5';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-let installPwaEvent: BeforeInstallPromptEvent;
 
 const theme = {
 	load: function (themeToLoad?: string) {
@@ -59,10 +51,10 @@ const versionSelector = {
 const game = {
 	play: function (version?: string) {
 		if (version) {
-			// @ts-expect-error 123
+			// @ts-expect-error
 			window.top.location.href = version;
 		} else if (selectedVersion) {
-			// @ts-expect-error 123
+			// @ts-expect-error
 			window.top.location.href = selectedVersion;
 		} else {
 			alert('Please select a version to play.');
@@ -173,7 +165,7 @@ const cookie = {
 		for (const cookie of document.cookie.split('; ')) {
 			const cookiePair = cookie.split('=');
 			if (encodeURIComponent(key) === cookiePair[0]) {
-				// @ts-expect-error 123
+				// @ts-expect-error
 				return decodeURIComponent(cookiePair[1]);
 			}
 		}
@@ -275,13 +267,14 @@ const detect = {
 
 if (window.location.pathname === '/') {
 	window.addEventListener('beforeinstallprompt', (event) => {
-		installPwaEvent = event as BeforeInstallPromptEvent;
+		const mainFrame = document.getElementById('main_frame') as HTMLIFrameElement;
+		if (mainFrame.contentWindow) {
+			// @ts-expect-error
+			mainFrame.contentWindow.installPwaEvent = event;
+		}
 	});
 } else {
 	document.addEventListener('DOMContentLoaded', () => {
-		// @ts-expect-error 123
-		delete window.installPwaEvent;
-
 		const profileName = document.getElementById('profile-name');
 		if (profileName) {
 			profileName.textContent = storage.local.get('username');
