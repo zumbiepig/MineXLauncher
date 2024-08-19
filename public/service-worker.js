@@ -16,8 +16,8 @@ self.addEventListener('install', (event) => {
 				const clients = await self.clients.matchAll();
 				clients.forEach((client) => {
 					client.postMessage({
-						type: 'sw-install-progress',
-						msg: progress,
+						title: 'sw-install-progress',
+						message: progress,
 					});
 				});
 			}
@@ -45,7 +45,7 @@ self.addEventListener('activate', (event) => {
 				return self.clients.matchAll().then((clients) => {
 					clients.forEach((client) => {
 						client.postMessage({
-							type: 'sw-activation-complete',
+							title: 'sw-install-complete',
 						});
 					});
 				});
