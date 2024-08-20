@@ -28,10 +28,10 @@ if (window.location.pathname === '/settings/') {
 		offlineCheckbox.addEventListener('change', () => {
 			storage.local.set('offlineCache', offlineCheckbox.checked);
 			if (offlineCheckbox.checked) {
-				serviceworker.register();
+				serviceworker.register('/sw-full.js');
 				alert('Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.');
 			} else {
-				serviceworker.unregister();
+				serviceworker.register('/sw.js');
 				alert('Offline cache has been deleted.');
 			}
 		});
@@ -74,14 +74,16 @@ if (window.location.pathname === '/welcome.html') {
 				storage.local.set('lastVersion', launcherVersion);
 
 				if (offlineCheckbox.checked) {
-					serviceworker.register();
+					serviceworker.register('/sw-full.js');
 					alert('Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.');
 					try {
 						// @ts-expect-error
 						installPwaEvent.prompt();
 					} catch (error) {
-						console.log('Failed to prompt PWA install:', error);
+						console.error('Failed to prompt PWA install:', error);
 					}
+				} else {
+					serviceworker.register('/sw.js');
 				}
 
 				// @ts-expect-error
