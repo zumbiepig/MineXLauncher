@@ -29,7 +29,9 @@ if (window.location.pathname === '/settings/') {
 			storage.local.set('offlineCache', offlineCheckbox.checked);
 			if (offlineCheckbox.checked) {
 				serviceworker.register('/sw-full.js');
-				alert('Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.');
+				alert(
+					'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
+				);
 			} else {
 				serviceworker.register('/sw.js');
 				alert('Offline cache has been deleted.');
@@ -75,7 +77,9 @@ if (window.location.pathname === '/welcome/') {
 
 				if (offlineCheckbox.checked) {
 					serviceworker.register('/sw-full.js');
-					alert('Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.');
+					alert(
+						'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
+					);
 					try {
 						// @ts-expect-error
 						installPwaEvent.prompt();
