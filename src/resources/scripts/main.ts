@@ -266,10 +266,10 @@ const detect = {
 };
 
 const serviceworker = {
-	register: function () {
+	register: function (url: string) {
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
-				navigator.serviceWorker.register('/service-worker.js').then(() => {
+				navigator.serviceWorker.register(url).then(() => {
 					navigator.serviceWorker.addEventListener('message', (event) => {
 						if (event.origin === window.location.origin) {
 							if (event.data.title === 'sw-install-complete') {
@@ -278,23 +278,6 @@ const serviceworker = {
 						}
 					});
 				});
-			});
-		}
-	},
-	unregister: function () {
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.getRegistrations().then((registrations) => {
-				for (const registration of registrations) {
-					registration.unregister().then(() => {
-						caches.keys().then((keyList) => {
-							return Promise.all(
-								keyList.map((key) => {
-									return caches.delete(key);
-								})
-							);
-						});
-					});
-				}
 			});
 		}
 	},
@@ -310,9 +293,9 @@ if (window.location.pathname === '/') {
 	});
 
 	if (storage.local.get('offlineCache') === true) {
-		serviceworker.register();
+		serviceworker.register('/sw-full.js');
 	} else {
-		serviceworker.unregister();
+		serviceworker.register('/sw.js');
 	}
 } else {
 	document.addEventListener('DOMContentLoaded', () => {
