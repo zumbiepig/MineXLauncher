@@ -17,5 +17,5 @@ function getFiles(dir, files_) {
 	return files_;
 }
 
-const cacheAssets = getFiles(directoryPath);
-writeFileSync(join(import.meta.dirname, '/public/cacheAssets.json'), JSON.stringify(cacheAssets, null, 2));
+const assets = getFiles(directoryPath);
+writeFileSync(join(import.meta.dirname, '/public/assets.json'), JSON.stringify(assets, null, 2));

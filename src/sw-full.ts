@@ -1,10 +1,11 @@
+// @ts-nocheck
 const cacheVersion = '1.5';
 const cacheName = `minexlauncher-full-v${cacheVersion}`;
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open(cacheName).then(async (cache) => {
-			const response = await fetch('/cacheAssets.json');
+			const response = await fetch('/assets.json');
 			const cacheAssets = await response.json();
 			const totalAssets = cacheAssets.length;
 			let cachedAssets = 0;
@@ -28,6 +29,8 @@ self.addEventListener('activate', (event) => {
 					keyList.map((key) => {
 						if (key !== cacheName) {
 							return caches.delete(key);
+						} else {
+							return null;
 						}
 					})
 				);

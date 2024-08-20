@@ -1,6 +1,12 @@
-.DS_Store
+# Build artifacts
+/public/assets.json
 /public/resources/scripts/
-/public/cacheAssets.json
+/public/sw.js
+/public/sw-full.js
+
+# System files
+.desktop.ini
+.DS_Store
 
 # Logs
 logs

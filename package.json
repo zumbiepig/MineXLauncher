@@ -5,11 +5,11 @@
 	"main": "./server.js",
 	"scripts": {
 		"start": "node ./server.js",
-		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate && npm run build:generateCacheAssetsList",
-		"build:clean": "rimraf ./public/resources/scripts ./public/cacheAssets.json",
+		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate && npm run build:generateAssetsList",
+		"build:clean": "rimraf ./public/resources/scripts ./public/assets.json",
 		"build:compile": "tsc",
 		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts --output ./public/resources/scripts --options-preset high-obfuscation",
-		"build:generateCacheAssetsList": "node ./generateCacheAssetsList.js",
+		"build:generateAssetsList": "node ./generateAssetsList.js",
 		"lint": "eslint ./src",
 		"lint:fix": "eslint --fix ./src"
 	},

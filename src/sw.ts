@@ -1,3 +1,4 @@
+// @ts-nocheck
 const cacheVersion = '1.5';
 const cacheName = `minexlauncher-v${cacheVersion}`;
 const offlineUrl = '/offline.html';
@@ -49,6 +50,8 @@ self.addEventListener('activate', (event) => {
 				keyList.map((key) => {
 					if (key !== cacheName) {
 						return caches.delete(key);
+					} else {
+						return null;
 					}
 				})
 			);
