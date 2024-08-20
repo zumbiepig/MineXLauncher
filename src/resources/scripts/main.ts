@@ -311,7 +311,6 @@ if (window.location.pathname === '/') {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
-  - Added 1.12 client
   - The launcher can now be downloaded for offline use
   - You can now install the launcher as a PWA web app`);
 			storage.local.set('lastVersion', launcherVersion);
