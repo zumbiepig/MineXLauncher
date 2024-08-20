@@ -269,23 +269,16 @@ const serviceworker = {
 	register: function () {
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
-				navigator.serviceWorker
-					.register('/service-worker.js')
-					.then(() => {
-						navigator.serviceWorker.addEventListener('message', (event) => {
-							if (event.data.title === 'sw-install-progress') {
-								console.log(`Service worker install: ${event.data.message} assets downloaded`);
-								alert(`Service worker installation progress: ${event.data.message} assets downloaded`);
-								// doesn't work bc inactive service worker cant claim client
-							} else if (event.data.title === 'sw-install-complete') {
-								console.log('Service worker installation complete');
-								alert('MineXLauncher is now ready for offline use!');
-							}
-						});
-					})
-					.catch((error) => {
-						console.error('Service worker registration failed:', error);
+				navigator.serviceWorker.register('/service-worker.js').then(() => {
+					navigator.serviceWorker.addEventListener('message', (event) => {
+						if (event.data.title === 'sw-install-progress') {
+							// doesn't work bc inactive service worker cant claim client
+							console.log(`Service worker install: ${event.data.message} assets downloaded`);
+						} else if (event.data.title === 'sw-install-complete') {
+							alert('MineXLauncher is now ready for offline use!');
+						}
 					});
+				});
 			});
 		}
 	},
