@@ -192,7 +192,7 @@ const storage = {
 				return null;
 			}
 		},
-		set: function (key: string, value: string) {
+		set: function (key: string, value: string | number | object | [] | boolean | null) {
 			let item = localStorage.getItem('minexlauncher');
 			if (item === null) {
 				item = '{}';
@@ -224,7 +224,7 @@ const storage = {
 				return null;
 			}
 		},
-		set: function (key: string, value: string) {
+		set: function (key: string, value: string | number | object | [] | boolean | null) {
 			let item = sessionStorage.getItem('minexlauncher');
 			if (item === null) {
 				item = '{}';
@@ -265,6 +265,41 @@ const detect = {
 	},
 };
 
+const serviceworker = {
+	register: function () {
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker
+					.register('/service-worker.js')
+					.then(() => {
+						navigator.serviceWorker.addEventListener('message', (event) => {
+							if (event.data.title === 'sw-install-progress') {
+								console.log(`Service worker install: ${event.data.message} assets downloaded`);
+								alert(`Service worker installation progress: ${event.data.message} assets downloaded`);
+								// doesn't work bc inactive service worker cant claim client
+							} else if (event.data.title === 'sw-install-complete') {
+								console.log('Service worker installation complete');
+								alert('MineXLauncher is now ready for offline use!');
+							}
+						});
+					})
+					.catch((error) => {
+						console.error('Service worker registration failed:', error);
+					});
+			});
+		}
+	},
+	unregister: function () {
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.getRegistrations().then((registrations) => {
+				for (const registration of registrations) {
+					registration.unregister();
+				}
+			});
+		}
+	}
+};
+
 if (window.location.pathname === '/') {
 	window.addEventListener('beforeinstallprompt', (event) => {
 		const mainFrame = document.getElementById('main_frame') as HTMLIFrameElement;
@@ -273,6 +308,10 @@ if (window.location.pathname === '/') {
 			mainFrame.contentWindow.installPwaEvent = event;
 		}
 	});
+
+	if (storage.local.get('offlineCache') === true) {
+		serviceworker.register();
+	}
 } else {
 	document.addEventListener('DOMContentLoaded', () => {
 		const profileName = document.getElementById('profile-name');
@@ -300,4 +339,5 @@ if (detect.mobile()) {
 	link.href = '/resources/styles/mobile.css';
 	document.head.appendChild(link);
 }
+
 theme.load();
