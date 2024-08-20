@@ -271,11 +271,10 @@ const serviceworker = {
 			window.addEventListener('load', () => {
 				navigator.serviceWorker.register('/service-worker.js').then(() => {
 					navigator.serviceWorker.addEventListener('message', (event) => {
-						if (event.data.title === 'sw-install-progress') {
-							// doesn't work bc inactive service worker cant claim client
-							console.log(`Service worker install: ${event.data.message} assets downloaded`);
-						} else if (event.data.title === 'sw-install-complete') {
-							alert('MineXLauncher is now ready for offline use!');
+						if (event.origin === window.location.origin) {
+							if (event.data.title === 'sw-install-complete') {
+								alert('MineXLauncher is now ready for offline use!');
+							}
 						}
 					});
 				});

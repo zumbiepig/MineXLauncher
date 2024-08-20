@@ -11,17 +11,9 @@ self.addEventListener('install', (event) => {
 
 			for (const asset of cacheAssets) {
 				await cache.add(asset);
-				cachedAssets++;
-				const progress = `${cachedAssets}/${totalAssets}`;
+				const progress = `${++cachedAssets}/${totalAssets}`;
 
-				self.clients.matchAll().then((clients) => {
-					clients.forEach((client) => {
-						client.postMessage({
-							title: 'sw-install-progress',
-							message: progress,
-						});
-					});
-				});
+				console.log(`Cached: ${asset} (${progress})`);
 			}
 		})
 	);
