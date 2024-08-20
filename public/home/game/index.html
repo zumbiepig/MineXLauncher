@@ -13,7 +13,7 @@
 	<body>
 		<div class="launcher">
 			<div class="title-bar">
-				<span>MineXLauncher 1.4</span>
+				<span>MineXLauncher 1.5</span>
 			</div>
 			<div class="content">
 				<div class="sidebar">
@@ -33,7 +33,7 @@
 							<img src="/resources/images/icons/nav/servers.webp" class="nav-icon" />
 							<span class="nav-text">Server List</span>
 						</li>
-						<li class="nav-item" onclick="navigate.mods.mods()">
+						<li class="nav-item" onclick="navigate.mods.client()">
 							<img src="/resources/images/icons/nav/mods.webp" class="nav-icon" />
 							<span class="nav-text">Mods</span>
 						</li>
@@ -60,6 +60,10 @@
 									<span class="custom-select-trigger">Select a version</span>
 								</div>
 								<div class="custom-options">
+									<div class="custom-option" onclick="game.select('/game/web/main/1.12.2/', '1.12.2')">
+										<img src="/resources/images/icons/clients/all.webp" />
+										<span>1.12.2</span>
+									</div>
 									<div class="custom-option" onclick="game.select('/game/web/main/1.9.4/', '1.9.4')">
 										<img src="/resources/images/icons/clients/all.webp" />
 										<span>1.9.4</span>
