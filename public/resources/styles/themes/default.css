@@ -632,6 +632,11 @@ nav {
 	appearance: none;
 }
 
+#offline-checkbox {
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
 #username-input:focus,
 #theme-select:focus {
 	outline: none;
