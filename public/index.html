@@ -30,7 +30,7 @@
 			iframe.id = 'main_frame'
 
 			if (storage.local.get('lastVersion') === null) {
-				iframe.src = '/welcome.html';
+				iframe.src = '/welcome/';
 			} else if (lastPage !== null) {
 				iframe.src = lastPage;
 			} else if (isMobile) {

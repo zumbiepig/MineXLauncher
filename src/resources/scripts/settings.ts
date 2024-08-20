@@ -38,7 +38,7 @@ if (window.location.pathname === '/settings/') {
 	});
 }
 
-if (window.location.pathname === '/welcome.html') {
+if (window.location.pathname === '/welcome/') {
 	document.addEventListener('DOMContentLoaded', () => {
 		const setupForm = document.getElementById('setup-form') as HTMLFormElement;
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
