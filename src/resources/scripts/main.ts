@@ -311,6 +311,8 @@ if (window.location.pathname === '/') {
 
 	if (storage.local.get('offlineCache') === true) {
 		serviceworker.register();
+	} else {
+		serviceworker.unregister();
 	}
 } else {
 	document.addEventListener('DOMContentLoaded', () => {
