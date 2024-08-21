@@ -1,8 +1,8 @@
 // @ts-nocheck
-const script = document.createElement('script');
-script.async = true;
-script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GD4SJRCR7Z';
-document.head.appendChild(script);
+const googleTag = document.createElement('script');
+googleTag.async = true;
+googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-GD4SJRCR7Z';
+document.head.appendChild(googleTag);
 
 window.dataLayer = window.dataLayer || [];
 function gtag(...args: unknown[]) {
