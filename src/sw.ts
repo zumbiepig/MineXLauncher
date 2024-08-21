@@ -1,7 +1,9 @@
-const CACHE_NAME = 'minexlauncher';
-const OFFLINE_URL = '/offline.html';
-const ASSETS_TO_CACHE = [
-	OFFLINE_URL,
+// @ts-nocheck
+const cacheVersion = '1.5';
+const cacheName = `minexlauncher-v${cacheVersion}`;
+const offlineUrl = '/offline.html';
+const cacheAssets = [
+	offlineUrl,
 	'/resources/images/icons/favicon.webp',
 	'/resources/scripts/google-tag.js',
 	'/resources/scripts/main.js',
@@ -27,9 +29,16 @@ const ASSETS_TO_CACHE = [
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
-		caches.delete(CACHE_NAME),
-		caches.open(CACHE_NAME).then(async (cache) => {
-			return await cache.addAll(ASSETS_TO_CACHE);
+		caches.open(cacheName).then(async (cache) => {
+			const totalAssets = cacheAssets.length;
+			let cachedAssets = 0;
+
+			for (const asset of cacheAssets) {
+				await cache.add(asset);
+				const progress = `${++cachedAssets}/${totalAssets}`;
+
+				console.log(`Cached: ${asset} (${progress})`);
+			}
 		})
 	);
 });
@@ -39,8 +48,10 @@ self.addEventListener('activate', (event) => {
 		caches.keys().then((keyList) => {
 			return Promise.all(
 				keyList.map((key) => {
-					if (key !== CACHE_NAME) {
+					if (key !== cacheName) {
 						return caches.delete(key);
+					} else {
+						return null;
 					}
 				})
 			);
@@ -52,7 +63,7 @@ self.addEventListener('fetch', (event) => {
 	if (event.request.mode === 'navigate') {
 		event.respondWith(
 			fetch(event.request).catch(() => {
-				return caches.match(OFFLINE_URL);
+				return caches.match(offlineUrl);
 			})
 		);
 	} else {

@@ -1,5 +1,5 @@
 let selectedVersion: string | undefined;
-const launcherVersion = '1.4';
+const launcherVersion = '1.5';
 
 const theme = {
 	load: function (themeToLoad?: string) {
@@ -51,10 +51,10 @@ const versionSelector = {
 const game = {
 	play: function (version?: string) {
 		if (version) {
-			// @ts-expect-error 123
+			// @ts-expect-error
 			window.top.location.href = version;
 		} else if (selectedVersion) {
-			// @ts-expect-error 123
+			// @ts-expect-error
 			window.top.location.href = selectedVersion;
 		} else {
 			alert('Please select a version to play.');
@@ -165,7 +165,7 @@ const cookie = {
 		for (const cookie of document.cookie.split('; ')) {
 			const cookiePair = cookie.split('=');
 			if (encodeURIComponent(key) === cookiePair[0]) {
-				// @ts-expect-error 123
+				// @ts-expect-error
 				return decodeURIComponent(cookiePair[1]);
 			}
 		}
@@ -192,7 +192,7 @@ const storage = {
 				return null;
 			}
 		},
-		set: function (key: string, value: string) {
+		set: function (key: string, value: string | number | object | [] | boolean | null) {
 			let item = localStorage.getItem('minexlauncher');
 			if (item === null) {
 				item = '{}';
@@ -224,7 +224,7 @@ const storage = {
 				return null;
 			}
 		},
-		set: function (key: string, value: string) {
+		set: function (key: string, value: string | number | object | [] | boolean | null) {
 			let item = sessionStorage.getItem('minexlauncher');
 			if (item === null) {
 				item = '{}';
@@ -260,7 +260,86 @@ const detect = {
 			return true;
 		}
 	},
+	landscape: function () {
+		return window.innerWidth > window.innerHeight;
+	},
 };
+
+const serviceworker = {
+	register: function (url: string) {
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register(url).then(() => {
+					navigator.serviceWorker.addEventListener('message', (event) => {
+						if (event.origin === window.location.origin) {
+							if (event.data.title === 'sw-install-complete') {
+								alert('MineXLauncher is now ready for offline use!');
+							}
+						}
+					});
+				});
+			});
+		}
+	},
+};
+
+if (window.location.pathname === '/') {
+	const lastPage = storage.session.get('lastPage');
+	const isMobile = detect.mobile();
+	const iframe = document.createElement('iframe');
+	iframe.id = 'main_frame';
+
+	iframe.style.display = 'none';
+	iframe.addEventListener('load', () => {
+		iframe.style.display = '';
+	});
+
+	if (storage.local.get('lastVersion') === null) {
+		iframe.src = '/welcome/';
+	} else if (lastPage !== null) {
+		iframe.src = lastPage;
+	} else if (isMobile) {
+		iframe.src = '/mobile/';
+	} else {
+		iframe.src = '/home/game/';
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		document.body.appendChild(iframe);
+	});
+
+	window.addEventListener('beforeinstallprompt', (event) => {
+		if (iframe.contentWindow) {
+			// @ts-expect-error
+			iframe.contentWindow.installPwaEvent = event;
+		}
+	});
+
+	/* if (storage.local.get('offlineCache') === true) {
+		serviceworker.register('/sw-full.js');
+	} else {
+		serviceworker.register('/sw.js');
+	} */
+	serviceworker.register('/sw.js');
+} else {
+	document.addEventListener('DOMContentLoaded', () => {
+		const profileName = document.getElementById('profile-name');
+		if (profileName) {
+			profileName.textContent = storage.local.get('username');
+		}
+	});
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const lastVersion = storage.local.get('lastVersion');
+		if (lastVersion !== null && lastVersion < launcherVersion) {
+			alert(`MineXLauncher has been updated to v${launcherVersion}!
+
+Changes in v${launcherVersion}:
+  - You can now install the launcher as a PWA web app`);
+			storage.local.set('lastVersion', launcherVersion);
+		}
+	});
+}
 
 if (detect.mobile()) {
 	const link = document.createElement('link');
@@ -268,30 +347,5 @@ if (detect.mobile()) {
 	link.href = '/resources/styles/mobile.css';
 	document.head.appendChild(link);
 }
+
 theme.load();
-
-if (window.location.pathname !== '/') {
-	document.addEventListener('DOMContentLoaded', function () {
-		const profileName = document.getElementById('profile-name');
-		if (profileName) {
-			profileName.textContent = storage.local.get('username');
-		}
-	});
-
-	document.addEventListener('DOMContentLoaded', function () {
-		const lastVersion = storage.local.get('lastVersion');
-		if (lastVersion !== null && lastVersion < launcherVersion) {
-			alert(`MineXLauncher has been updated to v${launcherVersion}!
-
-Changes in v${launcherVersion}:
-  - Added welcome and setup screen
-  - Show changelog when MineXLauncher is updated
-  - Added themes and backgrounds
-  - Settings now update automatically without saving them
-	- You will now stay on the same page when reloading
-  - Username rules have been updated to match Minecraft
-  - Added Starlike Client`);
-			storage.local.set('lastVersion', launcherVersion);
-		}
-	});
-}

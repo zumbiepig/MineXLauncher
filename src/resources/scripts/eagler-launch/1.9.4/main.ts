@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 window.addEventListener('load', () => {
 	const relayId = Math.floor(Math.random() * 3);
