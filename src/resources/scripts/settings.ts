@@ -7,10 +7,9 @@ if (window.location.pathname === '/settings/') {
 		const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
 
 		usernameInput.placeholder = storage.local.get('username') ?? '';
-		themeSelect.value = storage.local.get('theme') ?? 'default';
+		themeSelect.value = storage.local.get('theme') ?? '';
 		// offlineCheckbox.checked = storage.local.get('offlineCache') ?? false;
-		const showAds = storage.local.get('showAds');
-		adsCheckbox.checked = showAds === null ? true : showAds;
+		adsCheckbox.checked = storage.local.get('showAds');
 
 		usernameInput.addEventListener('input', () => {
 			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
@@ -42,24 +41,8 @@ if (window.location.pathname === '/settings/') {
 		}); */
 
 		adsCheckbox.addEventListener('change', () => {
-			if (adsCheckbox.checked === false) {
-				if (
-					prompt(
-						'Ads are the only source of income for this project, and they help keep the servers running.\n\nIf you really want to disable ads, join the Discord server and get the password to disable ads.'
-					) === 'zombie'
-				) {
-					storage.local.set('showAds', false);
-					alert('Ads have successfully been disabled.');
-					window.location.reload();
-				} else {
-					alert('Wrong password. Join the Discord server to get the password.');
-					adsCheckbox.checked = true;
-				}
-			} else {
-				storage.local.set('showAds', true);
-				alert('Ads have been enabled. Thank you for supporting the project!');
-				window.location.reload();
-			}
+			storage.local.set('showAds', adsCheckbox.checked);
+			window.location.reload();
 		});
 	});
 }
