@@ -51,9 +51,11 @@ const versionSelector = {
 const game = {
 	play: function (version?: string) {
 		if (version) {
+			document.body.style.display = 'none';
 			// @ts-expect-error
 			window.top.location.href = version;
 		} else if (selectedVersion) {
+			document.body.style.display = 'none';
 			// @ts-expect-error
 			window.top.location.href = selectedVersion;
 		} else {
