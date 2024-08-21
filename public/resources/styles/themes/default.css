@@ -611,8 +611,13 @@ nav {
 .settings {
 	display: flex;
 	flex: 1;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+.settings-section {
+	margin: 5px;
 }
 
 #username-input,
@@ -625,6 +630,11 @@ nav {
 	background-color: #333;
 	color: #fff;
 	appearance: none;
+}
+
+#offline-checkbox {
+	padding: 10px;
+	margin-bottom: 15px;
 }
 
 #username-input:focus,
