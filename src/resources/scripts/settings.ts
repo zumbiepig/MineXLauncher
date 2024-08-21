@@ -9,7 +9,8 @@ if (window.location.pathname === '/settings/') {
 		usernameInput.placeholder = storage.local.get('username') ?? '';
 		themeSelect.value = storage.local.get('theme') ?? 'default';
 		// offlineCheckbox.checked = storage.local.get('offlineCache') ?? false;
-		adsCheckbox.checked = storage.local.get('showAds') ?? true;
+		const showAds = storage.local.get('showAds');
+		adsCheckbox.checked = showAds === null ? true : showAds;
 
 		usernameInput.addEventListener('input', () => {
 			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
