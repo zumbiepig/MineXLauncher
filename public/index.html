@@ -22,25 +22,5 @@
 		<meta property="og:locale" content="en-US" />
 		<script src="/resources/scripts/google-tag.js"></script>
 		<script src="/resources/scripts/main.js"></script>
-		<script>
-			const lastPage = storage.session.get('lastPage');
-			const isMobile = detect.mobile();
-			const iframe = document.createElement('iframe');
-
-			iframe.id = 'main_frame'
-
-			if (storage.local.get('lastVersion') === null) {
-				iframe.src = '/welcome/';
-			} else if (lastPage !== null) {
-				iframe.src = lastPage;
-			} else if (isMobile) {
-				iframe.src = '/mobile/';
-			} else {
-				iframe.src = '/home/game/';
-			}
-			document.addEventListener('DOMContentLoaded', function () {
-				document.body.appendChild(iframe);
-			});
-		</script>
 	</head>
 </html>
