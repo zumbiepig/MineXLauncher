@@ -343,8 +343,7 @@ if (window.location.pathname === '/') {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
-  - You can now install the launcher as a PWA web app
-  - Ads have been added, join the Discord server to disable them`);
+  - You can now install the launcher as a PWA web app`);
 			storage.local.set('lastVersion', launcherVersion);
 		}
 	});
