@@ -48,7 +48,7 @@ if (window.location.pathname === '/settings/') {
 						'Ads are the only source of income for this project, and they help keep the servers running.\n\nIf you really want to disable ads, join the Discord server and get the password to disable ads.'
 					) === 'zombie'
 				) {
-					storage.local.set('showAds', true);
+					storage.local.set('showAds', false);
 					alert('Ads have been disabled. Reload the page to apply the changes.');
 				} else {
 					alert('Wrong password. Join the Discord server to get the password.');
