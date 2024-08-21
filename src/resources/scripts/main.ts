@@ -284,19 +284,43 @@ const serviceworker = {
 };
 
 if (window.location.pathname === '/') {
+	const lastPage = storage.session.get('lastPage');
+	const isMobile = detect.mobile();
+	const iframe = document.createElement('iframe');
+	iframe.id = 'main_frame';
+
+	iframe.style.display = 'none';
+	iframe.addEventListener('load', () => {
+		iframe.style.display = '';
+	});
+
+	if (storage.local.get('lastVersion') === null) {
+		iframe.src = '/welcome/';
+	} else if (lastPage !== null) {
+		iframe.src = lastPage;
+	} else if (isMobile) {
+		iframe.src = '/mobile/';
+	} else {
+		iframe.src = '/home/game/';
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		document.body.appendChild(iframe);
+	});
+
 	window.addEventListener('beforeinstallprompt', (event) => {
-		const mainFrame = document.getElementById('main_frame') as HTMLIFrameElement;
-		if (mainFrame.contentWindow) {
+		if (iframe.contentWindow) {
 			// @ts-expect-error
-			mainFrame.contentWindow.installPwaEvent = event;
+			iframe.contentWindow.installPwaEvent = event;
 		}
 	});
 
-	if (storage.local.get('offlineCache') === true) {
+	/* if (storage.local.get('offlineCache') === true) {
 		serviceworker.register('/sw-full.js');
 	} else {
 		serviceworker.register('/sw.js');
-	}
+	} */
+	serviceworker.register('/sw.js');
 } else {
 	document.addEventListener('DOMContentLoaded', () => {
 		const profileName = document.getElementById('profile-name');
@@ -311,7 +335,6 @@ if (window.location.pathname === '/') {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
-  - The launcher can now be downloaded for offline use
   - You can now install the launcher as a PWA web app`);
 			storage.local.set('lastVersion', launcherVersion);
 		}
