@@ -49,7 +49,8 @@ if (window.location.pathname === '/settings/') {
 					) === 'zombie'
 				) {
 					storage.local.set('showAds', false);
-					alert('Ads have been disabled. Reload the page to apply the changes.');
+					alert('Ads have successfully been disabled.');
+					window.location.reload();
 				} else {
 					alert('Wrong password. Join the Discord server to get the password.');
 					adsCheckbox.checked = true;
@@ -57,6 +58,7 @@ if (window.location.pathname === '/settings/') {
 			} else {
 				storage.local.set('showAds', true);
 				alert('Ads have been enabled. Thank you for supporting the project!');
+				window.location.reload();
 			}
 		});
 	});
