@@ -91,21 +91,25 @@ const game = {
 const navigate = {
 	home: {
 		game: function () {
+			document.body.style.display = 'none';
 			const navUrl = '/home/game/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
 		},
 		clients: function () {
+			document.body.style.display = 'none';
 			const navUrl = '/home/clients/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
 		},
 		archive: function () {
+			document.body.style.display = 'none';
 			const navUrl = '/home/archive/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
 		},
 		downloads: function () {
+			document.body.style.display = 'none';
 			const navUrl = '/home/downloads/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
@@ -113,16 +117,19 @@ const navigate = {
 	},
 	mods: {
 		client: function () {
+			document.body.style.display = 'none';
 			const navUrl = '/mods/client/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
 		},
 		mods: function () {
+			document.body.style.display = 'none';
 			const navUrl = '/mods/mods/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
 		},
 		resourcepacks: function () {
+			document.body.style.display = 'none';
 			const navUrl = '/mods/resourcepacks/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
