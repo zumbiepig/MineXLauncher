@@ -11,6 +11,15 @@ body {
 	overflow: hidden;
 	background-image: none;
 	background-size: cover;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.ads-container {
+	display: none;
 }
 
 .launcher {
