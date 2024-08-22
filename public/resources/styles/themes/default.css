@@ -18,12 +18,12 @@ body {
 	justify-content: center;
 }
 
-.ads-container {
+/*.ads-container {
 	display: none;
-}
+}*/
 
 .launcher {
-	width: 75vw;
+	width: 65vw;
 	height: 95vh;
 	margin: 15px auto 0 auto;
 	background-color: #333;

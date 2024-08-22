@@ -326,7 +326,7 @@ if (window.location.pathname === '/') {
 	} */
 	serviceworker.register('/sw.js');
 } else {
-	if (storage.local.get('showAds') !== false) {
+	/*if (storage.local.get('showAds') !== false) {
 		const googleAdsScript = document.createElement('script');
 		googleAdsScript.async = true;
 		googleAdsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132419379737567';
@@ -341,7 +341,7 @@ if (window.location.pathname === '/') {
 				adsContainer.style.display = 'block';
 			}
 		});
-	}
+	}*/
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const profileName = document.getElementById('profile-name');
