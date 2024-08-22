@@ -326,7 +326,7 @@ if (window.location.pathname === '/') {
 	} */
 	serviceworker.register('/sw.js');
 } else {
-	/*if (storage.local.get('showAds') !== false) {
+	if (storage.local.get('showAds') !== false) {
 		const googleAdsScript = document.createElement('script');
 		googleAdsScript.async = true;
 		googleAdsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132419379737567';
@@ -334,14 +334,17 @@ if (window.location.pathname === '/') {
 		document.head.appendChild(googleAdsScript);
 
 		document.addEventListener('DOMContentLoaded', () => {
-			const adsContainers = document.getElementsByClassName('ads-container');
+			const googleAdsPush = document.createElement('script');
+			googleAdsPush.text = '(adsbygoogle = window.adsbygoogle || []).push({});';
+			document.body.appendChild(googleAdsPush);
 
+			const adsContainers = document.getElementsByClassName('ads-container');
 			for (let i = 0; i < adsContainers.length; i++) {
 				const adsContainer = adsContainers[i] as HTMLElement;
 				adsContainer.style.display = 'block';
 			}
 		});
-	}*/
+	}
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const profileName = document.getElementById('profile-name');

@@ -18,9 +18,9 @@ body {
 	justify-content: center;
 }
 
-/*.ads-container {
+.ads-container {
 	display: none;
-}*/
+}
 
 .launcher {
 	width: 65vw;
