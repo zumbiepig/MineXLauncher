@@ -298,11 +298,6 @@ if (window.location.pathname === '/') {
 	const iframe = document.createElement('iframe');
 	iframe.id = 'main_frame';
 
-	iframe.style.display = 'none';
-	iframe.addEventListener('load', () => {
-		iframe.style.display = '';
-	});
-
 	if (storage.local.get('lastVersion') === null) {
 		iframe.src = '/welcome/';
 	} else if (lastPage !== null) {
