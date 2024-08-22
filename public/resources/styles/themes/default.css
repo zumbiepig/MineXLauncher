@@ -19,6 +19,7 @@ body {
 }
 
 .ads-container {
+	flex: 1;
 	display: none;
 }
 
