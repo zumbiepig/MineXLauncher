@@ -19,8 +19,10 @@ body {
 }
 
 .ads-container {
-	flex: 1;
 	display: none;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
 }
 
 .launcher {

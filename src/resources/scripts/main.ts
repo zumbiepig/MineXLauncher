@@ -341,7 +341,7 @@ if (window.location.pathname === '/') {
 			const adsContainers = document.getElementsByClassName('ads-container');
 			for (let i = 0; i < adsContainers.length; i++) {
 				const adsContainer = adsContainers[i] as HTMLElement;
-				adsContainer.style.display = 'block';
+				adsContainer.style.display = 'flex';
 			}
 		});
 	}
