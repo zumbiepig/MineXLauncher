@@ -265,7 +265,7 @@ const detect = {
 		try {
 			document.exitPointerLock();
 			return /Mobi/i.test(window.navigator.userAgent);
-		} catch (e) {
+		} catch {
 			return true;
 		}
 	},
