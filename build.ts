@@ -3,11 +3,11 @@ import { join } from 'path';
 
 const directoryPath = join(import.meta.dir, 'public');
 
-function getFiles(dir: string, filesArr?: string[]) {
+function getFiles(directory: string, filesArr?: string[]) {
 	filesArr = filesArr || [];
-	const files = readdirSync(dir);
+	const files = readdirSync(directory);
 	for (const file of files) {
-		const name = join(dir, file);
+		const name = join(directory, file);
 		if (statSync(name).isDirectory()) {
 			getFiles(name, filesArr);
 		} else {
@@ -17,5 +17,4 @@ function getFiles(dir: string, filesArr?: string[]) {
 	return filesArr;
 }
 
-const assets = getFiles(directoryPath);
-writeFileSync(join(directoryPath, 'assets.json'), JSON.stringify(assets));
+writeFileSync(join(directoryPath, 'assets.json'), JSON.stringify(getFiles(directoryPath)));
