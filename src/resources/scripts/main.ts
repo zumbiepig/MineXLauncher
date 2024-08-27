@@ -185,7 +185,6 @@ const cookie = {
 	},
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const storage = {
 	local: {
 		get: function (key: string) {
@@ -214,7 +213,7 @@ const storage = {
 			const item = localStorage.getItem('minexlauncher');
 			if (item !== null) {
 				const json = JSON.parse(item);
-				delete json[key];
+				json[key] = undefined;
 				localStorage.setItem('minexlauncher', JSON.stringify(json));
 			}
 		},
@@ -246,7 +245,7 @@ const storage = {
 			const item = sessionStorage.getItem('minexlauncher');
 			if (item !== null) {
 				const json = JSON.parse(item);
-				delete json[key];
+				json[key] = undefined;
 				sessionStorage.setItem('minexlauncher', JSON.stringify(json));
 			}
 		},

@@ -1,33 +1,30 @@
 {
-	"name": "minexlauncher",
 	"private": true,
+	"name": "minexlauncher",
+	"module": "index.ts",
 	"type": "module",
-	"main": "./server.js",
 	"scripts": {
-		"start": "node ./server.js",
-		"build": "npm run build:clean && npm run build:compile && npm run build:obfuscate && npm run build:generateAssetsList",
+		"start": "bun run ./index.ts",
+		"lint": "eslint ./src",
+		"lint:fix": "eslint --fix ./src",
+		"build": "bun run lint && bun run build:clean && bun run build:compile && bun run build:obfuscate && bun run generateAssetsList",
 		"build:clean": "rimraf ./public/resources/scripts ./public/assets.json",
 		"build:compile": "tsc",
 		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts --output ./public/resources/scripts --options-preset high-obfuscation",
-		"build:generateAssetsList": "node ./generateAssetsList.js",
-		"lint": "eslint ./src",
-		"lint:fix": "eslint --fix ./src"
-	},
-	"engines": {
-		"node": "^20.0.0 || ^22.0.0"
+		"generateAssetsList": "bun run ./generateAssetsList.ts"
 	},
 	"dependencies": {
-		"express": "~4.19.2"
+		"@types/bun": "latest"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.9.1",
-		"@tsconfig/node20": "^20.1.4",
+		"@tsconfig/bun": "^1.0.7",
 		"@tsconfig/strictest": "^2.0.5",
-		"@types/eslint__js": "^8.42.3",
-		"eslint": "^8.57.0",
+		"eslint": "^9.9.1",
 		"javascript-obfuscator": "^4.1.1",
 		"rimraf": "^6.0.1",
-		"typescript": "^5.5.4",
 		"typescript-eslint": "^8.3.0"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
 	}
 }
