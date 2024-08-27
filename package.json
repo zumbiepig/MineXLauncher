@@ -5,12 +5,12 @@
 	"type": "module",
 	"scripts": {
 		"start": "bun run ./index.ts",
-		"lint": "eslint ./src",
-		"lint:fix": "eslint --fix ./src",
+		"lint": "eslint ./src/",
+		"lint:fix": "eslint --fix ./src/",
 		"build": "bun run lint && bun run build:clean && bun run build:compile && bun run build:obfuscate && bun run generateAssetsList",
-		"build:clean": "rimraf ./public/resources/scripts ./public/assets.json",
+		"build:clean": "rm -r ./public/resources/scripts/ ./public/assets.json",
 		"build:compile": "tsc",
-		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts --output ./public/resources/scripts --options-preset high-obfuscation",
+		"build:obfuscate": "javascript-obfuscator ./public/resources/scripts/ --output ./public/resources/scripts/ --options-preset high-obfuscation",
 		"generateAssetsList": "bun run ./generateAssetsList.ts"
 	},
 	"dependencies": {
@@ -21,7 +21,6 @@
 		"@tsconfig/strictest": "^2.0.5",
 		"eslint": "^9.9.1",
 		"javascript-obfuscator": "^4.1.1",
-		"rimraf": "^6.0.1",
 		"typescript-eslint": "^8.3.0"
 	},
 	"peerDependencies": {
