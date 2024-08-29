@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
 		servers: [
 			{ addr: 'wss://electronmc.club', name: 'Electron Network' },
 			{ addr: 'wss://play.brickmc.net', name: 'BrickMC' },
+			{ addr: 'wss://mc.lamplifesteal.xyz', name: 'LampLifesteal' },
 		],
 		relays: [
 			{ addr: 'wss://relay.deev.is/', comment: 'lax1dude relay #1', primary: relayId == 0 },
