@@ -1,12 +1,13 @@
 // @ts-nocheck
 window.addEventListener('load', function () {
-	window.minecraftOpts = ['game_frame', 'assets.epk'];
+	window.minecraftOpts = [
+		'game_frame',
+		'assets.epk'
+	];
 
 	const urlParams = new URLSearchParams(window.location.search);
 	const server = urlParams.get('server');
-	if (server) {
-		window.minecraftOpts.push(s);
-	}
+	if (server) window.minecraftOpts.push(s);
 
 	main();
 });
