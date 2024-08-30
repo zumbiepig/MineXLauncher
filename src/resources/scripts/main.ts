@@ -1,3 +1,5 @@
+import { gt, coerce } from 'semver';
+
 let selectedVersion: string | undefined;
 const launcherVersion = '1.5';
 
@@ -89,6 +91,7 @@ const game = {
 	},
 };
 
+// @ts-expect-error
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const navigate = {
 	home: {
@@ -118,12 +121,6 @@ const navigate = {
 		},
 	},
 	mods: {
-		client: function () {
-			document.body.style.display = 'none';
-			const navUrl = '/mods/client/';
-			storage.session.set('lastPage', navUrl);
-			window.location.href = navUrl;
-		},
 		mods: function () {
 			document.body.style.display = 'none';
 			const navUrl = '/mods/mods/';
@@ -159,6 +156,7 @@ const navigate = {
 	},
 };
 
+// @ts-expect-error
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const cookie = {
 	set: function (key: string, value: string, days: number) {
@@ -252,6 +250,7 @@ const storage = {
 	},
 };
 
+// @ts-expect-error
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const query = {
 	get: function (name: string) {
@@ -354,12 +353,12 @@ if (window.location.pathname === '/') {
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const lastVersion = storage.local.get('lastVersion');
-		if (lastVersion !== null && lastVersion < launcherVersion) {
+		if (lastVersion !== null && gt(launcherVersion, lastVersion)) {
 			alert(`MineXLauncher has been updated to v${launcherVersion}!
 
 Changes in v${launcherVersion}:
   - You can now install the launcher as a PWA web app`);
-			storage.local.set('lastVersion', launcherVersion);
+			storage.local.set('lastVersion', coerce(launcherVersion, { includePrerelease: true }));
 		}
 	});
 }
@@ -372,3 +371,110 @@ if (detect.mobile()) {
 }
 
 theme.load();
+
+if (window.location.pathname === '/settings/') {
+	document.addEventListener('DOMContentLoaded', () => {
+		const profileName = document.getElementById('profile-name');
+		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
+		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
+		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
+		const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
+
+		usernameInput.placeholder = storage.local.get('username') ?? '';
+		themeSelect.value = storage.local.get('theme') ?? '';
+		// offlineCheckbox.checked = storage.local.get('offlineCache') ?? false;
+		adsCheckbox.checked = storage.local.get('showAds') !== false;
+
+		usernameInput.addEventListener('input', () => {
+			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+			usernameInput.value = username;
+			while (username.length < 3) {
+				username += '_';
+			}
+			storage.local.set('username', username);
+			if (profileName) {
+				profileName.textContent = username;
+			}
+		});
+
+		themeSelect.addEventListener('change', () => {
+			theme.set(themeSelect.value);
+		});
+
+		/* offlineCheckbox.addEventListener('change', () => {
+			storage.local.set('offlineCache', offlineCheckbox.checked);
+			if (offlineCheckbox.checked) {
+				serviceworker.register('/sw-full.js');
+				alert(
+					'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
+				);
+			} else {
+				serviceworker.register('/sw.js');
+				alert('Offline cache has been deleted.');
+			}
+		}); */
+
+		adsCheckbox.addEventListener('change', () => {
+			storage.local.set('showAds', adsCheckbox.checked);
+			window.location.reload();
+		});
+	});
+}
+
+if (window.location.pathname === '/welcome/') {
+	document.addEventListener('DOMContentLoaded', () => {
+		const setupForm = document.getElementById('setup-form') as HTMLFormElement;
+		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
+		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
+		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
+
+		usernameInput.addEventListener('input', () => {
+			const username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+			usernameInput.value = username;
+		});
+
+		themeSelect.addEventListener('change', () => {
+			theme.load(themeSelect.value);
+		});
+
+		setupForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+
+			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+			usernameInput.value = username;
+
+			if (!username) {
+				alert('Please type a username.');
+				return;
+			} else {
+				while (username.length < 3) {
+					username += '_';
+				}
+
+				storage.local.set('username', username);
+				storage.local.set('theme', themeSelect.value);
+				// storage.local.set('offlineCache', offlineCheckbox.checked);
+				storage.local.set('showAds', true);
+				storage.local.set('lastVersion', coerce(launcherVersion, { includePrerelease: true }));
+
+				/* if (offlineCheckbox.checked) {
+					serviceworker.register('/sw-full.js');
+					alert(
+						'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
+					);
+					try {
+						// @ts-expect-error
+						installPwaEvent.prompt();
+					} catch (error) {
+						console.error('Failed to prompt PWA install:', error);
+					}
+				} else {
+					serviceworker.register('/sw.js');
+				} */
+
+				// @ts-expect-error
+				window.top.location.href = '/';
+			}
+		});
+	});
+}

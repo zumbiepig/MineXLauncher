@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { env } from 'bun';
 import express, { json, urlencoded } from 'express';
-import chalk from 'chalk'
+import chalk from 'chalk';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
@@ -30,7 +30,7 @@ app.use(
 	})
 );
 
-app.use(morgan('combined'));
+app.use(morgan(isDev ? 'dev' : 'combined'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
