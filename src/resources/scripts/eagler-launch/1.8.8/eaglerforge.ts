@@ -36,7 +36,7 @@ window.addEventListener('load', () => {
 
 	const urlParams = new URLSearchParams(window.location.search);
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
-	window.eaglercraftXOpts.Mods = storage.local.get('mods') || [];
+	window.eaglercraftXOpts.Mods = storage.local.get('mods') ?? [];
 
 	main();
 });

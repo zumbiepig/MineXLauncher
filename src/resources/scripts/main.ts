@@ -266,6 +266,29 @@ const detect = {
 	},
 };
 
+const mods = {
+	check: function (mod: string): boolean {
+		const mods: string[] = storage.local.get('mods') ?? [];
+		return mods.includes(mod);
+	},
+	add: function (mod: string): void {
+		const mods: string[] = storage.local.get('mods') ?? [];
+		if (!mods.includes(mod)) {
+			mods.push(mod);
+			mods.sort();
+			storage.local.set('mods', mods);
+		}
+	},
+	remove: function (mod: string): void {
+		const mods: string[] = storage.local.get('mods') ?? [];
+		const modIndex = mods.indexOf(mod);
+		if (modIndex !== -1) {
+			mods.splice(modIndex, 1);
+			storage.local.set('mods', mods);
+		}
+	},
+};
+
 const serviceworker = {
 	register: function (url: string) {
 		if ('serviceWorker' in navigator) {
@@ -447,6 +470,7 @@ if (window.location.pathname === '/welcome/') {
 				storage.local.set('theme', themeSelect.value);
 				// storage.local.set('offlineCache', offlineCheckbox.checked);
 				storage.local.set('showAds', true);
+				storage.local.set('mods', []);
 				storage.local.set('lastVersion', launcherVersion);
 
 				/* if (offlineCheckbox.checked) {
@@ -473,5 +497,5 @@ if (window.location.pathname === '/welcome/') {
 
 if (window.location.hostname === null) {
 	// Stop the minifier from removing these functions
-	console.debug([navigate, cookie, query, versionSelector, game]);
+	console.debug([navigate, cookie, query, versionSelector, game, mods]);
 }
