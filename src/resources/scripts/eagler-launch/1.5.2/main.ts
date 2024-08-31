@@ -33,8 +33,7 @@ window.addEventListener('load', function () {
 	};
 
 	const urlParams = new URLSearchParams(window.location.search);
-	const server = urlParams.get('server');
-	if (server) window.eaglercraftOpts.joinServer = server;
+	window.eaglercraftOpts.joinServer = urlParams.get('server') ?? undefined;
 
 	main();
 });

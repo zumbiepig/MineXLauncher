@@ -17,8 +17,7 @@ window.addEventListener('load', () => {
 	};
 
 	const urlParams = new URLSearchParams(window.location.search);
-	const server = urlParams.get('server');
-	if (server) window.eaglercraftXOpts.joinServer = urlParams.get('server');
+	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
 
 	main();
 });
