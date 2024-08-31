@@ -16,6 +16,24 @@ window.addEventListener('load', () => {
 		],
 	};
 
+	const storage = {
+		local: {
+			get: function (key: string) {
+				const item = localStorage.getItem('minexlauncher');
+				if (item !== null) {
+					const json = JSON.parse(item);
+					if (json[key] !== undefined) {
+						return json[key];
+					} else {
+						return null;
+					}
+				} else {
+					return null;
+				}
+			},
+		},
+	};
+
 	const urlParams = new URLSearchParams(window.location.search);
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
 	window.eaglercraftXOpts.Mods = storage.local.get('mods') || [];
