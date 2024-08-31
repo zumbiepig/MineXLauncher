@@ -330,9 +330,8 @@ if (window.location.pathname === '/') {
 			googleAdsPush.text = '(adsbygoogle = window.adsbygoogle || []).push({});';
 			document.body.appendChild(googleAdsPush);
 
-			const adsContainers = document.getElementsByClassName('ads-container');
-			for (let i = 0; i < adsContainers.length; i++) {
-				const adsContainer = adsContainers[i] as HTMLElement;
+			const adsContainers = Array.from(document.getElementsByClassName('ads-container')) as HTMLElement[];
+			for (const adsContainer of adsContainers) {
 				adsContainer.style.display = 'flex';
 			}
 		});
