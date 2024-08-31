@@ -33,6 +33,7 @@ const srcFilesArr = getFiles(join(import.meta.dir, 'src'));
 await build({
 	entrypoints: srcFilesArr,
 	outdir: './public/',
+	target: 'browser',
 	root: './src/',
 	minify: {
 		syntax: true,
@@ -48,9 +49,11 @@ console.log(chalk.cyan('Generating assets list...\n'));
 const publicDir = join(import.meta.dir, 'public');
 writeFileSync(
 	join(publicDir, 'assets.json'),
-	JSON.stringify(getFiles(publicDir))
-		.replace(new RegExp(`^${publicDir}`), '')
-		.replace(/\/index\.html$/, '/')
+	JSON.stringify(
+		getFiles(publicDir).map((asset) => {
+			return asset.replace(new RegExp(`^${publicDir}`), '').replace(/\/index\.html$/, '/');
+		})
+	)
 );
 
 console.log(chalk.green('Build complete!\n'));

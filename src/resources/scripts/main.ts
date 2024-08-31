@@ -91,8 +91,6 @@ const game = {
 	},
 };
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const navigate = {
 	home: {
 		game: function () {
@@ -156,8 +154,6 @@ const navigate = {
 	},
 };
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const cookie = {
 	set: function (key: string, value: string, days: number) {
 		let maxAge;
@@ -250,8 +246,6 @@ const storage = {
 	},
 };
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const query = {
 	get: function (name: string) {
 		return new URLSearchParams(window.top?.location.search).get(name);
@@ -353,12 +347,11 @@ if (window.location.pathname === '/') {
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const lastVersion = storage.local.get('lastVersion');
-		if (lastVersion !== null && gt(launcherVersion, lastVersion)) {
-			alert(`MineXLauncher has been updated to v${launcherVersion}!
-
-Changes in v${launcherVersion}:
-  - You can now install the launcher as a PWA web app`);
-			storage.local.set('lastVersion', coerce(launcherVersion, { includePrerelease: true }));
+		// @ts-expect-error
+		if (lastVersion !== null && gt(coerce(launcherVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))) {
+			const releaseNotes = ['You can now install the launcher as a PWA web app'].map((item) => `  - ${item}`).join('\n');
+			alert(`MineXLauncher has been updated to v${launcherVersion}!\n\nChanges in v${launcherVersion}:\n${releaseNotes}`);
+			storage.local.set('lastVersion', launcherVersion);
 		}
 	});
 }
@@ -455,7 +448,7 @@ if (window.location.pathname === '/welcome/') {
 				storage.local.set('theme', themeSelect.value);
 				// storage.local.set('offlineCache', offlineCheckbox.checked);
 				storage.local.set('showAds', true);
-				storage.local.set('lastVersion', coerce(launcherVersion, { includePrerelease: true }));
+				storage.local.set('lastVersion', launcherVersion);
 
 				/* if (offlineCheckbox.checked) {
 					serviceworker.register('/sw-full.js');
@@ -477,4 +470,10 @@ if (window.location.pathname === '/welcome/') {
 			}
 		});
 	});
+}
+
+if (window.location.hostname === null) {
+	navigate.home.game();
+	cookie.get('');
+	query.get('');
 }
