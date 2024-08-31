@@ -34,7 +34,11 @@ await build({
 	entrypoints: srcFilesArr,
 	outdir: './public/',
 	root: './src/',
-	minify: true,
+	minify: {
+		syntax: true,
+		whitespace: true,
+		identifiers: false,
+	},
 });
 
 console.log(chalk.cyan('Obfuscating JavaScript...\n'));
