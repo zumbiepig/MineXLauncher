@@ -475,4 +475,5 @@ if (window.location.hostname === null) {
 	navigate.home.game();
 	cookie.get('');
 	query.get('');
+	versionSelector.close();
 }
