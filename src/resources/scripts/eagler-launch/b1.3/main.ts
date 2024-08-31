@@ -6,8 +6,7 @@ window.addEventListener('load', function () {
 	];
 
 	const urlParams = new URLSearchParams(window.location.search);
-	const server = urlParams.get('server');
-	if (server) window.minecraftOpts.push(s);
+	window.minecraftOpts.push(urlParams.get('server') ?? undefined);
 
 	main();
 });

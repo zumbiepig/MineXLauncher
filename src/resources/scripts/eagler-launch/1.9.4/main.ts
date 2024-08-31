@@ -4,9 +4,7 @@ window.addEventListener('load', () => {
 	window.eaglercraftXOpts = {
 		container: 'game_frame',
 		assetsURI: 'assets.epk',
-		servers: [
-			{ addr: 'wss://eagler.xyz', name: 'TemuzX' },
-		],
+		servers: [{ addr: 'wss://eagler.xyz', name: 'TemuzX' }],
 		relays: [
 			{ addr: 'wss://relay.deev.is/', comment: 'lax1dude relay #1', primary: relayId === 0 },
 			{ addr: 'wss://relay.lax1dude.net/', comment: 'lax1dude relay #2', primary: relayId === 1 },
@@ -15,8 +13,7 @@ window.addEventListener('load', () => {
 	};
 
 	const urlParams = new URLSearchParams(window.location.search);
-	const server = urlParams.get('server');
-	if (server) window.eaglercraftXOpts.joinServer = server;
+	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
 
 	main();
 });
