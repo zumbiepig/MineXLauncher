@@ -287,6 +287,18 @@ const mods = {
 			storage.local.set('mods', mods);
 		}
 	},
+	toggle: function (mod: string): void {
+		const mods: string[] = storage.local.get('mods') ?? [];
+		const modIndex = mods.indexOf(mod);
+		if (modIndex === -1) {
+			mods.push(mod);
+			mods.sort();
+			storage.local.set('mods', mods);
+		} else {
+			mods.splice(modIndex, 1);
+			storage.local.set('mods', mods);
+		}
+	}
 };
 
 const serviceworker = {
