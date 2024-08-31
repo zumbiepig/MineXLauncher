@@ -17,7 +17,7 @@ import { indexRouter } from './routes/index.ts';
 const BASE_DIR = join(import.meta.dir, 'public');
 const PORT = env.PORT ?? 3000;
 
-const debugLogger = debug('app:server');
+const debugLogger = debug('minexlauncher:server');
 const isDev = env.NODE_ENV === 'development';
 
 const app = express();
