@@ -473,8 +473,5 @@ if (window.location.pathname === '/welcome/') {
 
 if (window.location.hostname === null) {
 	// Stop the minifier from removing these functions
-	navigate.home.game();
-	cookie.get('');
-	query.get('');
-	versionSelector.close();
+	console.log([navigate, cookie, query, versionSelector]);
 }
