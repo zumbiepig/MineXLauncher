@@ -4,8 +4,8 @@ import { join } from 'path';
 import chalk from 'chalk';
 
 function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
-	dir = dir || baseDir;
-	filesArr = filesArr || [];
+	dir = dir ?? baseDir;
+	filesArr = filesArr ?? [];
 	const files = readdirSync(dir);
 	for (const file of files) {
 		const name = join(dir, file);
@@ -18,10 +18,19 @@ function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 	return filesArr;
 }
 
+console.clear();
+
 console.log(chalk.cyan('Linting code...\n'));
 const lintOutput = await $`bunx eslint ./src/`.nothrow().text();
 if (lintOutput) {
 	console.error(lintOutput);
+	process.exit(1);
+}
+
+console.log(chalk.cyan('Type-checking code...\n'));
+const tscOutput = await $`bunx tsc`.nothrow().text();
+if (tscOutput) {
+	console.error(tscOutput);
 	process.exit(1);
 }
 

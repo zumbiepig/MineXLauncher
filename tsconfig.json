@@ -1,12 +1,4 @@
 {
 	"extends": ["@tsconfig/bun", "@tsconfig/strictest"],
-	"compilerOptions": {
-		"rootDir": "src",
-		"outDir": "public",
-		"moduleDetection": "auto",
-		"allowImportingTsExtensions": false,
-		"noEmit": false,
-		"removeComments": true
-	},
-	"include": ["src"]
+	"exclude": ["node_modules", "public"]
 }

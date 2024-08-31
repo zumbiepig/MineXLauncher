@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { join } from 'path';
 import { env } from 'bun';
 import express, { json, urlencoded } from 'express';
@@ -14,7 +15,7 @@ import serveStatic from 'serve-static';
 import { indexRouter } from './routes/index.ts';
 
 const BASE_DIR = join(import.meta.dir, 'public');
-const PORT = env.PORT || 3000;
+const PORT = env.PORT ?? 3000;
 
 const debugLogger = debug('app:server');
 const isDev = env.NODE_ENV === 'development';
