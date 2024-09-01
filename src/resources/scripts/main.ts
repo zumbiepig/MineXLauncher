@@ -1,10 +1,6 @@
-import { SemVer, gt } from 'semver';
+import { gt, coerce } from 'semver';
 
-let selectedVersion: string | undefined;
-
-// Update `cacheVersion` in sw.js too
-const launcherVersion: SemVer = new SemVer('1.6.0-beta.1');
-const releaseNotes = ['You can now install mods directly from the mods list'];
+let selectedVersion: string;
 
 const theme = {
 	load: function (themeToLoad?: string) {
@@ -14,7 +10,7 @@ const theme = {
 				themeElement.href = `/resources/styles/themes/${themeToLoad}.css`;
 			} else {
 				const savedTheme = storage.local.get('theme');
-				if (savedTheme !== null) {
+				if (savedTheme) {
 					themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
 				}
 			}
@@ -157,8 +153,8 @@ const navigate = {
 	},
 };
 
-const cookie = {
-	set: function (key: string, value: string, days: number) {
+/*const cookie = {
+	set: function (key: string, value: string | number | object | [] | boolean | null | undefined, days: number) {
 		let maxAge;
 		if (days) {
 			maxAge = days * 60 * 60 * 24;
@@ -167,20 +163,19 @@ const cookie = {
 		}
 		document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax; Secure`;
 	},
-	get: function (key: string): string | null {
+	get: function (key: string) {
 		for (const cookie of document.cookie.split('; ')) {
 			const cookiePair = cookie.split('=');
 			if (encodeURIComponent(key) === cookiePair[0]) {
-				// @ts-expect-error
 				return decodeURIComponent(cookiePair[1]);
 			}
 		}
-		return null;
+		return undefined;
 	},
 	delete: function (key: string) {
 		document.cookie = `${encodeURIComponent(key)}=; Max-Age=0; Path=/`;
 	},
-};
+};*/
 
 const storage = {
 	local: {
@@ -190,14 +185,12 @@ const storage = {
 				const json = JSON.parse(item);
 				if (json[key] !== undefined) {
 					return json[key];
-				} else {
-					return null;
 				}
-			} else {
-				return null;
+				return undefined;
 			}
+			return undefined;
 		},
-		set: function (key: string, value: string | number | object | [] | boolean | null) {
+		set: function (key: string, value: string | number | object | boolean | null | undefined) {
 			let item = localStorage.getItem('minexlauncher');
 			if (item === null) {
 				item = '{}';
@@ -205,14 +198,6 @@ const storage = {
 			const json = JSON.parse(item);
 			json[key] = value;
 			localStorage.setItem('minexlauncher', JSON.stringify(json));
-		},
-		delete: function (key: string) {
-			const item = localStorage.getItem('minexlauncher');
-			if (item !== null) {
-				const json = JSON.parse(item);
-				json[key] = undefined;
-				localStorage.setItem('minexlauncher', JSON.stringify(json));
-			}
 		},
 	},
 	session: {
@@ -222,14 +207,12 @@ const storage = {
 				const json = JSON.parse(item);
 				if (json[key] !== undefined) {
 					return json[key];
-				} else {
-					return null;
 				}
-			} else {
-				return null;
+				return undefined;
 			}
+			return undefined;
 		},
-		set: function (key: string, value: string | number | object | [] | boolean | null) {
+		set: function (key: string, value: string | number | object | boolean | null | undefined) {
 			let item = sessionStorage.getItem('minexlauncher');
 			if (item === null) {
 				item = '{}';
@@ -237,14 +220,6 @@ const storage = {
 			const json = JSON.parse(item);
 			json[key] = value;
 			sessionStorage.setItem('minexlauncher', JSON.stringify(json));
-		},
-		delete: function (key: string) {
-			const item = sessionStorage.getItem('minexlauncher');
-			if (item !== null) {
-				const json = JSON.parse(item);
-				json[key] = undefined;
-				sessionStorage.setItem('minexlauncher', JSON.stringify(json));
-			}
 		},
 	},
 };
@@ -322,15 +297,24 @@ const serviceworker = {
 	},
 };
 
+theme.load();
+
+if (detect.mobile()) {
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = '/resources/styles/mobile.css';
+	document.head.appendChild(link);
+}
+
 if (window.location.pathname === '/') {
 	const lastPage = storage.session.get('lastPage');
 	const isMobile = detect.mobile();
 	const iframe = document.createElement('iframe');
 	iframe.id = 'main_frame';
 
-	if (storage.local.get('lastVersion') === null) {
+	if (!storage.local.get('lastVersion')) {
 		iframe.src = '/welcome/';
-	} else if (lastPage !== null) {
+	} else if (lastPage && typeof lastPage === 'string') {
 		iframe.src = lastPage;
 	} else if (isMobile) {
 		iframe.src = '/mobile/';
@@ -349,7 +333,7 @@ if (window.location.pathname === '/') {
 		}
 	});
 
-	/* if (storage.local.get('offlineCache') === true) {
+	/* if (storage.local.get('offlineCache')) {
 		serviceworker.register('/sw-full.js');
 	} else {
 		serviceworker.register('/sw.js');
@@ -374,31 +358,29 @@ if (window.location.pathname === '/') {
 			}
 		});
 	}
-
-	document.addEventListener('DOMContentLoaded', () => {
+	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.getElementById('profile-name');
 		if (profileName) {
 			profileName.textContent = storage.local.get('username');
 		}
+
+		const titleBarText = document.getElementById('title-bar-text');
+		if (titleBarText) {
+			titleBarText.textContent += ` ${(await (await fetch('/resources/data/updates.json')).json())[0].version}`;
+		}
 	});
 
-	document.addEventListener('DOMContentLoaded', () => {
+	document.addEventListener('DOMContentLoaded', async () => {
 		const lastVersion = storage.local.get('lastVersion');
-		if (lastVersion !== null && gt(launcherVersion, lastVersion)) {
-			alert(`MineXLauncher has been updated to v${launcherVersion}!\n\nChanges in v${launcherVersion}:\n${releaseNotes.map((item) => `  - ${item}`).join('\n')}`);
-			storage.local.set('lastVersion', launcherVersion);
+		const currentVersion = (await (await fetch('/resources/data/updates.json')).json())[0].version;
+		const changelog = (await (await fetch('/resources/data/updates.json')).json())[0].changelog.map((change: string) => `  - ${change}`).join('\n');
+		// @ts-expect-error
+		if (lastVersion && gt(coerce(currentVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))) {
+			alert(`MineXLauncher has been updated to v${currentVersion}!\n\nChanges in v${currentVersion}:\n${changelog}`);
+			storage.local.set('lastVersion', currentVersion);
 		}
 	});
 }
-
-if (detect.mobile()) {
-	const link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.href = '/resources/styles/mobile.css';
-	document.head.appendChild(link);
-}
-
-theme.load();
 
 if (window.location.pathname === '/settings/') {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -463,7 +445,7 @@ if (window.location.pathname === '/settings/') {
 			theme.load(themeSelect.value);
 		});
 
-		setupForm.addEventListener('submit', (event) => {
+		setupForm.addEventListener('submit', async (event) => {
 			event.preventDefault();
 
 			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
@@ -482,7 +464,7 @@ if (window.location.pathname === '/settings/') {
 				// storage.local.set('offlineCache', offlineCheckbox.checked);
 				storage.local.set('showAds', true);
 				storage.local.set('mods', []);
-				storage.local.set('lastVersion', launcherVersion);
+				storage.local.set('lastVersion', (await (await fetch('/resources/data/updates.json')).json())[0].version);
 
 				/* if (offlineCheckbox.checked) {
 					serviceworker.register('/sw-full.js');
@@ -519,8 +501,8 @@ if (window.location.pathname === '/settings/') {
 				break;
 		}
 
-		const mods = await (await fetch('/resources/data/mods.json')).json();
-		mods[modType].forEach((mod: { id: string; name: string; description: string; author: string; authorLink: string; source: string }) => {
+		const modData = await (await fetch('/resources/data/mods.json')).json();
+		modData[modType].forEach((mod: { id: string; name: string; description: string; author: string; authorLink: string; source: string }) => {
 			const modItem = document.createElement('div');
 			modItem.classList.add('mod-item');
 			modItem.innerHTML = `<div class="mod-icon"><img loading="lazy" src="/resources/mods/icons/${mod.id}.webp" /></div><div class="mod-details"><h3 class="mod-name">${mod.name}</h3><p class="mod-author">By <a href="${mod.authorLink}" target="_blank">${mod.author}</a></p><p class="mod-description">${mod.description}</p><div class="mod-links"><a href="${mod.source}" class="mod-link" target="_blank">Source</a><a href="/resources/mods/downloads/${mod.id}.${modExt}" class="mod-link" download>Download</a></div></div>`;
@@ -532,9 +514,8 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const updatesContainer = document.getElementById('updates-container');
-		const updates = await (await fetch('/resources/data/updates.json')).json();
-
-		updates.forEach((update: { version: string; changelog: string[] }) => {
+		const updateData: { version: string; changelog: string[] }[] = await (await fetch('/resources/data/updates.json')).json();
+		updateData.forEach((update) => {
 			const versionHeader = document.createElement('strong');
 			versionHeader.textContent = `MineXLauncher ${update.version}`;
 			updatesContainer?.appendChild(versionHeader);
@@ -553,5 +534,5 @@ if (window.location.pathname === '/settings/') {
 
 if (window.location.hostname === null) {
 	// Stop the minifier from removing these functions
-	console.debug([navigate, cookie, query, versionSelector, game, mods]);
+	console.debug([navigate, query, versionSelector, game, mods]);
 }

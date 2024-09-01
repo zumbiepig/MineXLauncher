@@ -1,8 +1,8 @@
 // @ts-nocheck
-const cacheVersion = '1.6.0';
+const cacheVersion = '1.6';
 const cacheName = `minexlauncher-v${cacheVersion}`;
 const offlineUrl = '/offline.html';
-const cacheAssets = [
+const cacheAssets: string[] = [
 	offlineUrl,
 	'/resources/images/icons/favicon.webp',
 	'/resources/scripts/google-tag.js',
@@ -35,7 +35,8 @@ self.addEventListener('install', (event) => {
 
 			for (const asset of cacheAssets) {
 				await cache.add(asset);
-				const progress = `${++cachedAssets}/${totalAssets}`;
+				++cachedAssets;
+				const progress = `${cachedAssets.toString()}/${totalAssets.toString()}`;
 
 				console.log(`Cached: ${asset} (${progress})`);
 			}

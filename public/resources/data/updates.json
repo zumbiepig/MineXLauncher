@@ -1,18 +1,18 @@
 [
 	{
-		"version": "1.6.0",
+		"version": "1.6",
 		"changelog": [
 			"You can now install mods directly from the mods list"
 		]
 	},
 	{
-		"version": "1.5.0",
+		"version": "1.5",
 		"changelog": [
 			"You can now install the launcher as a PWA web app"
 		]
 	},
 	{
-		"version": "1.4.0",
+		"version": "1.4",
 		"changelog": [
 			"Added Starlike Client",
 			"Added welcome and setup screen",
@@ -24,14 +24,14 @@
 		]
 	},
 	{
-		"version": "1.3.0",
+		"version": "1.3",
 		"changelog": [
 			"Redesigned archive page",
 			"Added offline page"
 		]
 	},
 	{
-		"version": "1.2.0",
+		"version": "1.2",
 		"changelog": [
 			"Added Eaglercraft 1.2.5",
 			"Added more mods and resource packs",
@@ -39,7 +39,7 @@
 		]
 	},
 	{
-		"version": "1.1.0",
+		"version": "1.1",
 		"changelog": [
 			"Added a mods and resource packs list",
 			"Temporary workaround for keyboard not working in the game",
@@ -51,7 +51,7 @@
 		]
 	},
 	{
-		"version": "1.0.0",
+		"version": "1.0",
 		"changelog": [
 			"Major rewrite, check it out yourself!"
 		]
