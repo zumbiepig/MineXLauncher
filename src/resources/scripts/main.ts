@@ -1,7 +1,10 @@
-import { gt, coerce } from 'semver';
+import { SemVer, gt } from 'semver';
 
 let selectedVersion: string | undefined;
-const launcherVersion = '1.5';
+
+// Update `cacheVersion` in sw.js too
+const launcherVersion: SemVer = new SemVer('1.6.0-beta.1');
+const releaseNotes = ['You can now install mods directly from the mods list'];
 
 const theme = {
 	load: function (themeToLoad?: string) {
@@ -298,7 +301,7 @@ const mods = {
 			mods.splice(modIndex, 1);
 			storage.local.set('mods', mods);
 		}
-	}
+	},
 };
 
 const serviceworker = {
@@ -381,10 +384,8 @@ if (window.location.pathname === '/') {
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const lastVersion = storage.local.get('lastVersion');
-		// @ts-expect-error
-		if (lastVersion !== null && gt(coerce(launcherVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))) {
-			const releaseNotes = ['You can now install the launcher as a PWA web app'].map((item) => `  - ${item}`).join('\n');
-			alert(`MineXLauncher has been updated to v${launcherVersion}!\n\nChanges in v${launcherVersion}:\n${releaseNotes}`);
+		if (lastVersion !== null && gt(launcherVersion, lastVersion)) {
+			alert(`MineXLauncher has been updated to v${launcherVersion}!\n\nChanges in v${launcherVersion}:\n${releaseNotes.map((item) => `  - ${item}`).join('\n')}`);
 			storage.local.set('lastVersion', launcherVersion);
 		}
 	});
@@ -446,9 +447,7 @@ if (window.location.pathname === '/settings/') {
 			window.location.reload();
 		});
 	});
-}
-
-if (window.location.pathname === '/welcome/') {
+} else if (window.location.pathname === '/welcome/') {
 	document.addEventListener('DOMContentLoaded', () => {
 		const setupForm = document.getElementById('setup-form') as HTMLFormElement;
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
@@ -503,6 +502,51 @@ if (window.location.pathname === '/welcome/') {
 				// @ts-expect-error
 				window.top.location.href = '/';
 			}
+		});
+	});
+} else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
+	document.addEventListener('DOMContentLoaded', async () => {
+		let modType: 'mods' | 'resourcepacks' = 'mods';
+		let modExt: 'js' | 'zip' = 'js';
+		switch (window.location.pathname) {
+			case '/mods/mods/':
+				modType = 'mods';
+				modExt = 'js';
+				break;
+			case '/mods/resourcepacks/':
+				modType = 'resourcepacks';
+				modExt = 'zip';
+				break;
+		}
+
+		const mods = await (await fetch('/resources/data/mods.json')).json();
+		mods[modType].forEach((mod: { id: string; name: string; description: string; author: string; authorLink: string; source: string }) => {
+			const modItem = document.createElement('div');
+			modItem.classList.add('mod-item');
+			modItem.innerHTML = `<div class="mod-icon"><img loading="lazy" src="/resources/mods/icons/${mod.id}.webp" /></div><div class="mod-details"><h3 class="mod-name">${mod.name}</h3><p class="mod-author">By <a href="${mod.authorLink}" target="_blank">${mod.author}</a></p><p class="mod-description">${mod.description}</p><div class="mod-links"><a href="${mod.source}" class="mod-link" target="_blank">Source</a><a href="/resources/mods/downloads/${mod.id}.${modExt}" class="mod-link" download>Download</a></div></div>`;
+
+			const modList = document.querySelector('.mod-list');
+			modList?.appendChild(modItem);
+		});
+	});
+} else if (window.location.pathname === '/updates/') {
+	document.addEventListener('DOMContentLoaded', async () => {
+		const updatesContainer = document.getElementById('updates-container');
+		const updates = await (await fetch('/resources/data/updates.json')).json();
+
+		updates.forEach((update: { version: string; changelog: string[] }) => {
+			const versionHeader = document.createElement('strong');
+			versionHeader.textContent = `MineXLauncher ${update.version}`;
+			updatesContainer?.appendChild(versionHeader);
+
+			const changelog = document.createElement('ul');
+			update.changelog.forEach((change) => {
+				const changelogItem = document.createElement('li');
+				changelogItem.textContent = change;
+				changelog.appendChild(changelogItem);
+			});
+
+			updatesContainer?.appendChild(changelog);
 		});
 	});
 }

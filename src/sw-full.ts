@@ -1,5 +1,5 @@
 // @ts-nocheck
-const cacheVersion = '1.5';
+const cacheVersion = '1.6.0';
 const cacheName = `minexlauncher-full-v${cacheVersion}`;
 
 self.addEventListener('install', (event) => {
