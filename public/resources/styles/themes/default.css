@@ -359,14 +359,18 @@ nav {
 	color: #ddd;
 }
 
-.news-item {
-	flex: 1;
-	padding: 20px;
+.updates-container {
+	margin: 20px;
 	text-align: left;
 }
 
-.news-item li {
-	padding-left: 20px;
+.updates-container strong {
+	padding-top: 20px;
+}
+
+.updates-container ul {
+	margin: 0px;
+	padding: 5px 0 20px 30px;
 }
 
 .minecraft-button {
