@@ -1,11 +1,6 @@
 # MineXLauncher
 
-## Variables to update when changing version number
-
-- `cacheVersion` in [sw.ts](/src/sw.ts) and [sw-full.ts](/src/sw-full.ts)
-- `launcherVersion` in [main.ts](/src/resources/scripts/main.ts)
-- Changelog in [main.ts](/src/resources/scripts/main.ts)
-- Changelog on [updates page](/public/updates/index.html)
+### Update data in [updates.json](/public/resources/data/updates.json)
 
 ## Client versions
 
