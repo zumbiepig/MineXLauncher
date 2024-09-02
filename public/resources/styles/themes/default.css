@@ -514,7 +514,7 @@ nav {
 	margin-top: 10px;
 }
 
-.mod-item .mod-link {
+.mod-item .mod-download {
 	padding: 5px 15px;
 	background-color: #555;
 	color: #fff;
@@ -523,8 +523,31 @@ nav {
 	transition: background-color 0.3s;
 }
 
-.mod-item .mod-link:hover {
+.mod-item .mod-download:hover {
+	cursor: pointer;
 	background-color: #777;
+}
+
+.mod-item .mod-install {
+	padding: 5px 15px;
+	background-color: #4c4;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 7px;
+	transition: background-color 0.3s;
+}
+
+.mod-item .mod-install:hover {
+	cursor: pointer;
+	background-color: #00b300;
+}
+
+.mod-item .mod-install.installed {
+	background-color: #ff0000;
+}
+
+.mod-item .mod-install.installed:hover {
+	background-color: #cc0000;
 }
 
 .server-list {

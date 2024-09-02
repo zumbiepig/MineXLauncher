@@ -265,16 +265,27 @@ const mods = {
 			storage.local.set('mods', mods);
 		}
 	},
-	toggle: function (mod: string): void {
+	toggle: function (modId: string): void {
+		const mod = `/resources/mods/downloads/${modId}.js`;
 		const mods: string[] = storage.local.get('mods') ?? [];
 		const modIndex = mods.indexOf(mod);
 		if (modIndex === -1) {
 			mods.push(mod);
 			mods.sort();
 			storage.local.set('mods', mods);
+			const modInstallElem = document.getElementById(`mod-install-${modId}`);
+			if (modInstallElem) {
+				modInstallElem.textContent = 'Uninstall';
+				modInstallElem.classList.add('installed');
+			}
 		} else {
 			mods.splice(modIndex, 1);
 			storage.local.set('mods', mods);
+			const modInstallElem = document.getElementById(`mod-install-${modId}`);
+			if (modInstallElem) {
+				modInstallElem.textContent = 'Install';
+				modInstallElem.classList.remove('installed');
+			}
 		}
 	},
 };
@@ -488,28 +499,41 @@ if (window.location.pathname === '/settings/') {
 	});
 } else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
 	document.addEventListener('DOMContentLoaded', async () => {
-		let modType: 'mods' | 'resourcepacks' = 'mods';
-		let modExt: 'js' | 'zip' = 'js';
-		switch (window.location.pathname) {
-			case '/mods/mods/':
-				modType = 'mods';
-				modExt = 'js';
-				break;
-			case '/mods/resourcepacks/':
-				modType = 'resourcepacks';
-				modExt = 'zip';
-				break;
-		}
-
+		const modType: 'mods' | 'resourcepacks' = window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
 		const modData = await (await fetch('/resources/data/mods.json')).json();
+		const modList = document.querySelector('.mod-list');
 		modData[modType].forEach((mod: { id: string; name: string; description: string; author: string; authorLink: string; source: string }) => {
 			const modItem = document.createElement('div');
 			modItem.classList.add('mod-item');
-			modItem.innerHTML = `<div class="mod-icon"><img loading="lazy" src="/resources/mods/icons/${mod.id}.webp" /></div><div class="mod-details"><h3 class="mod-name">${mod.name}</h3><p class="mod-author">By <a href="${mod.authorLink}" target="_blank">${mod.author}</a></p><p class="mod-description">${mod.description}</p><div class="mod-links"><a href="${mod.source}" class="mod-link" target="_blank">Source</a><a href="/resources/mods/downloads/${mod.id}.${modExt}" class="mod-link" download>Download</a></div></div>`;
-
-			const modList = document.querySelector('.mod-list');
+			modItem.innerHTML = `<div class="mod-icon">
+	<img loading="lazy" src="/resources/mods/icons/${mod.id}.webp" />
+</div>
+<div class="mod-details">
+	<h3 class="mod-name">${mod.name}</h3>
+	<p class="mod-author">By <a href="${mod.authorLink}" target="_blank">${mod.author}</a></p>
+	<p class="mod-description">${mod.description}</p>
+	<div class="mod-links">
+		${
+			modType === 'mods'
+				? `<a class="mod-install" id="mod-install-${mod.id}" onclick="mods.toggle('${mod.id}')">Install</a>`
+				: `<a href="/resources/mods/downloads/${mod.id}.zip" class="mod-download" download>Download</a>`
+		}
+	</div>
+</div>`;
 			modList?.appendChild(modItem);
 		});
+
+		if (modType === 'mods') {
+			const installedMods = storage.local.get('mods') ?? [];
+			const modElements = Array.from(document.getElementsByClassName('mod-install')) as HTMLAnchorElement[];
+			modElements.forEach((modElement) => {
+				const modId = /^mod-install-(.*)$/.exec(modElement.id)?.[1];
+				if (installedMods.includes(`/resources/mods/downloads/${modId}.js`)) {
+					modElement.textContent = 'Uninstall';
+					modElement.classList.add('installed');
+				}
+			});
+		}
 	});
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
