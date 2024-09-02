@@ -140,6 +140,14 @@
 
 	"resourcepacks": [
 		{
+			"id": "updated-textures-for-1-8-9",
+			"name": "Updated Textures for 1.8.9",
+			"description": "This resource pack aims to backport textures and sounds from the Texture Update and onward to Minecraft version 1.8.9.",
+			"author": "Arky",
+			"authorLink": "https://www.planetminecraft.com/member/arky/",
+			"source": "https://www.planetminecraft.com/texture-pack/updated-textures-for-1-8-9/"
+		},
+		{
 			"id": "barebones-bossbars",
 			"name": "Barebones Bossbars",
 			"description": "simplistic per-mob icons and colors to decorate boss bars with",
