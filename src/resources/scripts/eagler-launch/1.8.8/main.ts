@@ -3,7 +3,8 @@ window.addEventListener('load', () => {
 	const relayId = Math.floor(Math.random() * 3);
 	window.eaglercraftXOpts = {
 		container: 'game_frame',
-		assetsURI: 'assets.epk',
+		assetsURI: `${window.location.pathname}/assets.epk`,
+		localesURI: `${window.location.pathname}/lang/`,
 		servers: [
 			{ addr: 'wss://electronmc.club', name: 'Electron Network' },
 			{ addr: 'wss://play.brickmc.net', name: 'BrickMC' },
@@ -19,5 +20,6 @@ window.addEventListener('load', () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
 
+	history.replaceState({}, '', '/');
 	main();
 });
