@@ -321,27 +321,13 @@ if (window.location.pathname === '/') {
 	const lastPage = storage.session.get('lastPage');
 	const isMobile = detect.mobile();
 	const iframe = document.createElement('iframe');
-	iframe.id = 'main_frame';
+	iframe.src = !storage.local.get('lastVersion') ? '/welcome/' : lastPage ? lastPage : isMobile ? '/mobile/' : '/home/game/';
 
-	if (!storage.local.get('lastVersion')) {
-		iframe.src = '/welcome/';
-	} else if (lastPage && typeof lastPage === 'string') {
-		iframe.src = lastPage;
-	} else if (isMobile) {
-		iframe.src = '/mobile/';
-	} else {
-		iframe.src = '/home/game/';
-	}
-
-	document.addEventListener('DOMContentLoaded', () => {
-		document.body.appendChild(iframe);
-	});
+	document.addEventListener('DOMContentLoaded', () => document.body.appendChild(iframe));
 
 	window.addEventListener('beforeinstallprompt', (event) => {
-		if (iframe.contentWindow) {
-			// @ts-expect-error
-			iframe.contentWindow.installPwaEvent = event;
-		}
+		// @ts-expect-error
+		if (iframe.contentWindow) iframe.contentWindow.installPwaEvent = event;
 	});
 
 	/* if (storage.local.get('offlineCache')) {
@@ -351,7 +337,25 @@ if (window.location.pathname === '/') {
 	} */
 	serviceworker.register('/sw.js');
 } else {
-	if (storage.local.get('showAds') !== false) {
+	document.addEventListener('DOMContentLoaded', async () => {
+		const profileName = document.getElementById('profile-name');
+		const titleBarText = document.getElementById('title-bar-text');
+
+		const lastVersion = storage.local.get('lastVersion');
+		const currentVersion = (await (await fetch('/resources/data/updates.json')).json())[0].version;
+		const changelog = (await (await fetch('/resources/data/updates.json')).json())[0].changelog.map((change: string) => `  - ${change}`).join('\n');
+
+		if (profileName) profileName.textContent = storage.local.get('username');
+		if (titleBarText) titleBarText.textContent += ` ${(await (await fetch('/resources/data/updates.json')).json())[0].version}`;
+
+		// @ts-expect-error
+		if (lastVersion && gt(coerce(currentVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))) {
+			alert(`MineXLauncher has been updated to v${currentVersion}!\n\nChanges in v${currentVersion}:\n${changelog}`);
+			storage.local.set('lastVersion', currentVersion);
+		}
+	});
+
+	if (storage.local.get('showAds')) {
 		const googleAdsScript = document.createElement('script');
 		googleAdsScript.async = true;
 		googleAdsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132419379737567';
@@ -364,33 +368,11 @@ if (window.location.pathname === '/') {
 			document.body.appendChild(googleAdsPush);
 
 			const adsContainers = Array.from(document.getElementsByClassName('ads-container')) as HTMLElement[];
-			for (const adsContainer of adsContainers) {
+			adsContainers.forEach((adsContainer) => {
 				adsContainer.style.display = 'flex';
-			}
+			});
 		});
 	}
-	document.addEventListener('DOMContentLoaded', async () => {
-		const profileName = document.getElementById('profile-name');
-		if (profileName) {
-			profileName.textContent = storage.local.get('username');
-		}
-
-		const titleBarText = document.getElementById('title-bar-text');
-		if (titleBarText) {
-			titleBarText.textContent += ` ${(await (await fetch('/resources/data/updates.json')).json())[0].version}`;
-		}
-	});
-
-	document.addEventListener('DOMContentLoaded', async () => {
-		const lastVersion = storage.local.get('lastVersion');
-		const currentVersion = (await (await fetch('/resources/data/updates.json')).json())[0].version;
-		const changelog = (await (await fetch('/resources/data/updates.json')).json())[0].changelog.map((change: string) => `  - ${change}`).join('\n');
-		// @ts-expect-error
-		if (lastVersion && gt(coerce(currentVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))) {
-			alert(`MineXLauncher has been updated to v${currentVersion}!\n\nChanges in v${currentVersion}:\n${changelog}`);
-			storage.local.set('lastVersion', currentVersion);
-		}
-	});
 }
 
 if (window.location.pathname === '/settings/') {
@@ -404,23 +386,18 @@ if (window.location.pathname === '/settings/') {
 		usernameInput.placeholder = storage.local.get('username') ?? '';
 		themeSelect.value = storage.local.get('theme') ?? '';
 		// offlineCheckbox.checked = storage.local.get('offlineCache') ?? false;
-		adsCheckbox.checked = storage.local.get('showAds') !== false;
+		adsCheckbox.checked = storage.local.get('showAds');
 
 		usernameInput.addEventListener('input', () => {
 			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
 			usernameInput.value = username;
-			while (username.length < 3) {
-				username += '_';
-			}
+			while (username.length < 3) username += '_';
+
 			storage.local.set('username', username);
-			if (profileName) {
-				profileName.textContent = username;
-			}
+			if (profileName) profileName.textContent = username;
 		});
 
-		themeSelect.addEventListener('change', () => {
-			theme.set(themeSelect.value);
-		});
+		themeSelect.addEventListener('change', () => theme.set(themeSelect.value));
 
 		/* offlineCheckbox.addEventListener('change', () => {
 			storage.local.set('offlineCache', offlineCheckbox.checked);
@@ -437,7 +414,8 @@ if (window.location.pathname === '/settings/') {
 
 		adsCheckbox.addEventListener('change', () => {
 			storage.local.set('showAds', adsCheckbox.checked);
-			window.location.reload();
+			const adsContainers = Array.from(document.getElementsByClassName('ads-container')) as HTMLElement[];
+			adsContainers.forEach((adsContainer) => (adsContainer.style.display = 'none'));
 		});
 	});
 } else if (window.location.pathname === '/welcome/') {
@@ -452,9 +430,7 @@ if (window.location.pathname === '/settings/') {
 			usernameInput.value = username;
 		});
 
-		themeSelect.addEventListener('change', () => {
-			theme.load(themeSelect.value);
-		});
+		themeSelect.addEventListener('change', () => theme.load(themeSelect.value));
 
 		setupForm.addEventListener('submit', async (event) => {
 			event.preventDefault();
@@ -466,9 +442,7 @@ if (window.location.pathname === '/settings/') {
 				alert('Please type a username.');
 				return;
 			} else {
-				while (username.length < 3) {
-					username += '_';
-				}
+				while (username.length < 3) username += '_';
 
 				storage.local.set('username', username);
 				storage.local.set('theme', themeSelect.value);
@@ -482,15 +456,10 @@ if (window.location.pathname === '/settings/') {
 					alert(
 						'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
 					);
-					try {
-						// @ts-expect-error
-						installPwaEvent.prompt();
-					} catch (error) {
-						console.error('Failed to prompt PWA install:', error);
-					}
-				} else {
-					serviceworker.register('/sw.js');
-				} */
+					// @ts-expect-error
+					try installPwaEvent.prompt();
+					catch (error) console.error('Failed to prompt PWA install:', error)
+				} else serviceworker.register('/sw.js'); */
 
 				// @ts-expect-error
 				window.top.location.href = '/';
