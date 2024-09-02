@@ -3,7 +3,8 @@ window.addEventListener('load', () => {
 	const relayId = Math.floor(Math.random() * 3);
 	window.eaglercraftXOpts = {
 		container: 'game_frame',
-		assetsURI: 'assets.epk',
+		assetsURI: `${window.location.pathname}/assets.epk`,
+		localesURI: `${window.location.pathname}/lang/`,
 		servers: [{ addr: 'wss://eagler.xyz', name: 'TemuzX' }],
 		relays: [
 			{ addr: 'wss://relay.deev.is/', comment: 'lax1dude relay #1', primary: relayId === 0 },
@@ -15,5 +16,6 @@ window.addEventListener('load', () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
 
+	history.replaceState({}, '', '/');
 	main();
 });
