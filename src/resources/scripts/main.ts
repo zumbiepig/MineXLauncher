@@ -381,11 +381,12 @@ if (window.location.pathname === '/') {
 		const titleBarText = document.getElementById('title-bar-text');
 
 		const lastVersion = storage.local.get('lastVersion');
-		const currentVersion = (await (await fetch('/resources/data/updates.json')).json())[0].version;
-		const changelog = (await (await fetch('/resources/data/updates.json')).json())[0].changelog.map((change: string) => `  - ${change}`).join('\n');
+		const updateData = (await (await fetch('/resources/data.json')).json()).updates;
+		const currentVersion = updateData[0].version;
+		const changelog = updateData[0].changelog.map((change: string) => `  - ${change}`).join('\n');
 
 		if (profileName) profileName.textContent = storage.local.get('username');
-		if (titleBarText) titleBarText.textContent += ` ${(await (await fetch('/resources/data/updates.json')).json())[0].version}`;
+		if (titleBarText) titleBarText.textContent += ` ${currentVersion}`;
 
 		// @ts-expect-error
 		if (lastVersion && gt(coerce(currentVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))) {
@@ -415,12 +416,20 @@ if (window.location.pathname === '/') {
 }
 
 if (window.location.pathname === '/settings/') {
-	document.addEventListener('DOMContentLoaded', () => {
+	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.getElementById('profile-name');
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
 		const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
+		const themeData: { id: string; name: string }[] = (await(await fetch('/resources/data.json')).json()).themes;
+
+		themeData.forEach((theme: { id: string; name: string }) => {
+			const option = document.createElement('option');
+			option.value = theme.id;
+			option.textContent = theme.name;
+			themeSelect?.appendChild(option);
+		});
 
 		usernameInput.placeholder = storage.local.get('username') ?? '';
 		themeSelect.value = storage.local.get('theme') ?? '';
@@ -458,11 +467,19 @@ if (window.location.pathname === '/settings/') {
 		});
 	});
 } else if (window.location.pathname === '/welcome/') {
-	document.addEventListener('DOMContentLoaded', () => {
+	document.addEventListener('DOMContentLoaded', async () => {
 		const setupForm = document.getElementById('setup-form') as HTMLFormElement;
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
+		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data.json')).json()).themes;
+
+		themeData.forEach((theme: { id: string; name: string }) => {
+			const option = document.createElement('option');
+			option.value = theme.id;
+			option.textContent = theme.name;
+			themeSelect?.appendChild(option);
+		});
 
 		usernameInput.addEventListener('input', () => {
 			const username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
@@ -488,7 +505,7 @@ if (window.location.pathname === '/settings/') {
 				// storage.local.set('offlineCache', offlineCheckbox.checked);
 				storage.local.set('showAds', true);
 				storage.local.set('mods', []);
-				storage.local.set('lastVersion', (await (await fetch('/resources/data/updates.json')).json())[0].version);
+				storage.local.set('lastVersion', (await (await fetch('/resources/data.json')).json()).updates[0].version);
 
 				/* if (offlineCheckbox.checked) {
 					serviceworker.register('/sw-full.js');
@@ -507,31 +524,32 @@ if (window.location.pathname === '/settings/') {
 	});
 } else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
 	document.addEventListener('DOMContentLoaded', async () => {
-		const modType: 'mods' | 'resourcepacks' = window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
-		const modData = await (await fetch('/resources/data/mods.json')).json();
+		const addonType: 'mods' | 'resourcepacks' = window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
+		const addonData: { id: string; name: string; description: string; author: string; authorLink: string; source: string }[] = (await (await fetch('/resources/data.json')).json()).addons;
 		const modList = document.querySelector('.mod-list');
-		modData[modType].forEach((mod: { id: string; name: string; description: string; author: string; authorLink: string; source: string }) => {
+		// @ts-expect-error
+		addonData[addonType].forEach((addon) => {
 			const modItem = document.createElement('div');
 			modItem.classList.add('mod-item');
 			modItem.innerHTML = `<div class="mod-icon">
-	<img loading="lazy" src="/resources/mods/icons/${mod.id}.webp" />
+	<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" />
 </div>
 <div class="mod-details">
-	<h3 class="mod-name">${mod.name}</h3>
-	<p class="mod-author">By <a href="${mod.authorLink}" target="_blank">${mod.author}</a></p>
-	<p class="mod-description">${mod.description}</p>
+	<h3 class="mod-name">${addon.name}</h3>
+	<p class="mod-author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p>
+	<p class="mod-description">${addon.description}</p>
 	<div class="mod-links">
 		${
-			modType === 'mods'
-				? `<a class="mod-install" id="mod-install-${mod.id}" onclick="mods.toggle('${mod.id}')">Install</a>`
-				: `<a href="/resources/mods/downloads/${mod.id}.zip" class="mod-download" download>Download</a>`
+			addonType === 'mods'
+				? `<a class="mod-install" id="mod-install-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
+				: `<a href="/resources/mods/downloads/${addon.id}.zip" class="mod-download" download>Download</a>`
 		}
 	</div>
 </div>`;
 			modList?.appendChild(modItem);
 		});
 
-		if (modType === 'mods') {
+		if (addonType === 'mods') {
 			const installedMods = storage.local.get('mods') ?? [];
 			const modElements = Array.from(document.getElementsByClassName('mod-install')) as HTMLAnchorElement[];
 			modElements.forEach((modElement) => {
@@ -546,7 +564,7 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const updatesContainer = document.getElementById('updates-container');
-		const updateData: { version: string; changelog: string[] }[] = await (await fetch('/resources/data/updates.json')).json();
+		const updateData: { version: string; changelog: string[] }[] = (await (await fetch('/resources/data.json')).json()).updates;
 		updateData.forEach((update) => {
 			const versionHeader = document.createElement('strong');
 			versionHeader.textContent = `MineXLauncher ${update.version}`;
