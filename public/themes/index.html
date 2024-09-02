@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MineXLauncher</title>
+		<link rel="icon" type="image/webp" href="/resources/images/icons/favicon.webp" />
+		<link rel="stylesheet" href="/resources/styles/themes/default.css" />
+		<link rel="stylesheet" id="theme" />
+		<script src="/resources/scripts/google-tag.js"></script>
+		<script src="/resources/scripts/main.js"></script>
+	</head>
+	<body>
+		<div class="ads-container">
+			<ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-1132419379737567" data-ad-slot="3280170072" data-ad-format="auto" data-full-width-responsive="true"></ins>
+		</div>
+		<div class="launcher">
+			<div class="title-bar">
+				<span id="title-bar-text">MineXLauncher</span>
+			</div>
+			<div class="content">
+				<div class="sidebar">
+					<div class="profile">
+						<span class="profile-name" id="profile-name"></span>
+					</div>
+					<nav>
+						<li class="nav-item" onclick="navigate.updates()">
+							<img src="/resources/images/icons/nav/updates.webp" class="nav-icon" />
+							<span class="nav-text">Updates</span>
+						</li>
+						<li class="nav-item" onclick="navigate.home.game()">
+							<img src="/resources/images/icons/nav/game.webp" class="nav-icon" />
+							<span class="nav-text">Game</span>
+						</li>
+						<li class="nav-item" onclick="navigate.servers()">
+							<img src="/resources/images/icons/nav/servers.webp" class="nav-icon" />
+							<span class="nav-text">Server List</span>
+						</li>
+						<li class="nav-item" onclick="navigate.mods.mods()">
+							<img src="/resources/images/icons/nav/mods.webp" class="nav-icon" />
+							<span class="nav-text">Mods</span>
+						</li>
+						<li class="nav-item selected" onclick="navigate.settings()">
+							<img src="/resources/images/icons/nav/settings.webp" class="nav-icon" />
+							<span class="nav-text">Settings</span>
+						</li>
+					</nav>
+				</div>
+				<div class="main-panel">
+					<div class="top-bar">
+						<span class="game-title">Custom Themes</span>
+					</div>
+					<div class="main-content">
+						<div class="settings">
+    <div class="color-picker-wrapper">
+        <div class="color-picker">
+            <label for="font-family-primary">Font Family Primary Color</label>
+            <input type="color" id="font-family-primary" value="#000000">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-dark">Background Dark</label>
+            <input type="color" id="color-background-dark" value="#1e1e1e">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-light">Background Light</label>
+            <input type="color" id="color-background-light" value="#2c2c2c">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-sidebar">Background Sidebar</label>
+            <input type="color" id="color-background-sidebar" value="#242424">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-panel">Background Panel</label>
+            <input type="color" id="color-background-panel" value="#202020">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-green">Background Green</label>
+            <input type="color" id="color-background-green" value="#048239">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-hover-green">Background Hover Green</label>
+            <input type="color" id="color-background-hover-green" value="#00cc00">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-button-green">Background Button Green</label>
+            <input type="color" id="color-background-button-green" value="#0f990f">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-button-hover-green">Background Button Hover Green</label>
+            <input type="color" id="color-background-button-hover-green" value="#17b117">
+        </div>
+        <div class="color-picker">
+            <label for="color-background-button-active-green">Background Button Active Green</label>
+            <input type="color" id="color-background-button-active-green" value="#00ff00">
+        </div>
+        <div class="color-picker">
+            <label for="color-border">Border Color</label>
+            <input type="color" id="color-border" value="#333">
+        </div>
+        <div class="color-picker">
+            <label for="color-shadow">Shadow Color</label>
+            <input type="color" id="color-shadow" value="#000000">
+        </div>
+        <div class="color-picker">
+            <label for="color-shadow-light">Shadow Light Color</label>
+            <input type="color" id="color-shadow-light" value="#333333">
+        </div>
+        <div class="color-picker">
+            <label for="color-text-primary">Text Primary Color</label>
+            <input type="color" id="color-text-primary" value="#ffffff">
+        </div>
+        <div class="color-picker">
+            <label for="color-text-secondary">Text Secondary Color</label>
+            <input type="color" id="color-text-secondary" value="#dddddd">
+        </div>
+        <div class="color-picker">
+            <label for="color-text-muted">Text Muted Color</label>
+            <input type="color" id="color-text-muted" value="#888888">
+        </div>
+        <div class="color-picker">
+            <label for="color-text-hover">Text Hover Color</label>
+            <input type="color" id="color-text-hover" value="#00cc00">
+        </div>
+        <div class="color-picker">
+            <label for="color-text-selected">Text Selected Color</label>
+            <input type="color" id="color-text-selected" value="#ffffff">
+        </div>
+        <div class="color-picker">
+            <label for="color-text-light">Text Light Color</label>
+            <input type="color" id="color-text-light" value="#cccccc">
+        </div>
+        <div class="color-picker">
+            <label for="color-text-light-hover">Text Light Hover Color</label>
+            <input type="color" id="color-text-light-hover" value="#ffffff">
+        </div>
+        <div class="color-picker">
+            <label for="color-button">Button Color</label>
+            <input type="color" id="color-button" value="#a9a9a9">
+        </div>
+        <div class="color-picker">
+            <label for="color-button-hover">Button Hover Color</label>
+            <input type="color" id="color-button-hover" value="#bdbdbd">
+        </div>
+        <div class="color-picker">
+            <label for="color-button-active">Button Active Color</label>
+            <input type="color" id="color-button-active" value="#8a8a8a">
+        </div>
+        <div class="color-picker">
+            <label for="color-scrollbar-track">Scrollbar Track Color</label>
+            <input type="color" id="color-scrollbar-track" value="#555555">
+        </div>
+        <div class="color-picker">
+            <label for="color-scrollbar-thumb">Scrollbar Thumb Color</label>
+            <input type="color" id="color-scrollbar-thumb" value="#333333">
+        </div>
+    </div>
+</div>
+ 
+					</div>
+				</div>
+			</div>
+			<div class="bottom-bar">
+				<div class="bottom-bar-links">
+					<a href="https://discord.gg/YKgfuFvKhA" class="bottom-bar-left">Join the MineXLauncher Discord</a>
+				</div>
+				<div class="bottom-bar-links">
+					<span class="bottom-bar-right">© 2024 MineXLauncher. All rights reserved.</span>
+				</div>
+			</div>
+		</div>
+		<div class="ads-container">
+			<ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-1132419379737567" data-ad-slot="3280170072" data-ad-format="auto" data-full-width-responsive="true"></ins>
+		</div>
+	</body>
+</html>

@@ -384,7 +384,6 @@ if (window.location.pathname === '/') {
 		const updateData = (await (await fetch('/resources/data.json')).json()).updates;
 		const currentVersion = updateData[0].version;
 		const changelog = updateData[0].changelog.map((change: string) => `  - ${change}`).join('\n');
-
 		if (profileName) profileName.textContent = storage.local.get('username');
 		if (titleBarText) titleBarText.textContent += ` ${currentVersion}`;
 
