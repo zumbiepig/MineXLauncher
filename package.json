@@ -20,6 +20,7 @@
 		"express": "^4.19.2",
 		"helmet": "^7.1.0",
 		"morgan": "^1.10.0",
+		"pako": "^2.1.0",
 		"semver": "^7.6.3",
 		"serve-favicon": "^2.5.0"
 	},
@@ -32,6 +33,7 @@
 		"@types/errorhandler": "^1.5.3",
 		"@types/eslint__js": "^8.42.3",
 		"@types/morgan": "^1.9.9",
+		"@types/pako": "^2.0.3",
 		"@types/semver": "^7.5.8",
 		"@types/serve-favicon": "^2.5.7",
 		"eslint": "^9.9.1",

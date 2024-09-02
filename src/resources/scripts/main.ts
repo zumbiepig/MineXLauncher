@@ -1,4 +1,5 @@
 import { gt, coerce } from 'semver';
+import { inflate, deflate } from 'pako';
 
 let selectedVersion: string;
 
@@ -308,6 +309,44 @@ const serviceworker = {
 	},
 };
 
+const base64Gzip = {
+	decode: function (base64: string) {
+		// Decode Base64 to binary string
+		const binaryString = atob(base64);
+
+		// Convert binary string to Uint8Array
+		const len = binaryString.length;
+		const bytes = new Uint8Array(len);
+		for (let i = 0; i < len; i++) {
+			bytes[i] = binaryString.charCodeAt(i);
+		}
+
+		// Use pako to decompress the Uint8Array
+		const decompressed = inflate(bytes, { to: 'string' });
+
+		return decompressed;
+	},
+	encode: function (inputString: string) {
+		// Convert the input string to a Uint8Array
+		const encoder = new TextEncoder();
+		const inputBytes = encoder.encode(inputString);
+
+		// Use pako to compress the Uint8Array
+		const compressedBytes = deflate(inputBytes);
+
+		// Convert the compressed Uint8Array to a binary string
+		let binaryString = '';
+		for (const byte of compressedBytes) {
+			binaryString += String.fromCharCode(byte);
+		}
+
+		// Encode the binary string to Base64
+		const base64String = btoa(binaryString);
+
+		return base64String;
+	},
+};
+
 theme.load();
 
 if (detect.mobile()) {
@@ -527,5 +566,5 @@ if (window.location.pathname === '/settings/') {
 
 if (window.location.hostname === null) {
 	// Stop the minifier from removing these functions
-	console.debug([navigate, query, versionSelector, game, mods]);
+	console.debug([navigate, query, versionSelector, game, mods, base64Gzip]);
 }
