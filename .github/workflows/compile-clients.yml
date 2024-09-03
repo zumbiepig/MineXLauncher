@@ -1,6 +1,9 @@
 name: Build and compile clients
 
-on: [workflow_dispatch]
+on:
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
 
 jobs:
   build:
@@ -42,5 +45,5 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'github-actions: Build and compile clients'
+          commit_message: 'github-actions: build and compile clients'
           commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
