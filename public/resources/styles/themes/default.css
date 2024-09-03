@@ -185,8 +185,7 @@ nav {
 	flex-direction: column;
 	background-color: #202020;
 	box-sizing: border-box;
-	position: relative;
-	overflow: auto;
+	overflow-y: auto;
 	scrollbar-width: thin;
 	scrollbar-color: #555 #333;
 }
@@ -207,13 +206,12 @@ nav {
 
 .installations {
 	display: flex;
-	flex: 1;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
 	background-color: #292929;
 	box-sizing: border-box;
-	position: absolute;
+	position: sticky;
 	bottom: 0;
 	left: 0;
 	padding: 10px 20px;
@@ -452,7 +450,6 @@ nav {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
-	max-height: 100%;
 	padding: 10px;
 	text-align: center;
 	scrollbar-width: thin;
@@ -465,6 +462,8 @@ nav {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	padding: 10px;
 	text-align: center;
+	position: relative;
+	padding-bottom: 30px;
 }
 
 .mod-item .mod-icon {
@@ -506,10 +505,17 @@ nav {
 .mod-item .mod-links {
 	display: flex;
 	justify-content: space-around;
-	margin-top: 10px;
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
 }
 
-.mod-item .mod-download {
+.mod-item .mod-links .mod-download,
+.mod-item .mod-links .mod-install {
+	flex: 1;
+}
+
+.mod-item .mod-links .mod-download {
 	padding: 5px 15px;
 	background-color: #555;
 	color: #fff;
@@ -518,12 +524,12 @@ nav {
 	transition: background-color 0.3s;
 }
 
-.mod-item .mod-download:hover {
+.mod-item .mod-links .mod-download:hover {
 	cursor: pointer;
 	background-color: #777;
 }
 
-.mod-item .mod-install {
+.mod-item .mod-links .mod-install {
 	padding: 5px 15px;
 	background-color: #4c4;
 	color: #fff;
@@ -532,16 +538,16 @@ nav {
 	transition: background-color 0.3s;
 }
 
-.mod-item .mod-install:hover {
+.mod-item .mod-links .mod-install:hover {
 	cursor: pointer;
 	background-color: #00b300;
 }
 
-.mod-item .mod-install.installed {
+.mod-item .mod-links .mod-install.installed {
 	background-color: #ff0000;
 }
 
-.mod-item .mod-install.installed:hover {
+.mod-item .mod-links .mod-install.installed:hover {
 	background-color: #cc0000;
 }
 

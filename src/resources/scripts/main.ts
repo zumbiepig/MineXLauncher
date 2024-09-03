@@ -395,7 +395,7 @@ if (window.location.pathname === '/') {
 		}
 	});
 
-	if (storage.local.get('showAds')) {
+	/* if (storage.local.get('showAds')) {
 		const googleAdsScript = document.createElement('script');
 		googleAdsScript.async = true;
 		googleAdsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132419379737567';
@@ -412,7 +412,7 @@ if (window.location.pathname === '/') {
 				adsContainer.style.display = 'flex';
 			});
 		});
-	}
+	} */
 }
 
 if (window.location.pathname === '/settings/') {
@@ -421,8 +421,8 @@ if (window.location.pathname === '/settings/') {
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
-		const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
-		const themeData: { id: string; name: string }[] = (await(await fetch('/resources/data.json')).json()).themes;
+		// const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
+		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data.json')).json()).themes;
 
 		themeData.forEach((theme: { id: string; name: string }) => {
 			const option = document.createElement('option');
@@ -434,7 +434,7 @@ if (window.location.pathname === '/settings/') {
 		usernameInput.placeholder = storage.local.get('username') ?? '';
 		themeSelect.value = storage.local.get('theme') ?? '';
 		// offlineCheckbox.checked = storage.local.get('offlineCache') ?? false;
-		adsCheckbox.checked = storage.local.get('showAds');
+		// adsCheckbox.checked = storage.local.get('showAds');
 
 		usernameInput.addEventListener('input', () => {
 			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
@@ -460,11 +460,11 @@ if (window.location.pathname === '/settings/') {
 			}
 		}); */
 
-		adsCheckbox.addEventListener('change', () => {
+		/* adsCheckbox.addEventListener('change', () => {
 			storage.local.set('showAds', adsCheckbox.checked);
 			const adsContainers = Array.from(document.getElementsByClassName('ads-container')) as HTMLElement[];
 			adsContainers.forEach((adsContainer) => (adsContainer.style.display = 'none'));
-		});
+		}); */
 	});
 } else if (window.location.pathname === '/welcome/') {
 	document.addEventListener('DOMContentLoaded', async () => {
@@ -535,17 +535,17 @@ if (window.location.pathname === '/settings/') {
 	<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" />
 </div>
 <div class="mod-details">
-	<h3 class="mod-name">${addon.name}</h3>
+	<strong class="mod-name">${addon.name}</strong>
 	<p class="mod-author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p>
 	<p class="mod-description">${addon.description}</p>
-	<div class="mod-links">
+</div>
+<div class="mod-links">
 		${
 			addonType === 'mods'
 				? `<a class="mod-install" id="mod-install-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
 				: `<a href="/resources/mods/downloads/${addon.id}.zip" class="mod-download" download>Download</a>`
 		}
-	</div>
-</div>`;
+	</div>`;
 			modList?.appendChild(modItem);
 		});
 
