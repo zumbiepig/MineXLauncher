@@ -467,7 +467,7 @@ nav {
 	padding: 10px;
 	text-align: center;
 	position: relative;
-	padding-bottom: 40px;
+	padding-bottom: 35px;
 }
 
 .mod-item .mod-icon {
@@ -513,10 +513,10 @@ nav {
 .mod-item .mod-links {
 	display: flex;
 	justify-content: space-around;
-	width: calc(100% - 30px);
+	width: calc(100% - 20px);
 	position: absolute;
-	bottom: 15px;
-	left: 15px;
+	bottom: 10px;
+	left: 10px;
 }
 
 .mod-item .mod-links .mod-download,
