@@ -2,7 +2,7 @@ name: Build and compile clients
 
 on:
   schedule:
-    - cron: 0 0 * * *
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -43,7 +43,13 @@ jobs:
           cp ${{ runner.temp }}/shadow/javascript/classes.js.map ./public/game/web/clients/shadow/classes.js.map
           cp ${{ runner.temp }}/shadow/javascript/Shadow_Client_International.html ./public/game/offline/clients/Shadow_Client.html
       - name: Commit and push changes
+        id: git-auto-commit-action
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'github-actions: build and compile clients'
           commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
+      - name: Merge back with 'dev' branch
+        run: |
+          git checkout dev
+          git merge --no-ff ${{ steps.git-auto-commit-action.outputs.commit_hash }}
+          git push origin dev
