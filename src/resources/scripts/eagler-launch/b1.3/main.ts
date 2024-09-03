@@ -5,6 +5,6 @@ window.addEventListener('load', function () {
 	const urlParams = new URLSearchParams(window.location.search);
 	window.minecraftOpts.push(urlParams.get('server') ?? undefined);
 
-	history.replaceState({}, '', '/');
+	history.replaceState({}, '', '/play');
 	main();
 });

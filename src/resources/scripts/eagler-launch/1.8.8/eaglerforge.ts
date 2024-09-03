@@ -40,6 +40,6 @@ window.addEventListener('load', () => {
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
 	window.eaglercraftXOpts.Mods = storage.local.get('mods') ?? [];
 
-	history.replaceState({}, '', '/');
+	history.replaceState({}, '', '/play');
 	main();
 });
