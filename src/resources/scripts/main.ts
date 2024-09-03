@@ -59,7 +59,7 @@ const game = {
 			window.top.location.href = version;
 		} else if (selectedVersion) {
 			document.body.style.display = 'none';
-			storage.session.set('lastPage', selectedVersion);
+			storage.session.set('lastGame', selectedVersion);
 			// @ts-expect-error
 			window.top.location.href = selectedVersion;
 		} else {
