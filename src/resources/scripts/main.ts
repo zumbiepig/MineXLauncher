@@ -291,7 +291,7 @@ const mods = {
 	},
 };
 
-const serviceworker = {
+const sw = {
 	register: function (url: string) {
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
@@ -369,12 +369,14 @@ if (window.location.pathname === '/') {
 		if (iframe.contentWindow) iframe.contentWindow.installPwaEvent = event;
 	});
 
-	/* if (storage.local.get('offlineCache')) {
-		serviceworker.register('/sw-full.js');
-	} else {
-		serviceworker.register('/sw.js');
-	} */
-	serviceworker.register('/sw.js');
+	/* document.addEventListener('load', () => {
+		if (storage.local.get('offlineCache')) {
+			sw.register('/sw-full.js');
+		} else {
+			sw.register('/sw.js');
+		}
+	}); */
+	document.addEventListener('load', () => sw.register('/sw.js'));
 } else {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.getElementById('profile-name');
@@ -450,12 +452,12 @@ if (window.location.pathname === '/settings/') {
 		/* offlineCheckbox.addEventListener('change', () => {
 			storage.local.set('offlineCache', offlineCheckbox.checked);
 			if (offlineCheckbox.checked) {
-				serviceworker.register('/sw-full.js');
+				sw.register('/sw-full.js');
 				alert(
 					'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
 				);
 			} else {
-				serviceworker.register('/sw.js');
+				sw.register('/sw.js');
 				alert('Offline cache has been deleted.');
 			}
 		}); */
@@ -508,14 +510,14 @@ if (window.location.pathname === '/settings/') {
 				storage.local.set('lastVersion', (await (await fetch('/resources/data.json')).json()).updates[0].version);
 
 				/* if (offlineCheckbox.checked) {
-					serviceworker.register('/sw-full.js');
+					sw.register('/sw-full.js');
 					alert(
 						'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
 					);
 					// @ts-expect-error
 					try installPwaEvent.prompt();
 					catch (error) console.error('Failed to prompt PWA install:', error)
-				} else serviceworker.register('/sw.js'); */
+				} else sw.register('/sw.js'); */
 
 				// @ts-expect-error
 				window.top.location.href = '/';

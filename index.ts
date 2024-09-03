@@ -57,7 +57,14 @@ app.use(async (err, req, res, next) => {
 	next();
 });
 
-app.listen(PORT, async () => {
-	debugLogger('Server started.');
-	console.log(chalk.green(`Server is running on port ${PORT}`));
-});
+app
+	.listen(PORT, async () => {
+		debugLogger('Server started.');
+		console.log(chalk.green(`Server is running on port ${PORT}`));
+	})
+	.on('error', (error) => {
+		if (error.code === 'EADDRINUSE') {
+			console.error(chalk.red('EADDRINUSE') + chalk.gray(': ') + chalk.bold(`Failed to start server. Is port ${PORT} in use?`));
+			process.exit(1);
+		}
+	});
