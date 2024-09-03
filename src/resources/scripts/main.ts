@@ -531,21 +531,13 @@ if (window.location.pathname === '/settings/') {
 		addonData[addonType].forEach((addon) => {
 			const modItem = document.createElement('div');
 			modItem.classList.add('mod-item');
-			modItem.innerHTML = `<div class="mod-icon">
-	<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" />
-</div>
-<div class="mod-details">
-	<strong class="mod-name">${addon.name}</strong>
-	<p class="mod-author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p>
-	<p class="mod-description">${addon.description}</p>
-</div>
-<div class="mod-links">
-		${
-			addonType === 'mods'
-				? `<a class="mod-install" id="mod-install-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
-				: `<a href="/resources/mods/downloads/${addon.id}.zip" class="mod-download" download>Download</a>`
-		}
-	</div>`;
+			modItem.innerHTML = `<div class="mod-icon"><img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" /></div><div class="mod-details"><strong class="mod-name">${
+				addon.name
+			}</strong><p class="mod-author">By <a href="${addon.authorLink} target="_blank">${addon.author}</a></p><p class="mod-description">${addon.description}</p></div><div class="mod-links">${
+				addonType === 'mods'
+					? `<a class="mod-install" id="mod-install-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
+					: `<a href="/resources/mods/downloads/${addon.id}.zip" class="mod-download" download>Download</a>`
+			}</div>`;
 			modList?.appendChild(modItem);
 		});
 
