@@ -3,6 +3,10 @@
 	src: url(/resources/fonts/Minecraftia-Regular.ttf);
 }
 
+a:visited {
+	color: blue;
+}
+
 body {
 	display: flex;
 	flex-direction: row;
@@ -378,12 +382,16 @@ nav {
 	text-decoration: none;
 }
 
-.bottom-bar .bottom-bar-left:hover {
-	text-decoration: underline;
-}
-
 .bottom-bar .bottom-bar-right {
 	color: #ddd;
+	margin-left: 10px;
+	text-decoration: none;
+}
+
+.bottom-bar .bottom-bar-left.link:hover,
+.bottom-bar .bottom-bar-right.link:hover {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .updates-container {
@@ -463,7 +471,7 @@ nav {
 	padding: 10px;
 	text-align: center;
 	position: relative;
-	padding-bottom: 30px;
+	padding-bottom: 40px;
 }
 
 .mod-item .mod-icon {
@@ -505,9 +513,10 @@ nav {
 .mod-item .mod-links {
 	display: flex;
 	justify-content: space-around;
+	width: calc(100% - 30px);
 	position: absolute;
-	bottom: 10px;
-	width: 100%;
+	bottom: 15px;
+	left: 15px;
 }
 
 .mod-item .mod-links .mod-download,
