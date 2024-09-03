@@ -1,0 +1,37 @@
+name: Build and compile clients
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Shadow Client
+        run: |
+          git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
+          rm -rf \
+            ./public/game/web/clients/shadow/lang/ \
+            ./public/game/web/clients/shadow/assets.epk \
+            ./public/game/web/clients/shadow/classes.js \
+            ./public/game/web/clients/shadow/classes.js.map \
+            ./public/game/offline/clients/Shadow_Client.html \
+            ${{runner.temp}}/shadow/javascript/assets.epk \
+            ${{runner.temp}}/shadow/javascript/classes.js \
+            ${{runner.temp}}/shadow/javascript/classes.js.map
+          cd ${{runner.temp}}/shadow/
+          bash ./CompileEPK.sh
+          bash ./CompileJS.sh
+          bash ./MakeOfflineDownload.sh
+          cd ${{ github.workspace }}
+          cp -r ${{ runner.temp }}/shadow/javascript/lang/ ./public/game/web/clients/shadow/lang/
+          cp ${{ runner.temp }}/shadow/javascript/assets.epk ./public/game/web/clients/shadow/assets.epk
+          cp ${{ runner.temp }}/shadow/javascript/classes.js ./public/game/web/clients/shadow/classes.js
+          cp ${{ runner.temp }}/shadow/javascript/classes.js.map ./public/game/web/clients/shadow/classes.js.map
+          cp ${{ runner.temp }}/shadow/javascript/Shadow_Client_International.html ./public/game/offline/clients/Shadow_Client.html
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'github-actions: Build and compile clients'
+          commit_author: '41898282+github-actions[bot]@users.noreply.github.com'
