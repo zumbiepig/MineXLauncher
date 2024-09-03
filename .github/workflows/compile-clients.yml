@@ -20,7 +20,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           cache-disabled: true
-      - name: Shadow Client
+      - name: Compile Shadow Client
         run: |
           git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
           rm -rf \
