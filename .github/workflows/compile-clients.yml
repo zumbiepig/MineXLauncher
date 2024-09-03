@@ -52,5 +52,5 @@ jobs:
         if: steps.git-auto-commit-action.outputs.changes_detected == 'true'
         run: |
           git checkout dev
-          git merge --rebase --allow-unrelated-histories main
+          git merge --allow-unrelated-histories ${{ steps.git-auto-commit-action.outputs.commit_hash }}
           git push origin dev
