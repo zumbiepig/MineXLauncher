@@ -6,9 +6,10 @@ window.addEventListener('load', () => {
 		assetsURI: `${window.location.pathname}/assets.epk`,
 		localesURI: `${window.location.pathname}/lang/`,
 		servers: [
+			{ addr: 'wss://mc.ricenetwork.xyz', name: 'Rice Network' },
+			{ addr: 'wss://mc.lamplifesteal.xyz', name: 'LampLifesteal' },
 			{ addr: 'wss://electronmc.club', name: 'Electron Network' },
 			{ addr: 'wss://play.brickmc.net', name: 'BrickMC' },
-			{ addr: 'wss://mc.lamplifesteal.xyz', name: 'LampLifesteal' },
 		],
 		relays: [
 			{ addr: 'wss://relay.deev.is/', comment: 'lax1dude relay #1', primary: relayId === 0 },
