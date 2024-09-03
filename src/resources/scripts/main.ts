@@ -54,10 +54,12 @@ const game = {
 	play: function (version?: string) {
 		if (version) {
 			document.body.style.display = 'none';
+			storage.session.set('lastGame', version);
 			// @ts-expect-error
 			window.top.location.href = version;
 		} else if (selectedVersion) {
 			document.body.style.display = 'none';
+			storage.session.set('lastPage', selectedVersion);
 			// @ts-expect-error
 			window.top.location.href = selectedVersion;
 		} else {

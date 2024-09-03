@@ -21,6 +21,6 @@ window.addEventListener('load', () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
 
-	history.replaceState({}, '', '/');
+	history.replaceState({}, '', '/play');
 	main();
 });
