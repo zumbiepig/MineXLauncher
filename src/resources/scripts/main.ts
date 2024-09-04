@@ -376,7 +376,7 @@ if (window.location.pathname === '/') {
 		const titleBarText = document.getElementById('title-bar-text');
 
 		const lastVersion = storage.local.get('lastVersion');
-		const updateData = (await (await fetch('/resources/data.json')).json()).updates;
+		const updateData = (await (await fetch('/resources/data/main.json')).json()).updates;
 		const currentVersion = updateData[0].version;
 		const changelog = updateData[0].changelog.map((change: string) => `  - ${change}`).join('\n');
 
@@ -417,7 +417,7 @@ if (window.location.pathname === '/settings/') {
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
 		// const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
-		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data.json')).json()).themes;
+		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data/main.json')).json()).themes;
 
 		themeData.forEach((theme: { id: string; name: string }) => {
 			const option = document.createElement('option');
@@ -467,7 +467,7 @@ if (window.location.pathname === '/settings/') {
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
-		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data.json')).json()).themes;
+		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data/main.json')).json()).themes;
 
 		themeData.forEach((theme: { id: string; name: string }) => {
 			const option = document.createElement('option');
@@ -500,7 +500,7 @@ if (window.location.pathname === '/settings/') {
 				// storage.local.set('offlineCache', offlineCheckbox.checked);
 				storage.local.set('showAds', true);
 				storage.local.set('mods', []);
-				storage.local.set('lastVersion', (await (await fetch('/resources/data.json')).json()).updates[0].version);
+				storage.local.set('lastVersion', (await (await fetch('/resources/data/main.json')).json()).updates[0].version);
 
 				/* if (offlineCheckbox.checked) {
 					sw.register('/sw-full.js');
@@ -520,7 +520,7 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const addonType: 'mods' | 'resourcepacks' = window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
-		const addonData: { id: string; name: string; description: string; author: string; authorLink: string; source: string }[] = (await (await fetch('/resources/data.json')).json()).addons;
+		const addonData: { id: string; name: string; description: string; author: string; authorLink: string; source: string }[] = (await (await fetch('/resources/data/main.json')).json()).addons;
 		const modList = document.querySelector('.mod-list');
 		// @ts-expect-error
 		addonData[addonType].forEach((addon) => {
@@ -551,7 +551,7 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const updatesContainer = document.getElementById('updates-container');
-		const updateData: { version: string; changelog: string[] }[] = (await (await fetch('/resources/data.json')).json()).updates;
+		const updateData: { version: string; changelog: string[] }[] = (await (await fetch('/resources/data/main.json')).json()).updates;
 		updateData.forEach((update) => {
 			const versionHeader = document.createElement('strong');
 			versionHeader.textContent = `MineXLauncher ${update.version}`;
