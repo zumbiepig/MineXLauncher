@@ -157,22 +157,22 @@
 				"id": "blink",
 				"name": "Blink",
 				"description": "use by typing the .blinkon and .blinkoff commands and sending it",
-				"author": "radmanplays",
-				"authorLink": "https://github.com/radmanplays",
-				"source": "https://github.com/radmanplays/eaglerreborn-plugins"
+				"author": "ZXMushroom63",
+				"authorLink": "https://github.com/ZXMushroom63",
+				"source": "https://github.com/eaglerforge/EaglerForge"
 			},
 			{
 				"id": "grapplehook",
 				"name": "GrappleHook",
 				"description": "grappling hook mod. how to use: 1.grab a fishing rod 2.use the fishing rod 3.grappling hook!",
-				"author": "radmanplays",
-				"authorLink": "https://github.com/radmanplays",
-				"source": "https://github.com/radmanplays/eaglerreborn-plugins"
+				"author": "ZXMushroom63",
+				"authorLink": "https://github.com/ZXMushroom63",
+				"source": "https://github.com/eaglerforge/EaglerForge"
 			},
 			{
 				"id": "xray",
 				"name": "Xray",
-				"description": "simple xray mod. its recommended to use this with Fullbright. keybind: x",
+				"description": "simple xray mod. its recommended to use this with Fullbright(modified version of ZXMushroom63's coal xray). keybind: x",
 				"author": "radmanplays",
 				"authorLink": "https://github.com/radmanplays",
 				"source": "https://github.com/EaglerRinth/eaglerrinth.github.io/blob/main/CommunityMods/Xray.js"
@@ -205,24 +205,24 @@
 				"id": "chat-shortcuts",
 				"name": "Chat Shortcuts",
 				"description": "shortcuts: {health}, {pos}, {name}, {me}, {x}, {y}, {z}, {level}, {walked}, {chunk}",
-				"author": "radmanplays",
-				"authorLink": "https://github.com/radmanplays",
+				"author": "ZXMushroom63",
+				"authorLink": "https://github.com/ZXMushroom63",
 				"source": "https://github.com/EaglerRinth/eaglerrinth.github.io/blob/main/CommunityMods/ChatShortcuts.js"
 			},
 			{
 				"id": "nofall",
 				"name": "NoFall",
 				"description": "makes you not take fall damage",
-				"author": "radmanplays",
-				"authorLink": "https://github.com/radmanplays",
+				"author": "ZXMushroom63",
+				"authorLink": "https://github.com/ZXMushroom63",
 				"source": "https://github.com/EaglerRinth/eaglerrinth.github.io/blob/main/CommunityMods/NoFall.js"
 			},
 			{
 				"id": "autofish",
 				"name": "AutoFish",
 				"description": "fishes for you. just throw a fishing rod in water to use this mod",
-				"author": "radmanplays",
-				"authorLink": "https://github.com/radmanplays",
+				"author": "ZXMushroom63",
+				"authorLink": "https://github.com/ZXMushroom63",
 				"source": "https://github.com/EaglerRinth/eaglerrinth.github.io/blob/main/CommunityMods/AutoFish.js"
 			}
 		],
