@@ -9,6 +9,35 @@
 		<link rel="stylesheet" id="theme" onload="document.documentElement.style.display = ''" />
 		<script src="/resources/scripts/google-tag.js"></script>
 		<script src="/resources/scripts/main.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const modal = document.getElementById('article-modal');
+				const modalContent = document.getElementById('article-modal-content');
+				const closeButton = document.querySelector('.close-button');
+
+				document.querySelectorAll('.article-item').forEach((item) => {
+					item.addEventListener('click', function () {
+						const articleName = this.querySelector('.article-name').textContent;
+						const articleDescription = this.querySelector('.article-description').textContent;
+
+						modalContent.innerHTML = `
+                    <h2>${articleName}</h2>
+                    <p>${articleDescription}</p>
+                `;
+
+						modal.style.display = 'block';
+					});
+				});
+
+				closeButton.addEventListener('click', function () {
+					modal.style.display = 'none';
+				});
+
+				modal.addEventListener('click', function () {
+					modal.style.display = 'none';
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<div class="ads-container">
@@ -16,12 +45,12 @@
 		</div>
 		<div class="launcher">
 			<div class="title-bar">
-				<span id="title-bar-text">MineXLauncher</span>
+				<span>MineXLauncher</span>
 			</div>
 			<div class="content">
 				<div class="sidebar">
 					<div class="profile">
-						<span class="profile-name" id="profile-name"></span>
+						<span class="profile-name"></span>
 					</div>
 					<nav>
 						<li class="nav-item" onclick="navigate.updates()">
@@ -63,6 +92,27 @@
 									<p class="article-description">Have you ever wondered how to make an Eaglercraft Server? Read this article to find out how!</p>
 								</div>
 							</div>
+						</div>
+					</div>
+					<div class="article-modal" id="article-modal">
+						<span class="close-button">&times;</span>
+						<div id="article-content">
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
+							<p>hello world</p>
 						</div>
 					</div>
 				</div>
