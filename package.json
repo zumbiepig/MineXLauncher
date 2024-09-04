@@ -38,7 +38,7 @@
 		"@types/serve-favicon": "^2.5.7",
 		"eslint": "^9.9.1",
 		"javascript-obfuscator": "^4.1.1",
-		"typescript-eslint": "^8.3.0"
+		"typescript-eslint": "^8.4.0"
 	},
 	"peerDependencies": {
 		"typescript": "^5.5.4"
