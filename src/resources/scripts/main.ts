@@ -7,14 +7,9 @@ const theme = {
 	load: function (themeToLoad?: string) {
 		const themeElement = document.getElementById('theme') as HTMLLinkElement;
 		if (themeElement) {
-			if (themeToLoad) {
-				themeElement.href = `/resources/styles/themes/${themeToLoad}.css`;
-			} else {
-				const savedTheme = storage.local.get('theme');
-				if (savedTheme) {
-					themeElement.href = `/resources/styles/themes/${savedTheme}.css`;
-				}
-			}
+			document.documentElement.style.display = 'none';
+			themeElement.onload = () => (document.documentElement.style.display = '');
+			themeElement.href = themeToLoad ? `/resources/styles/themes/${themeToLoad}.css` : `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
 		}
 	},
 	set: function (newTheme: string) {
@@ -349,8 +344,6 @@ const base64Gzip = {
 	},
 };
 
-theme.load();
-
 if (detect.mobile()) {
 	const link = document.createElement('link');
 	link.rel = 'stylesheet';
@@ -366,11 +359,6 @@ if (window.location.pathname === '/') {
 
 	document.addEventListener('DOMContentLoaded', () => document.body.appendChild(iframe));
 
-	window.addEventListener('beforeinstallprompt', (event) => {
-		// @ts-expect-error
-		if (iframe.contentWindow) iframe.contentWindow.installPwaEvent = event;
-	});
-
 	/* document.addEventListener('load', () => {
 		if (storage.local.get('offlineCache')) {
 			sw.register('/sw-full.js');
@@ -379,7 +367,21 @@ if (window.location.pathname === '/') {
 		}
 	}); */
 	document.addEventListener('load', () => sw.register('/sw.js'));
+
+	window.addEventListener('beforeinstallprompt', (event) => {
+		// @ts-expect-error
+		if (iframe.contentWindow) iframe.contentWindow.installPwaEvent = event;
+	});
 } else {
+	document.addEventListener('DOMContentLoaded', () => {
+		const themeElement = document.getElementById('theme') as HTMLLinkElement;
+		if (themeElement) {
+			document.documentElement.style.display = 'none';
+			themeElement.onload = () => (document.documentElement.style.display = '');
+			themeElement.href = `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
+		}
+	});
+
 	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.getElementById('profile-name');
 		const titleBarText = document.getElementById('title-bar-text');
@@ -449,7 +451,7 @@ if (window.location.pathname === '/settings/') {
 			if (profileName) profileName.textContent = username;
 		});
 
-		themeSelect.addEventListener('change', () => theme.set(themeSelect.value));
+		themeSelect.addEventListener('change', () => theme.set(themeSelect.value ?? 'default'));
 
 		/* offlineCheckbox.addEventListener('change', () => {
 			storage.local.set('offlineCache', offlineCheckbox.checked);
@@ -490,7 +492,7 @@ if (window.location.pathname === '/settings/') {
 			usernameInput.value = username;
 		});
 
-		themeSelect.addEventListener('change', () => theme.load(themeSelect.value));
+		themeSelect.addEventListener('change', () => theme.load(themeSelect.value ?? 'default'));
 
 		setupForm.addEventListener('submit', async (event) => {
 			event.preventDefault();
@@ -505,7 +507,7 @@ if (window.location.pathname === '/settings/') {
 				while (username.length < 3) username += '_';
 
 				storage.local.set('username', username);
-				storage.local.set('theme', themeSelect.value);
+				storage.local.set('theme', themeSelect.value ?? 'default');
 				// storage.local.set('offlineCache', offlineCheckbox.checked);
 				storage.local.set('showAds', true);
 				storage.local.set('mods', []);
