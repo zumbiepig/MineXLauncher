@@ -44,7 +44,7 @@
 	"updates": [
 		{
 			"version": "1.6",
-			"changelog": ["You can now install mods directly from the mods list"]
+			"changelog": ["You can now install mods directly from the mods list", "Bugfix: Themes no longer flicker when navigating"]
 		},
 		{
 			"version": "1.5",
