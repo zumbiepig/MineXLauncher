@@ -6,11 +6,7 @@ let selectedVersion: string;
 const theme = {
 	load: function (themeToLoad?: string) {
 		const themeElement = document.getElementById('theme') as HTMLLinkElement;
-		if (themeElement) {
-			document.documentElement.style.display = 'none';
-			themeElement.onload = () => (document.documentElement.style.display = '');
-			themeElement.href = themeToLoad ? `/resources/styles/themes/${themeToLoad}.css` : `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
-		}
+		if (themeElement) themeElement.href = themeToLoad ? `/resources/styles/themes/${themeToLoad}.css` : `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
 	},
 	set: function (newTheme: string) {
 		storage.local.set('theme', newTheme);
