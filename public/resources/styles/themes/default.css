@@ -400,7 +400,7 @@ nav {
 }
 
 .updates-container ul {
-	margin: 0px;
+	margin: 0;
 	padding: 5px 0 20px 30px;
 }
 
@@ -513,15 +513,16 @@ nav {
 .mod-item .mod-links {
 	display: flex;
 	justify-content: space-around;
-	width: calc(100% - 20px);
+	width: calc(100% - 10px);
 	position: absolute;
 	bottom: 10px;
-	left: 10px;
+	left: 5px;
 }
 
 .mod-item .mod-links .mod-download,
 .mod-item .mod-links .mod-install {
 	flex: 1;
+	margin: 0 5px;
 }
 
 .mod-item .mod-links .mod-download {

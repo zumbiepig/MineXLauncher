@@ -530,7 +530,7 @@ if (window.location.pathname === '/settings/') {
 				addon.name
 			}</strong><p class="mod-author">By <a href="${addon.authorLink} target="_blank">${addon.author}</a></p><p class="mod-description">${addon.description}</p></div><div class="mod-links">${
 				addonType === 'mods'
-					? `<a class="mod-install" id="mod-install-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
+					? `<a href="/resources/mods/downloads/${addon.id}.js" class="mod-download" download>Download</a><a class="mod-install" id="mod-install-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
 					: `<a href="/resources/mods/downloads/${addon.id}.zip" class="mod-download" download>Download</a>`
 			}</div>`;
 			modList?.appendChild(modItem);
