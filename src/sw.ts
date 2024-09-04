@@ -7,6 +7,7 @@ const cacheAssets: string[] = [
 	'/resources/images/icons/favicon.webp',
 	'/resources/scripts/google-tag.js',
 	'/resources/scripts/main.js',
+	'/resources/styles/index.css',
 	'/resources/styles/mobile.css',
 	'/resources/styles/themes/default.css',
 	'/resources/styles/themes/light.css',
