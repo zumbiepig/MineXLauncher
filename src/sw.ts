@@ -26,6 +26,17 @@ const cacheAssets: string[] = [
 	'/resources/images/backgrounds/themes/retro.webp',
 	'/resources/images/backgrounds/themes/starfall.webp',
 	'/resources/images/backgrounds/themes/campfire.webp',
+	'/lite/index.html',
+	'/lite/main.js',
+	'/lite/styles.css',
+	'/lite/game/Eaglercraft_1.2.5.html',
+	'/lite/game/Eaglercraft_1.5.html',
+	'/lite/game/Eaglercraft_a1.2.6.html',
+	'/lite/game/Eaglercraft_b1.3.html',
+	'/lite/game/Eaglercraft_b1.7.3',
+	'/lite/game/Eaglercraft_Indev.html',
+	'/lite/game/EaglercraftL_1.9.html',
+	'/lite/game/EaglercraftX_1.8.html'
 ];
 
 self.addEventListener('install', (event) => {
