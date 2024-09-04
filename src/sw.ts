@@ -1,8 +1,7 @@
 // @ts-nocheck
-const cacheVersion = '1.6';
-const cacheName = `minexlauncher-v${cacheVersion}`;
-const offlineUrl = '/lite/index.html';
-const cacheAssets: string[] = [
+const CACHE_VERSION = '1.6';
+const OFFLINE_URL = '/offline/';
+const CACHE_ASSETS = [
 	offlineUrl,
 	'/resources/images/icons/favicon.webp',
 	'/resources/scripts/google-tag.js',
@@ -26,26 +25,28 @@ const cacheAssets: string[] = [
 	'/resources/images/backgrounds/themes/retro.webp',
 	'/resources/images/backgrounds/themes/starfall.webp',
 	'/resources/images/backgrounds/themes/campfire.webp',
-	'/lite/index.html',
-	'/lite/main.js',
-	'/lite/styles.css',
-	'/lite/game/Eaglercraft_1.2.5.html',
-	'/lite/game/Eaglercraft_1.5.html',
-	'/lite/game/Eaglercraft_a1.2.6.html',
-	'/lite/game/Eaglercraft_b1.3.html',
-	'/lite/game/Eaglercraft_b1.7.3.html',
-	'/lite/game/Eaglercraft_Indev.html',
-	'/lite/game/EaglercraftL_1.9.html',
-	'/lite/game/EaglercraftX_1.8.html'
+	'/resources/images/icons/nav/game.webp',
+	'/resources/images/covers/minecraft.webp',
+	'/resources/images/icons/clients/all.webp',
+	'/game/offline/main/EaglercraftL_1.9.html',
+	'/game/offline/main/EaglercraftX_1.8.html',
+	'/game/offline/main/Eaglercraft_1.5.html',
+	'/game/offline/main/Eaglercraft_1.2.5.html',
+	'/game/offline/main/Eaglercraft_b1.7.3.html',
+	'/game/offline/main/Eaglercraft_b1.3.html',
+	'/game/offline/main/Eaglercraft_a1.2.6.html',
+	'/game/offline/main/Eaglercraft_Indev.html',
 ];
+
+const cacheName = `minexlauncher-v${CACHE_VERSION}`;
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open(cacheName).then(async (cache) => {
-			const totalAssets = cacheAssets.length;
+			const totalAssets = CACHE_ASSETS.length;
 			let cachedAssets = 0;
 
-			for (const asset of cacheAssets) {
+			for (const asset of CACHE_ASSETS) {
 				await cache.add(asset);
 				++cachedAssets;
 				const progress = `${cachedAssets.toString()}/${totalAssets.toString()}`;
@@ -76,7 +77,7 @@ self.addEventListener('fetch', (event) => {
 	if (event.request.mode === 'navigate') {
 		event.respondWith(
 			fetch(event.request).catch(() => {
-				return caches.match(offlineUrl);
+				return caches.match(OFFLINE_URL);
 			})
 		);
 	} else {
