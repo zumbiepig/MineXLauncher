@@ -152,6 +152,17 @@ const navigate = {
 	},
 };
 
+const article = {
+	open: function (articleId: string) {
+		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
+		if (modal) modal.style.display = 'flex';
+	},
+	close: function () {
+		const modals = document.querySelectorAll(`.article`);
+		modals.forEach((modal) => ((modal as HTMLElement).style.display = 'none'));
+	},
+};
+
 /*const cookie = {
 	set: function (key: string, value: string | number | object | [] | boolean | null | undefined, days: number) {
 		let maxAge;
@@ -584,5 +595,5 @@ if (window.location.pathname === '/settings/') {
 
 if (window.location.hostname === null) {
 	// Stop the minifier from removing these functions
-	console.debug([navigate, query, versionSelector, game, mods, base64Gzip]);
+	console.debug([navigate, query, versionSelector, game, mods, base64Gzip, article]);
 }

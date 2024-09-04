@@ -764,50 +764,48 @@ nav {
 	margin-bottom: 10px;
 }
 
-.article-modal {
+.article {
 	display: none;
 	position: fixed;
-	z-index: 1000;
-	left: 0;
+	z-index: 10;
 	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.5);
-	transition: opacity 0.3s ease;
-	background-color: #333;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
-	color: #fff;
-	border-radius: 8px;
-	max-width: 80vw;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	animation: slide-down 0.3s ease-out;
+	justify-content: center;
+	align-items: center;
 }
 
-.close-button {
+.article .article-content {
+	background-color: #333;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 65%;
+	max-width: 85%;
+	max-height: 85%;
+	border-radius: 15px;
+	color: #fff;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: #555 #333;
+	position: relative;
+}
+
+.article .article-content .close-button {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
+	position: absolute;
+	top: 15px;
+	right: 15px;
 }
 
-.close-button:hover,
-.close-button:focus {
-	color: #000;
+.article .article-content .close-button:hover,
+.article .article-content .close-button:focus {
+	color: #fff;
 	text-decoration: none;
 	cursor: pointer;
-}
-
-@keyframes slide-down {
-	from {
-		transform: translateY(-50px);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
 }

@@ -9,35 +9,6 @@
 		<link rel="stylesheet" id="theme" onload="document.documentElement.style.display = ''" />
 		<script src="/resources/scripts/google-tag.js"></script>
 		<script src="/resources/scripts/main.js"></script>
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				const modal = document.getElementById('article-modal');
-				const modalContent = document.getElementById('article-modal-content');
-				const closeButton = document.querySelector('.close-button');
-
-				document.querySelectorAll('.article-item').forEach((item) => {
-					item.addEventListener('click', function () {
-						const articleName = this.querySelector('.article-name').textContent;
-						const articleDescription = this.querySelector('.article-description').textContent;
-
-						modalContent.innerHTML = `
-                    <h2>${articleName}</h2>
-                    <p>${articleDescription}</p>
-                `;
-
-						modal.style.display = 'block';
-					});
-				});
-
-				closeButton.addEventListener('click', function () {
-					modal.style.display = 'none';
-				});
-
-				modal.addEventListener('click', function () {
-					modal.style.display = 'none';
-				});
-			});
-		</script>
 	</head>
 	<body>
 		<div class="ads-container">
@@ -85,34 +56,13 @@
 					</div>
 					<div class="main-content">
 						<div class="article-list">
-							<div class="article-item">
+							<div class="article-item" onclick="article.open('mc-server')">
 								<img class="article-icon" loading="lazy" src="/resources/images/icons/articles/mc-server.webp" />
 								<div class="article-details">
 									<strong class="article-name">How To Make An Eaglercraft Server</strong>
 									<p class="article-description">Have you ever wondered how to make an Eaglercraft Server? Read this article to find out how!</p>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="article-modal" id="article-modal">
-						<span class="close-button">&times;</span>
-						<div id="article-content">
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
-							<p>hello world</p>
 						</div>
 					</div>
 				</div>
@@ -128,6 +78,45 @@
 		</div>
 		<div class="ads-container">
 			<ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-1132419379737567" data-ad-slot="3280170072" data-ad-format="auto" data-full-width-responsive="true"></ins>
+		</div>
+		<div id="article-mc-server" class="article">
+			<div class="article-content">
+				<span class="close-button" onclick="article.close()">&times;</span>
+				<h1>How To Make An Eaglercraft Server</h1>
+				<h4>Written by zumbiepig</h4>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+				<p>hello 6</p>
+				<p>hello</p>
+			</div>
 		</div>
 	</body>
 </html>
