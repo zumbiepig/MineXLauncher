@@ -2,7 +2,7 @@
 const CACHE_VERSION = '1.6';
 const OFFLINE_URL = '/offline/';
 const CACHE_ASSETS = [
-	offlineUrl,
+	OFFLINE_URL,
 	'/resources/images/icons/favicon.webp',
 	'/resources/scripts/google-tag.js',
 	'/resources/scripts/main.js',
