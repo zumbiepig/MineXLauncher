@@ -5,7 +5,7 @@ let selectedVersion: string;
 
 const theme = {
 	load: function (themeToLoad?: string) {
-		const themeElement = document.getElementById('theme') as HTMLLinkElement;
+		const themeElement = document.querySelector('#theme') as HTMLLinkElement | null;
 		if (themeElement) themeElement.href = themeToLoad ? `/resources/styles/themes/${themeToLoad}.css` : `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
 	},
 	set: function (newTheme: string) {
@@ -76,7 +76,7 @@ const game = {
 			'1.5': '15-client-version',
 			'b1.3': 'b13-client-version',
 		};
-		const dropdown = clients[client] ? (document.getElementById(clients[client]) as HTMLSelectElement) : null;
+		const dropdown = clients[client] ? (document.querySelector(`#${clients[client]}`) as HTMLSelectElement | null) : null;
 		if (dropdown?.value) {
 			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === '1.8' ? 'X_1.8' : `_${client}`}/client/${dropdown.value}/index.html`;
 			game.play();
@@ -272,7 +272,7 @@ const mods = {
 			mods.push(mod);
 			mods.sort();
 			storage.local.set('mods', mods);
-			const modInstallElem = document.getElementById(`mod-install-${modId}`);
+			const modInstallElem = document.querySelector(`#mod-install-${modId}`);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Uninstall';
 				modInstallElem.classList.add('installed');
@@ -280,7 +280,7 @@ const mods = {
 		} else {
 			mods.splice(modIndex, 1);
 			storage.local.set('mods', mods);
-			const modInstallElem = document.getElementById(`mod-install-${modId}`);
+			const modInstallElem = document.querySelector(`#mod-install-${modId}`);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Install';
 				modInstallElem.classList.remove('installed');
@@ -407,7 +407,7 @@ if (window.location.pathname === '/') {
 			googleAdsPush.text = '(adsbygoogle = window.adsbygoogle || []).push({});';
 			document.body.appendChild(googleAdsPush);
 
-			const adsContainers = document.querySelectorAll('ads-container');
+			const adsContainers = document.querySelectorAll('.ads-container');
 			adsContainers.forEach((adsContainer) => {
 				adsContainer.style.display = 'flex';
 			});
@@ -418,109 +418,117 @@ if (window.location.pathname === '/') {
 if (window.location.pathname === '/settings/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.querySelector('.profile-name');
-		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
-		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
-		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
-		// const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
-		const themeData: { id: string; name: string }[] = await(await fetch('/resources/data/main.json')).json().themes;
-
-		themeData.forEach((theme: { id: string; name: string }) => {
-			const option = document.createElement('option');
-			option.value = theme.id;
-			option.textContent = theme.name;
-			themeSelect?.appendChild(option);
-		});
-
-		usernameInput.placeholder = storage.local.get('username') ?? '';
-		themeSelect.value = storage.local.get('theme') ?? '';
-		// offlineCheckbox.checked = storage.local.get('offlineCache') ?? false;
-		// adsCheckbox.checked = storage.local.get('showAds');
-
-		usernameInput.addEventListener('input', () => {
-			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
-			usernameInput.value = username;
-			while (username.length < 3) username += '_';
-
-			storage.local.set('username', username);
-			if (profileName) profileName.textContent = username;
-		});
-
-		themeSelect.addEventListener('change', () => theme.set(themeSelect.value ?? 'default'));
-
-		/* offlineCheckbox.addEventListener('change', () => {
-			storage.local.set('offlineCache', offlineCheckbox.checked);
-			if (offlineCheckbox.checked) {
-				sw.register('/sw-full.js');
-				alert(
-					'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
-				);
-			} else {
-				sw.register('/sw.js');
-				alert('Offline cache has been deleted.');
-			}
-		}); */
-
-		/* adsCheckbox.addEventListener('change', () => {
-			storage.local.set('showAds', adsCheckbox.checked);
-			const adsContainers = querySelectorAll('ads-container');
-			adsContainers.forEach((adsContainer) => (adsContainer.style.display = 'none'));
-		}); */
-	});
-} else if (window.location.pathname === '/welcome/') {
-	document.addEventListener('DOMContentLoaded', async () => {
-		const setupForm = document.getElementById('setup-form') as HTMLFormElement;
-		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
-		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
-		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
+		const usernameInput = document.querySelector('#username-input') as HTMLInputElement | null;
+		const themeSelect = document.querySelector('#theme-select') as HTMLSelectElement | null;
+		const offlineCheckbox = document.querySelector('#offline-checkbox') as HTMLInputElement | null;
+		const adsCheckbox = document.querySelector('#ads-checkbox') as HTMLInputElement | null;
 		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data/main.json')).json()).themes;
 
-		themeData.forEach((theme: { id: string; name: string }) => {
-			const option = document.createElement('option');
-			option.value = theme.id;
-			option.textContent = theme.name;
-			themeSelect?.appendChild(option);
-		});
-
-		usernameInput.addEventListener('input', () => {
-			const username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
-			usernameInput.value = username;
-		});
-
-		themeSelect.addEventListener('change', () => theme.load(themeSelect.value ?? 'default'));
-
-		setupForm.addEventListener('submit', async (event) => {
-			event.preventDefault();
-
-			let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
-			usernameInput.value = username;
-
-			if (!username) {
-				alert('Please type a username.');
-				return;
-			} else {
+		if (usernameInput) {
+			usernameInput.placeholder = storage.local.get('username') ?? '';
+			usernameInput.addEventListener('input', () => {
+				let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+				usernameInput.value = username;
 				while (username.length < 3) username += '_';
 
 				storage.local.set('username', username);
-				storage.local.set('theme', themeSelect.value ?? 'default');
-				// storage.local.set('offlineCache', offlineCheckbox.checked);
-				storage.local.set('showAds', true);
-				storage.local.set('mods', []);
-				storage.local.set('lastVersion', (await (await fetch('/resources/data/main.json')).json()).updates[0].version);
+				if (profileName) profileName.textContent = username;
+			});
+		}
 
-				/* if (offlineCheckbox.checked) {
+		if (themeSelect) {
+			themeData.forEach((theme: { id: string; name: string }) => {
+				const option = document.createElement('option');
+				option.value = theme.id;
+				option.textContent = theme.name;
+				themeSelect?.appendChild(option);
+			});
+			themeSelect.value = storage.local.get('theme') ?? '';
+			themeSelect.addEventListener('change', () => theme.set(themeSelect.value ?? 'default'));
+		}
+
+		if (offlineCheckbox) {
+			offlineCheckbox.checked = storage.local.get('offlineCache') ?? false;
+			offlineCheckbox.addEventListener('change', () => {
+				storage.local.set('offlineCache', offlineCheckbox.checked);
+				if (offlineCheckbox.checked) {
 					sw.register('/sw-full.js');
 					alert(
 						'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
 					);
-					// @ts-expect-error
-					try installPwaEvent.prompt();
-					catch (error) console.error('Failed to prompt PWA install:', error)
-				} else sw.register('/sw.js'); */
+				} else {
+					sw.register('/sw.js');
+					alert('Offline cache has been deleted.');
+				}
+			});
+		}
 
-				// @ts-expect-error
-				window.top.location.href = '/';
+		if (adsCheckbox) {
+			adsCheckbox.checked = storage.local.get('showAds');
+			adsCheckbox.addEventListener('change', () => {
+				storage.local.set('showAds', adsCheckbox.checked);
+				const adsContainers = document.querySelectorAll('.ads-container');
+				adsContainers.forEach((adsContainer: Element) => ((adsContainer as HTMLElement).style.display = 'none'));
+			});
+		}
+	});
+} else if (window.location.pathname === '/welcome/') {
+	document.addEventListener('DOMContentLoaded', async () => {
+		const setupForm = document.querySelector('#setup-form') as HTMLFormElement | null;
+		const usernameInput = document.querySelector('#username-input') as HTMLInputElement | null;
+		const themeSelect = document.querySelector('#theme-select') as HTMLSelectElement | null;
+		const offlineCheckbox = document.querySelector('#offline-checkbox') as HTMLInputElement | null;
+		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data/main.json')).json()).themes;
+
+		if (setupForm) {
+			if (usernameInput) {
+				usernameInput.addEventListener('input', () => {
+					const username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+					usernameInput.value = username;
+				});
 			}
-		});
+
+			if (themeSelect) {
+				themeData.forEach((theme: { id: string; name: string }) => {
+					const option = document.createElement('option');
+					option.value = theme.id;
+					option.textContent = theme.name;
+					themeSelect?.appendChild(option);
+				});
+				themeSelect.addEventListener('change', () => theme.load(themeSelect.value ?? 'default'));
+			}
+
+			setupForm.addEventListener('submit', async (event) => {
+				event.preventDefault();
+
+				let username = usernameInput?.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+				if (usernameInput) usernameInput.value = username ?? '';
+
+				if (!username) {
+					alert('Please type a username.');
+					return;
+				} else {
+					while (username.length < 3) username += '_';
+
+					storage.local.set('username', username);
+					storage.local.set('theme', themeSelect?.value ?? 'default');
+					// storage.local.set('offlineCache', offlineCheckbox?.checked ?? false);
+					// storage.local.set('showAds', true);
+					storage.local.set('mods', []);
+					storage.local.set('lastVersion', (await (await fetch('/resources/data/main.json')).json()).updates[0].version);
+
+					if (offlineCheckbox?.checked) {
+						sw.register('/sw-full.js');
+						alert(
+							'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
+						);
+					} else sw.register('/sw.js');
+
+					// @ts-expect-error
+					window.top.location.href = '/';
+				}
+			});
+		}
 	});
 } else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
 	document.addEventListener('DOMContentLoaded', async () => {
@@ -543,7 +551,7 @@ if (window.location.pathname === '/settings/') {
 
 		if (addonType === 'mods') {
 			const installedMods = storage.local.get('mods') ?? [];
-			const modElements = document.querySelectorAll('mod-install');
+			const modElements = document.querySelectorAll('.mod-install');
 			modElements.forEach((modElement) => {
 				const modId = /^mod-install-(.*)$/.exec(modElement.id)?.[1];
 				if (installedMods.includes(`/resources/mods/downloads/${modId}.js`)) {
