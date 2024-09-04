@@ -40,11 +40,11 @@
 							<img src="/resources/images/icons/nav/mods.webp" class="nav-icon" />
 							<span class="nav-text">Mods</span>
 						</li>
-						<li class="nav-item" onclick="navigate.articles()">
+						<li class="nav-item selected" onclick="navigate.articles()">
 							<img src="/resources/images/icons/nav/articles.webp" class="nav-icon" />
 							<span class="nav-text">Tutorials</span>
 						</li>
-						<li class="nav-item selected" onclick="navigate.settings()">
+						<li class="nav-item" onclick="navigate.settings()">
 							<img src="/resources/images/icons/nav/settings.webp" class="nav-icon" />
 							<span class="nav-text">Settings</span>
 						</li>
@@ -52,28 +52,17 @@
 				</div>
 				<div class="main-panel">
 					<div class="top-bar">
-						<span class="game-title">Settings</span>
+						<span class="game-title">Tutorials</span>
 					</div>
 					<div class="main-content">
-						<div class="settings">
-							<div class="settings-section">
-								<label for="username-input">Username:</label>
-								<input type="text" id="username-input" />
+						<div class="article-list">
+							<div class="article-item">
+								<img class="article-icon" loading="lazy" src="/resources/images/icons/articles/mc-server.webp" />
+								<div class="article-details">
+									<strong class="article-name">How To Make An Eaglercraft Server</strong>
+									<p class="article-description">Have you ever wondered how to make an Eaglercraft Server? Read this article to find out how!</p>
+								</div>
 							</div>
-							<div class="settings-section">
-								<label for="theme-select">Theme:</label>
-								<select id="theme-select">
-									<option disabled hidden value=""></option>
-								</select>
-							</div>
-							<!-- <div class="settings-section">
-								<label for="offline-checkbox">Enable offline use:</label>
-								<input type="checkbox" id="offline-checkbox" />
-							</div> -->
-							<!-- <div class="settings-section">
-								<label for="ads-checkbox">Show ads:</label>
-								<input type="checkbox" id="ads-checkbox" />
-							</div> -->
 						</div>
 					</div>
 				</div>
