@@ -369,14 +369,7 @@ if (window.location.pathname === '/') {
 		if (iframe.contentWindow) iframe.contentWindow.installPwaEvent = event;
 	});
 } else {
-	document.addEventListener('DOMContentLoaded', () => {
-		const themeElement = document.getElementById('theme') as HTMLLinkElement;
-		if (themeElement) {
-			document.documentElement.style.display = 'none';
-			themeElement.onload = () => (document.documentElement.style.display = '');
-			themeElement.href = `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
-		}
-	});
+	theme.load();
 
 	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.getElementById('profile-name');
