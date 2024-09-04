@@ -28,11 +28,13 @@ const CACHE_ASSETS = [
 	'/resources/images/icons/nav/game.webp',
 	'/resources/images/covers/minecraft.webp',
 	'/resources/images/icons/clients/all.webp',
-	'/game/offline/main/EaglercraftL_1.9.html',
-	'/game/offline/main/EaglercraftX_1.8.html',
-	'/game/offline/main/Eaglercraft_1.5.html',
+	// i am deducing that the max file size is 10mb
+	// we need to do something else
+	//'/game/offline/main/EaglercraftL_1.9.html',
+	//'/game/offline/main/EaglercraftX_1.8.html',
+	//'/game/offline/main/Eaglercraft_1.5.html',
 	'/game/offline/main/Eaglercraft_1.2.5.html',
-	'/game/offline/main/Eaglercraft_b1.7.3.html',
+	//'/game/offline/main/Eaglercraft_b1.7.3.html',
 	'/game/offline/main/Eaglercraft_b1.3.html',
 	'/game/offline/main/Eaglercraft_a1.2.6.html',
 	'/game/offline/main/Eaglercraft_Indev.html',
