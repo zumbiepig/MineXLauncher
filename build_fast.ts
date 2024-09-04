@@ -19,7 +19,7 @@ function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 }
 
 console.log(chalk.cyan('Removing old build artifacts...\n'));
-await $`rm -rf ./public/resources/scripts/ ./public/assets.json ./public/sw.js ./public/sw-full.js`.quiet();
+await $`rm -rf ./public/resources/scripts/ ./public/resources/data/assets.json ./public/sw.js ./public/sw-full.js`.quiet();
 
 console.log(chalk.cyan('Bundling TypeScript and modules...\n'));
 const srcFilesArr = getFiles(join(import.meta.dir, 'src'));
@@ -38,7 +38,7 @@ await build({
 console.log(chalk.cyan('Generating assets list...\n'));
 const publicDir = join(import.meta.dir, 'public');
 writeFileSync(
-	join(publicDir, 'assets.json'),
+	join(publicDir, 'resources/data/assets.json'),
 	JSON.stringify(
 		getFiles(publicDir).map((asset) => {
 			return asset.replace(new RegExp(`^${publicDir}`), '').replace(/\/index\.html$/, '/');

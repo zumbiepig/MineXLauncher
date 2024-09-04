@@ -1,7 +1,7 @@
 package-lock.json
 desktop.ini
 
-public/assets.json
+public/resources/data/assets.json
 public/resources/scripts/
 public/sw.js
 public/sw-full.js

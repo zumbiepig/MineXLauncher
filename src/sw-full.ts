@@ -5,7 +5,7 @@ const cacheName = `minexlauncher-full-v${cacheVersion}`;
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open(cacheName).then(async (cache) => {
-			const response = await fetch('/assets.json');
+			const response = await fetch('/resources/data/assets.json');
 			const cacheAssets = await response.json();
 			const totalAssets = cacheAssets.length;
 			let cachedAssets = 0;
