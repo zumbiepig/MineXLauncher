@@ -1,8 +1,8 @@
-name: Build and compile clients
+name: Auto-update clients
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0,12 * * *'
   workflow_dispatch:
 
 jobs:
@@ -46,13 +46,5 @@ jobs:
         id: git-auto-commit-action
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'github-actions: build and compile clients'
+          commit_message: 'github-actions[bot]: build and compile clients'
           commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
-      - name: Merge back with 'dev' branch
-        if: steps.git-auto-commit-action.outputs.changes_detected == 'true'
-        run: |
-          git config --global user.name "github-actions[bot]" 
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout dev
-          git merge --allow-unrelated-histories ${{ steps.git-auto-commit-action.outputs.commit_hash }}
-          git push origin dev
