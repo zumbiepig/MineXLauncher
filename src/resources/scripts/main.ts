@@ -377,8 +377,8 @@ if (window.location.pathname === '/') {
 	theme.load();
 
 	document.addEventListener('DOMContentLoaded', async () => {
-		const profileName = document.getElementById('profile-name');
-		const titleBarText = document.getElementById('title-bar-text');
+		const profileName = document.querySelector('.profile-name');
+		const titleBarText = document.querySelector('.title-bar span');
 
 		const lastVersion = storage.local.get('lastVersion');
 		const updateData = (await (await fetch('/resources/data/main.json')).json()).updates;
@@ -407,7 +407,7 @@ if (window.location.pathname === '/') {
 			googleAdsPush.text = '(adsbygoogle = window.adsbygoogle || []).push({});';
 			document.body.appendChild(googleAdsPush);
 
-			const adsContainers = Array.from(document.getElementsByClassName('ads-container')) as HTMLElement[];
+			const adsContainers = document.querySelectorAll('ads-container');
 			adsContainers.forEach((adsContainer) => {
 				adsContainer.style.display = 'flex';
 			});
@@ -417,12 +417,12 @@ if (window.location.pathname === '/') {
 
 if (window.location.pathname === '/settings/') {
 	document.addEventListener('DOMContentLoaded', async () => {
-		const profileName = document.getElementById('profile-name');
+		const profileName = document.querySelector('.profile-name');
 		const usernameInput = document.getElementById('username-input') as HTMLInputElement;
 		const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 		// const offlineCheckbox = document.getElementById('offline-checkbox') as HTMLInputElement;
 		// const adsCheckbox = document.getElementById('ads-checkbox') as HTMLInputElement;
-		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data/main.json')).json()).themes;
+		const themeData: { id: string; name: string }[] = await(await fetch('/resources/data/main.json')).json().themes;
 
 		themeData.forEach((theme: { id: string; name: string }) => {
 			const option = document.createElement('option');
@@ -462,7 +462,7 @@ if (window.location.pathname === '/settings/') {
 
 		/* adsCheckbox.addEventListener('change', () => {
 			storage.local.set('showAds', adsCheckbox.checked);
-			const adsContainers = Array.from(document.getElementsByClassName('ads-container')) as HTMLElement[];
+			const adsContainers = querySelectorAll('ads-container');
 			adsContainers.forEach((adsContainer) => (adsContainer.style.display = 'none'));
 		}); */
 	});
@@ -543,7 +543,7 @@ if (window.location.pathname === '/settings/') {
 
 		if (addonType === 'mods') {
 			const installedMods = storage.local.get('mods') ?? [];
-			const modElements = Array.from(document.getElementsByClassName('mod-install')) as HTMLAnchorElement[];
+			const modElements = document.querySelectorAll('mod-install');
 			modElements.forEach((modElement) => {
 				const modId = /^mod-install-(.*)$/.exec(modElement.id)?.[1];
 				if (installedMods.includes(`/resources/mods/downloads/${modId}.js`)) {
@@ -555,7 +555,7 @@ if (window.location.pathname === '/settings/') {
 	});
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
-		const updatesContainer = document.getElementById('updates-container');
+		const updatesContainer = document.querySelector('.updates-container');
 		const updateData: { version: string; changelog: string[] }[] = (await (await fetch('/resources/data/main.json')).json()).updates;
 		updateData.forEach((update) => {
 			const versionHeader = document.createElement('strong');
