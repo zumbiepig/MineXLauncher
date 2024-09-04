@@ -224,6 +224,38 @@
 				"author": "ZXMushroom63",
 				"authorLink": "https://github.com/ZXMushroom63",
 				"source": "https://github.com/EaglerRinth/eaglerrinth.github.io/blob/main/CommunityMods/AutoFish.js"
+			},
+			{
+				"id": "recipe-mod",
+				"name": "Recipe Mod",
+				"description": "This is a recipe mod for eaglerforge, a bit like JEI.",
+				"author": "Oeil-de-Lynx",
+				"authorLink": "https://github.com/OeildeLynx31",
+				"source": "https://github.com/OeildeLynx31/eaglerforge-mods/blob/main/eagler_recipe.js"
+			},
+			{
+				"id": "auto-respawn",
+				"name": "Auto Respawn",
+				"description": "auto respawn mod",
+				"author": "Oeil-de-Lynx",
+				"authorLink": "https://github.com/OeildeLynx31",
+				"source": "https://github.com/OeildeLynx31/eaglerforge-mods/blob/main/auto_respawn.js"
+			},
+			{
+				"id": "jump-boost",
+				"name": "Jump Boost",
+				"description": "jump boost mod",
+				"author": "Oeil-de-Lynx",
+				"authorLink": "https://github.com/OeildeLynx31",
+				"source": "https://github.com/OeildeLynx31/eaglerforge-mods/blob/main/jump_boost.js"
+			},
+			{
+				"id": "player-vision",
+				"name": "Player Vision",
+				"description": "player vision mod",
+				"author": "Oeil-de-Lynx",
+				"authorLink": "https://github.com/OeildeLynx31",
+				"source": "https://github.com/OeildeLynx31/eaglerforge-mods/blob/main/player_vision.js"
 			}
 		],
 		"resourcepacks": [
