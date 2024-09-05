@@ -310,6 +310,14 @@
 				"author": "bebebea_loste",
 				"authorLink": "https://modrinth.com/user/bebebea_loste",
 				"source": "https://modrinth.com/resourcepack/serified-font"
+			},
+			{
+				"id": "default-hd",
+				"name": "Default HD",
+				"description": "The classic Minecraft experience but in amazing 128x, 256x, and 512x HD! Gives a shaders feel without the awful FPS drop!",
+				"author": "thebaum64",
+				"authorLink": "https://modrinth.com/user/thebaum64",
+				"source": "https://modrinth.com/resourcepack/default-hd"
 			}
 		]
 	}
