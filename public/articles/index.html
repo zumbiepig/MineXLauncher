@@ -63,6 +63,13 @@
 									<p class="article-description">Have you ever wondered how to make an Eaglercraft Server? Read this article to find out how!</p>
 								</div>
 							</div>
+							<div class="article-item" onclick="article.open('cloudflare-tunnel')">
+								<img class="article-icon" loading="lazy" src="/resources/images/icons/articles/cloudflare-tunnel.webp" />
+								<div class="article-details">
+									<strong class="article-name">How To Make A Cloudflare Tunnel Domain</strong>
+									<p class="article-description">This brief guide walks you through configuring a Cloudflare Tunnel for your Eaglercraft server.</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -159,5 +166,45 @@
 				<p>Ensure you keep all software (especially the EaglerXBungee plugin) up to date and properly secure your server to protect against potential vulnerabilities.</p>
 			</div>
 		</div>
+		
+		<div id="article-cloudflare-tunnel" class="article"><div class="article-content">
+    <span class="close-button" onclick="article.close()">&times;</span>
+    <h1>How to Set Up Cloudflare Tunnel for Eaglercraft Server</h1>
+    <h5>Written by ServerDotSo and revised by zumbiepig</h5>
+    <p>In this guide, we'll walk you through the steps to set up a Cloudflare Tunnel for your Eaglercraft server, which is running on <code>ws://localhost:8081</code>.</p>
+    <h3>Prerequisites</h3>
+    <ul>
+        <li>An EaglercraftX Server running on <code>ws://localhost:{eagler port}</code></li>
+        <li>Access to your server. 
+        <li>A domain or site on Cloudflare</li>
+    </ul>
+    <h3>Step 1: Access Cloudflare Tunnels</h3>
+    <ol>
+        <li>Go to the <a href="https://dash.teams.cloudflare.com/" target="_blank">Zero Trust Cloudflare Tunnels</a> page.</li>
+    </ol>
+    <h3>Step 2: Create a Tunnel</h3>
+    <ol>
+        <li>Click on <strong>Create a tunnel</strong>, and select <strong>Cloudflared</strong>.</li>
+        <li>Click <strong>Next</strong>.</li>
+        <li>Enter a name for the tunnel.</li>
+        <li>Follow the instructions provided on the site to complete the tunnel creation.</li>
+    </ol>
+    <h3>Step 3: Configure Domain/Subdomain</h3>
+    <ol>
+        <li>Set the domain or subdomain you want to use for your server.</li>
+        <li>Redirect the domain to the IP of the server with your eagler port. For example: <code>94.1.23.424:8081</code>.</li>
+        <li>Ensure the type is set to <strong>HTTPS</strong>.</li>
+    </ol>
+    <h3>Step 4: Activate Tunnel and Proxy</h3>
+    <ol>
+        <li>Turn on both the server and the proxy.</li>
+        <li>Connect to the domain or subdomain you set up.</li>
+        <li>You're all set! Your Cloudflare Tunnel is now configured.</li>
+    </ol>
+    <h3>Security Considerations</h3>
+    <p>Ensure that you keep all related software and configurations up to date to protect your server against potential vulnerabilities.</p>
+</div>
+</div>		
+
 	</body>
 </html>
