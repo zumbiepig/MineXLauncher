@@ -315,6 +315,17 @@ nav {
 	position: relative;
 }
 
+.play-button:hover {
+	background-color: #17b117;
+	border-color: #005500;
+	transform: scale(1.05);
+}
+
+.play-button:hover::before {
+	width: 0;
+	height: 0;
+}
+
 .play-button::before {
 	content: '';
 	position: absolute;
@@ -326,36 +337,6 @@ nav {
 	transition: all 0.4s ease-out;
 	border-radius: 50%;
 	transform: translate(-50%, -50%);
-	z-index: 0;
-}
-
-.play-button:hover::before {
-	width: 0;
-	height: 0;
-}
-
-.play-button:hover {
-	background-color: #17b117;
-	border-color: #005500;
-	transform: scale(1.05);
-}
-
-.play-button span {
-	position: relative;
-	z-index: 1;
-}
-
-.play-button:hover span {
-	animation: play-button 1.5s infinite alternate;
-}
-
-@keyframes play-button {
-	0% {
-		transform: scale(1);
-	}
-	100% {
-		transform: scale(1.1);
-	}
 }
 
 .bottom-bar {
@@ -765,7 +746,6 @@ nav {
 .article {
 	display: none;
 	position: fixed;
-	z-index: 10;
 	top: 0;
 	left: 0;
 	width: 100%;
