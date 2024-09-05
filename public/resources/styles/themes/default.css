@@ -353,7 +353,6 @@ nav {
 	0% {
 		transform: scale(1);
 	}
-
 	100% {
 		transform: scale(1.1);
 	}
@@ -775,6 +774,34 @@ nav {
 	background-color: rgba(0, 0, 0, 0.5);
 	justify-content: center;
 	align-items: center;
+}
+
+@keyframes openArticle {
+	0% {
+		opacity: 0;
+		scale: 0;
+	}
+	80% {
+		scale: 1.1;
+	}
+	100% {
+		opacity: 1;
+		scale: 1;
+	}
+}
+
+@keyframes closeArticle {
+	0% {
+		opacity: 1;
+		scale: 1;
+	}
+	20% {
+		scale: 1.1;
+	}
+	100% {
+		opacity: 0;
+		scale: 0;
+	}
 }
 
 .article .article-content {

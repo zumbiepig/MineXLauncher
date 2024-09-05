@@ -155,11 +155,17 @@ const navigate = {
 const article = {
 	open: function (articleId: string) {
 		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
-		if (modal) modal.style.display = 'flex';
+		if (modal) {
+			modal.style.animation = 'openArticle 0.5s ease-in-out';
+			modal.style.display = 'flex';
+		}
 	},
-	close: function () {
-		const modals = document.querySelectorAll(`.article`);
-		modals.forEach((modal) => ((modal as HTMLElement).style.display = 'none'));
+	close: function (articleId: string) {
+		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
+		if (modal) {
+			modal.style.animation = 'closeArticle 0.5s ease-in-out';
+			modal.addEventListener('animationend', () => (modal.style.display = 'none'), { once: true });
+		}
 	},
 };
 
