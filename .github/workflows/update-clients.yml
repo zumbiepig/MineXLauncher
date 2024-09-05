@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,6 +21,50 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           cache-disabled: true
+      - name: Compile EaglercraftX 1.8
+        run: |
+          git clone https://git.eaglercraft.rip/eaglercraft/eaglercraft-1.8-workspace.git ${{ runner.temp }}/eaglerx
+          rm -rf \
+            ./public/game/web/main/1.8.8/lang/ \
+            ./public/game/web/main/1.8.8/assets.epk \
+            ./public/game/web/main/1.8.8/classes.js \
+            ./public/game/web/main/1.8.8/classes.js.map \
+            ./public/game/offline/main/EaglercraftX_1.8.html \
+            ${{runner.temp}}/eaglerx/javascript/assets.epk \
+            ${{runner.temp}}/eaglerx/javascript/classes.js \
+            ${{runner.temp}}/eaglerx/javascript/classes.js.map
+          cd ${{runner.temp}}/eaglerx/
+          chmod +x ./gradlew
+          java -jar "resources/CompileEPK.jar" "resources" "javascript/assets.epk"
+          ./gradlew generateJavascript
+          wget -O ${{ github.workspace }}/public/game/offline/main/EaglercraftX_1.8.html https://git.eaglercraft.rip/eaglercraft/eaglercraft-builds/raw/branch/main/EaglercraftX_1.8_Offline_Signed_Client.html
+          cd ${{ github.workspace }}
+          cp -r ${{ runner.temp }}/eaglerx/javascript/lang/ ./public/game/web/main/1.8.8/lang/
+          cp ${{ runner.temp }}/eaglerx/javascript/assets.epk ./public/game/web/main/1.8.8/assets.epk
+          cp ${{ runner.temp }}/eaglerx/javascript/classes.js ./public/game/web/main/1.8.8/classes.js
+          cp ${{ runner.temp }}/eaglerx/javascript/classes.js.map ./public/game/web/main/1.8.8/classes.js.map
+      - name: Compile EaglercraftL 1.9
+        run: |
+          git clone https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod.git ${{ runner.temp }}/eaglerl
+          rm -rf \
+            ./public/game/web/main/1.9.4/lang/ \
+            ./public/game/web/main/1.9.4/assets.epk \
+            ./public/game/web/main/1.9.4/classes.js \
+            ./public/game/web/main/1.9.4/classes.js.map \
+            ./public/game/offline/main/EaglercraftL_1.9.html \
+            ${{runner.temp}}/eaglerl/javascript/assets.epk \
+            ${{runner.temp}}/eaglerl/javascript/classes.js \
+            ${{runner.temp}}/eaglerl/javascript/classes.js.map
+          cd ${{runner.temp}}/eaglerl/
+          chmod +x ./gradlew
+          java -jar "resources/CompileEPK.jar" "resources" "javascript/assets.epk"
+          ./gradlew generateJavascript
+          wget -O ${{ github.workspace }}/public/game/offline/main/EaglercraftL_1.9.html https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases/download/latest/EaglercraftL_1.9_Offline_Signed_Client.html
+          cd ${{ github.workspace }}
+          cp -r ${{ runner.temp }}/eaglerl/javascript/lang/ ./public/game/web/main/1.9.4/lang/
+          cp ${{ runner.temp }}/eaglerl/javascript/assets.epk ./public/game/web/main/1.9.4/assets.epk
+          cp ${{ runner.temp }}/eaglerl/javascript/classes.js ./public/game/web/main/1.9.4/classes.js
+          cp ${{ runner.temp }}/eaglerl/javascript/classes.js.map ./public/game/web/main/1.9.4/classes.js.map
       - name: Compile Shadow Client
         run: |
           git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
@@ -33,9 +78,10 @@ jobs:
             ${{runner.temp}}/shadow/javascript/classes.js \
             ${{runner.temp}}/shadow/javascript/classes.js.map
           cd ${{runner.temp}}/shadow/
-          bash ./CompileEPK.sh
-          bash ./CompileJS.sh
-          bash ./MakeOfflineDownload.sh
+          chmod +x ./gradlew
+          java -jar "desktopRuntime/CompileEPK.jar" "desktopRuntime/resources" "javascript/assets.epk"
+          ./gradlew generateJavascript
+          java -cp "desktopRuntime/MakeOfflineDownload.jar:desktopRuntime/CompileEPK.jar" net.lax1dude.eaglercraft.v1_8.buildtools.workspace.MakeOfflineDownload "javascript/OfflineDownloadTemplate.txt" "javascript/classes.js" "javascript/assets.epk" "/dev/null" "javascript/Shadow_Client_International.html" "javascript/lang"
           cd ${{ github.workspace }}
           cp -r ${{ runner.temp }}/shadow/javascript/lang/ ./public/game/web/clients/shadow/lang/
           cp ${{ runner.temp }}/shadow/javascript/assets.epk ./public/game/web/clients/shadow/assets.epk
@@ -47,4 +93,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'github-actions[bot]: auto-update clients'
-          commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
+          commit_author: ''
