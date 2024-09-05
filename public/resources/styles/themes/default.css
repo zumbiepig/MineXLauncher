@@ -25,7 +25,7 @@ body {
 }
 
 .launcher {
-	width: 65vw;
+	width: 75vw;
 	height: 95vh;
 	margin: 15px auto 0 auto;
 	background-color: #333;
@@ -78,6 +78,9 @@ nav {
 	padding: 0;
 	margin: 0;
 	flex-grow: 1;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: #555 #333;
 }
 
 .nav-item {
@@ -496,7 +499,7 @@ nav {
 }
 
 .mod-item .mod-author a {
-	color: #0000ff;
+	color: #0000ee;
 }
 
 .mod-item .mod-description {
@@ -512,21 +515,22 @@ nav {
 	position: absolute;
 	bottom: 10px;
 	left: 5px;
+	justify-content: center;
 }
 
 .mod-item .mod-links .mod-download,
 .mod-item .mod-links .mod-install {
 	flex: 1;
 	margin: 0 5px;
-}
-
-.mod-item .mod-links .mod-download {
-	padding: 5px 15px;
-	background-color: #555;
+	padding: 5px;
 	color: #fff;
 	text-decoration: none;
 	border-radius: 7px;
 	transition: background-color 0.3s;
+}
+
+.mod-item .mod-links .mod-download {
+	background-color: #555;
 }
 
 .mod-item .mod-links .mod-download:hover {
@@ -535,12 +539,7 @@ nav {
 }
 
 .mod-item .mod-links .mod-install {
-	padding: 5px 15px;
 	background-color: #4c4;
-	color: #fff;
-	text-decoration: none;
-	border-radius: 7px;
-	transition: background-color 0.3s;
 }
 
 .mod-item .mod-links .mod-install:hover {
@@ -791,6 +790,10 @@ nav {
 	scrollbar-width: thin;
 	scrollbar-color: #555 #333;
 	position: relative;
+}
+
+.article .article-content a {
+	color: #0000ee;
 }
 
 .article .article-content .close-button {
