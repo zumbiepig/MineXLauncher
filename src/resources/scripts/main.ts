@@ -2,6 +2,7 @@ import { gt, coerce } from 'semver';
 import { inflate, deflate } from 'pako';
 
 let selectedVersion: string;
+let articleClosing = false;
 
 const theme = {
 	load: function (themeToLoad?: string) {
@@ -156,15 +157,32 @@ const article = {
 	open: function (articleId: string) {
 		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
 		if (modal) {
-			modal.style.animation = 'openArticle 0.5s ease-in-out';
+			modal.style.animation = 'article-open 0.5s ease-in-out';
 			modal.style.display = 'flex';
+			const closeArticleHandler = (event: Event) => {
+				if (event.target === modal) {
+					modal.removeEventListener('click', closeArticleHandler);
+					article.close(articleId);
+				}
+			};
+			modal.addEventListener('click', closeArticleHandler);
 		}
 	},
 	close: function (articleId: string) {
-		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
-		if (modal) {
-			modal.style.animation = 'closeArticle 0.5s ease-in-out';
-			modal.addEventListener('animationend', () => (modal.style.display = 'none'), { once: true });
+		if (!articleClosing) {
+			articleClosing = true;
+			const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
+			if (modal) {
+				modal.style.animation = 'article-close 0.5s ease-in-out';
+				modal.addEventListener(
+					'animationend',
+					() => {
+						modal.style.display = 'none';
+						articleClosing = false;
+					},
+					{ once: true }
+				);
+			}
 		}
 	},
 };
