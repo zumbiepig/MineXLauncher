@@ -22,6 +22,7 @@ jobs:
         with:
           cache-disabled: true
       - name: Compile EaglercraftX 1.8
+        if: success() || failure()
         run: |
           git clone https://git.eaglercraft.rip/eaglercraft/eaglercraft-1.8-workspace.git ${{ runner.temp }}/eaglerx
           rm -rf \
@@ -44,6 +45,7 @@ jobs:
           cp ${{ runner.temp }}/eaglerx/javascript/classes.js ./public/game/web/main/1.8.8/classes.js
           cp ${{ runner.temp }}/eaglerx/javascript/classes.js.map ./public/game/web/main/1.8.8/classes.js.map
       - name: Compile EaglercraftL 1.9
+        if: success() || failure()
         run: |
           git clone https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod.git ${{ runner.temp }}/eaglerl
           rm -rf \
@@ -66,6 +68,7 @@ jobs:
           cp ${{ runner.temp }}/eaglerl/javascript/classes.js ./public/game/web/main/1.9.4/classes.js
           cp ${{ runner.temp }}/eaglerl/javascript/classes.js.map ./public/game/web/main/1.9.4/classes.js.map
       - name: Compile Shadow Client
+        if: success() || failure()
         run: |
           git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
           rm -rf \
@@ -90,6 +93,7 @@ jobs:
           cp ${{ runner.temp }}/shadow/javascript/Shadow_Client_International.html ./public/game/offline/clients/Shadow_Client.html
       - name: Commit and push changes
         id: git-auto-commit-action
+        if: success() || failure()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'github-actions[bot]: auto-update clients'
