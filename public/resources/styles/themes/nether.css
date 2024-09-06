@@ -9,8 +9,8 @@ body {
 }
 
 .title-bar,
-.top-bar,
-.top-menu {
+.top-title,
+.top-nav {
 	background-color: #4c2c2c;
 	color: #ffcc00;
 	box-shadow: 0 2px 4px rgba(255, 69, 0, 0.2);
@@ -25,19 +25,14 @@ body {
 	color: #ff4500;
 }
 
-.nav-item:hover,
-.nav-item.selected {
+.nav-bar .nav-item:hover,
+.nav-bar .nav-item.selected {
 	background-color: #5c3c3c;
 }
 
 .main-panel,
 .main-content {
 	background-color: #2e1a1a;
-}
-
-.tabs .tab:hover,
-.tabs .tab.selected {
-	color: #ff4500;
 }
 
 .installations {
@@ -107,10 +102,10 @@ body {
 	background-color: #ff4500;
 }
 
-.top-menu ul li {
+.top-nav ul li {
 	color: #ffcc00;
 }
 
-.top-menu ul li.selected {
+.top-nav ul li.selected {
 	color: #fff;
 }

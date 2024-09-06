@@ -21,7 +21,7 @@
 					<div class="profile">
 						<span class="profile-name"></span>
 					</div>
-					<nav>
+					<nav class="nav-bar">
 						<li class="nav-item selected" href="/offline/">
 							<img src="/resources/images/icons/nav/game.webp" class="nav-icon" />
 							<span class="nav-text">Offline</span>
@@ -29,9 +29,9 @@
 					</nav>
 				</div>
 				<div class="main-panel">
-					<div class="top-menu">
+					<div class="top-nav">
 						<ul>
-							<li class="menu-item selected" href="/offline/">Game</li>
+							<li href="/offline/">Game</li>
 						</ul>
 					</div>
 					<div class="main-content">
@@ -41,7 +41,7 @@
 					</div>
 					<div class="installations">
 						<div class="custom-select-wrapper">
-							<div id="custom-select" class="custom-select" onclick="versionSelector.toggle()">
+							<div class="custom-select" onclick="versionSelector.toggle()">
 								<span class="custom-select-trigger">Select a version</span>
 							</div>
 							<div class="custom-options">

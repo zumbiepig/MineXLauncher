@@ -23,7 +23,7 @@
 					<div class="profile">
 						<span class="profile-name"></span>
 					</div>
-					<nav>
+					<nav class="nav-bar">
 						<li class="nav-item" onclick="navigate.updates()">
 							<img src="/resources/images/icons/nav/updates.webp" class="nav-icon" />
 							<span class="nav-text">Updates</span>
@@ -51,12 +51,12 @@
 					</nav>
 				</div>
 				<div class="main-panel">
-					<div class="top-menu">
+					<div class="top-nav">
 						<ul>
-							<li class="menu-item selected" onclick="navigate.home.game()">Game</li>
-							<li class="menu-item" onclick="navigate.home.clients()">Clients</li>
-							<li class="menu-item" onclick="navigate.home.archive()">Archive</li>
-							<li class="menu-item" onclick="navigate.home.downloads()">Offline Downloads</li>
+							<li onclick="navigate.home.game()">Game</li>
+							<li onclick="navigate.home.clients()">Clients</li>
+							<li onclick="navigate.home.archive()">Archive</li>
+							<li onclick="navigate.home.downloads()">Offline Downloads</li>
 						</ul>
 					</div>
 					<div class="main-content">
@@ -66,7 +66,7 @@
 					</div>
 					<div class="installations">
 						<div class="custom-select-wrapper">
-							<div id="custom-select" class="custom-select" onclick="versionSelector.toggle()">
+							<div class="custom-select" onclick="versionSelector.toggle()">
 								<span class="custom-select-trigger">Select a version</span>
 							</div>
 							<div class="custom-options">

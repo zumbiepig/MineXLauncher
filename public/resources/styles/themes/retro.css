@@ -12,8 +12,8 @@ body {
 }
 
 .title-bar,
-.top-bar,
-.top-menu,
+.top-title,
+.top-nav,
 .bottom-bar {
 	background-color: #222;
 	color: #00ff00;
@@ -26,7 +26,7 @@ body {
 }
 
 .profile,
-.nav-item,
+.nav-bar .nav-item,
 .installations,
 .custom-select,
 .custom-options,
@@ -38,10 +38,8 @@ body {
 	color: #00ff00;
 }
 
-.nav-item:hover,
-.nav-item.selected,
-.tab:hover,
-.tab.selected,
+.nav-bar .nav-item:hover,
+.nav-bar .nav-item.selected,
 .custom-option:hover,
 .play-button:hover,
 .minecraft-button:hover,

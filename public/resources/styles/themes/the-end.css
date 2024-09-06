@@ -10,8 +10,8 @@ body {
 }
 
 .title-bar,
-.top-bar,
-.top-menu,
+.top-title,
+.top-nav,
 .bottom-bar {
 	background-color: #22004d;
 	color: #e0d8ff;
@@ -27,19 +27,14 @@ body {
 	border-bottom: 1px solid #330066;
 }
 
-.nav-item:hover,
-.nav-item.selected {
+.nav-bar .nav-item:hover,
+.nav-bar .nav-item.selected {
 	background-color: #330066;
 }
 
 .main-panel,
 .main-content {
 	background-color: #150033;
-}
-
-.tabs .tab:hover,
-.tabs .tab.selected {
-	color: #b300b3;
 }
 
 .installations {
@@ -103,8 +98,8 @@ body {
 	background-color: #8000ff;
 }
 
-.top-menu ul li:hover,
-.top-menu ul li.selected {
+.top-nav ul li:hover,
+.top-nav ul li.selected {
 	color: #e0d8ff;
 }
 

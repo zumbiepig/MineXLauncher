@@ -18,8 +18,8 @@ body {
 	background-color: #262626;
 }
 
-.nav-item:hover,
-.nav-item.selected {
+.nav-bar .nav-item:hover,
+.nav-bar .nav-item.selected {
 	background-color: #333;
 }
 
@@ -27,13 +27,13 @@ body {
 	background-color: #1e1e1e;
 }
 
-.top-bar {
+.top-title {
 	background-color: #1a1a1a;
 	color: #e0e0e0;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.top-menu {
+.top-nav {
 	background-color: #1a1a1a;
 	color: #e0e0e0;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);

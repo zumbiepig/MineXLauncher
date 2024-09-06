@@ -22,8 +22,8 @@ body {
 	border-bottom: 1px solid #e0d1e3;
 }
 
-.nav-item:hover,
-.nav-item.selected {
+.nav-bar .nav-item:hover,
+.nav-bar .nav-item.selected {
 	background-color: #f4c6d0;
 }
 
@@ -31,26 +31,21 @@ body {
 	background-color: #fef0f5;
 }
 
-.top-bar {
+.top-title {
 	background-color: #f6e7f3;
 	color: #333;
 }
 
-.top-menu {
+.top-nav {
 	background-color: #f6e7f3;
 	color: #333;
 }
 
-.top-menu ul li {
+.top-nav ul li {
 	color: #333;
 }
 
-.top-menu ul li.selected {
-	color: #e5a1b8;
-}
-
-.tab:hover,
-.tab.selected {
+.top-nav ul li.selected {
 	color: #e5a1b8;
 }
 

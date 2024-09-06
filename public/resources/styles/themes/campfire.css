@@ -10,8 +10,8 @@ body {
 }
 
 .title-bar,
-.top-bar,
-.top-menu {
+.top-title,
+.top-nav {
 	background-color: #4a2f1b;
 	color: #f5e0c3;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -26,19 +26,14 @@ body {
 	border-bottom: 1px solid #4a2f1b;
 }
 
-.nav-item:hover,
-.nav-item.selected {
+.nav-bar .nav-item:hover,
+.nav-bar .nav-item.selected {
 	background-color: #5a3a2a;
 }
 
 .main-panel,
 .main-content {
 	background-color: #2b1b0f;
-}
-
-.tabs .tab:hover,
-.tabs .tab.selected {
-	color: #ffcc00;
 }
 
 .installations {
@@ -103,10 +98,10 @@ body {
 	background-color: #ff8533;
 }
 
-.top-menu ul li {
+.top-nav ul li {
 	color: #f5e0c3;
 }
 
-.top-menu ul li.selected {
+.top-nav ul li.selected {
 	color: #ffcc00;
 }
