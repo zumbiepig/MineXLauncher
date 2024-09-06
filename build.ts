@@ -1,14 +1,15 @@
 import { $, build } from 'bun';
-import { readdirSync, statSync, writeFileSync } from 'fs';
-import { join } from 'path';
+import { readdirSync, statSync, writeFileSync, readFileSync } from 'fs';
+import { resolve } from 'path';
 import chalk from 'chalk';
+import { minify } from 'html-minifier';
 
 function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 	dir = dir ?? baseDir;
 	filesArr = filesArr ?? [];
 	const files = readdirSync(dir);
 	for (const file of files) {
-		const name = join(dir, file);
+		const name = resolve(dir, file);
 		if (statSync(name).isDirectory()) {
 			getFiles(baseDir, name, filesArr);
 		} else {
@@ -19,6 +20,10 @@ function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 }
 
 console.clear();
+
+const srcDir = resolve(import.meta.dir, 'src');
+const publicDir = resolve(import.meta.dir, 'public');
+const srcFilesArr = getFiles(resolve(import.meta.dir, 'src'));
 
 console.log(chalk.cyan('Linting code...\n'));
 const lintOutput = await $`bunx eslint ./src/`.nothrow().text();
@@ -38,9 +43,8 @@ console.log(chalk.cyan('Removing old build artifacts...\n'));
 await $`rm -rf ./public/resources/scripts/ ./public/resources/data/assets.json ./public/sw.js ./public/sw-full.js`.quiet();
 
 console.log(chalk.cyan('Bundling TypeScript and modules...\n'));
-const srcFilesArr = getFiles(join(import.meta.dir, 'src'));
 await build({
-	entrypoints: srcFilesArr,
+	entrypoints: srcFilesArr.filter((file) => file.endsWith('.ts')),
 	outdir: './public/',
 	target: 'browser',
 	root: './src/',
@@ -51,13 +55,27 @@ await build({
 	},
 });
 
+console.log(chalk.cyan('Minifying HTML and CSS...\n'));
+srcFilesArr
+	.filter((file) => !file.endsWith('.ts'))
+	.forEach((file) => {
+		writeFileSync(
+			file.replace(new RegExp(`^${srcDir}`), publicDir),
+			minify(readFileSync(file, 'utf8'), {
+				collapseWhitespace: true,
+				removeComments: true,
+				minifyCSS: true,
+				minifyJS: true,
+			})
+		);
+	});
+
 console.log(chalk.cyan('Obfuscating JavaScript...\n'));
 await $`bunx javascript-obfuscator ./public/resources/scripts/ --output ./public/resources/scripts/ --options-preset high-obfuscation`.quiet();
 
 console.log(chalk.cyan('Generating assets list...\n'));
-const publicDir = join(import.meta.dir, 'public');
 writeFileSync(
-	join(publicDir, 'resources/data/assets.json'),
+	resolve(publicDir, 'resources/data/assets.json'),
 	JSON.stringify(
 		getFiles(publicDir).map((asset) => {
 			return asset.replace(new RegExp(`^${publicDir}`), '').replace(/\/index\.html$/, '/');

@@ -31,11 +31,13 @@
 		"@types/debug": "^4.1.12",
 		"@types/errorhandler": "^1.5.3",
 		"@types/eslint__js": "^8.42.3",
+		"@types/html-minifier": "^4.0.5",
 		"@types/morgan": "^1.9.9",
 		"@types/pako": "^2.0.3",
 		"@types/semver": "^7.5.8",
 		"@types/serve-favicon": "^2.5.7",
 		"eslint": "^9.9.1",
+		"html-minifier": "^4.0.0",
 		"javascript-obfuscator": "^4.1.1",
 		"typescript-eslint": "^8.4.0"
 	},
