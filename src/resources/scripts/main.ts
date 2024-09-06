@@ -156,10 +156,12 @@ const navigate = {
 const article = {
 	open: function (articleId: string) {
 		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
-		if (modal) {
+		const modalContent = document.querySelector(`#article-${articleId} .article-content`) as HTMLElement | null;
+		if (modal && modalContent) {
 			articleAnimationLock = true;
 			modal.style.animation = 'article-open 0.5s ease-in-out';
 			modal.style.display = 'flex';
+			modalContent.scroll({ top: 0, left: 0, behavior: 'instant' });
 			modal.addEventListener(
 				'animationend',
 				() => {
