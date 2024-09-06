@@ -807,8 +807,7 @@ body {
 	}
 }
 
-/* bruh pls find a fix for this */
-@keyframes article-1 {
+@keyframes article {
 	0% {
 		opacity: 0;
 		scale: 0;
@@ -822,7 +821,9 @@ body {
 	}
 }
 
-@keyframes article-2 {
+/* bruh pls find a fix for this
+right now i have to change the animation to play it */
+@keyframes article-tempfix {
 	0% {
 		opacity: 0;
 		scale: 0;
