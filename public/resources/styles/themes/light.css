@@ -8,7 +8,7 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.title-bar, .top-bar, .top-menu, .bottom-bar {
+.title-bar, .top-title, .top-nav, .bottom-bar {
     background-color: #e0e0e0;
     color: #333;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -23,11 +23,11 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-.nav-item {
+.nav-bar .nav-item {
     color: #333;
 }
 
-.nav-item:hover, .nav-item.selected {
+.nav-bar .nav-item:hover, .nav-bar .nav-item.selected {
     background-color: #ddd;
 }
 
@@ -102,10 +102,10 @@ body {
     background-color: #66bb6a;
 }
 
-.top-menu ul li {
+.top-nav ul li {
     color: #666;
 }
 
-.top-menu ul li.selected {
+.top-nav ul li.selected {
     color: #333;
 }
