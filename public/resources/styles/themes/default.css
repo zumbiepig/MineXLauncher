@@ -778,24 +778,28 @@ body {
 		grid-template-columns: repeat(5, 1fr);
 	}
 }
+
 @media (max-width: 1500px) {
 	.mod-list,
 	.article-list {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
+
 @media (max-width: 1250px) {
 	.mod-list,
 	.article-list {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
+
 @media (max-width: 1000px) {
 	.mod-list,
 	.article-list {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
+
 @media (max-width: 775px) {
 	.mod-list,
 	.article-list {
@@ -803,7 +807,22 @@ body {
 	}
 }
 
-@keyframes article {
+/* bruh pls find a fix for this */
+@keyframes article-1 {
+	0% {
+		opacity: 0;
+		scale: 0;
+	}
+	80% {
+		scale: 1.1;
+	}
+	100% {
+		opacity: 1;
+		scale: 1;
+	}
+}
+
+@keyframes article-2 {
 	0% {
 		opacity: 0;
 		scale: 0;

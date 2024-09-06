@@ -157,15 +157,14 @@ const article = {
 	open: function (articleId: string) {
 		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
 		const modalContent = document.querySelector(`#article-${articleId} .article-content`) as HTMLElement | null;
-		if (modal && modalContent) {
+		if (!articleAnimationLock && modal && modalContent) {
 			articleAnimationLock = true;
-			modal.style.animation = 'article 0.5s ease-in-out normal';
+			modal.style.animation = 'article-1 0.5s ease-in-out alternate 1';
 			modal.style.display = 'flex';
 			modalContent.scroll({ top: 0, left: 0, behavior: 'instant' });
 			modal.addEventListener(
 				'animationend',
 				() => {
-					articleAnimationLock = false;
 					const closeArticleHandler = (event: Event) => {
 						if (event.target === modal) {
 							modal.removeEventListener('click', closeArticleHandler);
@@ -173,26 +172,25 @@ const article = {
 						}
 					};
 					modal.addEventListener('click', closeArticleHandler);
+					articleAnimationLock = false;
 				},
 				{ once: true }
 			);
 		}
 	},
 	close: function (articleId: string) {
-		if (!articleAnimationLock) {
+		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
+		if (!articleAnimationLock && modal) {
 			articleAnimationLock = true;
-			const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
-			if (modal) {
-				modal.style.animation = 'article 0.5s ease-in-out reverse';
-				modal.addEventListener(
-					'animationend',
-					() => {
-						modal.style.display = 'none';
-						articleAnimationLock = false;
-					},
-					{ once: true }
-				);
-			}
+			modal.style.animation = 'article-2 0.5s ease-in-out alternate 1';
+			modal.addEventListener(
+				'animationend',
+				() => {
+					modal.style.display = 'none';
+					articleAnimationLock = false;
+				},
+				{ once: true }
+			);
 		}
 	},
 };
