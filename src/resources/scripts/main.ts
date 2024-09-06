@@ -159,7 +159,7 @@ const article = {
 		const modalContent = document.querySelector(`#article-${articleId} .article-content`) as HTMLElement | null;
 		if (!articleAnimationLock && modal && modalContent) {
 			articleAnimationLock = true;
-			modal.style.animation = 'article-1 0.5s ease-in-out alternate 1';
+			modal.style.animation = '0.5s ease-in-out 1 normal article';
 			modal.style.display = 'flex';
 			modalContent.scroll({ top: 0, left: 0, behavior: 'instant' });
 			modal.addEventListener(
@@ -182,7 +182,7 @@ const article = {
 		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
 		if (!articleAnimationLock && modal) {
 			articleAnimationLock = true;
-			modal.style.animation = 'article-2 0.5s ease-in-out alternate 1';
+			modal.style.animation = '0.5s ease-in-out 1 reverse article-tempfix';
 			modal.addEventListener(
 				'animationend',
 				() => {
