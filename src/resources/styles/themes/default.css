@@ -245,13 +245,13 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-.installations div {
+.installations > div {
 	position: relative;
 	display: inline-block;
 	width: 250px;
 }
 
-.installations div .selector {
+.installations > div .selector {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -267,15 +267,15 @@ body {
 	transition: box-shadow 0.3s;
 }
 
-.installations div .selector:hover {
+.installations > div .selector:hover {
 	box-shadow: 6px 6px #4e4e50;
 }
 
-.installations div .selector.open {
+.installations > div .selector.open {
 	border-radius: 0 0 5px 5px;
 }
 
-.installations div .options {
+.installations > div .options {
 	position: absolute;
 	bottom: calc(100% + 2px);
 	left: 0;
@@ -297,7 +297,14 @@ body {
 		opacity 0.3s ease-out;
 }
 
-.installations div .options div {
+.installations > div .options.open {
+	display: block;
+	max-height: 200px;
+	padding: 10px 0;
+	opacity: 1;
+}
+
+.installations > div .options > div {
 	display: flex;
 	align-items: center;
 	padding: 10px;
@@ -306,22 +313,15 @@ body {
 	transition: background-color 0.3s;
 }
 
-.installations div .options div.open {
-	display: block;
-	max-height: 200px;
-	padding: 10px 0;
-	opacity: 1;
-}
-
-.installations div .options div:last-child {
+.installations > div .options > div:last-child {
 	border-bottom: none;
 }
 
-.installations div .options div:hover {
+.installations > div .options > div:hover {
 	background-color: #127e3f;
 }
 
-.installations div .options div img {
+.installations > div .options > div img {
 	width: 32px;
 	height: 32px;
 	margin-right: 10px;
@@ -339,24 +339,24 @@ body {
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.bottom-bar div {
+.bottom-bar > div {
 	display: flex;
 }
 
-.bottom-bar div .left {
+.bottom-bar > div .left {
 	color: #ddd;
 	margin-right: 10px;
 	text-decoration: none;
 }
 
-.bottom-bar div .right {
+.bottom-bar > div .right {
 	color: #ddd;
 	margin-left: 10px;
 	text-decoration: none;
 }
 
-.bottom-bar div a[class='left']:hover,
-.bottom-bar div a[class='right']:hover {
+.bottom-bar > div a[class='left']:hover,
+.bottom-bar > div a[class='right']:hover {
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -609,7 +609,7 @@ body {
 	border: none;
 }
 
-.archive div {
+.archive > div {
 	margin: 1rem;
 	padding: 1rem;
 	border: 2px solid #3c3c3c;
@@ -620,7 +620,7 @@ body {
 	align-items: flex-start;
 }
 
-.archive div select {
+.archive > div select {
 	width: 100%;
 	padding: 0.5rem;
 	border: 2px solid #4a4a4a;
@@ -644,18 +644,18 @@ body {
 		background-color 0.3s;
 }
 
-.archive div select:focus {
+.archive > div select:focus {
 	border-color: #00cc00;
 	outline: none;
 	background-color: #2e2e2e;
 }
 
-.archive div select option {
+.archive > div select option {
 	background-color: #1e1e1e;
 	color: #ffffff;
 }
 
-.archive div label {
+.archive > div label {
 	font-size: 1rem;
 	color: #ffffff;
 	margin-bottom: 0.5rem;
@@ -688,7 +688,7 @@ body {
 	transform: scale(0.99);
 }
 
-.archive div button {
+.archive > div button {
 	margin: 0.5rem 0 0 0;
 	width: 100%;
 }
