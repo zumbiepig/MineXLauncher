@@ -72,8 +72,7 @@ body {
 	animation: none;
 }
 
-.bottom-bar div .bottom-bar-left:hover {
-	text-decoration: none;
+.bottom-bar > span[onclick]:hover {
 	color: #00ff00;
 }
 

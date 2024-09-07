@@ -89,19 +89,14 @@ body {
 .bottom-bar {
 	background-color: #1a1a1a;
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.bottom-bar div .bottom-bar-left {
 	color: #e0e0e0;
 }
 
-.bottom-bar div .bottom-bar-left:hover {
+
+.bottom-bar > span[onclick]:hover {
 	color: #aaa;
 }
 
-.bottom-bar div .bottom-bar-right {
-	color: #e0e0e0;
-}
 
 .downloads span {
 	background-color: #333;
