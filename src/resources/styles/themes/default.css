@@ -407,7 +407,7 @@ body {
 	scrollbar-color: #555 #333;
 }
 
-.mod-list div {
+.mod-list > div {
 	background-color: #333;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -417,7 +417,7 @@ body {
 	padding-bottom: 35px;
 }
 
-.mod-list div img {
+.mod-list > div img {
 	width: 80px;
 	height: 80px;
 	margin: 0 auto 10px;
@@ -425,34 +425,34 @@ body {
 	object-fit: cover;
 }
 
-.mod-list div .mod-details {
+.mod-list > div .details {
 	padding: 10px 0;
 }
 
-.mod-list div .mod-details strong {
+.mod-list > div .details strong {
 	font-size: 16px;
 	font-weight: bold;
 	margin-bottom: 5px;
 	color: #fff;
 }
 
-.mod-list div .mod-details .mod-author {
+.mod-list > div .details .author {
 	font-size: 12px;
 	color: #ccc;
 	margin-bottom: 5px;
 }
 
-.mod-list div .mod-details .mod-author a {
+.mod-list > div .details .author a {
 	color: #0000ee;
 }
 
-.mod-list div .mod-details .mod-description {
+.mod-list > div .details .description {
 	font-size: 14px;
 	color: #bbb;
 	margin-bottom: 10px;
 }
 
-.mod-list div .mod-links {
+.mod-list > div .links {
 	display: flex;
 	justify-content: space-around;
 	width: calc(100% - 10px);
@@ -462,8 +462,8 @@ body {
 	justify-content: center;
 }
 
-.mod-list div .mod-links .mod-download,
-.mod-list div .mod-links .mod-install {
+.mod-list > div .links .download,
+.mod-list > div .links .install {
 	flex: 1;
 	margin: 0 5px;
 	padding: 5px;
@@ -473,29 +473,29 @@ body {
 	transition: background-color 0.3s;
 }
 
-.mod-list div .mod-links .mod-download {
+.mod-list > div .links .download {
 	background-color: #555;
 }
 
-.mod-list div .mod-links .mod-download:hover {
+.mod-list > div .links .download:hover {
 	cursor: pointer;
 	background-color: #777;
 }
 
-.mod-list div .mod-links .mod-install {
+.mod-list > div .links .install {
 	background-color: #4c4;
 }
 
-.mod-list div .mod-links .mod-install:hover {
+.mod-list > div .links .install:hover {
 	cursor: pointer;
 	background-color: #00b300;
 }
 
-.mod-list div .mod-links .mod-install.installed {
+.mod-list > div .links .install.installed {
 	background-color: #ff0000;
 }
 
-.mod-list div .mod-links .mod-install.installed:hover {
+.mod-list > div .links .install.installed:hover {
 	background-color: #cc0000;
 }
 
@@ -509,7 +509,7 @@ body {
 	scrollbar-color: #555 #333;
 }
 
-.article-list div {
+.article-list > div {
 	background-color: #333;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -519,13 +519,13 @@ body {
 	padding-bottom: 0;
 }
 
-.article-list div:hover {
+.article-list > div:hover {
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 	cursor: pointer;
 	background-color: #3d3d3d;
 }
 
-.article-list div img {
+.article-list > div img {
 	width: 80px;
 	height: 80px;
 	margin: 0 auto 10px;
@@ -533,18 +533,18 @@ body {
 	object-fit: cover;
 }
 
-.article-list div .article-details {
+.article-list > div .details {
 	padding: 10px 0;
 }
 
-.article-list div .article-details strong {
+.article-list > div .details strong {
 	font-size: 16px;
 	font-weight: bold;
 	margin-bottom: 5px;
 	color: #fff;
 }
 
-.article-list div .article-details p {
+.article-list > div .details p {
 	font-size: 14px;
 	color: #bbb;
 	margin-bottom: 10px;
@@ -561,7 +561,7 @@ body {
 	align-items: center;
 }
 
-.article div {
+.article > div {
 	background-color: #333;
 	padding: 20px;
 	border: 1px solid #888;
@@ -576,7 +576,7 @@ body {
 	position: relative;
 }
 
-.article div span {
+.article > div span {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
@@ -586,14 +586,14 @@ body {
 	right: 15px;
 }
 
-.article div span:hover,
-.article div span:focus {
+.article > div span:hover,
+.article > div span:focus {
 	color: #fff;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-.article div div a {
+.article > div div a {
 	color: #0000ee;
 }
 

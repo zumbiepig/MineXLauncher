@@ -161,7 +161,7 @@ const navigate = {
 const article = {
 	open: function (articleId: string) {
 		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
-		const modalContent = document.querySelector(`#article-${articleId} .article-content`) as HTMLElement | null;
+		const modalContent = document.querySelector(`#article-${articleId} div`) as HTMLElement | null;
 		if (!articleAnimationLock && modal && modalContent) {
 			articleAnimationLock = true;
 			modal.style.animation = '0.5s ease-in-out 1 normal article';
@@ -329,7 +329,7 @@ const mods = {
 			mods.push(mod);
 			mods.sort();
 			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(`#mod-install-${modId}`);
+			const modInstallElem = document.querySelector(`#mod-${modId}`);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Uninstall';
 				modInstallElem.classList.add('installed');
@@ -337,7 +337,7 @@ const mods = {
 		} else {
 			mods.splice(modIndex, 1);
 			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(`#mod-install-${modId}`);
+			const modInstallElem = document.querySelector(`#mod-${modId}`);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Install';
 				modInstallElem.classList.remove('installed');
@@ -614,21 +614,21 @@ if (window.location.pathname === '/settings/') {
 		// @ts-expect-error
 		addonData[addonType].forEach((addon) => {
 			const modItem = document.createElement('div');
-			modItem.innerHTML = `<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" /><div class="mod-details"><strong>${
+			modItem.innerHTML = `<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" /><div class="details"><strong>${
 				addon.name
-			}</strong><p class="mod-author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p><p class="mod-description">${addon.description}</p></div><div class="mod-links">${
+			}</strong><p class="author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p><p class="description">${addon.description}</p></div><div class="links">${
 				addonType === 'mods'
-					? `<a href="/resources/mods/downloads/${addon.id}.js" class="mod-download" download>Download</a><a class="mod-install" id="mod-install-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
-					: `<a href="/resources/mods/downloads/${addon.id}.zip" class="mod-download" download>Download</a>`
+					? `<a href="/resources/mods/downloads/${addon.id}.js" class="download" download>Download</a><a class="install" id="mod-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
+					: `<a href="/resources/mods/downloads/${addon.id}.zip" class="download" download>Download</a>`
 			}</div>`;
 			modList?.appendChild(modItem);
 		});
 
 		if (addonType === 'mods') {
 			const installedMods = storage.local.get('mods') ?? [];
-			const modElements = document.querySelectorAll('.mod-install');
+			const modElements = document.querySelectorAll('.mod-list > div .links .install');
 			modElements.forEach((modElement) => {
-				const modId = /^mod-install-(.*)$/.exec(modElement.id)?.[1];
+				const modId = /^mod-(.*)$/.exec(modElement.id)?.[1];
 				if (installedMods.includes(`/resources/mods/downloads/${modId}.js`)) {
 					modElement.textContent = 'Uninstall';
 					modElement.classList.add('installed');
