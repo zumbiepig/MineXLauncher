@@ -76,10 +76,11 @@ if (!isDev) {
 
 	console.log(chalk.cyan('Obfuscating JavaScript...\n'));
 	bundleFiles.forEach((file) => {
+		const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir);
 		writeFileSync(
-			file,
+			outputPath,
 			javascriptObfuscator
-				.obfuscate(readFileSync(file, 'utf-8'), {
+				.obfuscate(readFileSync(outputPath, 'utf-8'), {
 					optionsPreset: 'high-obfuscation',
 					target: 'browser',
 				})
