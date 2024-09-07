@@ -75,7 +75,7 @@ if (!isDev) {
 	});
 
 	console.log(chalk.cyan('Obfuscating JavaScript...\n'));
-	getFiles(resolve(publicDir, 'resources/scripts')).forEach((file) => {
+	bundleFiles.forEach((file) => {
 		writeFileSync(
 			file,
 			javascriptObfuscator
