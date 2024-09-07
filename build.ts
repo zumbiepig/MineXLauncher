@@ -81,7 +81,7 @@ if (!isDev) {
 			outputPath,
 			javascriptObfuscator
 				.obfuscate(readFileSync(outputPath, 'utf-8'), {
-					optionsPreset: 'high-obfuscation',
+					//optionsPreset: 'medium-obfuscation',
 					target: 'browser',
 				})
 				.getObfuscatedCode()
