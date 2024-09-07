@@ -20,27 +20,27 @@ const theme = {
 
 const versionSelector = {
 	open: function () {
-		const customOptions = document.querySelector('.installations div .installations div .options divs');
-		const customSelect = document.querySelector('.installations div .selector');
-		if (customOptions && customSelect) {
-			customOptions.classList.add('open');
-			customSelect.classList.add('open');
+		const options = document.querySelector('.installations div .options');
+		const selector = document.querySelector('.installations div .selector');
+		if (options && selector) {
+			options.classList.add('open');
+			selector.classList.add('open');
 		}
 	},
 	close: function () {
-		const customOptions = document.querySelector('.installations div .installations div .options divs');
-		const customSelect = document.querySelector('.installations div .selector');
-		if (customOptions && customSelect) {
-			customOptions.classList.remove('open');
-			customSelect.classList.remove('open');
+		const options = document.querySelector('.installations div .options');
+		const selector = document.querySelector('.installations div .selector');
+		if (options && selector) {
+			options.classList.remove('open');
+			selector.classList.remove('open');
 		}
 	},
 	toggle: function () {
-		const customOptions = document.querySelector('.installations div .installations div .options divs');
-		const customSelect = document.querySelector('.installations div .selector');
-		if (customOptions && customSelect) {
-			customOptions.classList.toggle('open');
-			customSelect.classList.toggle('open');
+		const options = document.querySelector('.installations div .options');
+		const selector = document.querySelector('.installations div .selector');
+		if (options && selector) {
+			options.classList.toggle('open');
+			selector.classList.toggle('open');
 		}
 	},
 };
@@ -81,7 +81,7 @@ const game = {
 			'b1.3': 'b13-client-version',
 		};
 		const dropdown = clients[client]
-			? (document.querySelector(`#${clients[client]}`) as HTMLSelectElement | null)
+			? (document.querySelector(`select[id='${clients[client]}']`) as HTMLSelectElement | null)
 			: null;
 		if (dropdown?.value) {
 			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === '1.8' ? 'X_1.8' : `_${client}`}/client/${dropdown.value}/index.html`;
