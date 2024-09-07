@@ -628,9 +628,8 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const updatesContainer = document.querySelector('.updates-container');
-		const data: { version: string; changelog: string[] }[] = (
-			await (await fetch('/resources/data/main.json')).json()
-		).updates;
+		const data: { version: string; changelog: string[] }[] = (await (await fetch('/resources/data/main.json')).json())
+			.updates;
 		data.forEach((update) => {
 			const version = document.createElement('div');
 			const name = document.createElement('strong');
