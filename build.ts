@@ -76,7 +76,7 @@ if (!isDev) {
 
 	console.log(chalk.cyan('Obfuscating JavaScript...\n'));
 	bundleFiles.forEach((file) => {
-		const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir).replace(/\.js$/, '.js');
+		const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir).replace(/\.ts$/, '.js');
 		writeFileSync(
 			outputPath,
 			javascriptObfuscator
