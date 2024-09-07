@@ -59,33 +59,33 @@ body {
 	border-top: 1px solid #e0d1e3;
 }
 
-.custom-select {
+.installations div .selector {
 	border: 2px solid #f2c8d5;
 	background-color: #f9e6f1;
 	color: #333;
 }
 
-.custom-options {
+.installations div .installations div .options divs {
 	border: 2px solid #f2c8d5;
 	background-color: #fceef2;
 	color: #333;
 	scrollbar-color: #f2c8d5 #fceef2;
 }
 
-.custom-option {
+.installations div .options div {
 	border-bottom: 1px solid #f2c8d5;
 }
 
-.custom-option:hover {
+.installations div .options div:hover {
 	background-color: #f8d4e4;
 }
 
-.play-button {
+.installations button {
 	background-color: #e5a1b8;
 	border: 2px solid #d0808e;
 }
 
-.play-button:hover {
+.installations button:hover {
 	background-color: #f7b7bc;
 	border-color: #d0808e;
 }
@@ -95,33 +95,20 @@ body {
 	border-top: 1px solid #e0d1e3;
 }
 
-.bottom-bar .bottom-bar-left,
-.bottom-bar .bottom-bar-right {
+.bottom-bar div .bottom-bar-left,
+.bottom-bar div .bottom-bar-right {
 	color: #333;
 }
 
-.bottom-bar .bottom-bar-left:hover {
+.bottom-bar div .bottom-bar-left:hover {
 	color: #e5a1b8;
 }
 
-.minecraft-button {
-	background-color: #f2c8d5;
-	border: 1px solid #e0d1e3;
-}
-
-.minecraft-button:hover {
-	background-color: #e5a1b8;
-}
-
-.minecraft-button:active {
+.downloads a {
 	background-color: #d0808e;
 }
 
-.download-link {
-	background-color: #d0808e;
-}
-
-.download-link:hover {
+.downloads a:hover {
 	background-color: #e5a1b8;
 }
 

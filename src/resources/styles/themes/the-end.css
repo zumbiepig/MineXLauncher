@@ -42,59 +42,46 @@ body {
 	border-top: 1px solid #330066;
 }
 
-.custom-select {
+.installations div .selector {
 	background-color: #4d0099;
 	border: 2px solid #330066;
 	box-shadow: 4px 4px #6600cc;
 }
 
-.custom-select:hover {
+.installations div .selector:hover {
 	box-shadow: 6px 6px #6600cc;
 }
 
-.custom-options {
+.installations div .installations div .options divs {
 	background-color: #330066;
 	border: 2px solid #22004d;
 	box-shadow: 4px 4px #6600cc;
 }
 
-.custom-option:hover {
+.installations div .options div:hover {
 	background-color: #4d0099;
 }
 
-.play-button {
+.installations button {
 	background-color: #6600cc;
 	border: 2px solid #330066;
 }
 
-.play-button:hover {
+.installations button:hover {
 	background-color: #8000ff;
 	border-color: #22004d;
 }
 
-.bottom-bar .bottom-bar-left:hover {
+.bottom-bar div .bottom-bar-left:hover {
 	text-decoration: underline;
 	color: #b300b3;
 }
 
-.minecraft-button {
-	background-color: #8000ff;
-	border: 1px solid #330066;
-}
-
-.minecraft-button:hover {
-	background-color: #9933ff;
-}
-
-.minecraft-button:active {
-	background-color: #6600cc;
-}
-
-.download-link {
+.downloads a {
 	background-color: #4d0099;
 }
 
-.download-link:hover {
+.downloads a:hover {
 	background-color: #8000ff;
 }
 
