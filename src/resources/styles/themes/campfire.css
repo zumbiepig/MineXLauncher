@@ -77,11 +77,11 @@ body {
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.downloads a {
+.downloads span {
 	background-color: #ff6600;
 }
 
-.downloads a:hover {
+.downloads span:hover {
 	background-color: #ff8533;
 }
 

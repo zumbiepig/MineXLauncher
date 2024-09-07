@@ -31,7 +31,7 @@ body {
 .installations div .selector,
 .installations div .options,
 .installations button,
-.downloads a {
+.downloads span {
 	background-color: #111;
 	border: 2px solid #00ff00;
 	color: #00ff00;
@@ -41,14 +41,14 @@ body {
 .nav-bar li.selected,
 .installations div .options div:hover,
 .installations button:hover,
-.downloads a:hover {
+.downloads span:hover {
 	background-color: #333;
 }
 
 .installations div .selector:hover,
 .installations div .selector.open,
 .installations button:hover,
-.downloads a:hover {
+.downloads span:hover {
 	box-shadow: none;
 }
 

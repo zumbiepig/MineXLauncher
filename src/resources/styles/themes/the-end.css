@@ -77,11 +77,11 @@ body {
 	color: #b300b3;
 }
 
-.downloads a {
+.downloads span {
 	background-color: #4d0099;
 }
 
-.downloads a:hover {
+.downloads span:hover {
 	background-color: #8000ff;
 }
 
