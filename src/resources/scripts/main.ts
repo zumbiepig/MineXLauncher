@@ -160,8 +160,8 @@ const navigate = {
 
 const article = {
 	open: function (articleId: string) {
-		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
-		const modalContent = document.querySelector(`#article-${articleId} div`) as HTMLElement | null;
+		const modal = document.querySelector(`.article[data-article-id='${articleId}']`) as HTMLElement | null;
+		const modalContent = document.querySelector(`.article[data-article-id='${articleId}'] > div`) as HTMLElement | null;
 		if (!articleAnimationLock && modal && modalContent) {
 			articleAnimationLock = true;
 			modal.style.animation = '0.5s ease-in-out 1 normal article';
@@ -184,7 +184,7 @@ const article = {
 		}
 	},
 	close: function (articleId: string) {
-		const modal = document.querySelector(`#article-${articleId}`) as HTMLElement | null;
+		const modal = document.querySelector(`.article[data-article-id='${articleId}']`) as HTMLElement | null;
 		if (!articleAnimationLock && modal) {
 			articleAnimationLock = true;
 			modal.style.animation = '0.5s ease-in-out 1 reverse article-tempfix';
@@ -301,26 +301,6 @@ const detect = {
 };
 
 const mods = {
-	check: function (mod: string): boolean {
-		const mods: string[] = storage.local.get('mods') ?? [];
-		return mods.includes(mod);
-	},
-	add: function (mod: string): void {
-		const mods: string[] = storage.local.get('mods') ?? [];
-		if (!mods.includes(mod)) {
-			mods.push(mod);
-			mods.sort();
-			storage.local.set('mods', mods);
-		}
-	},
-	remove: function (mod: string): void {
-		const mods: string[] = storage.local.get('mods') ?? [];
-		const modIndex = mods.indexOf(mod);
-		if (modIndex !== -1) {
-			mods.splice(modIndex, 1);
-			storage.local.set('mods', mods);
-		}
-	},
 	toggle: function (modId: string): void {
 		const mod = `/resources/mods/downloads/${modId}.js`;
 		const mods: string[] = storage.local.get('mods') ?? [];
@@ -329,7 +309,7 @@ const mods = {
 			mods.push(mod);
 			mods.sort();
 			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(`#mod-${modId}`);
+			const modInstallElem = document.querySelector(`.mod-list > div .links .install[data-mod-id='${modId}']`);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Uninstall';
 				modInstallElem.classList.add('installed');
@@ -337,7 +317,7 @@ const mods = {
 		} else {
 			mods.splice(modIndex, 1);
 			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(`#mod-${modId}`);
+			const modInstallElem = document.querySelector(`.mod-list > div .links .install[data-mod-id='${modId}']`);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Install';
 				modInstallElem.classList.remove('installed');
@@ -402,11 +382,13 @@ const base64Gzip = {
 	},
 };
 
-if (detect.mobile()) {
-	const link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.href = '/resources/styles/mobile.css';
-	document.head.appendChild(link);
+function downloadFile(url: string, name?: string) {
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = name ?? '';
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
 }
 
 if (window.location.pathname === '/') {
@@ -437,6 +419,13 @@ if (window.location.pathname === '/') {
 		if (iframe.contentWindow) iframe.contentWindow.installPwaEvent = event;
 	});
 } else {
+	if (detect.mobile()) {
+		const link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = '/resources/styles/mobile.css';
+		document.head.appendChild(link);
+	}
+
 	theme.load();
 
 	document.addEventListener('DOMContentLoaded', async () => {
@@ -602,7 +591,7 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const addonType: 'mods' | 'resourcepacks' = window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
-		const addonData: {
+		const data: {
 			id: string;
 			name: string;
 			description: string;
@@ -612,14 +601,14 @@ if (window.location.pathname === '/settings/') {
 		}[] = (await (await fetch('/resources/data/main.json')).json()).addons;
 		const modList = document.querySelector('.mod-list');
 		// @ts-expect-error
-		addonData[addonType].forEach((addon) => {
+		data[addonType].forEach((addon) => {
 			const modItem = document.createElement('div');
 			modItem.innerHTML = `<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" /><div class="details"><strong>${
 				addon.name
 			}</strong><p class="author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p><p class="description">${addon.description}</p></div><div class="links">${
 				addonType === 'mods'
-					? `<a href="/resources/mods/downloads/${addon.id}.js" class="download" download>Download</a><a class="install" id="mod-${addon.id}" onclick="mods.toggle('${addon.id}')">Install</a>`
-					: `<a href="/resources/mods/downloads/${addon.id}.zip" class="download" download>Download</a>`
+					? `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.js', '${addon.name}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="mods.toggle('${addon.id}')">Install</span>`
+					: `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.zip' '${addon.name}.zip')">Download</span>`
 			}</div>`;
 			modList?.appendChild(modItem);
 		});
@@ -627,11 +616,11 @@ if (window.location.pathname === '/settings/') {
 		if (addonType === 'mods') {
 			const installedMods = storage.local.get('mods') ?? [];
 			const modElements = document.querySelectorAll('.mod-list > div .links .install');
-			modElements.forEach((modElement) => {
-				const modId = /^mod-(.*)$/.exec(modElement.id)?.[1];
+			modElements.forEach((element) => {
+				const modId = (element as HTMLElement).dataset['modId'];
 				if (installedMods.includes(`/resources/mods/downloads/${modId}.js`)) {
-					modElement.textContent = 'Uninstall';
-					modElement.classList.add('installed');
+					element.textContent = 'Uninstall';
+					element.classList.add('installed');
 				}
 			});
 		}
@@ -639,27 +628,29 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const updatesContainer = document.querySelector('.updates-container');
-		const updateData: { version: string; changelog: string[] }[] = (
+		const data: { version: string; changelog: string[] }[] = (
 			await (await fetch('/resources/data/main.json')).json()
 		).updates;
-		updateData.forEach((update) => {
-			const versionHeader = document.createElement('strong');
-			versionHeader.textContent = `MineXLauncher ${update.version}`;
-			updatesContainer?.appendChild(versionHeader);
+		data.forEach((update) => {
+			const version = document.createElement('div');
+			const name = document.createElement('strong');
+			name.textContent = `MineXLauncher ${update.version}`;
 
-			const changelog = document.createElement('ul');
+			const changes = document.createElement('ul');
 			update.changelog.forEach((change) => {
-				const changelogItem = document.createElement('li');
-				changelogItem.textContent = change;
-				changelog.appendChild(changelogItem);
+				const item = document.createElement('li');
+				item.textContent = change;
+				changes.appendChild(item);
 			});
 
-			updatesContainer?.appendChild(changelog);
+			version.appendChild(name);
+			version.appendChild(changes);
+			updatesContainer?.appendChild(version);
 		});
 	});
 }
 
 if (window.location.hostname === null) {
 	// Stop the minifier from removing these functions
-	console.debug([navigate, query, versionSelector, game, mods, base64Gzip, article]);
+	console.debug([navigate, query, versionSelector, game, mods, base64Gzip, article, downloadFile]);
 }
