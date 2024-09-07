@@ -104,11 +104,11 @@ body {
 	color: #e5a1b8;
 }
 
-.downloads a {
+.downloads span {
 	background-color: #d0808e;
 }
 
-.downloads a:hover {
+.downloads span:hover {
 	background-color: #e5a1b8;
 }
 

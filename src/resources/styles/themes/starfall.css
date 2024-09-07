@@ -45,10 +45,10 @@ body {
 	border-color: #0077aa;
 }
 
-.downloads a {
+.downloads span {
 	background-color: #00ccff;
 }
 
-.downloads a:hover {
+.downloads span:hover {
 	background-color: #00e6ff;
 }
