@@ -24,31 +24,31 @@ body {
 	color: #00ccff;
 }
 
-.custom-select,
-.custom-options {
+.installations div .selector,
+.installations div .installations div .options divs {
 	background-color: rgba(0, 0, 0, 0.8);
 	color: #00ccff;
 	border: 2px solid #00ccff;
 }
 
-.custom-option:hover {
+.installations div .options div:hover {
 	background-color: rgba(0, 204, 255, 0.2);
 }
 
-.play-button {
+.installations button {
 	background-color: #00ccff;
 	border: 2px solid #0099cc;
 }
 
-.play-button:hover {
+.installations button:hover {
 	background-color: #00e6ff;
 	border-color: #0077aa;
 }
 
-.download-link {
+.downloads a {
 	background-color: #00ccff;
 }
 
-.download-link:hover {
+.downloads a:hover {
 	background-color: #00e6ff;
 }

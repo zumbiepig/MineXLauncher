@@ -20,24 +20,24 @@ const theme = {
 
 const versionSelector = {
 	open: function () {
-		const customOptions = document.querySelector('.custom-options');
-		const customSelect = document.querySelector('.custom-select');
+		const customOptions = document.querySelector('.installations div .installations div .options divs');
+		const customSelect = document.querySelector('.installations div .selector');
 		if (customOptions && customSelect) {
 			customOptions.classList.add('open');
 			customSelect.classList.add('open');
 		}
 	},
 	close: function () {
-		const customOptions = document.querySelector('.custom-options');
-		const customSelect = document.querySelector('.custom-select');
+		const customOptions = document.querySelector('.installations div .installations div .options divs');
+		const customSelect = document.querySelector('.installations div .selector');
 		if (customOptions && customSelect) {
 			customOptions.classList.remove('open');
 			customSelect.classList.remove('open');
 		}
 	},
 	toggle: function () {
-		const customOptions = document.querySelector('.custom-options');
-		const customSelect = document.querySelector('.custom-select');
+		const customOptions = document.querySelector('.installations div .installations div .options divs');
+		const customSelect = document.querySelector('.installations div .selector');
 		if (customOptions && customSelect) {
 			customOptions.classList.toggle('open');
 			customSelect.classList.toggle('open');
@@ -64,7 +64,7 @@ const game = {
 	},
 	select: function (path: string, name?: string) {
 		selectedVersion = path;
-		const selector = document.querySelector('.custom-select');
+		const selector = document.querySelector('.installations div .selector');
 		if (selector?.textContent) {
 			if (name) {
 				selector.textContent = `Selected: ${name}`;
@@ -614,8 +614,7 @@ if (window.location.pathname === '/settings/') {
 		// @ts-expect-error
 		addonData[addonType].forEach((addon) => {
 			const modItem = document.createElement('div');
-			modItem.classList.add('mod-item');
-			modItem.innerHTML = `<img class="mod-icon" loading="lazy" src="/resources/mods/icons/${addon.id}.webp" /><div class="mod-details"><strong class="mod-name">${
+			modItem.innerHTML = `<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" /><div class="mod-details"><strong>${
 				addon.name
 			}</strong><p class="mod-author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p><p class="mod-description">${addon.description}</p></div><div class="mod-links">${
 				addonType === 'mods'
