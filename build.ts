@@ -76,7 +76,7 @@ if (!isDev) {
 
 	console.log(chalk.cyan('Obfuscating JavaScript...\n'));
 	bundleFiles.forEach((file) => {
-		const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir);
+		const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir).replace(/\.js$/, '.js');
 		writeFileSync(
 			outputPath,
 			javascriptObfuscator
@@ -91,7 +91,7 @@ if (!isDev) {
 
 console.log(chalk.cyan('Copying other files...\n'));
 copyFiles.forEach((file) => {
-	const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir).replace(/\.js$/, '.js');
+	const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir);
 	mkdirSync(dirname(outputPath), { recursive: true });
 	writeFileSync(outputPath, readFileSync(file));
 });
