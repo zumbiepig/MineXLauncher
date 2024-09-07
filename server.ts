@@ -41,7 +41,11 @@ app.use(compression());
 
 if (isDev) app.use(errorhandler());
 
-app.use(serveFavicon(join(BASE_DIR, 'resources/images/icons/favicon.webp'), { maxAge: 86400 }));
+app.use(
+	serveFavicon(join(BASE_DIR, 'resources/images/icons/favicon.webp'), {
+		maxAge: 86400,
+	}),
+);
 app.use(serveStatic(BASE_DIR));
 
 app.use('/', indexRouter);
@@ -65,7 +69,9 @@ app
 	.on('error', (error) => {
 		if (error.code === 'EADDRINUSE') {
 			console.error(
-				chalk.red('EADDRINUSE') + chalk.gray(': ') + chalk.bold(`Failed to start server. Is port ${PORT} in use?`),
+				chalk.red('EADDRINUSE') +
+					chalk.gray(': ') +
+					chalk.bold(`Failed to start server. Is port ${PORT} in use?`),
 			);
 			process.exit(1);
 		}

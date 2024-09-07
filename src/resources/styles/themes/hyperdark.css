@@ -103,12 +103,12 @@ body {
 	color: #e0e0e0;
 }
 
-.downloads a {
+.downloads span {
 	background-color: #333;
 	color: #e0e0e0;
 }
 
-.downloads a:hover {
+.downloads span:hover {
 	background-color: #444;
 }
 

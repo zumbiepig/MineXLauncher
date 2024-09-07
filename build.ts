@@ -1,5 +1,12 @@
 import { build } from 'bun';
-import { mkdirSync, readdirSync, statSync, writeFileSync, readFileSync, rmSync } from 'fs';
+import {
+	mkdirSync,
+	readdirSync,
+	statSync,
+	writeFileSync,
+	readFileSync,
+	rmSync,
+} from 'fs';
 import { resolve, dirname, basename } from 'path';
 import { minify } from 'html-minifier';
 import javascriptObfuscator from 'javascript-obfuscator';
@@ -34,7 +41,11 @@ srcFiles.forEach((file) => {
 	if (file.endsWith('.ts')) bundleFiles.push(file);
 	else if (isDev) copyFiles.push(file);
 	else if (/\.(html|css|js|json)$/.test(strippedPath)) {
-		if (strippedPath.startsWith('/game/offline/') || basename(strippedPath) === 'classes.js') copyFiles.push(file);
+		if (
+			strippedPath.startsWith('/game/offline/') ||
+			basename(strippedPath) === 'classes.js'
+		)
+			copyFiles.push(file);
 		else minifyFiles.push(file);
 	} else copyFiles.push(file);
 });
@@ -76,7 +87,9 @@ if (!isDev) {
 
 	console.log(chalk.cyan('Obfuscating JavaScript...\n'));
 	bundleFiles.forEach((file) => {
-		const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir).replace(/\.ts$/, '.js');
+		const outputPath = file
+			.replace(new RegExp(`^${srcDir}`), publicDir)
+			.replace(/\.ts$/, '.js');
 		writeFileSync(
 			outputPath,
 			javascriptObfuscator
@@ -103,7 +116,9 @@ writeFileSync(
 	assetsJsonPath,
 	JSON.stringify(
 		getFiles(publicDir).map((asset) => {
-			return asset.replace(new RegExp(`^${publicDir}`), '').replace(/\/index\.html$/, '/');
+			return asset
+				.replace(new RegExp(`^${publicDir}`), '')
+				.replace(/\/index\.html$/, '/');
 		}),
 	),
 );

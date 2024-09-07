@@ -7,11 +7,29 @@ window.addEventListener('load', function () {
 		localesURI: `${window.location.pathname}/lang/`,
 		serverWorkerURI: `${window.location.pathname}/worker_bootstrap.js`,
 		worldsFolder: 'MAIN',
-		servers: [{ serverName: 'BrickMC', serverAddress: 'wss://play.brickmc.net', hideAddress: false }],
+		servers: [
+			{
+				serverName: 'BrickMC',
+				serverAddress: 'wss://play.brickmc.net',
+				hideAddress: false,
+			},
+		],
 		relays: [
-			{ addr: 'wss://relay.deev.is/', name: 'lax1dude relay #1', primary: relayId === 0 },
-			{ addr: 'wss://relay.lax1dude.net/', name: 'lax1dude relay #2', primary: relayId === 1 },
-			{ addr: 'wss://relay.shhnowisnottheti.me/', name: 'ayunami relay #1', primary: relayId === 2 },
+			{
+				addr: 'wss://relay.deev.is/',
+				name: 'lax1dude relay #1',
+				primary: relayId === 0,
+			},
+			{
+				addr: 'wss://relay.lax1dude.net/',
+				name: 'lax1dude relay #2',
+				primary: relayId === 1,
+			},
+			{
+				addr: 'wss://relay.shhnowisnottheti.me/',
+				name: 'ayunami relay #1',
+				primary: relayId === 2,
+			},
 		],
 		mainMenu: {
 			splashes: [

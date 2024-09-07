@@ -78,7 +78,11 @@
 		},
 		{
 			"version": "1.2",
-			"changelog": ["Added Eaglercraft 1.2.5", "Added more mods and resource packs", "Fix and optimize mobile site"]
+			"changelog": [
+				"Added Eaglercraft 1.2.5",
+				"Added more mods and resource packs",
+				"Fix and optimize mobile site"
+			]
 		},
 		{
 			"version": "1.1",

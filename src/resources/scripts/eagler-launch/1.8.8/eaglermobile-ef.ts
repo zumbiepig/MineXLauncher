@@ -15,7 +15,10 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		} catch (A) {
 			return !1;
 		}
-	})() || alert('WARNING: This script was created for mobile, and may break functionality in non-mobile browsers!'),
+	})() ||
+		alert(
+			'WARNING: This script was created for mobile, and may break functionality in non-mobile browsers!',
+		),
 		(clientWindow.crouchLock = !1),
 		(clientWindow.sprintLock = !1),
 		(clientWindow.keyboardFix = !1),
@@ -136,7 +139,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						this,
 						A,
 						function (...A) {
-							if (A[0].isValid || !clientWindow.keyboardFix) return I.apply(this, A);
+							if (A[0].isValid || !clientWindow.keyboardFix)
+								return I.apply(this, A);
 						},
 						...g,
 					)
@@ -161,12 +165,18 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		(I.disabled = A), (g.disabled = !A);
 	}
 	(Event.prototype.preventDefault = function (A) {
-		('hiddenInput' != document.activeElement.id || A) && ((this._preventDefault = e), this._preventDefault());
+		('hiddenInput' != document.activeElement.id || A) &&
+			((this._preventDefault = e), this._preventDefault());
 	}),
 		(clientWindow.fakelock = null),
 		Object.defineProperty(Element.prototype, 'requestPointerLock', {
 			value: function () {
-				return (clientWindow.fakelock = this), document.dispatchEvent(new Event('pointerlockchange')), d(!0), !0;
+				return (
+					(clientWindow.fakelock = this),
+					document.dispatchEvent(new Event('pointerlockchange')),
+					d(!0),
+					!0
+				);
 			},
 		}),
 		Object.defineProperty(Document.prototype, 'pointerLockElement', {
@@ -176,13 +186,22 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		}),
 		Object.defineProperty(Document.prototype, 'exitPointerLock', {
 			value: function () {
-				return (clientWindow.fakelock = null), document.dispatchEvent(new Event('pointerlockchange')), d(!1), !0;
+				return (
+					(clientWindow.fakelock = null),
+					document.dispatchEvent(new Event('pointerlockchange')),
+					d(!1),
+					!0
+				);
 			},
 		}),
 		(clientWindow.fakefull = null),
 		Object.defineProperty(Element.prototype, 'requestFullscreen', {
 			value: function () {
-				return (clientWindow.fakefull = this), document.dispatchEvent(new Event('fullscreenchange')), !0;
+				return (
+					(clientWindow.fakefull = this),
+					document.dispatchEvent(new Event('fullscreenchange')),
+					!0
+				);
 			},
 		}),
 		Object.defineProperty(document, 'fullscreenElement', {
@@ -192,7 +211,11 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		}),
 		Object.defineProperty(Document.prototype, 'exitFullscreen', {
 			value: function () {
-				return (clientWindow.fakefull = null), document.dispatchEvent(new Event('fullscreenchange')), !0;
+				return (
+					(clientWindow.fakefull = null),
+					document.dispatchEvent(new Event('fullscreenchange')),
+					!0
+				);
 			},
 		});
 	const c = document.createElement;
@@ -202,7 +225,9 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		return (
 			'input' != A ||
 				I ||
-				(document.querySelectorAll('#fileUpload').forEach((A) => A.parentNode.removeChild(A)),
+				(document
+					.querySelectorAll('#fileUpload')
+					.forEach((A) => A.parentNode.removeChild(A)),
 				(g.id = 'fileUpload'),
 				g.addEventListener(
 					'change',
@@ -225,7 +250,9 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		);
 	};
 	let n = document.createElement('style');
-	(n.id = 'inGameStyle'), (n.textContent = '\n.inGame {\ndisplay: none;\n}'), document.documentElement.appendChild(n);
+	(n.id = 'inGameStyle'),
+		(n.textContent = '\n.inGame {\ndisplay: none;\n}'),
+		document.documentElement.appendChild(n);
 	let o = document.createElement('style');
 	function Z(A, I, g) {
 		var i = document.createElement(g ?? 'button', !0);
@@ -254,7 +281,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		new Promise((A) => {
 			if (document.querySelector(l)) return A(document.querySelector(l));
 			const I = new MutationObserver((g) => {
-				document.querySelector(l) && (I.disconnect(), A(document.querySelector(l)));
+				document.querySelector(l) &&
+					(I.disconnect(), A(document.querySelector(l)));
 			});
 			I.observe(document.documentElement, { childList: !0, subtree: !0 });
 		})).then(() => {
@@ -265,9 +293,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					function (g) {
 						g.preventDefault();
 						const e = g.targetTouches[0];
-						A || ((A = e.pageX), (I = e.pageY)), (g.movementX = e.pageX - A), (g.movementY = e.pageY - I);
+						A || ((A = e.pageX), (I = e.pageY)),
+							(g.movementX = e.pageX - A),
+							(g.movementY = e.pageY - I);
 						var C = clientWindow.fakelock
-							? new MouseEvent('mousemove', { movementX: g.movementX, movementY: g.movementY })
+							? new MouseEvent('mousemove', {
+									movementX: g.movementX,
+									movementY: g.movementY,
+								})
 							: new WheelEvent('wheel', { wheelDeltaY: g.movementY });
 						i.dispatchEvent(C), (A = e.pageX), (I = e.pageY);
 					},
@@ -282,15 +315,20 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					),
 					d(null != clientWindow.fakelock);
 				let e = Z('strafeRightButton', 'inGame', 'div');
-				(e.style.cssText = 'left:20vh;bottom:20vh;'), document.body.appendChild(e);
+				(e.style.cssText = 'left:20vh;bottom:20vh;'),
+					document.body.appendChild(e);
 				let c = Z('strafeLeftButton', 'inGame', 'div');
-				(c.style.cssText = 'left:0vh;bottom:20vh;'), document.body.appendChild(c);
+				(c.style.cssText = 'left:0vh;bottom:20vh;'),
+					document.body.appendChild(c);
 				let n = Z('forwardButton', 'inGame', 'div');
 				(n.style.cssText = 'left:10vh;bottom:20vh;'),
 					n.addEventListener(
 						'touchstart',
 						function (A) {
-							C('w', 'keydown'), e.classList.remove('hide'), c.classList.remove('hide'), n.classList.add('active');
+							C('w', 'keydown'),
+								e.classList.remove('hide'),
+								c.classList.remove('hide'),
+								n.classList.add('active');
 						},
 						!1,
 					),
@@ -302,10 +340,17 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 							g || (g = I.pageX);
 							let i = I.pageX - g;
 							10 * i > clientWindow.innerHeight
-								? (e.classList.add('active'), c.classList.remove('active'), C('d', 'keydown'), C('a', 'keyup'))
+								? (e.classList.add('active'),
+									c.classList.remove('active'),
+									C('d', 'keydown'),
+									C('a', 'keyup'))
 								: 10 * i < 0 - clientWindow.innerHeight
-									? (c.classList.add('active'), e.classList.remove('active'), C('a', 'keydown'), C('d', 'keyup'))
-									: (e.classList.remove('active'), c.classList.remove('active'));
+									? (c.classList.add('active'),
+										e.classList.remove('active'),
+										C('a', 'keydown'),
+										C('d', 'keyup'))
+									: (e.classList.remove('active'),
+										c.classList.remove('active'));
 						},
 						!1,
 					),
@@ -403,7 +448,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 							C('shift', 'keydown'),
 								(clientWindow.crouchLock = !!clientWindow.crouchLock && null),
 								(clientWindow.crouchTimer = setTimeout(function (A) {
-									(clientWindow.crouchLock = null != clientWindow.crouchLock), M.classList.toggle('active');
+									(clientWindow.crouchLock = null != clientWindow.crouchLock),
+										M.classList.toggle('active');
 								}, 1e3));
 						},
 						!1,
@@ -412,7 +458,9 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						'touchend',
 						function (A) {
 							clientWindow.crouchLock ||
-								(C('shift', 'keyup'), M.classList.remove('active'), (clientWindow.crouchLock = !1)),
+								(C('shift', 'keyup'),
+								M.classList.remove('active'),
+								(clientWindow.crouchLock = !1)),
 								clearTimeout(clientWindow.crouchTimer);
 						},
 						!1,
@@ -436,7 +484,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					),
 					document.body.appendChild(v);
 				let m = Z('exitButton', 'inMenu');
-				(m.style.cssText = 'top: 0vh; margin: auto; left: 0vh; right:8vh; width: 8vh; height: 8vh;'),
+				(m.style.cssText =
+					'top: 0vh; margin: auto; left: 0vh; right:8vh; width: 8vh; height: 8vh;'),
 					m.addEventListener(
 						'touchstart',
 						function (A) {
@@ -461,28 +510,45 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						'beforeinput',
 						function (A) {
 							A.stopImmediatePropagation(), A.preventDefault(!0);
-							let I = 'insertLineBreak' == A.inputType ? 'return' : null == A.data ? 'delete' : A.data.slice(-1);
+							let I =
+								'insertLineBreak' == A.inputType
+									? 'return'
+									: null == A.data
+										? 'delete'
+										: A.data.slice(-1);
 							if (
 								(clientWindow.lastKey ||
-									(clientWindow.console.warn('Enabling blocking duplicate key events. Some functionality may be lost.'),
+									(clientWindow.console.warn(
+										'Enabling blocking duplicate key events. Some functionality may be lost.',
+									),
 									(clientWindow.inputFix = !0)),
 								clientWindow.keyboardFix)
 							)
-								if ('insertLineBreak' == A.inputType) C('enter', 'keydown'), C('enter', 'keyup');
+								if ('insertLineBreak' == A.inputType)
+									C('enter', 'keydown'), C('enter', 'keyup');
 								else {
 									const g = A.inputType.slice(0, 1);
 									if ('i' == g && A.data) {
-										if (clientWindow.lastKey == I && clientWindow.blockNextInput && clientWindow.inputFix)
+										if (
+											clientWindow.lastKey == I &&
+											clientWindow.blockNextInput &&
+											clientWindow.inputFix
+										)
 											clientWindow.blockNextInput = !1;
 										else {
 											I.toLowerCase() != I
-												? (C('shift', 'keydown'), C(I, 'keydown'), C(I, 'keyup'), C('shift', 'keyup'))
+												? (C('shift', 'keydown'),
+													C(I, 'keydown'),
+													C(I, 'keyup'),
+													C('shift', 'keyup'))
 												: (C(I, 'keydown'), C(I, 'keyup')),
 												(clientWindow.blockNextInput = !0);
 										}
 									} else
 										('d' != g && A.data) ||
-											(C('backspace', 'keydown'), C('backspace', 'keyup'), (clientWindow.blockNextInput = !1));
+											(C('backspace', 'keydown'),
+											C('backspace', 'keyup'),
+											(clientWindow.blockNextInput = !1));
 								}
 							(clientWindow.lastKey = I), (h.value = ' ');
 						},
@@ -504,7 +570,9 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 									'Switching from keydown to input events due to invalid KeyboardEvent. Some functionality will be lost.',
 								),
 								(clientWindow.keyboardFix = !0),
-								clientWindow.lastKey && (C(clientWindow.lastKey, 'keydown'), C(clientWindow.lastKey, 'keyup')));
+								clientWindow.lastKey &&
+									(C(clientWindow.lastKey, 'keydown'),
+									C(clientWindow.lastKey, 'keyup')));
 						},
 						!1,
 					),
@@ -513,7 +581,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					}),
 					document.body.appendChild(h);
 				let a = Z('keyboardButton', 'inMenu');
-				(a.style.cssText = 'top: 0vh; margin: auto; left: 8vh; right:0vh; width: 8vh; height: 8vh;'),
+				(a.style.cssText =
+					'top: 0vh; margin: auto; left: 8vh; right:0vh; width: 8vh; height: 8vh;'),
 					a.addEventListener(
 						'touchstart',
 						function (A) {
@@ -525,7 +594,9 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						'touchend',
 						function (A) {
 							A.preventDefault(),
-								clientWindow.hiddenInputFocused ? h.blur() : (h.select(), (clientWindow.hiddenInputFocused = !0));
+								clientWindow.hiddenInputFocused
+									? h.blur()
+									: (h.select(), (clientWindow.hiddenInputFocused = !0));
 						},
 						!1,
 					),
@@ -626,7 +697,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 							C('r', 'keydown'),
 								(clientWindow.sprintLock = !!clientWindow.sprintLock && null),
 								(clientWindow.sprintTimer = setTimeout(function (A) {
-									(clientWindow.sprintLock = null != clientWindow.sprintLock), j.classList.toggle('active');
+									(clientWindow.sprintLock = null != clientWindow.sprintLock),
+										j.classList.toggle('active');
 								}, 1e3));
 						},
 						!1,
@@ -635,14 +707,17 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						'touchend',
 						function (A) {
 							clientWindow.sprintLock ||
-								(C('r', 'keyup'), j.classList.remove('active'), (clientWindow.sprintLock = !1)),
+								(C('r', 'keyup'),
+								j.classList.remove('active'),
+								(clientWindow.sprintLock = !1)),
 								clearTimeout(clientWindow.sprintTimer);
 						},
 						!1,
 					),
 					document.body.appendChild(j);
 				let y = Z('pauseButton', 'inGame');
-				(y.style.cssText = 'top: 0vh; margin: auto; left: 0vh; right: 32vh; width: 8vh; height: 8vh;'),
+				(y.style.cssText =
+					'top: 0vh; margin: auto; left: 0vh; right: 32vh; width: 8vh; height: 8vh;'),
 					y.addEventListener(
 						'touchstart',
 						function (A) {
@@ -659,7 +734,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					),
 					document.body.appendChild(y);
 				let L = Z('chatButton', 'inGame');
-				(L.style.cssText = 'top: 0vh; margin: auto; left: 0vh; right: 16vh; width: 8vh; height: 8vh;'),
+				(L.style.cssText =
+					'top: 0vh; margin: auto; left: 0vh; right: 16vh; width: 8vh; height: 8vh;'),
 					L.addEventListener(
 						'touchstart',
 						function (A) {
@@ -669,7 +745,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					),
 					document.body.appendChild(L);
 				let N = Z('perspectiveButton', 'inGame');
-				(N.style.cssText = 'top: 0vh; margin: auto; left: 0vh; right: 0vh; width: 8vh; height: 8vh;'),
+				(N.style.cssText =
+					'top: 0vh; margin: auto; left: 0vh; right: 0vh; width: 8vh; height: 8vh;'),
 					N.addEventListener(
 						'touchstart',
 						function (A) {
@@ -686,7 +763,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					),
 					document.body.appendChild(N);
 				let U = Z('screenshotButton', 'inGame');
-				(U.style.cssText = 'top: 0vh; margin: auto; left: 16vh; right: 0vh; width: 8vh; height: 8vh;'),
+				(U.style.cssText =
+					'top: 0vh; margin: auto; left: 16vh; right: 0vh; width: 8vh; height: 8vh;'),
 					U.addEventListener(
 						'touchstart',
 						function (A) {
@@ -703,7 +781,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					),
 					document.body.appendChild(U);
 				let z = Z('coordinatesButton', 'inGame');
-				(z.style.cssText = 'top: 0vh; margin: auto; left: 32vh; right: 0vh; width: 8vh; height: 8vh;'),
+				(z.style.cssText =
+					'top: 0vh; margin: auto; left: 32vh; right: 0vh; width: 8vh; height: 8vh;'),
 					z.addEventListener(
 						'touchstart',
 						function (A) {

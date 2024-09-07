@@ -4,9 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>MineXLauncher</title>
-		<link rel="icon" type="image/webp" href="/resources/images/icons/favicon.webp" />
+		<link
+			rel="icon"
+			type="image/webp"
+			href="/resources/images/icons/favicon.webp"
+		/>
 		<link rel="stylesheet" href="/resources/styles/themes/default.css" />
-		<link rel="stylesheet" id="theme" onload="document.documentElement.style.display = ''" />
+		<link
+			rel="stylesheet"
+			id="theme"
+			onload="document.documentElement.style.display = ''"
+		/>
 		<script src="/resources/scripts/google-tag.js"></script>
 		<script src="/resources/scripts/main.js"></script>
 	</head>
@@ -59,32 +67,75 @@
 							<li onclick="navigate.home.game()">Game</li>
 							<li onclick="navigate.home.clients()">Clients</li>
 							<li onclick="navigate.home.archive()">Archive</li>
-							<li class="selected" onclick="navigate.home.downloads()">Offline Downloads</li>
+							<li class="selected" onclick="navigate.home.downloads()">
+								Offline Downloads
+							</li>
 						</ul>
 					</div>
 					<div class="main-content">
 						<div class="downloads">
 							<h3>Downloads:</h3>
-							<a href="/game/offline/main/EaglercraftL_1.9.html" download>1.9.4</a>
-							<a href="/game/offline/main/EaglercraftX_1.8.html" download>1.8.8</a>
-							<a href="/game/offline/main/Eaglercraft_1.5.html" download>1.5.2</a>
-							<a href="/game/offline/main/Eaglercraft_1.2.5.html" download>1.2.5</a>
-							<a href="/game/offline/main/Eaglercraft_b1.7.3.html" download>Beta 1.7.3</a>
-							<a href="/game/offline/main/Eaglercraft_b1.3.html" download>Beta 1.3</a>
-							<a href="/game/offline/main/Eaglercraft_a1.2.6.html" download>Alpha 1.2.6</a>
-							<a href="/game/offline/main/Eaglercraft_Indev.html" download>Indev</a>
+							<span
+								onclick="downloadFile('/game/offline/main/EaglercraftL_1.9.html', 'EaglercraftL_1.9.html')"
+								>1.9.4</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/main/EaglercraftX_1.8.html', 'EaglercraftX_1.8.html')"
+								>1.8.8</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/main/Eaglercraft_1.5.html', 'Eaglercraft_1.5.html')"
+								>1.5.2</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/main/Eaglercraft_1.2.5.html', 'Eaglercraft_1.2.5.html')"
+								>1.2.5</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/main/Eaglercraft_b1.7.3.html', 'Eaglercraft_b1.7.3.html')"
+								>Beta 1.7.3</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/main/Eaglercraft_b1.3.html', 'Eaglercraft_b1.3.html')"
+								>Beta 1.3</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/main/Eaglercraft_a1.2.6.html', 'Eaglercraft_a1.2.6.html')"
+								>Alpha 1.2.6</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/main/Eaglercraft_Indev.html', 'Eaglercraft_Indev.html')"
+								>Indev</span
+							>
 							<br /><br />
-							<a href="/game/offline/clients/EaglerForge.html" download>EaglerForge</a>
-							<a href="/game/offline/clients/Resent_Client.html" download>Resent Client</a>
-							<a href="/game/offline/clients/Shadow_Client.html" download>Shadow Client</a>
-							<a href="/game/offline/clients/Astra_Client.html" download>Astra Client</a>
-							<a href="/game/offline/clients/Starlike_Client.html" download>Starlike Client</a>
+							<span
+								onclick="downloadFile('/game/offline/clients/EaglerForge.html', 'EaglerForge.html')"
+								>EaglerForge</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/clients/Resent_Client.html', 'Resent_Client.html')"
+								>Resent Client</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/clients/Shadow_Client.html', 'Shadow_Client.html')"
+								>Shadow Client</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/clients/Astra_Client.html', 'Astra_Client.html')"
+								>Astra Client</span
+							>
+							<span
+								onclick="downloadFile('/game/offline/clients/Starlike_Client.html', 'Starlike_Client.html')"
+								>Starlike Client</span
+							>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="bottom-bar">
-				<span onclick="window.open('https://discord.gg/VRwbRJjXzt')">Join the MineXLauncher Discord</span>
+				<span onclick="window.open('https://discord.gg/VRwbRJjXzt')"
+					>Join the MineXLauncher Discord</span
+				>
 				<span>© 2024 MineXLauncher. All rights reserved.</span>
 			</div>
 		</div>
