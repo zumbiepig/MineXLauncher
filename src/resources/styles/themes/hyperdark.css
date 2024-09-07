@@ -92,11 +92,9 @@ body {
 	color: #e0e0e0;
 }
 
-
 .bottom-bar > span[onclick]:hover {
 	color: #aaa;
 }
-
 
 .downloads span {
 	background-color: #333;
