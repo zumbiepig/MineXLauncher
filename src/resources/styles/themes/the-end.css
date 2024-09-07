@@ -72,8 +72,7 @@ body {
 	border-color: #22004d;
 }
 
-.bottom-bar div .bottom-bar-left:hover {
-	text-decoration: underline;
+.bottom-bar > span[onclick]:hover {
 	color: #b300b3;
 }
 

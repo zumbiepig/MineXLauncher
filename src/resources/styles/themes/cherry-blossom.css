@@ -93,14 +93,10 @@ body {
 .bottom-bar {
 	background-color: #f6e7f3;
 	border-top: 1px solid #e0d1e3;
-}
-
-.bottom-bar div .bottom-bar-left,
-.bottom-bar div .bottom-bar-right {
 	color: #333;
 }
 
-.bottom-bar div .bottom-bar-left:hover {
+.bottom-bar > span[onclick]:hover {
 	color: #e5a1b8;
 }
 

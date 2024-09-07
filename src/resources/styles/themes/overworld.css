@@ -74,10 +74,6 @@ body {
 	background-color: #4c6c4c;
 	border-top: 1px solid #5c7c5c;
 	box-shadow: 0 -2px 4px rgba(0, 255, 0, 0.2);
-}
-
-.bottom-bar div .bottom-bar-left,
-.bottom-bar div .bottom-bar-right {
 	color: #00ff00;
 }
 

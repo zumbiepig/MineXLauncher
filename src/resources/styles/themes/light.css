@@ -82,8 +82,7 @@ body {
 	border-color: #2e7d32;
 }
 
-.bottom-bar div .bottom-bar-left,
-.bottom-bar div .bottom-bar-right {
+.bottom-bar {
 	color: #333;
 }
 
