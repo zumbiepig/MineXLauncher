@@ -1,6 +1,7 @@
 body {
 	background-image: url('/resources/images/backgrounds/themes/nether.webp');
 	font-family: Minecraftia-Regular;
+	font-size: small;
 	color: #ffcc00;
 }
 

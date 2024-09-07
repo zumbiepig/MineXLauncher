@@ -1,6 +1,7 @@
 body {
 	background-image: url('/resources/images/backgrounds/themes/overworld.webp');
 	font-family: Minecraftia-Regular;
+	font-size: small;
 	color: #00ff00;
 }
 

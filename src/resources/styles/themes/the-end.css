@@ -1,6 +1,7 @@
 body {
 	background-image: url('/resources/images/backgrounds/themes/the-end.webp');
 	font-family: Minecraftia-Regular;
+	font-size: small;
 	background-color: #150033;
 	color: #e0d8ff;
 }
