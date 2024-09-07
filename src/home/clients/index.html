@@ -22,14 +22,10 @@
 			></ins>
 		</div>
 		<div class="launcher">
-			<div class="title-bar">
-				<span>MineXLauncher</span>
-			</div>
+			<span class="title-bar"></span>
 			<div class="content">
 				<div class="sidebar">
-					<div class="profile">
-						<span></span>
-					</div>
+					<span class="username"></span>
 					<nav class="nav-bar">
 						<li onclick="navigate.updates()">
 							<img src="/resources/images/icons/nav/updates.webp" />
@@ -73,9 +69,7 @@
 					</div>
 					<div class="installations">
 						<div>
-							<div class="selector" onclick="versionSelector.toggle()">
-								<span>Select a client</span>
-							</div>
+							<span class="selector" onclick="versionSelector.toggle()">Select a client</span>
 							<div class="options">
 								<div onclick="game.select('/game/web/clients/eaglerforge/', 'EaglerForge')">
 									<img src="/resources/images/icons/clients/eaglerforge.webp" />
