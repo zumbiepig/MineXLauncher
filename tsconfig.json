@@ -1,9 +1,4 @@
 {
 	"extends": ["@tsconfig/bun", "@tsconfig/strictest"],
-	"exclude": ["node_modules", "public"],
-	"compilerOptions": {
-		//"outDir": "dist",
-		//"noEmit": false,
-		//"allowImportingTsExtensions": false
-	}
+	"exclude": ["node_modules", "public"]
 }
