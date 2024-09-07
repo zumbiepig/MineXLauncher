@@ -440,8 +440,8 @@ if (window.location.pathname === '/') {
 	theme.load();
 
 	document.addEventListener('DOMContentLoaded', async () => {
-		const profileName = document.querySelector('.profile span');
-		const titleBarText = document.querySelector('.title-bar span');
+		const profileName = document.querySelector('.username');
+		const titleBarText = document.querySelector('.title-bar');
 
 		const lastVersion = storage.local.get('lastVersion');
 		const updateData = (await (await fetch('/resources/data/main.json')).json()).updates;
@@ -483,7 +483,7 @@ if (window.location.pathname === '/') {
 
 if (window.location.pathname === '/settings/') {
 	document.addEventListener('DOMContentLoaded', async () => {
-		const profileName = document.querySelector('.profile span');
+		const profileName = document.querySelector('.username');
 		const usernameInput = document.querySelector('#username-input') as HTMLInputElement | null;
 		const themeSelect = document.querySelector('#theme-select') as HTMLSelectElement | null;
 		const offlineCheckbox = document.querySelector('#offline-checkbox') as HTMLInputElement | null;

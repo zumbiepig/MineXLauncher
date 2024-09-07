@@ -61,13 +61,10 @@ body {
 	border-right: 1px solid #333;
 }
 
-.profile {
+.username {
 	padding: 20px 10px;
 	border-bottom: 1px solid #333;
 	text-align: center;
-}
-
-.profile span {
 	font-weight: bold;
 	display: block;
 	font-size: 16px;
