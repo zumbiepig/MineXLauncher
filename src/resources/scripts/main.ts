@@ -6,7 +6,9 @@ let articleAnimationLock = false;
 
 const theme = {
 	load: function (themeToLoad?: string) {
-		const themeElement = document.querySelector('#theme') as HTMLLinkElement | null;
+		const themeElement = document.querySelector(
+			'#theme',
+		) as HTMLLinkElement | null;
 		if (themeElement)
 			themeElement.href = themeToLoad
 				? `/resources/styles/themes/${themeToLoad}.css`
@@ -81,7 +83,9 @@ const game = {
 			'b1.3': 'b13-client-version',
 		};
 		const dropdown = clients[client]
-			? (document.querySelector(`select[id='${clients[client]}']`) as HTMLSelectElement | null)
+			? (document.querySelector(
+					`select[id='${clients[client]}']`,
+				) as HTMLSelectElement | null)
 			: null;
 		if (dropdown?.value) {
 			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === '1.8' ? 'X_1.8' : `_${client}`}/client/${dropdown.value}/index.html`;
@@ -160,8 +164,12 @@ const navigate = {
 
 const article = {
 	open: function (articleId: string) {
-		const modal = document.querySelector(`.article[data-article-id='${articleId}']`) as HTMLElement | null;
-		const modalContent = document.querySelector(`.article[data-article-id='${articleId}'] > div`) as HTMLElement | null;
+		const modal = document.querySelector(
+			`.article[data-article-id='${articleId}']`,
+		) as HTMLElement | null;
+		const modalContent = document.querySelector(
+			`.article[data-article-id='${articleId}'] > div`,
+		) as HTMLElement | null;
 		if (!articleAnimationLock && modal && modalContent) {
 			articleAnimationLock = true;
 			modal.style.animation = '0.5s ease-in-out 1 normal article';
@@ -184,7 +192,9 @@ const article = {
 		}
 	},
 	close: function (articleId: string) {
-		const modal = document.querySelector(`.article[data-article-id='${articleId}']`) as HTMLElement | null;
+		const modal = document.querySelector(
+			`.article[data-article-id='${articleId}']`,
+		) as HTMLElement | null;
 		if (!articleAnimationLock && modal) {
 			articleAnimationLock = true;
 			modal.style.animation = '0.5s ease-in-out 1 reverse article-tempfix';
@@ -238,7 +248,10 @@ const storage = {
 			}
 			return undefined;
 		},
-		set: function (key: string, value: string | number | object | boolean | null | undefined) {
+		set: function (
+			key: string,
+			value: string | number | object | boolean | null | undefined,
+		) {
 			const item = localStorage.getItem('minexlauncher');
 			if (item === null) {
 				const json: Record<string, unknown> = {};
@@ -268,7 +281,10 @@ const storage = {
 			}
 			return undefined;
 		},
-		set: function (key: string, value: string | number | object | boolean | null | undefined) {
+		set: function (
+			key: string,
+			value: string | number | object | boolean | null | undefined,
+		) {
 			let item = sessionStorage.getItem('minexlauncher');
 			if (item === null) {
 				item = '{}';
@@ -309,7 +325,9 @@ const mods = {
 			mods.push(mod);
 			mods.sort();
 			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(`.mod-list > div .links .install[data-mod-id='${modId}']`);
+			const modInstallElem = document.querySelector(
+				`.mod-list > div .links .install[data-mod-id='${modId}']`,
+			);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Uninstall';
 				modInstallElem.classList.add('installed');
@@ -317,7 +335,9 @@ const mods = {
 		} else {
 			mods.splice(modIndex, 1);
 			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(`.mod-list > div .links .install[data-mod-id='${modId}']`);
+			const modInstallElem = document.querySelector(
+				`.mod-list > div .links .install[data-mod-id='${modId}']`,
+			);
 			if (modInstallElem) {
 				modInstallElem.textContent = 'Install';
 				modInstallElem.classList.remove('installed');
@@ -403,7 +423,9 @@ if (window.location.pathname === '/') {
 				? '/mobile/'
 				: '/home/game/';
 
-	document.addEventListener('DOMContentLoaded', () => document.body.appendChild(iframe));
+	document.addEventListener('DOMContentLoaded', () =>
+		document.body.appendChild(iframe),
+	);
 
 	/* document.addEventListener('load', () => {
 		if (storage.local.get('offlineCache')) {
@@ -433,9 +455,12 @@ if (window.location.pathname === '/') {
 		const titleBarText = document.querySelector('.title-bar');
 
 		const lastVersion = storage.local.get('lastVersion');
-		const updateData = (await (await fetch('/resources/data/main.json')).json()).updates;
+		const updateData = (await (await fetch('/resources/data/main.json')).json())
+			.updates;
 		const currentVersion = updateData[0].version;
-		const changelog = updateData[0].changelog.map((change: string) => `  - ${change}`).join('\n');
+		const changelog = updateData[0].changelog
+			.map((change: string) => `  - ${change}`)
+			.join('\n');
 
 		if (profileName) profileName.textContent = storage.local.get('username');
 		if (titleBarText) titleBarText.textContent += ` ${currentVersion}`;
@@ -443,9 +468,14 @@ if (window.location.pathname === '/') {
 		if (
 			lastVersion &&
 			// @ts-expect-error
-			gt(coerce(currentVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))
+			gt(
+				coerce(currentVersion, { includePrerelease: true }),
+				coerce(lastVersion, { includePrerelease: true }),
+			)
 		) {
-			alert(`MineXLauncher has been updated to v${currentVersion}!\n\nChanges in v${currentVersion}:\n${changelog}`);
+			alert(
+				`MineXLauncher has been updated to v${currentVersion}!\n\nChanges in v${currentVersion}:\n${changelog}`,
+			);
 			storage.local.set('lastVersion', currentVersion);
 		}
 	});
@@ -473,16 +503,28 @@ if (window.location.pathname === '/') {
 if (window.location.pathname === '/settings/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.querySelector('.username');
-		const usernameInput = document.querySelector('#username-input') as HTMLInputElement | null;
-		const themeSelect = document.querySelector('#theme-select') as HTMLSelectElement | null;
-		const offlineCheckbox = document.querySelector('#offline-checkbox') as HTMLInputElement | null;
-		const adsCheckbox = document.querySelector('#ads-checkbox') as HTMLInputElement | null;
-		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data/main.json')).json()).themes;
+		const usernameInput = document.querySelector(
+			'#username-input',
+		) as HTMLInputElement | null;
+		const themeSelect = document.querySelector(
+			'#theme-select',
+		) as HTMLSelectElement | null;
+		const offlineCheckbox = document.querySelector(
+			'#offline-checkbox',
+		) as HTMLInputElement | null;
+		const adsCheckbox = document.querySelector(
+			'#ads-checkbox',
+		) as HTMLInputElement | null;
+		const themeData: { id: string; name: string }[] = (
+			await (await fetch('/resources/data/main.json')).json()
+		).themes;
 
 		if (usernameInput) {
 			usernameInput.placeholder = storage.local.get('username') ?? '';
 			usernameInput.addEventListener('input', () => {
-				let username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+				let username = usernameInput.value
+					.replace(/[^A-Za-z0-9]/g, '_')
+					.substring(0, 16);
 				usernameInput.value = username;
 				while (username.length < 3) username += '_';
 
@@ -499,7 +541,9 @@ if (window.location.pathname === '/settings/') {
 				themeSelect?.appendChild(option);
 			});
 			themeSelect.value = storage.local.get('theme') ?? '';
-			themeSelect.addEventListener('change', () => theme.set(themeSelect.value ?? 'default'));
+			themeSelect.addEventListener('change', () =>
+				theme.set(themeSelect.value ?? 'default'),
+			);
 		}
 
 		if (offlineCheckbox) {
@@ -523,22 +567,37 @@ if (window.location.pathname === '/settings/') {
 			adsCheckbox.addEventListener('change', () => {
 				storage.local.set('showAds', adsCheckbox.checked);
 				const adsContainers = document.querySelectorAll('.ads-container');
-				adsContainers.forEach((adsContainer: Element) => ((adsContainer as HTMLElement).style.display = 'none'));
+				adsContainers.forEach(
+					(adsContainer: Element) =>
+						((adsContainer as HTMLElement).style.display = 'none'),
+				);
 			});
 		}
 	});
 } else if (window.location.pathname === '/welcome/') {
 	document.addEventListener('DOMContentLoaded', async () => {
-		const setupForm = document.querySelector('#setup-form') as HTMLFormElement | null;
-		const usernameInput = document.querySelector('#username-input') as HTMLInputElement | null;
-		const themeSelect = document.querySelector('#theme-select') as HTMLSelectElement | null;
-		const offlineCheckbox = document.querySelector('#offline-checkbox') as HTMLInputElement | null;
-		const themeData: { id: string; name: string }[] = (await (await fetch('/resources/data/main.json')).json()).themes;
+		const setupForm = document.querySelector(
+			'#setup-form',
+		) as HTMLFormElement | null;
+		const usernameInput = document.querySelector(
+			'#username-input',
+		) as HTMLInputElement | null;
+		const themeSelect = document.querySelector(
+			'#theme-select',
+		) as HTMLSelectElement | null;
+		const offlineCheckbox = document.querySelector(
+			'#offline-checkbox',
+		) as HTMLInputElement | null;
+		const themeData: { id: string; name: string }[] = (
+			await (await fetch('/resources/data/main.json')).json()
+		).themes;
 
 		if (setupForm) {
 			if (usernameInput) {
 				usernameInput.addEventListener('input', () => {
-					const username = usernameInput.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+					const username = usernameInput.value
+						.replace(/[^A-Za-z0-9]/g, '_')
+						.substring(0, 16);
 					usernameInput.value = username;
 				});
 			}
@@ -550,13 +609,17 @@ if (window.location.pathname === '/settings/') {
 					option.textContent = theme.name;
 					themeSelect?.appendChild(option);
 				});
-				themeSelect.addEventListener('change', () => theme.load(themeSelect.value ?? 'default'));
+				themeSelect.addEventListener('change', () =>
+					theme.load(themeSelect.value ?? 'default'),
+				);
 			}
 
 			setupForm.addEventListener('submit', async (event) => {
 				event.preventDefault();
 
-				let username = usernameInput?.value.replace(/[^A-Za-z0-9]/g, '_').substring(0, 16);
+				let username = usernameInput?.value
+					.replace(/[^A-Za-z0-9]/g, '_')
+					.substring(0, 16);
 				if (usernameInput) usernameInput.value = username ?? '';
 
 				if (!username) {
@@ -572,7 +635,8 @@ if (window.location.pathname === '/settings/') {
 					storage.local.set('mods', []);
 					storage.local.set(
 						'lastVersion',
-						(await (await fetch('/resources/data/main.json')).json()).updates[0].version,
+						(await (await fetch('/resources/data/main.json')).json()).updates[0]
+							.version,
 					);
 
 					if (offlineCheckbox?.checked) {
@@ -588,9 +652,13 @@ if (window.location.pathname === '/settings/') {
 			});
 		}
 	});
-} else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
+} else if (
+	window.location.pathname === '/mods/mods/' ||
+	window.location.pathname === '/mods/resourcepacks/'
+) {
 	document.addEventListener('DOMContentLoaded', async () => {
-		const addonType: 'mods' | 'resourcepacks' = window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
+		const addonType: 'mods' | 'resourcepacks' =
+			window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
 		const data: {
 			id: string;
 			name: string;
@@ -607,15 +675,17 @@ if (window.location.pathname === '/settings/') {
 				addon.name
 			}</strong><p class="author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p><p class="description">${addon.description}</p></div><div class="links">${
 				addonType === 'mods'
-					? `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.js', '${addon.name}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="mods.toggle('${addon.id}')">Install</span>`
-					: `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.zip' '${addon.name}.zip')">Download</span>`
+					? `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.js', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="mods.toggle('${addon.id}')">Install</span>`
+					: `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.zip', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.zip')">Download</span>`
 			}</div>`;
 			modList?.appendChild(modItem);
 		});
 
 		if (addonType === 'mods') {
 			const installedMods = storage.local.get('mods') ?? [];
-			const modElements = document.querySelectorAll('.mod-list > div .links .install');
+			const modElements = document.querySelectorAll(
+				'.mod-list > div .links .install',
+			);
 			modElements.forEach((element) => {
 				const modId = (element as HTMLElement).dataset['modId'];
 				if (installedMods.includes(`/resources/mods/downloads/${modId}.js`)) {
@@ -628,8 +698,9 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const updatesContainer = document.querySelector('.updates-container');
-		const data: { version: string; changelog: string[] }[] = (await (await fetch('/resources/data/main.json')).json())
-			.updates;
+		const data: { version: string; changelog: string[] }[] = (
+			await (await fetch('/resources/data/main.json')).json()
+		).updates;
 		data.forEach((update) => {
 			const version = document.createElement('div');
 			const name = document.createElement('strong');
@@ -651,5 +722,14 @@ if (window.location.pathname === '/settings/') {
 
 if (window.location.hostname === null) {
 	// Stop the minifier from removing these functions
-	console.debug([navigate, query, versionSelector, game, mods, base64Gzip, article, downloadFile]);
+	console.debug([
+		navigate,
+		query,
+		versionSelector,
+		game,
+		mods,
+		base64Gzip,
+		article,
+		downloadFile,
+	]);
 }

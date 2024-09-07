@@ -13,7 +13,9 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		}
 	}
 	if (!isMobile()) {
-		alert('WARNING: This script was created for mobile, and may break functionality in non-mobile browsers!');
+		alert(
+			'WARNING: This script was created for mobile, and may break functionality in non-mobile browsers!',
+		);
 	}
 	// TODO: consolidate all of these into a single object?
 	window.crouchLock = false; // Used for crouch mobile control
@@ -191,7 +193,12 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		});
 		window.dispatchEvent(evt);
 	}
-	function mouseEvent(number, state, element, event = { clientX: 0, clientY: 0, screenX: 0, screenY: 0 }) {
+	function mouseEvent(
+		number,
+		state,
+		element,
+		event = { clientX: 0, clientY: 0, screenX: 0, screenY: 0 },
+	) {
 		element.dispatchEvent(
 			new PointerEvent(state, {
 				button: number,
@@ -277,7 +284,9 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		const element = this._createElement(type);
 		if (type == 'input' && !ignore) {
 			// We set the ingore flag to true when we create the hiddenInput
-			document.querySelectorAll('#fileUpload').forEach((e) => e.parentNode.removeChild(e)); // Get rid of any left over fileUpload inputs
+			document
+				.querySelectorAll('#fileUpload')
+				.forEach((e) => e.parentNode.removeChild(e)); // Get rid of any left over fileUpload inputs
 			element.id = 'fileUpload';
 			element.addEventListener(
 				'change',
@@ -401,9 +410,15 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				e.preventDefault(); // Prevents window zoom when using two fingers
 				let primaryTouch;
-				for (let touchIndex = 0; touchIndex < e.targetTouches.length; touchIndex++) {
+				for (
+					let touchIndex = 0;
+					touchIndex < e.targetTouches.length;
+					touchIndex++
+				) {
 					// Iterate through our touches to find a touch event matching the primary touch ID
-					if (e.targetTouches[touchIndex].identifier == window.canvasPrimaryID) {
+					if (
+						e.targetTouches[touchIndex].identifier == window.canvasPrimaryID
+					) {
 						primaryTouch = e.targetTouches[touchIndex];
 						break;
 					}
@@ -412,7 +427,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					primaryTouch.distanceX = primaryTouch.clientX - canvasTouchStartX;
 					primaryTouch.distanceY = primaryTouch.clientY - canvasTouchStartY;
 					primaryTouch.squaredNorm =
-						primaryTouch.distanceX * primaryTouch.distanceX + primaryTouch.distanceY * primaryTouch.distanceY;
+						primaryTouch.distanceX * primaryTouch.distanceX +
+						primaryTouch.distanceY * primaryTouch.distanceY;
 					primaryTouch.movementX = primaryTouch.clientX - canvasTouchPreviousX;
 					primaryTouch.movementY = primaryTouch.clientY - canvasTouchPreviousY;
 					if (window.canvasTouchMode == 1) {
@@ -452,7 +468,11 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		);
 
 		function canvasTouchEnd(e) {
-			for (let touchIndex = 0; touchIndex < e.changedTouches.length; touchIndex++) {
+			for (
+				let touchIndex = 0;
+				touchIndex < e.changedTouches.length;
+				touchIndex++
+			) {
 				// Iterate through changed touches to find primary touch
 				if (e.changedTouches[touchIndex].identifier == window.canvasPrimaryID) {
 					const primaryTouch = e.changedTouches[touchIndex];
@@ -477,11 +497,19 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		canvas.addEventListener('touchcancel', canvasTouchEnd, false); // TODO: Find out why this is different than touchend
 		setButtonVisibility(window.fakelock != null); //Updates our mobile controls when the canvas finally loads
 		// All of the touch buttons
-		const strafeRightButton = createTouchButton('strafeRightButton', 'inGame', 'div');
+		const strafeRightButton = createTouchButton(
+			'strafeRightButton',
+			'inGame',
+			'div',
+		);
 		strafeRightButton.classList.add('strafeSize');
 		strafeRightButton.style.cssText = 'left:24vh;bottom:22vh;';
 		document.body.appendChild(strafeRightButton);
-		const strafeLeftButton = createTouchButton('strafeLeftButton', 'inGame', 'div');
+		const strafeLeftButton = createTouchButton(
+			'strafeLeftButton',
+			'inGame',
+			'div',
+		);
 		strafeLeftButton.classList.add('strafeSize');
 		strafeLeftButton.style.cssText = 'left:5.5vh;bottom:22vh;';
 		document.body.appendChild(strafeLeftButton);
@@ -666,7 +694,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		document.body.appendChild(inventoryButton);
 		const exitButton = createTouchButton('exitButton', 'inMenu');
 		exitButton.classList.add('smallMobileControl');
-		exitButton.style.cssText = 'top: 0.5vh; margin: auto; left: 1vh; right:8vh;';
+		exitButton.style.cssText =
+			'top: 0.5vh; margin: auto; left: 1vh; right:8vh;';
 		exitButton.addEventListener(
 			'touchstart',
 			function (e) {
@@ -712,10 +741,17 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				// For some reason beforeinput doesn't have the same deletion problems that input has on Android
 				e.stopImmediatePropagation(); // Android ignores this and the prevent default, so this will probably be removed in the future
 				e.preventDefault(true); // We pass a value because we've hijacked the prevent default function to have a "should bypass" boolean value
-				const inputData = e.inputType == 'insertLineBreak' ? 'return' : e.data == null ? 'delete' : e.data.slice(-1); // Saves the last key press.
+				const inputData =
+					e.inputType == 'insertLineBreak'
+						? 'return'
+						: e.data == null
+							? 'delete'
+							: e.data.slice(-1); // Saves the last key press.
 				if (!window.lastKey) {
 					// When we first set hiddenInput's text contents to " " we can use this to check if Duplicate Mode is needed
-					window.console.warn('Enabling blocking duplicate key events. Some functionality may be lost.');
+					window.console.warn(
+						'Enabling blocking duplicate key events. Some functionality may be lost.',
+					);
 					window.inputFix = true;
 				}
 				if (window.keyboardFix) {
@@ -727,7 +763,10 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						const sliceInputType = e.inputType.slice(0, 1); // Android doesn't constiently dispatch the correct inputType, but most of them either start with i for insert or d for delete, so this dumb solution should be good enough.
 						if (sliceInputType == 'i' && e.data) {
 							// Android sometimes always dispatches insertCompositionText inputTypes, so checking that e.data isn't null is necessary
-							const isDuplicate = window.lastKey == inputData && window.blockNextInput && window.inputFix;
+							const isDuplicate =
+								window.lastKey == inputData &&
+								window.blockNextInput &&
+								window.inputFix;
 							if (isDuplicate) {
 								// If our key press matches the last unblocked key press and we are in duplicaye mode, ignore the input
 								window.blockNextInput = false;
@@ -793,7 +832,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		document.body.appendChild(hiddenInput);
 		const keyboardButton = createTouchButton('keyboardButton', 'inMenu');
 		keyboardButton.classList.add('smallMobileControl');
-		keyboardButton.style.cssText = 'top: 0.5vh; margin: auto; left: 6vh; right:0vh;';
+		keyboardButton.style.cssText =
+			'top: 0.5vh; margin: auto; left: 6vh; right:0vh;';
 		keyboardButton.addEventListener(
 			'touchstart',
 			function (e) {
@@ -936,7 +976,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		document.body.appendChild(sprintButton);
 		const pauseButton = createTouchButton('pauseButton', 'inGame');
 		pauseButton.classList.add('smallMobileControl');
-		pauseButton.style.cssText = 'top: 0.5vh; margin: auto; left: 0vh; right: 0vh;';
+		pauseButton.style.cssText =
+			'top: 0.5vh; margin: auto; left: 0vh; right: 0vh;';
 		pauseButton.addEventListener(
 			'touchstart',
 			function (e) {
@@ -954,7 +995,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		document.body.appendChild(pauseButton);
 		const chatButton = createTouchButton('chatButton', 'inGame');
 		chatButton.classList.add('smallMobileControl');
-		chatButton.style.cssText = 'top: 0.5vh; margin: auto; left: 0vh; right: 14vh;';
+		chatButton.style.cssText =
+			'top: 0.5vh; margin: auto; left: 0vh; right: 14vh;';
 		chatButton.addEventListener(
 			'touchstart',
 			function (e) {
@@ -965,7 +1007,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		document.body.appendChild(chatButton);
 		const perspectiveButton = createTouchButton('perspectiveButton', 'inGame');
 		perspectiveButton.classList.add('smallMobileControl');
-		perspectiveButton.style.cssText = 'top: 0.5vh; margin: auto; left: 0vh; right: 28vh;';
+		perspectiveButton.style.cssText =
+			'top: 0.5vh; margin: auto; left: 0vh; right: 28vh;';
 		perspectiveButton.addEventListener(
 			'touchstart',
 			function (e) {
@@ -985,7 +1028,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		document.body.appendChild(perspectiveButton);
 		const screenshotButton = createTouchButton('screenshotButton', 'inGame');
 		screenshotButton.classList.add('smallMobileControl');
-		screenshotButton.style.cssText = 'top: 0.5vh; margin: auto; left: 28vh; right: 0vh;';
+		screenshotButton.style.cssText =
+			'top: 0.5vh; margin: auto; left: 28vh; right: 0vh;';
 		screenshotButton.addEventListener(
 			'touchstart',
 			function (e) {
@@ -1005,7 +1049,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		document.body.appendChild(screenshotButton);
 		const coordinatesButton = createTouchButton('coordinatesButton', 'inGame');
 		coordinatesButton.classList.add('smallMobileControl');
-		coordinatesButton.style.cssText = 'top: 0.5vh; margin: auto; left: 14vh; right: 0vh;';
+		coordinatesButton.style.cssText =
+			'top: 0.5vh; margin: auto; left: 14vh; right: 0vh;';
 		coordinatesButton.addEventListener(
 			'touchstart',
 			function (e) {

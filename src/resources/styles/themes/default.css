@@ -354,7 +354,7 @@ body {
 	align-items: center;
 }
 
-.downloads a {
+.downloads span {
 	display: inline-block;
 	background-color: #048239;
 	color: #fff;
@@ -365,7 +365,8 @@ body {
 	transition: background-color 0.3s;
 }
 
-.downloads a:hover {
+.downloads span:hover {
+	cursor: pointer;
 	background-color: #00cc00;
 }
 
