@@ -3,12 +3,12 @@
 	"name": "minexlauncher",
 	"type": "module",
 	"scripts": {
-		"start": "NODE_ENV=production bun run ./index.ts",
-		"dev": "NODE_ENV=development DEBUG=app:* bun --hot run ./index.ts",
-		"lint": "eslint ./src/",
-		"lint:fix": "eslint --fix ./src/",
-		"build": "bun run ./build.ts",
-		"build:fast": "bun run ./build_fast.ts"
+		"start": "NODE_ENV=production bun run ./server.ts",
+		"dev": "NODE_ENV=development DEBUG=minexlauncher:* bun --hot run ./server.ts",
+		"lint": "eslint ./src/ && tsc",
+		"lint:fix": "eslint --fix ./src/ && tsc",
+		"build": "NODE_ENV=production bun run ./build.ts",
+		"build:fast": "NODE_ENV=development bun run ./build.ts"
 	},
 	"dependencies": {
 		"chalk": "^5.3.0",
