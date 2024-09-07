@@ -1,5 +1,4 @@
 {
 	"extends": ["@tsconfig/bun", "@tsconfig/strictest"],
-	"include": ["src/resources/scripts/"],
-	"exclude": ["node_modules/", "public/"]
+	"exclude": ["node_modules/", "public/", "src/game/", "src/resources/mods/downloads/"]
 }

@@ -39,6 +39,7 @@
 		"@types/semver": "^7.5.8",
 		"@types/serve-favicon": "^2.5.7",
 		"eslint": "^9.9.1",
+		"eslint-config-prettier": "^9.1.0",
 		"html-minifier": "^4.0.0",
 		"javascript-obfuscator": "^4.1.1",
 		"prettier": "^3.3.3",
