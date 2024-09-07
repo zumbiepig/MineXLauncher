@@ -321,21 +321,16 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	color: #ddd;
 	font-size: 14px;
 	text-decoration: none;
 	border-top: 1px solid #333;
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.bottom-bar > div {
-	display: flex;
-	margin: 0 10px;
-	text-decoration: none;
-}
-
-.bottom-bar > div a:hover {
-	text-decoration: underline;
+.bottom-bar > span[onclick]:hover {
 	cursor: pointer;
+	text-decoration: underline;
 }
 
 .updates-container {
