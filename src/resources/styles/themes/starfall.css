@@ -25,7 +25,7 @@ body {
 }
 
 .installations div .selector,
-.installations div .installations div .options divs {
+.installations div .options {
 	background-color: rgba(0, 0, 0, 0.8);
 	color: #00ccff;
 	border: 2px solid #00ccff;
@@ -45,10 +45,10 @@ body {
 	border-color: #0077aa;
 }
 
-.downloads span {
+.downloads a {
 	background-color: #00ccff;
 }
 
-.downloads span:hover {
+.downloads a:hover {
 	background-color: #00e6ff;
 }

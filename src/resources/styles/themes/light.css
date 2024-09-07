@@ -56,7 +56,7 @@ body {
 	box-shadow: 6px 6px #ddd;
 }
 
-.installations div .installations div .options divs {
+.installations div .options {
 	border: 2px solid #ccc;
 	background-color: #fff;
 	box-shadow: 4px 4px #ddd;
@@ -87,11 +87,11 @@ body {
 	color: #333;
 }
 
-.downloads span {
+.downloads a {
 	background-color: #4caf50;
 }
 
-.downloads span:hover {
+.downloads a:hover {
 	background-color: #66bb6a;
 }
 
