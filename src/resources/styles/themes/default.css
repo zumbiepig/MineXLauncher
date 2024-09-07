@@ -67,7 +67,7 @@ body {
 	text-align: center;
 }
 
-.profile-name {
+.profile span {
 	font-weight: bold;
 	display: block;
 	font-size: 16px;
@@ -83,7 +83,7 @@ body {
 	scrollbar-color: #555 #333;
 }
 
-.nav-bar .nav-item {
+.nav-bar li {
 	display: flex;
 	align-items: center;
 	padding: 15px 20px;
@@ -91,18 +91,18 @@ body {
 	transition: background-color 0.2s;
 }
 
-.nav-bar .nav-item:hover,
-.nav-bar .nav-item.selected {
+.nav-bar li:hover,
+.nav-bar li.selected {
 	background-color: #444;
 }
 
-.nav-bar .nav-item .nav-icon {
+.nav-bar li img {
 	width: 24px;
 	height: 24px;
 	margin-right: 15px;
 }
 
-.nav-bar .nav-item .nav-text {
+.nav-bar li span {
 	font-size: 14px;
 }
 
@@ -249,7 +249,10 @@ body {
 	scrollbar-color: #048239 #035525;
 	max-height: 0;
 	overflow: auto;
-	transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out;
+	transition:
+		max-height 0.3s ease-out,
+		padding 0.3s ease-out,
+		opacity 0.3s ease-out;
 }
 
 .custom-options.open {
@@ -292,7 +295,10 @@ body {
 	font-size: 16px;
 	font-weight: bold;
 	text-transform: uppercase;
-	transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+	transition:
+		background-color 0.2s,
+		border-color 0.2s,
+		transform 0.2s;
 	overflow: hidden;
 	position: relative;
 }
@@ -539,11 +545,18 @@ body {
 	font-size: 1rem;
 	cursor: pointer;
 	appearance: none;
-	background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%), linear-gradient(135deg, #1e1e1e 50%, transparent 50%);
-	background-position: right 0.7rem center, right 0.7rem center;
+	background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%),
+		linear-gradient(135deg, #1e1e1e 50%, transparent 50%);
+	background-position:
+		right 0.7rem center,
+		right 0.7rem center;
 	background-repeat: no-repeat;
-	background-size: 0.65rem auto, 0.65rem auto;
-	transition: border-color 0.3s, background-color 0.3s;
+	background-size:
+		0.65rem auto,
+		0.65rem auto;
+	transition:
+		border-color 0.3s,
+		background-color 0.3s;
 }
 
 .version-select:focus {

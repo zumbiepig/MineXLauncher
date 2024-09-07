@@ -28,7 +28,7 @@ debugLogger('Booting server.');
 app.use(
 	helmet({
 		contentSecurityPolicy: false,
-	})
+	}),
 );
 
 app.use(morgan(isDev ? 'dev' : 'combined'));
@@ -64,7 +64,9 @@ app
 	})
 	.on('error', (error) => {
 		if (error.code === 'EADDRINUSE') {
-			console.error(chalk.red('EADDRINUSE') + chalk.gray(': ') + chalk.bold(`Failed to start server. Is port ${PORT} in use?`));
+			console.error(
+				chalk.red('EADDRINUSE') + chalk.gray(': ') + chalk.bold(`Failed to start server. Is port ${PORT} in use?`),
+			);
 			process.exit(1);
 		}
 	});

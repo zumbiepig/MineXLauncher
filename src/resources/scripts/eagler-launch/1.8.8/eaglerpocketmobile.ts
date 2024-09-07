@@ -160,7 +160,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						}
 						return fn.apply(this, args); // Appends the rest of the function specified by addEventListener
 					},
-					...rest
+					...rest,
 				);
 			} else {
 				// If it's not a keydown event, behave like normal (hopefully)
@@ -200,14 +200,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				clientY: event.clientY,
 				screenX: event.screenX,
 				screenY: event.screenY,
-			})
+			}),
 		);
 	}
 	function wheelEvent(element, delta) {
 		element.dispatchEvent(
 			new WheelEvent('wheel', {
 				wheelDeltaY: delta,
-			})
+			}),
 		);
 	}
 	function setButtonVisibility(pointerLocked) {
@@ -285,7 +285,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					element.hidden = true;
 					element.style.display = 'none';
 				},
-				{ passive: false, once: true }
+				{ passive: false, once: true },
 			);
 			window.addEventListener(
 				'focus',
@@ -295,7 +295,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 						element.style.display = 'none';
 					}, 300);
 				},
-				{ once: true }
+				{ once: true },
 			);
 			document.body.appendChild(element);
 		}
@@ -347,7 +347,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				e.preventDefault();
 			},
-			false
+			false,
 		);
 		touchButton.addEventListener('contextmenu', function (e) {
 			e.preventDefault();
@@ -393,7 +393,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					}
 				}
 			},
-			false
+			false,
 		);
 
 		canvas.addEventListener(
@@ -411,7 +411,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				if (primaryTouch) {
 					primaryTouch.distanceX = primaryTouch.clientX - canvasTouchStartX;
 					primaryTouch.distanceY = primaryTouch.clientY - canvasTouchStartY;
-					primaryTouch.squaredNorm = primaryTouch.distanceX * primaryTouch.distanceX + primaryTouch.distanceY * primaryTouch.distanceY;
+					primaryTouch.squaredNorm =
+						primaryTouch.distanceX * primaryTouch.distanceX + primaryTouch.distanceY * primaryTouch.distanceY;
 					primaryTouch.movementX = primaryTouch.clientX - canvasTouchPreviousX;
 					primaryTouch.movementY = primaryTouch.clientY - canvasTouchPreviousY;
 					if (window.canvasTouchMode == 1) {
@@ -439,7 +440,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 									screenY: primaryTouch.screenY, // The top four are used for item position when in GUI's, the bottom two are for moving the camera inGame
 									movementX: primaryTouch.movementX,
 									movementY: primaryTouch.movementY,
-								})
+								}),
 							);
 						}
 					}
@@ -447,7 +448,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					canvasTouchPreviousY = primaryTouch.clientY;
 				}
 			},
-			false
+			false,
 		);
 
 		function canvasTouchEnd(e) {
@@ -495,7 +496,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				strafeLeftButton.classList.remove('hide');
 				forwardButton.classList.add('active');
 			},
-			false
+			false,
 		);
 		forwardButton.addEventListener(
 			'touchmove',
@@ -523,7 +524,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					strafeLeftButton.classList.remove('active');
 				}
 			},
-			false
+			false,
 		);
 		forwardButton.addEventListener(
 			'touchend',
@@ -539,7 +540,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 
 				buttonTouchStartX = null;
 			},
-			false
+			false,
 		);
 		strafeRightButton.classList.add('hide');
 		strafeLeftButton.classList.add('hide');
@@ -552,14 +553,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('d', 'keydown');
 			},
-			false
+			false,
 		);
 		rightButton.addEventListener(
 			'touchend',
 			function (e) {
 				keyEvent('d', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(rightButton);
 		const leftButton = createTouchButton('leftButton', 'inGame');
@@ -569,14 +570,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('a', 'keydown');
 			},
-			false
+			false,
 		);
 		leftButton.addEventListener(
 			'touchend',
 			function (e) {
 				keyEvent('a', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(leftButton);
 		const backButton = createTouchButton('backButton', 'inGame');
@@ -586,14 +587,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('s', 'keydown');
 			},
-			false
+			false,
 		);
 		backButton.addEventListener(
 			'touchend',
 			function (e) {
 				keyEvent('s', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(backButton);
 		const jumpButton = createTouchButton('jumpButton', 'inGame');
@@ -603,14 +604,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent(' ', 'keydown');
 			},
-			false
+			false,
 		);
 		jumpButton.addEventListener(
 			'touchend',
 			function (e) {
 				keyEvent(' ', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(jumpButton);
 
@@ -627,7 +628,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					crouchButton.classList.toggle('active');
 				}, 1000);
 			},
-			false
+			false,
 		);
 
 		crouchButton.addEventListener(
@@ -640,7 +641,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				}
 				clearTimeout(window.crouchTimer);
 			},
-			false
+			false,
 		);
 		document.body.appendChild(crouchButton);
 		const inventoryButton = createTouchButton('inventoryButton', 'inGame');
@@ -651,7 +652,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('e', 'keydown');
 			},
-			false
+			false,
 		);
 		inventoryButton.addEventListener(
 			'touchend',
@@ -660,7 +661,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				keyEvent('shift', 'keyup'); // Sometimes shift gets stuck on, which interferes with item manipulation in GUI's
 				keyEvent('e', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(inventoryButton);
 		const exitButton = createTouchButton('exitButton', 'inMenu');
@@ -671,14 +672,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('`', 'keydown');
 			},
-			false
+			false,
 		);
 		exitButton.addEventListener(
 			'touchend',
 			function (e) {
 				keyEvent('`', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(exitButton);
 		// ---Input Handling---
@@ -703,7 +704,8 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 		const hiddenInput = document.createElement('input', true);
 		hiddenInput.id = 'hiddenInput';
 		hiddenInput.classList.add('inMenu');
-		hiddenInput.style.cssText = 'position:absolute;top: 0vh; margin: auto; left: 8vh; right:0vh; width: 8vh; height: 8vh;font-size:20px;z-index: -10;color: transparent;text-shadow: 0 0 0 black;'; // We hide the input behind a key because display: none and opacity:0 causes issues
+		hiddenInput.style.cssText =
+			'position:absolute;top: 0vh; margin: auto; left: 8vh; right:0vh; width: 8vh; height: 8vh;font-size:20px;z-index: -10;color: transparent;text-shadow: 0 0 0 black;'; // We hide the input behind a key because display: none and opacity:0 causes issues
 		hiddenInput.addEventListener(
 			'beforeinput',
 			function (e) {
@@ -753,7 +755,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				window.lastKey = inputData; // Saves the last key pressed
 				hiddenInput.value = ' '; //This previously allowed us to have a character to delete, but beforeinput doesn't require this. This does allow us to check wether Duplicate Mode is necessary though
 			},
-			false
+			false,
 		);
 		hiddenInput.addEventListener(
 			'input',
@@ -764,14 +766,16 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					hiddenInput.value = ' ';
 				}
 			},
-			false
+			false,
 		);
 		hiddenInput.addEventListener(
 			'keydown',
 			function (e) {
 				// Enables Compatibility Mode if we receive an invalid key press event
 				if ((e.keyCode == 229 || e.which == 229) && !window.keyboardFix) {
-					window.console.warn('Switching from keydown to input events due to invalid KeyboardEvent. Some functionality will be lost.');
+					window.console.warn(
+						'Switching from keydown to input events due to invalid KeyboardEvent. Some functionality will be lost.',
+					);
 					window.keyboardFix = true;
 					if (window.lastKey) {
 						// Resend the last saved key press (which is being tracked by the beforeinput event listener) so the transition to Compatibility Mode isn't noticeable
@@ -780,7 +784,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					}
 				}
 			},
-			false
+			false,
 		);
 		hiddenInput.addEventListener('blur', function (e) {
 			// Updates window.hiddenInputFocused to reflect the actual state of the focus
@@ -795,7 +799,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				e.preventDefault();
 			},
-			false
+			false,
 		);
 		keyboardButton.addEventListener(
 			'touchend',
@@ -808,7 +812,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					window.hiddenInputFocused = true;
 				}
 			},
-			false
+			false,
 		);
 		document.body.appendChild(keyboardButton);
 		const placeButton = createTouchButton('placeButton', 'inGame');
@@ -818,14 +822,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				mouseEvent(2, 'mousedown', canvas);
 			},
-			false
+			false,
 		);
 		placeButton.addEventListener(
 			'touchend',
 			function (e) {
 				mouseEvent(2, 'mouseup', canvas);
 			},
-			false
+			false,
 		);
 		document.body.appendChild(placeButton);
 		const breakButton = createTouchButton('breakButton', 'inGame');
@@ -835,14 +839,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				mouseEvent(0, 'mousedown', canvas);
 			},
-			false
+			false,
 		);
 		breakButton.addEventListener(
 			'touchend',
 			function (e) {
 				mouseEvent(0, 'mouseup', canvas);
 			},
-			false
+			false,
 		);
 		document.body.appendChild(breakButton);
 		const selectButton = createTouchButton('selectButton', 'inGame');
@@ -852,14 +856,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				mouseEvent(1, 'mousedown', canvas);
 			},
-			false
+			false,
 		);
 		selectButton.addEventListener(
 			'touchend',
 			function (e) {
 				mouseEvent(1, 'mouseup', canvas);
 			},
-			false
+			false,
 		);
 		document.body.appendChild(selectButton);
 		const scrollUpButton = createTouchButton('scrollUpButton', 'inGame');
@@ -870,7 +874,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				wheelEvent(canvas, -10);
 			},
-			false
+			false,
 		);
 		document.body.appendChild(scrollUpButton);
 		const scrollDownButton = createTouchButton('scrollDownButton', 'inGame');
@@ -881,7 +885,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				wheelEvent(canvas, 10);
 			},
-			false
+			false,
 		);
 		document.body.appendChild(scrollDownButton);
 		const throwButton = createTouchButton('throwButton', 'inGame');
@@ -892,14 +896,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('q', 'keydown');
 			},
-			false
+			false,
 		);
 		throwButton.addEventListener(
 			'touchend',
 			function (e) {
 				keyEvent('q', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(throwButton);
 		const sprintButton = createTouchButton('sprintButton', 'inGame');
@@ -914,7 +918,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 					sprintButton.classList.toggle('active');
 				}, 1000);
 			},
-			false
+			false,
 		);
 
 		sprintButton.addEventListener(
@@ -927,7 +931,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				}
 				clearTimeout(window.sprintTimer);
 			},
-			false
+			false,
 		);
 		document.body.appendChild(sprintButton);
 		const pauseButton = createTouchButton('pauseButton', 'inGame');
@@ -938,14 +942,14 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('`', 'keydown');
 			},
-			false
+			false,
 		);
 		pauseButton.addEventListener(
 			'touchend',
 			function (e) {
 				keyEvent('`', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(pauseButton);
 		const chatButton = createTouchButton('chatButton', 'inGame');
@@ -956,7 +960,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 			function (e) {
 				keyEvent('t', 'keydown');
 			},
-			false
+			false,
 		); // For some reason dispatching a keyup event for this closes the chat, which is really weird
 		document.body.appendChild(chatButton);
 		const perspectiveButton = createTouchButton('perspectiveButton', 'inGame');
@@ -968,7 +972,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				keyEvent('f', 'keydown');
 				keyEvent('5', 'keydown');
 			},
-			false
+			false,
 		);
 		perspectiveButton.addEventListener(
 			'touchend',
@@ -976,7 +980,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				keyEvent('f', 'keyup');
 				keyEvent('5', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(perspectiveButton);
 		const screenshotButton = createTouchButton('screenshotButton', 'inGame');
@@ -988,7 +992,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				keyEvent('f', 'keydown');
 				keyEvent('2', 'keydown');
 			},
-			false
+			false,
 		);
 		screenshotButton.addEventListener(
 			'touchend',
@@ -996,7 +1000,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				keyEvent('f', 'keyup');
 				keyEvent('2', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(screenshotButton);
 		const coordinatesButton = createTouchButton('coordinatesButton', 'inGame');
@@ -1008,7 +1012,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				keyEvent('f', 'keydown');
 				keyEvent('3', 'keydown');
 			},
-			false
+			false,
 		);
 		coordinatesButton.addEventListener(
 			'touchend',
@@ -1016,7 +1020,7 @@ if (new URLSearchParams(window.location.search).get('mobile') === 'true') {
 				keyEvent('f', 'keyup');
 				keyEvent('3', 'keyup');
 			},
-			false
+			false,
 		);
 		document.body.appendChild(coordinatesButton);
 	}

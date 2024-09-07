@@ -18,8 +18,8 @@ body {
 	box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
-.nav-bar .nav-item:hover,
-.nav-bar .nav-item.selected {
+.nav-bar li:hover,
+.nav-bar li.selected {
 	background-color: rgba(255, 255, 255, 0.1);
 	color: #00ccff;
 }

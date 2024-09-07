@@ -70,7 +70,7 @@ if (!isDev) {
 				minifyCSS: true,
 				minifyJS: true,
 				continueOnParseError: true,
-			})
+			}),
 		);
 	});
 
@@ -84,7 +84,7 @@ if (!isDev) {
 					//optionsPreset: 'medium-obfuscation',
 					target: 'browser',
 				})
-				.getObfuscatedCode()
+				.getObfuscatedCode(),
 		);
 	});
 }
@@ -104,8 +104,8 @@ writeFileSync(
 	JSON.stringify(
 		getFiles(publicDir).map((asset) => {
 			return asset.replace(new RegExp(`^${publicDir}`), '').replace(/\/index\.html$/, '/');
-		})
-	)
+		}),
+	),
 );
 
 console.log(chalk.green('Build complete!\n'));

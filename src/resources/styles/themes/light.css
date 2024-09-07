@@ -1,111 +1,117 @@
 body {
-    background-color: #f5f5f5;
-    color: #333;
+	background-color: #f5f5f5;
+	color: #333;
 }
 
 .launcher {
-    background-color: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.title-bar, .top-title, .top-nav, .bottom-bar {
-    background-color: #e0e0e0;
-    color: #333;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.title-bar,
+.top-title,
+.top-nav,
+.bottom-bar {
+	background-color: #e0e0e0;
+	color: #333;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
-    background-color: #f0f0f0;
-    border-right: 1px solid #ddd;
+	background-color: #f0f0f0;
+	border-right: 1px solid #ddd;
 }
 
 .profile {
-    border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
 
-.nav-bar .nav-item {
-    color: #333;
+.nav-bar li {
+	color: #333;
 }
 
-.nav-bar .nav-item:hover, .nav-bar .nav-item.selected {
-    background-color: #ddd;
+.nav-bar li:hover,
+.nav-bar li.selected {
+	background-color: #ddd;
 }
 
-.main-panel, .main-content {
-    background-color: #fafafa;
+.main-panel,
+.main-content {
+	background-color: #fafafa;
 }
 
 .installations {
-    background-color: #e0e0e0;
-    border-top: 1px solid #ddd;
+	background-color: #e0e0e0;
+	border-top: 1px solid #ddd;
 }
 
 .custom-select {
-    border: 2px solid #ccc;
-    background-color: #fff;
-    color: #333;
-    box-shadow: 4px 4px #ddd;
+	border: 2px solid #ccc;
+	background-color: #fff;
+	color: #333;
+	box-shadow: 4px 4px #ddd;
 }
 
 .custom-select:hover {
-    box-shadow: 6px 6px #ddd;
+	box-shadow: 6px 6px #ddd;
 }
 
 .custom-options {
-    border: 2px solid #ccc;
-    background-color: #fff;
-    box-shadow: 4px 4px #ddd;
+	border: 2px solid #ccc;
+	background-color: #fff;
+	box-shadow: 4px 4px #ddd;
 }
 
 .custom-option {
-    border-bottom: 1px solid #ccc;
-    color: #333;
+	border-bottom: 1px solid #ccc;
+	color: #333;
 }
 
 .custom-option:hover {
-    background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
 
 .play-button {
-    background-color: #4caf50;
-    border: 2px solid #388e3c;
-    color: #fff;
+	background-color: #4caf50;
+	border: 2px solid #388e3c;
+	color: #fff;
 }
 
 .play-button:hover {
-    background-color: #66bb6a;
-    border-color: #2e7d32;
+	background-color: #66bb6a;
+	border-color: #2e7d32;
 }
 
-.bottom-bar .bottom-bar-left, .bottom-bar .bottom-bar-right {
-    color: #333;
+.bottom-bar .bottom-bar-left,
+.bottom-bar .bottom-bar-right {
+	color: #333;
 }
 
 .minecraft-button {
-    background-color: #e0e0e0;
-    border: 1px solid #ccc;
+	background-color: #e0e0e0;
+	border: 1px solid #ccc;
 }
 
 .minecraft-button:hover {
-    background-color: #d5d5d5;
+	background-color: #d5d5d5;
 }
 
 .minecraft-button:active {
-    background-color: #bdbdbd;
+	background-color: #bdbdbd;
 }
 
 .download-link {
-    background-color: #4caf50;
+	background-color: #4caf50;
 }
 
 .download-link:hover {
-    background-color: #66bb6a;
+	background-color: #66bb6a;
 }
 
 .top-nav ul li {
-    color: #666;
+	color: #666;
 }
 
 .top-nav ul li.selected {
-    color: #333;
+	color: #333;
 }
