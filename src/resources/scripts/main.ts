@@ -7,7 +7,10 @@ let articleAnimationLock = false;
 const theme = {
 	load: function (themeToLoad?: string) {
 		const themeElement = document.querySelector('#theme') as HTMLLinkElement | null;
-		if (themeElement) themeElement.href = themeToLoad ? `/resources/styles/themes/${themeToLoad}.css` : `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
+		if (themeElement)
+			themeElement.href = themeToLoad
+				? `/resources/styles/themes/${themeToLoad}.css`
+				: `/resources/styles/themes/${storage.local.get('theme') ?? 'default'}.css`;
 	},
 	set: function (newTheme: string) {
 		storage.local.set('theme', newTheme);
@@ -77,7 +80,9 @@ const game = {
 			'1.5': '15-client-version',
 			'b1.3': 'b13-client-version',
 		};
-		const dropdown = clients[client] ? (document.querySelector(`#${clients[client]}`) as HTMLSelectElement | null) : null;
+		const dropdown = clients[client]
+			? (document.querySelector(`#${clients[client]}`) as HTMLSelectElement | null)
+			: null;
 		if (dropdown?.value) {
 			selectedVersion = `https://archive.eaglercraft.rip/Eaglercraft${client === '1.8' ? 'X_1.8' : `_${client}`}/client/${dropdown.value}/index.html`;
 			game.play();
@@ -174,7 +179,7 @@ const article = {
 					modal.addEventListener('click', closeArticleHandler);
 					articleAnimationLock = false;
 				},
-				{ once: true }
+				{ once: true },
 			);
 		}
 	},
@@ -189,7 +194,7 @@ const article = {
 					modal.style.display = 'none';
 					articleAnimationLock = false;
 				},
-				{ once: true }
+				{ once: true },
 			);
 		}
 	},
@@ -408,7 +413,13 @@ if (window.location.pathname === '/') {
 	const lastPage = storage.session.get('lastPage');
 	const isMobile = detect.mobile();
 	const iframe = document.createElement('iframe');
-	iframe.src = !storage.local.get('lastVersion') ? '/welcome/' : lastPage ? lastPage : isMobile ? '/mobile/' : '/home/game/';
+	iframe.src = !storage.local.get('lastVersion')
+		? '/welcome/'
+		: lastPage
+			? lastPage
+			: isMobile
+				? '/mobile/'
+				: '/home/game/';
 
 	document.addEventListener('DOMContentLoaded', () => document.body.appendChild(iframe));
 
@@ -429,7 +440,7 @@ if (window.location.pathname === '/') {
 	theme.load();
 
 	document.addEventListener('DOMContentLoaded', async () => {
-		const profileName = document.querySelector('.profile-name');
+		const profileName = document.querySelector('.profile span');
 		const titleBarText = document.querySelector('.title-bar span');
 
 		const lastVersion = storage.local.get('lastVersion');
@@ -440,8 +451,11 @@ if (window.location.pathname === '/') {
 		if (profileName) profileName.textContent = storage.local.get('username');
 		if (titleBarText) titleBarText.textContent += ` ${currentVersion}`;
 
-		// @ts-expect-error
-		if (lastVersion && gt(coerce(currentVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))) {
+		if (
+			lastVersion &&
+			// @ts-expect-error
+			gt(coerce(currentVersion, { includePrerelease: true }), coerce(lastVersion, { includePrerelease: true }))
+		) {
 			alert(`MineXLauncher has been updated to v${currentVersion}!\n\nChanges in v${currentVersion}:\n${changelog}`);
 			storage.local.set('lastVersion', currentVersion);
 		}
@@ -469,7 +483,7 @@ if (window.location.pathname === '/') {
 
 if (window.location.pathname === '/settings/') {
 	document.addEventListener('DOMContentLoaded', async () => {
-		const profileName = document.querySelector('.profile-name');
+		const profileName = document.querySelector('.profile span');
 		const usernameInput = document.querySelector('#username-input') as HTMLInputElement | null;
 		const themeSelect = document.querySelector('#theme-select') as HTMLSelectElement | null;
 		const offlineCheckbox = document.querySelector('#offline-checkbox') as HTMLInputElement | null;
@@ -506,7 +520,7 @@ if (window.location.pathname === '/settings/') {
 				if (offlineCheckbox.checked) {
 					sw.register('/sw-full.js');
 					alert(
-						'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
+						'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.',
 					);
 				} else {
 					sw.register('/sw.js');
@@ -567,12 +581,15 @@ if (window.location.pathname === '/settings/') {
 					// storage.local.set('offlineCache', offlineCheckbox?.checked ?? false);
 					// storage.local.set('showAds', true);
 					storage.local.set('mods', []);
-					storage.local.set('lastVersion', (await (await fetch('/resources/data/main.json')).json()).updates[0].version);
+					storage.local.set(
+						'lastVersion',
+						(await (await fetch('/resources/data/main.json')).json()).updates[0].version,
+					);
 
 					if (offlineCheckbox?.checked) {
 						sw.register('/sw-full.js');
 						alert(
-							'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.'
+							'Offline cache is now downloading.\nThe download size is about 1GB, so it may take a while.\n\nPlease do not leave this page while the download is in progress.\nYou will be notified when the download is complete.',
 						);
 					} else sw.register('/sw.js');
 
@@ -585,7 +602,14 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/mods/mods/' || window.location.pathname === '/mods/resourcepacks/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const addonType: 'mods' | 'resourcepacks' = window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
-		const addonData: { id: string; name: string; description: string; author: string; authorLink: string; source: string }[] = (await (await fetch('/resources/data/main.json')).json()).addons;
+		const addonData: {
+			id: string;
+			name: string;
+			description: string;
+			author: string;
+			authorLink: string;
+			source: string;
+		}[] = (await (await fetch('/resources/data/main.json')).json()).addons;
 		const modList = document.querySelector('.mod-list');
 		// @ts-expect-error
 		addonData[addonType].forEach((addon) => {
@@ -616,7 +640,9 @@ if (window.location.pathname === '/settings/') {
 } else if (window.location.pathname === '/updates/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const updatesContainer = document.querySelector('.updates-container');
-		const updateData: { version: string; changelog: string[] }[] = (await (await fetch('/resources/data/main.json')).json()).updates;
+		const updateData: { version: string; changelog: string[] }[] = (
+			await (await fetch('/resources/data/main.json')).json()
+		).updates;
 		updateData.forEach((update) => {
 			const versionHeader = document.createElement('strong');
 			versionHeader.textContent = `MineXLauncher ${update.version}`;

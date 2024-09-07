@@ -1,0 +1,3 @@
+src/game/
+!src/game/web/*.html
+src/resources/mods/downloads/

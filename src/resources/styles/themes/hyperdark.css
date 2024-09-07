@@ -18,8 +18,8 @@ body {
 	background-color: #262626;
 }
 
-.nav-bar .nav-item:hover,
-.nav-bar .nav-item.selected {
+.nav-bar li:hover,
+.nav-bar li.selected {
 	background-color: #333;
 }
 

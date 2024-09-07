@@ -55,7 +55,7 @@ self.addEventListener('install', (event) => {
 
 				console.log(`Cached: ${asset} (${progress})`);
 			}
-		})
+		}),
 	);
 });
 
@@ -69,9 +69,9 @@ self.addEventListener('activate', (event) => {
 					} else {
 						return null;
 					}
-				})
+				}),
 			);
-		})
+		}),
 	);
 });
 
@@ -80,13 +80,13 @@ self.addEventListener('fetch', (event) => {
 		event.respondWith(
 			fetch(event.request).catch(() => {
 				return caches.match(OFFLINE_URL);
-			})
+			}),
 		);
 	} else {
 		event.respondWith(
 			fetch(event.request).catch(() => {
 				return caches.match(event.request);
-			})
+			}),
 		);
 	}
 });

@@ -14,7 +14,19 @@ window.addEventListener('load', function () {
 			{ addr: 'wss://relay.shhnowisnottheti.me/', name: 'ayunami relay #1', primary: relayId === 2 },
 		],
 		mainMenu: {
-			splashes: ['Darviglet!', 'eaglerenophile!', 'You Eagler!', 'Yeeeeeee!', 'yeee', 'EEEEEEEEE!', 'You Darvig!', 'You Vigg!', ':>', '|>', 'You Yumpster!'],
+			splashes: [
+				'Darviglet!',
+				'eaglerenophile!',
+				'You Eagler!',
+				'Yeeeeeee!',
+				'yeee',
+				'EEEEEEEEE!',
+				'You Darvig!',
+				'You Vigg!',
+				':>',
+				'|>',
+				'You Yumpster!',
+			],
 			eaglerLogo: false,
 		},
 	};

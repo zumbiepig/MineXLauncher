@@ -26,7 +26,7 @@ body {
 }
 
 .profile,
-.nav-bar .nav-item,
+.nav-bar li,
 .installations,
 .custom-select,
 .custom-options,
@@ -38,8 +38,8 @@ body {
 	color: #00ff00;
 }
 
-.nav-bar .nav-item:hover,
-.nav-bar .nav-item.selected,
+.nav-bar li:hover,
+.nav-bar li.selected,
 .custom-option:hover,
 .play-button:hover,
 .minecraft-button:hover,

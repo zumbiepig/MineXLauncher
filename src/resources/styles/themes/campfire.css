@@ -26,8 +26,8 @@ body {
 	border-bottom: 1px solid #4a2f1b;
 }
 
-.nav-bar .nav-item:hover,
-.nav-bar .nav-item.selected {
+.nav-bar li:hover,
+.nav-bar li.selected {
 	background-color: #5a3a2a;
 }
 
