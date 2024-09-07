@@ -224,7 +224,8 @@ const storage = {
 		get: function (key: string) {
 			const item = localStorage.getItem('minexlauncher');
 			if (item !== null) {
-				const json = JSON.parse(item);
+				const decoded = atob(item);
+				const json = JSON.parse(decoded);
 				if (json[key] !== undefined) {
 					return json[key];
 				}
@@ -233,13 +234,21 @@ const storage = {
 			return undefined;
 		},
 		set: function (key: string, value: string | number | object | boolean | null | undefined) {
-			let item = localStorage.getItem('minexlauncher');
+			const item = localStorage.getItem('minexlauncher');
 			if (item === null) {
-				item = '{}';
+				const json: Record<string, unknown> = {};
+				json[key] = value;
+				const string = JSON.stringify(json);
+				const encoded = btoa(string);
+				localStorage.setItem('minexlauncher', encoded);
+			} else {
+				const decoded = atob(item);
+				const json = JSON.parse(decoded);
+				json[key] = value;
+				const string = JSON.stringify(json);
+				const encoded = btoa(string);
+				localStorage.setItem('minexlauncher', encoded);
 			}
-			const json = JSON.parse(item);
-			json[key] = value;
-			localStorage.setItem('minexlauncher', JSON.stringify(json));
 		},
 	},
 	session: {
