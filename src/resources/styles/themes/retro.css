@@ -29,9 +29,9 @@ body {
 .nav-bar li,
 .installations,
 .installations div .selector,
-.installations div .installations div .options divs,
+.installations div .options,
 .installations button,
-.downloads span {
+.downloads a {
 	background-color: #111;
 	border: 2px solid #00ff00;
 	color: #00ff00;
@@ -41,14 +41,14 @@ body {
 .nav-bar li.selected,
 .installations div .options div:hover,
 .installations button:hover,
-.downloads span:hover {
+.downloads a:hover {
 	background-color: #333;
 }
 
 .installations div .selector:hover,
 .installations div .selector.open,
 .installations button:hover,
-.downloads span:hover {
+.downloads a:hover {
 	box-shadow: none;
 }
 
