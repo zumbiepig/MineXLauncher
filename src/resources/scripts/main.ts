@@ -467,8 +467,8 @@ if (window.location.pathname === '/') {
 
 		if (
 			lastVersion &&
-			// @ts-expect-error
 			gt(
+				// @ts-expect-error
 				coerce(currentVersion, { includePrerelease: true }),
 				coerce(lastVersion, { includePrerelease: true }),
 			)
