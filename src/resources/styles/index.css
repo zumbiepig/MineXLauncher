@@ -16,3 +16,52 @@ iframe {
 	height: 100%;
 	border: none;
 }
+
+.console {
+	display: none;
+	flex: 1;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: calc(100vw - 20px);
+	height: calc(100vh - 20px);
+	overflow: scroll;
+	z-index: 100;
+	background-color: whitesmoke;
+	padding: 20px;
+	text-wrap: nowrap;
+}
+
+.console span {
+	margin: 5px 0;
+}
+
+.console .debug {
+	color: darkgray;
+}
+.console .log {
+	color: black;
+}
+.console .info {
+	color: blue;
+}
+.console .warn {
+	color: orange;
+}
+.console .error {
+	color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+	.console {
+		background-color: #1e1e1e;
+	}
+	.console .debug {
+		color: dimgray;
+	}
+	.console .log {
+		color: white;
+	}
+}
