@@ -3,6 +3,17 @@ import { inflate, deflate } from 'pako';
 // @ts-expect-error
 import idbExportImport from 'indexeddb-export-import';
 
+declare global {
+	interface Window {
+		console: Console;
+		gameWindow: Window | null;
+		game: {
+			play: (version?: string) => void;
+			stop: (error?: string) => void;
+		};
+	}
+}
+
 let selectedVersion: string | undefined = undefined;
 let articleAnimationLock = false;
 
@@ -53,74 +64,110 @@ function consoleLog(
 	type: 'debug' | 'log' | 'info' | 'warn' | 'error',
 	msg: string,
 ) {
+	if (type === 'info') {
+		if (msg.includes('DEBUG')) type = 'debug';
+		else if (msg.includes('LOG')) type = 'log';
+		else if (msg.includes('INFO')) type = 'info';
+		else if (msg.includes('WARN')) type = 'warn';
+		else if (msg.includes('ERROR')) type = 'error';
+	}
+
 	const consoleElement = document.querySelector('.console');
 	if (consoleElement) {
-		const messageElement = document.createElement('p');
+		const scrolledToBottom =
+			Math.abs(
+				consoleElement.scrollHeight -
+					consoleElement.scrollTop -
+					consoleElement.clientHeight,
+			) === 0;
+		const messageElement = document.createElement('span');
 		messageElement.classList.add(type);
 		messageElement.innerText = msg;
-		consoleElement.appendChild(messageElement);
+		consoleElement.append(messageElement);
 		storage.session.set(
 			'console',
 			base64Gzip.compress(consoleElement.innerHTML),
 		);
-		consoleElement.scroll(0, consoleElement.scrollHeight);
+		if (scrolledToBottom) consoleElement.scroll(0, consoleElement.scrollHeight);
 	}
 }
 
 const game = {
 	play: function (version?: string) {
-		version = version ?? selectedVersion;
-		if (!version) {
-			alert('Please select a version to play.');
-			return;
-		}
-		document.body.style.display = 'none';
-		storage.session.set('lastGame', selectedVersion);
+		if (window !== window.top)
+			window.top?.game.play(version ?? selectedVersion);
+		else {
+			version = version ?? selectedVersion;
+			if (!version) {
+				alert('Please select a version to play.');
+				return;
+			}
+			storage.session.set('lastGame', selectedVersion);
 
-		window.open(version, '_blank', 'popup=true');
-
-		/*window.top.instanceWindow = window.open(version);
-		window.top.instanceWindow.onload = function () {
-			window.top.instanceWindow.history.replaceState({}, '', '/play');
-			window.top.instanceWindow.console.debug = (msg: string) =>
-				consoleLog('debug', msg);
-			window.top.instanceWindow.console.log = (msg: string) =>
-				consoleLog('log', msg);
-			window.top.instanceWindow.console.info = (msg: string) =>
-				consoleLog('info', msg);
-			window.top.instanceWindow.console.warn = (msg: string) =>
-				consoleLog('warn', msg);
-			window.top.instanceWindow.console.error = (msg: string) =>
-				consoleLog('error', msg);
-		};
-		const waitForCrash = setInterval(() => {
-			if (window.top.instanceWindow.closed) {
-				clearInterval(waitForCrash);
-				game.stop();
-			} else {
-				window.top.instanceWindow.document
-					.querySelectorAll('div')
-					.forEach((element: HTMLElement) => {
-						if (element.innerText.includes('Game Crashed!')) {
-							clearInterval(waitForCrash);
-							game.stop(element.innerHTML);
+			if (!window.gameWindow || window.gameWindow.closed) {
+				window.gameWindow = window.open(version, '_blank', 'popup');
+				storage.session.set('playingGame', false);
+				const console = document.querySelector(
+					'.console',
+				) as HTMLElement | null;
+				if (console) console.style.display = 'flex';
+				if (window.gameWindow) {
+					window.gameWindow.onload = () => {
+						if (window.gameWindow) {
+							window.gameWindow.console.debug = (msg: string) =>
+								consoleLog('debug', msg);
+							window.gameWindow.console.log = (msg: string) =>
+								consoleLog('log', msg);
+							window.gameWindow.console.info = (msg: string) =>
+								consoleLog('info', msg);
+							window.gameWindow.console.warn = (msg: string) =>
+								consoleLog('warn', msg);
+							window.gameWindow.console.error = (msg: string) =>
+								consoleLog('error', msg);
 						}
-					});
-			}
-		}, 50);*/
-	},
-	/*stop: function (error?: string) {
-		if (window.top.instanceWindow) {
-			window.top.instanceWindow.onbeforeunload = null;
-			window.top.instanceWindow.close();
-			if (error) {
-				consoleLog('error', '\n\nMineXLauncher: Game crashed with error:');
-				consoleLog('error', error);
+					};
+				}
 			} else {
-				consoleLog('error', '\n\nMineXLauncher: Game process killed by user');
+				window.gameWindow.focus();
+				const console = document.querySelector(
+					'.console',
+				) as HTMLElement | null;
+				if (console) console.style.display = 'block';
+			}
+
+			const waitForCrash = setInterval(() => {
+				if (window.gameWindow?.closed) {
+					clearInterval(waitForCrash);
+					game.stop();
+				} else {
+					window.gameWindow?.document
+						.querySelectorAll('div')
+						.forEach((element: HTMLElement) => {
+							if (element.innerText.includes('Game Crashed!')) {
+								clearInterval(waitForCrash);
+								game.stop(element.innerHTML);
+							}
+						});
+				}
+			}, 50);
+		}
+	},
+	stop: function (error?: string) {
+		if (window !== window.top) window.top?.game.stop(error);
+		else {
+			if (window.gameWindow) {
+				window.gameWindow.onbeforeunload = null;
+				window.gameWindow.close();
+				storage.session.set('playingGame', false);
+				if (error) {
+					consoleLog('error', 'MineXLauncher: Game crashed with error:');
+					consoleLog('error', error);
+				} else {
+					consoleLog('error', 'MineXLauncher: Game process killed by user');
+				}
 			}
 		}
-	},*/
+	},
 	select: function (path: string, name?: string) {
 		selectedVersion = path;
 		const selector = document.querySelector('.installations div .selector');
@@ -225,6 +272,29 @@ const navigate = {
 		window.location.href = navUrl;
 	},
 };
+
+function openAboutBlank(url: string): Window | null {
+	const newWindow = window.open('about:blank', '_blank', 'popup');
+	if (newWindow) {
+		newWindow.document.title = 'MineXLauncher';
+		const icon = newWindow.document.createElement('link');
+		icon.rel = 'icon';
+		icon.href = '/resources/images/icons/favicon.webp';
+		newWindow.document.head.append(icon);
+
+		const iframe = newWindow.document.createElement('iframe');
+		iframe.src = url;
+		iframe.width = '100%';
+		iframe.height = '100%';
+		iframe.style.position = 'fixed';
+		iframe.style.top = '0';
+		iframe.style.left = '0';
+		iframe.style.border = 'none';
+		newWindow.onbeforeunload = () => newWindow.close();
+		newWindow.document.body.append(iframe);
+	}
+	return newWindow;
+}
 
 const article = {
 	open: function (articleId: string) {
@@ -444,7 +514,7 @@ const backups = {
 		a.href = url;
 		a.target = '_blank';
 		a.download = `MineXLauncher_${new Date().toLocaleDateString('en-GB').replace(/\//g, '-')}.backup`;
-		document.body.appendChild(a);
+		document.body.append(a);
 		a.click();
 		document.body.removeChild(a);
 		URL.revokeObjectURL(url);
@@ -461,7 +531,7 @@ const backups = {
 				else reject();
 			};
 			fileInput.oncancel = () => reject();
-			document.body.appendChild(fileInput);
+			document.body.append(fileInput);
 			fileInput.click();
 			document.body.removeChild(fileInput);
 		})
@@ -515,7 +585,7 @@ const backups = {
 								);
 						};
 					}
-				window.top?.location.reload();
+				window.location.reload();
 			})
 			.catch((error) => console.error(error));
 	},
@@ -557,7 +627,7 @@ function downloadFile(url: string, name?: string) {
 	const a = document.createElement('a');
 	a.href = url;
 	a.download = name ?? '';
-	document.body.appendChild(a);
+	document.body.append(a);
 	a.click();
 	document.body.removeChild(a);
 }
@@ -574,9 +644,23 @@ if (window.location.pathname === '/') {
 				? '/mobile/'
 				: '/home/game/';
 
-	document.addEventListener('DOMContentLoaded', () =>
-		document.body.appendChild(iframe),
-	);
+	document.addEventListener('DOMContentLoaded', () => {
+		document.body.append(iframe);
+		const consoleElement = document.querySelector(
+			'.console',
+		) as HTMLElement | null;
+		if (consoleElement) {
+			const consoleHistory = storage.session.get('console');
+			if (consoleHistory) {
+				consoleElement.innerHTML = base64Gzip.decompress(consoleHistory);
+				consoleElement.style.display = 'flex';
+				consoleElement.scroll(0, consoleElement.scrollHeight);
+			}
+			consoleElement.style.display = storage.session.get('playingGame')
+				? 'flex'
+				: '';
+		}
+	});
 
 	/* document.addEventListener('load', () => {
 		if (storage.local.get('offlineCache')) {
@@ -586,7 +670,7 @@ if (window.location.pathname === '/') {
 		}
 	}); */
 	document.addEventListener('load', () => sw.register('/sw.js'));
-	// window.addEventListener('beforeunload', () => game.stop());
+	window.addEventListener('beforeunload', () => game.stop());
 
 	window.addEventListener('beforeinstallprompt', (event) => {
 		// @ts-expect-error
@@ -597,7 +681,7 @@ if (window.location.pathname === '/') {
 		const link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.href = '/resources/styles/mobile.css';
-		document.head.appendChild(link);
+		document.head.append(link);
 	}
 
 	theme.load();
@@ -637,12 +721,12 @@ if (window.location.pathname === '/') {
 		googleAdsScript.async = true;
 		googleAdsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132419379737567';
 		googleAdsScript.crossOrigin = 'anonymous';
-		document.head.appendChild(googleAdsScript);
+		document.head.append(googleAdsScript);
 
 		document.addEventListener('DOMContentLoaded', () => {
 			const googleAdsPush = document.createElement('script');
 			googleAdsPush.text = '(adsbygoogle = window.adsbygoogle || []).push({});';
-			document.body.appendChild(googleAdsPush);
+			document.body.append(googleAdsPush);
 
 			const adsContainers = document.querySelectorAll('.ads-container');
 			adsContainers.forEach((adsContainer) => {
@@ -690,7 +774,7 @@ if (window.location.pathname === '/settings/general/') {
 				const option = document.createElement('option');
 				option.value = theme.id;
 				option.textContent = theme.name;
-				themeSelect?.appendChild(option);
+				themeSelect?.append(option);
 			});
 			themeSelect.value = storage.local.get('theme') ?? '';
 			themeSelect.addEventListener('change', () =>
@@ -759,7 +843,7 @@ if (window.location.pathname === '/settings/general/') {
 					const option = document.createElement('option');
 					option.value = theme.id;
 					option.textContent = theme.name;
-					themeSelect?.appendChild(option);
+					themeSelect?.append(option);
 				});
 				themeSelect.addEventListener('change', () =>
 					theme.load(themeSelect.value ?? 'default'),
@@ -830,7 +914,7 @@ if (window.location.pathname === '/settings/general/') {
 					? `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.js', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="mods.toggle('${addon.id}')">Install</span>`
 					: `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.zip', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.zip')">Download</span>`
 			}</div>`;
-			modList?.appendChild(modItem);
+			modList?.append(modItem);
 		});
 
 		if (addonType === 'mods') {
@@ -862,14 +946,20 @@ if (window.location.pathname === '/settings/general/') {
 			update.changelog.forEach((change) => {
 				const item = document.createElement('li');
 				item.textContent = change;
-				changes.appendChild(item);
+				changes.append(item);
 			});
 
-			version.appendChild(name);
-			version.appendChild(changes);
-			updatesContainer?.appendChild(version);
+			version.append(name);
+			version.append(changes);
+			updatesContainer?.append(version);
 		});
 	});
+} else if (
+	window.location.pathname === '/home/game/' ||
+	window.location.pathname === '/home/clients/'
+) {
+	const lastGame = storage.session.get('lastGame');
+	if (lastGame) game.select(lastGame);
 }
 
 if (window.location.hostname === null) {
@@ -885,5 +975,6 @@ if (window.location.hostname === null) {
 		downloadFile,
 		backups,
 		consoleLog,
+		openAboutBlank,
 	]);
 }
