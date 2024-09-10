@@ -21,21 +21,28 @@ iframe {
 	display: none;
 	flex: 1;
 	flex-direction: column;
-	flex-wrap: nowrap;
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: calc(100vw - 20px);
-	height: calc(100vh - 20px);
+	width: 100%;
+	height: 100%;
 	overflow: scroll;
 	z-index: 100;
 	background-color: whitesmoke;
-	padding: 20px;
 	text-wrap: nowrap;
+	scrollbar-width: thin;
 }
 
 .console span {
-	margin: 5px 0;
+	margin: 5px 10px;
+}
+
+.console span:first-child {
+	margin-top: 10px;
+}
+
+.console span:last-child {
+	margin-bottom: 10px;
 }
 
 .console .debug {
