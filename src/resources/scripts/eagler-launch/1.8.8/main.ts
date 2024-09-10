@@ -6,6 +6,7 @@ window.addEventListener('load', () => {
 		assetsURI: `${window.location.pathname}/assets.epk`,
 		localesURI: `${window.location.pathname}/lang/`,
 		servers: [
+			{ addr: 'wss://webmc.xyz/server', name: 'WebMC OneBlock' },
 			{ addr: 'wss://mc.ricenetwork.xyz', name: 'Rice Network' },
 			{ addr: 'wss://mc.lamplifesteal.xyz', name: 'LampLifesteal' },
 			{ addr: 'wss://electronmc.club', name: 'Electron Network' },
@@ -20,6 +21,7 @@ window.addEventListener('load', () => {
 
 	const urlParams = new URLSearchParams(window.location.search);
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
+	window.eaglercraftXOpts.mods = storage.local.get('mods') ?? [];
 
 	history.replaceState({}, '', '/play');
 	main();
