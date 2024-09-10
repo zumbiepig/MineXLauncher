@@ -55,32 +55,33 @@
 							<img src="/resources/images/icons/nav/articles.webp" />
 							<span>Tutorials</span>
 						</li>
-						<li class="selected" onclick="navigate.settings()">
+						<li class="selected" onclick="navigate.settings.general()">
 							<img src="/resources/images/icons/nav/settings.webp" />
 							<span>Settings</span>
 						</li>
 					</nav>
 				</div>
 				<div class="main-panel">
-					<span class="top-title">Settings</span>
+					<div class="top-nav">
+						<ul>
+							<li onclick="navigate.settings.general()">General</li>
+							<li class="selected" onclick="navigate.settings.backups()">
+								Backups
+							</li>
+						</ul>
+					</div>
 					<div class="main-content">
 						<div class="settings">
-							<form>
-								<label for="username-input">Username:</label>
-								<input id="username-input" type="text" />
-								<label for="theme-select">Theme:</label>
-								<select id="theme-select">
-									<option disabled hidden value=""></option>
-								</select>
+							<form id="settings-backups">
+								<h3>Backups</h3>
+								<p>
+									Save a backup of your launcher data.<br />Note: Backing up
+									worlds is not yet supported. Please export them from
+									Eaglercraft for now.
+								</p>
+								<button onclick="backups.export()">Export backup</button>
+								<button onclick="backups.import()">Import backup</button>
 							</form>
-							<!-- <div>
-								<label for="offline-checkbox">Enable offline use:</label>
-								<input id="offline-checkbox" type="checkbox" />
-							</div> -->
-							<!-- <div>
-								<label for="ads-checkbox">Show ads:</label>
-								<input id="ads-checkbox" type="checkbox" />
-							</div> -->
 						</div>
 					</div>
 				</div>

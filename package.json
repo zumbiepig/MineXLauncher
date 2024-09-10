@@ -20,6 +20,7 @@
 		"errorhandler": "^1.5.1",
 		"express": "^4.19.2",
 		"helmet": "^7.1.0",
+		"indexeddb-export-import": "^2.1.5",
 		"morgan": "^1.10.0",
 		"pako": "^2.1.0",
 		"semver": "^7.6.3",
