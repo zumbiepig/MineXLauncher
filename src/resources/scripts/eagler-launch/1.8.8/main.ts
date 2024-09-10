@@ -1,4 +1,21 @@
 // @ts-nocheck
+const storage = {
+	local: {
+		get: function (key: string) {
+			const item = localStorage.getItem('minexlauncher');
+			if (item !== null) {
+				//const decoded = atob(item);
+				const json = JSON.parse(item);
+				if (json[key] !== undefined) {
+					return json[key];
+				}
+				return undefined;
+			}
+			return undefined;
+		},
+	},
+};
+
 window.addEventListener('load', () => {
 	const relayId = Math.floor(Math.random() * 3);
 	window.eaglercraftXOpts = {
