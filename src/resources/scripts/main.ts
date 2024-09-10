@@ -1,5 +1,6 @@
 import { gt, coerce } from 'semver';
 import { inflate, deflate } from 'pako';
+// @ts-expect-error
 import idbExportImport from 'indexeddb-export-import';
 
 let selectedVersion: string | undefined = undefined;
@@ -585,7 +586,7 @@ if (window.location.pathname === '/') {
 		}
 	}); */
 	document.addEventListener('load', () => sw.register('/sw.js'));
-	window.addEventListener('beforeunload', () => game.stop());
+	// window.addEventListener('beforeunload', () => game.stop());
 
 	window.addEventListener('beforeinstallprompt', (event) => {
 		// @ts-expect-error
