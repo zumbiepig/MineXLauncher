@@ -4,7 +4,6 @@ const storage = {
 		get: function (key: string) {
 			const item = localStorage.getItem('minexlauncher');
 			if (item !== null) {
-				//const decoded = atob(item);
 				const json = JSON.parse(item);
 				if (json[key] !== undefined) {
 					return json[key];
@@ -50,7 +49,7 @@ window.addEventListener('load', () => {
 
 	const urlParams = new URLSearchParams(window.location.search);
 	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
-	window.eaglercraftXOpts.mods = storage.local.get('mods') ?? [];
+	window.eaglercraftXOpts.Mods = storage.local.get('mods') ?? [];
 
 	history.replaceState({}, '', '/play');
 	main();

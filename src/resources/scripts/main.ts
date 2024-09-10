@@ -104,14 +104,30 @@ const game = {
 			}
 			storage.session.set('lastGame', selectedVersion);
 
+			storage.session.set('playingGame', true);
+			const console = document.querySelector('.console') as HTMLElement | null;
+			if (console) console.style.display = 'flex';
+
 			if (!window.gameWindow || window.gameWindow.closed) {
-				window.gameWindow = window.open(version, '_blank', 'popup');
-				storage.session.set('playingGame', false);
-				const console = document.querySelector(
-					'.console',
-				) as HTMLElement | null;
-				if (console) console.style.display = 'flex';
+				window.gameWindow = window.open('about:blank', '_blank', 'popup');
 				if (window.gameWindow) {
+					window.gameWindow.document.title = 'MineXLauncher';
+					const icon = window.gameWindow.document.createElement('link');
+					icon.rel = 'icon';
+					icon.href = '/resources/images/icons/favicon.webp';
+					window.gameWindow.document.head.append(icon);
+
+					const iframe = window.gameWindow.document.createElement('iframe');
+					iframe.src = version;
+					iframe.width = '100%';
+					iframe.height = '100%';
+					iframe.style.position = 'fixed';
+					iframe.style.top = '0';
+					iframe.style.left = '0';
+					iframe.style.border = 'none';
+					window.gameWindow.onbeforeunload = () => window.gameWindow?.close();
+					window.gameWindow.document.body.append(iframe);
+
 					window.gameWindow.onload = () => {
 						if (window.gameWindow) {
 							window.gameWindow.console.debug = (msg: string) =>
@@ -126,13 +142,15 @@ const game = {
 								consoleLog('error', msg);
 						}
 					};
+
+					window.gameWindow.onbeforeunload = () => game.stop();
 				}
 			} else {
 				window.gameWindow.focus();
 				const console = document.querySelector(
 					'.console',
 				) as HTMLElement | null;
-				if (console) console.style.display = 'block';
+				if (console) console.style.display = 'flex';
 			}
 
 			const waitForCrash = setInterval(() => {
@@ -155,7 +173,7 @@ const game = {
 	stop: function (error?: string) {
 		if (window !== window.top) window.top?.game.stop(error);
 		else {
-			if (window.gameWindow) {
+			if (window.gameWindow && !window.gameWindow.closed) {
 				window.gameWindow.onbeforeunload = null;
 				window.gameWindow.close();
 				storage.session.set('playingGame', false);
@@ -273,14 +291,19 @@ const navigate = {
 	},
 };
 
-function openAboutBlank(url: string): Window | null {
+function openAboutBlank(
+	url: string,
+	options?: { title?: string; favicon?: string },
+): Window | null {
 	const newWindow = window.open('about:blank', '_blank', 'popup');
 	if (newWindow) {
-		newWindow.document.title = 'MineXLauncher';
-		const icon = newWindow.document.createElement('link');
-		icon.rel = 'icon';
-		icon.href = '/resources/images/icons/favicon.webp';
-		newWindow.document.head.append(icon);
+		if (options?.title) newWindow.document.title = options.title;
+		if (options?.favicon) {
+			const icon = newWindow.document.createElement('link');
+			icon.rel = 'icon';
+			icon.href = options.favicon;
+			newWindow.document.head.append(icon);
+		}
 
 		const iframe = newWindow.document.createElement('iframe');
 		iframe.src = url;
