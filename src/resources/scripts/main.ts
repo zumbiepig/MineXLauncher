@@ -1,5 +1,6 @@
 import { gt, coerce } from 'semver';
 import { inflate, deflate } from 'pako';
+import idbExportImport from 'indexeddb-export-import';
 
 let selectedVersion: string | undefined = undefined;
 let articleAnimationLock = false;
@@ -47,23 +48,78 @@ const versionSelector = {
 	},
 };
 
+function consoleLog(
+	type: 'debug' | 'log' | 'info' | 'warn' | 'error',
+	msg: string,
+) {
+	const consoleElement = document.querySelector('.console');
+	if (consoleElement) {
+		const messageElement = document.createElement('p');
+		messageElement.classList.add(type);
+		messageElement.innerText = msg;
+		consoleElement.appendChild(messageElement);
+		storage.session.set(
+			'console',
+			base64Gzip.compress(consoleElement.innerHTML),
+		);
+		consoleElement.scroll(0, consoleElement.scrollHeight);
+	}
+}
+
 const game = {
 	play: function (version?: string) {
-		if (version) {
-			document.body.style.display = 'none';
-			storage.session.set('lastGame', version);
-			// @ts-expect-error
-			window.top.location.href = version;
-		} else if (selectedVersion) {
-			document.body.style.display = 'none';
-			storage.session.set('lastGame', selectedVersion);
-			// @ts-expect-error
-			window.top.location.href = selectedVersion;
-		} else {
+		version = version ?? selectedVersion;
+		if (!version) {
 			alert('Please select a version to play.');
 			return;
 		}
+		document.body.style.display = 'none';
+		storage.session.set('lastGame', selectedVersion);
+
+		window.open(version, '_blank', 'popup=true');
+
+		/*window.top.instanceWindow = window.open(version);
+		window.top.instanceWindow.onload = function () {
+			window.top.instanceWindow.history.replaceState({}, '', '/play');
+			window.top.instanceWindow.console.debug = (msg: string) =>
+				consoleLog('debug', msg);
+			window.top.instanceWindow.console.log = (msg: string) =>
+				consoleLog('log', msg);
+			window.top.instanceWindow.console.info = (msg: string) =>
+				consoleLog('info', msg);
+			window.top.instanceWindow.console.warn = (msg: string) =>
+				consoleLog('warn', msg);
+			window.top.instanceWindow.console.error = (msg: string) =>
+				consoleLog('error', msg);
+		};
+		const waitForCrash = setInterval(() => {
+			if (window.top.instanceWindow.closed) {
+				clearInterval(waitForCrash);
+				game.stop();
+			} else {
+				window.top.instanceWindow.document
+					.querySelectorAll('div')
+					.forEach((element: HTMLElement) => {
+						if (element.innerText.includes('Game Crashed!')) {
+							clearInterval(waitForCrash);
+							game.stop(element.innerHTML);
+						}
+					});
+			}
+		}, 50);*/
 	},
+	/*stop: function (error?: string) {
+		if (window.top.instanceWindow) {
+			window.top.instanceWindow.onbeforeunload = null;
+			window.top.instanceWindow.close();
+			if (error) {
+				consoleLog('error', '\n\nMineXLauncher: Game crashed with error:');
+				consoleLog('error', error);
+			} else {
+				consoleLog('error', '\n\nMineXLauncher: Game process killed by user');
+			}
+		}
+	},*/
 	select: function (path: string, name?: string) {
 		selectedVersion = path;
 		const selector = document.querySelector('.installations div .selector');
@@ -135,6 +191,18 @@ const navigate = {
 			window.location.href = navUrl;
 		},
 	},
+	settings: {
+		general: function () {
+			const navUrl = '/settings/general/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
+		},
+		backups: function () {
+			const navUrl = '/settings/backups/';
+			storage.session.set('lastPage', navUrl);
+			window.location.href = navUrl;
+		},
+	},
 	articles: function () {
 		const navUrl = '/articles/';
 		storage.session.set('lastPage', navUrl);
@@ -152,11 +220,6 @@ const navigate = {
 	},
 	servers: function () {
 		const navUrl = '/servers/';
-		storage.session.set('lastPage', navUrl);
-		window.location.href = navUrl;
-	},
-	settings: function () {
-		const navUrl = '/settings/';
 		storage.session.set('lastPage', navUrl);
 		window.location.href = navUrl;
 	},
@@ -346,6 +409,117 @@ const mods = {
 	},
 };
 
+const backups = {
+	export: async function () {
+		const exportData: {
+			cookies: Record<string, string>;
+			localStorage: Record<string, string>;
+			indexedDb: Record<string, string>;
+		} = {
+			cookies: {},
+			localStorage: { ...localStorage },
+			indexedDb: {},
+		};
+
+		document.cookie.split('; ').forEach((cookie) => {
+			const pair = cookie.split('=');
+			if (pair[0] !== undefined && pair[1] !== undefined)
+				exportData.cookies[pair[0]] = pair[1];
+		});
+
+		for (const dbInfo of await indexedDB.databases()) {
+			if (dbInfo.name)
+				indexedDB.open(dbInfo.name).onsuccess = (event) =>
+					(exportData.indexedDb[dbInfo.name ?? ''] =
+						idbExportImport.exportToJsonString(
+							(event.target as IDBOpenDBRequest).result,
+						));
+		}
+
+		const url = URL.createObjectURL(
+			new Blob([base64Gzip.compress(JSON.stringify(exportData))]),
+		);
+		const a = document.createElement('a');
+		a.href = url;
+		a.target = '_blank';
+		a.download = `MineXLauncher_${new Date().toLocaleDateString('en-GB').replace(/\//g, '-')}.backup`;
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+		URL.revokeObjectURL(url);
+	},
+	import: async function () {
+		await new Promise<File>((resolve, reject) => {
+			const fileInput = document.createElement('input');
+			fileInput.type = 'file';
+			fileInput.accept = '.backup';
+			fileInput.multiple = false;
+			fileInput.onchange = (event) => {
+				const file = (event.target as HTMLInputElement).files?.[0];
+				if (file) resolve(file);
+				else reject();
+			};
+			fileInput.oncancel = () => reject();
+			document.body.appendChild(fileInput);
+			fileInput.click();
+			document.body.removeChild(fileInput);
+		})
+			.then(async (file) => {
+				const importData = JSON.parse(base64Gzip.decompress(await file.text()));
+
+				// @ts-expect-error
+				if (typeof cookieStore !== 'undefined')
+					// @ts-expect-error
+					await cookieStore.getAll().then((cookies: object[]) =>
+						// @ts-expect-error
+						cookies.forEach((cookie) => cookieStore.delete(cookie)),
+					);
+				else
+					document.cookie
+						.split('; ')
+						.forEach(
+							(cookie) =>
+								(document.cookie = `${cookie.split('=')[0]}=; Path=/; Max-Age=0`),
+						);
+
+				localStorage.clear();
+
+				for (const dbInfo of await indexedDB.databases())
+					if (dbInfo.name) indexedDB.deleteDatabase(dbInfo.name);
+
+				for (const key in importData.localStorage)
+					if (importData.localStorage[key] !== undefined)
+						localStorage.setItem(key, importData.localStorage[key]);
+
+				for (const key in importData.cookies)
+					document.cookie = `${key}=${importData.cookies[key]}; Max-Age=${365 * 24 * 60 * 60}; Path=/; SameSite=Lax; Secure`;
+
+				if (Object.keys(importData.indexedDb).length > 0)
+					for (const dbName in importData.indexedDb) {
+						const dbRequest = indexedDB.open(dbName);
+						dbRequest.onsuccess = async (event) => {
+							const db = (event.target as IDBOpenDBRequest).result;
+							const transaction = db.transaction(
+								Array.from(db.objectStoreNames),
+								'readwrite',
+							);
+
+							for (const storeName of Array.from(db.objectStoreNames))
+								transaction.objectStore(storeName).clear();
+
+							transaction.oncomplete = () =>
+								idbExportImport.importFromJsonString(
+									db,
+									importData.indexedDb[dbName],
+								);
+						};
+					}
+				window.top?.location.reload();
+			})
+			.catch((error) => console.error(error));
+	},
+};
+
 const sw = {
 	register: function (url: string) {
 		if ('serviceWorker' in navigator) {
@@ -365,40 +539,16 @@ const sw = {
 };
 
 const base64Gzip = {
-	decode: function (base64: string) {
-		// Decode Base64 to binary string
-		const binaryString = atob(base64);
-
-		// Convert binary string to Uint8Array
-		const len = binaryString.length;
-		const bytes = new Uint8Array(len);
-		for (let i = 0; i < len; i++) {
-			bytes[i] = binaryString.charCodeAt(i);
-		}
-
-		// Use pako to decompress the Uint8Array
-		const decompressed = inflate(bytes, { to: 'string' });
-
-		return decompressed;
+	compress: function (string: string): string {
+		return btoa(
+			String.fromCharCode(...deflate(new TextEncoder().encode(string))),
+		);
 	},
-	encode: function (inputString: string) {
-		// Convert the input string to a Uint8Array
-		const encoder = new TextEncoder();
-		const inputBytes = encoder.encode(inputString);
-
-		// Use pako to compress the Uint8Array
-		const compressedBytes = deflate(inputBytes);
-
-		// Convert the compressed Uint8Array to a binary string
-		let binaryString = '';
-		for (const byte of compressedBytes) {
-			binaryString += String.fromCharCode(byte);
-		}
-
-		// Encode the binary string to Base64
-		const base64String = btoa(binaryString);
-
-		return base64String;
+	decompress: function (string: string): string {
+		return inflate(
+			Uint8Array.from(atob(string), (c) => c.charCodeAt(0)),
+			{ to: 'string' },
+		);
 	},
 };
 
@@ -435,6 +585,7 @@ if (window.location.pathname === '/') {
 		}
 	}); */
 	document.addEventListener('load', () => sw.register('/sw.js'));
+	window.addEventListener('beforeunload', () => game.stop());
 
 	window.addEventListener('beforeinstallprompt', (event) => {
 		// @ts-expect-error
@@ -500,7 +651,7 @@ if (window.location.pathname === '/') {
 	} */
 }
 
-if (window.location.pathname === '/settings/') {
+if (window.location.pathname === '/settings/general/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const profileName = document.querySelector('.username');
 		const usernameInput = document.querySelector(
@@ -731,5 +882,6 @@ if (window.location.hostname === null) {
 		base64Gzip,
 		article,
 		downloadFile,
+		backups,
 	]);
 }

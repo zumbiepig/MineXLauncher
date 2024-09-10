@@ -699,6 +699,10 @@ body {
 	outline: none;
 }
 
+.settings form[id='settings-backups'] {
+	padding-bottom: 60px;
+}
+
 .settings form button[type='submit'] {
 	width: 100%;
 	padding: 10px;
