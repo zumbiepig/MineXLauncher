@@ -883,5 +883,6 @@ if (window.location.hostname === null) {
 		article,
 		downloadFile,
 		backups,
+		consoleLog,
 	]);
 }
