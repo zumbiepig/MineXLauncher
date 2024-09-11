@@ -43,6 +43,13 @@
 	],
 	"updates": [
 		{
+			"version": "1.7",
+			"changelog": [
+				"Console logs are now shown while playing",
+				"Added importing and exporting launcher data"
+			]
+		},
+		{
 			"version": "1.6.1",
 			"changelog": [
 				"Eaglercraft 1.9 has been updated to v0.7.0",
