@@ -125,25 +125,27 @@ const game = {
 					iframe.style.top = '0';
 					iframe.style.left = '0';
 					iframe.style.border = 'none';
-					window.gameWindow.onbeforeunload = () => window.gameWindow?.close();
 					window.gameWindow.document.body.append(iframe);
 
-					window.gameWindow.onload = () => {
-						if (window.gameWindow) {
-							window.gameWindow.console.debug = (msg: string) =>
-								consoleLog('debug', msg);
-							window.gameWindow.console.log = (msg: string) =>
-								consoleLog('log', msg);
-							window.gameWindow.console.info = (msg: string) =>
-								consoleLog('info', msg);
-							window.gameWindow.console.warn = (msg: string) =>
-								consoleLog('warn', msg);
-							window.gameWindow.console.error = (msg: string) =>
-								consoleLog('error', msg);
-						}
-					};
+					if (iframe.contentWindow) {
+						window.gameWindow.onload = () => {
+							if (iframe.contentWindow) {
+								iframe.contentWindow.console.debug = (msg: string) =>
+									consoleLog('debug', msg);
+								iframe.contentWindow.console.log = (msg: string) =>
+									consoleLog('log', msg);
+								iframe.contentWindow.console.info = (msg: string) =>
+									consoleLog('info', msg);
+								iframe.contentWindow.console.warn = (msg: string) =>
+									consoleLog('warn', msg);
+								iframe.contentWindow.console.error = (msg: string) =>
+									consoleLog('error', msg);
+							}
+						};
 
-					window.gameWindow.onbeforeunload = () => game.stop();
+						window.gameWindow.onbeforeunload = () => game.stop();
+						iframe.contentWindow.onbeforeunload = () => game.stop();
+					}
 				}
 			} else {
 				window.gameWindow.focus();
