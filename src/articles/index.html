@@ -166,8 +166,13 @@
 							the server
 						</li>
 						<li>
-							Edit the <code>config.yml</code> file to configure your proxy
-							settings
+							Edit the <code>config.yml</code> file and set these values:<br />
+							<code
+								>listeners.host: localhost:8080<br />
+								online_mode: false<br />
+								enforce_secure_profile: false<br />
+								servers.lobby.address: localhost:25565</code
+							>
 						</li>
 					</ol>
 					<h3>Step 2: Set Up Backend Server</h3>
@@ -180,24 +185,29 @@
 							<pre><code>java -Xms1024M -Xmx1024M -jar server.jar</code></pre>
 						</li>
 						<li>
-							Configure <code>server.properties</code> (Disable online mode,
-							change the port, etc.)
+							Create a new file named <code>eula.txt</code> with
+							<code>eula=true</code> as the content.
 						</li>
 						<li>
-							Configure <code>spigot.yml</code> to have this:
-							<code>bungeecord: true</code>
+							Open <code>server.properties</code> and set these values:<br />
+							<code
+								>online-mode=false<br />
+								enforce-secure-profile=false<br />
+								server-ip=localhost<br />
+								server-port=25565</code
+							>
+						</li>
+						<li>
+							Open <code>spigot.yml</code> and set
+							<code>settings.bungeecord</code> to be <code>true</code>.
 						</li>
 						<li>
 							If your server is on a different version than 1.8.8, you need to
-							download the
+							install the
 							<a href="https://viaversion.com/setup" target="_blank"
 								>ViaVersion plugins</a
-							>.
-						</li>
-						<li>
-							Add the backend server to your Bungee <code>config.yml</code> by
-							scrolling to the servers section and editing/adding an entry for
-							your server, such as <code>localhost:port</code>.
+							>
+							to support 1.8 Eaglercraft players.
 						</li>
 					</ol>
 					<h3>Step 3: Install EaglerXBungee Plugin</h3>
@@ -219,8 +229,8 @@
 							files
 						</li>
 						<li>
-							Configure the EaglerXBungee plugin as needed (disabling online
-							mode, etc.)
+							Configure the plugin's <code>listeners.yml</code> to listen on
+							port 8081.
 						</li>
 					</ol>
 					<h3>Step 4: Set Up Caddy</h3>
