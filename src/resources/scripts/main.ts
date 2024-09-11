@@ -7,6 +7,7 @@ declare global {
 	interface Window {
 		console: Console;
 		gameWindow: Window | null;
+		gameWindowIframe: Window | null;
 		game: {
 			play: (version?: string) => void;
 			stop: (error?: string) => void;
@@ -125,24 +126,33 @@ const game = {
 					window.gameWindow.document.body.append(iframe);
 
 					if (iframe.contentWindow) {
-						window.gameWindow.onload = () => {
-							if (iframe.contentWindow) {
-								iframe.contentWindow.console.debug = (msg: string) =>
-									consoleLog('debug', msg);
-								iframe.contentWindow.console.log = (msg: string) =>
-									consoleLog('log', msg);
-								iframe.contentWindow.console.info = (msg: string) =>
-									consoleLog('info', msg);
-								iframe.contentWindow.console.warn = (msg: string) =>
-									consoleLog('warn', msg);
-								iframe.contentWindow.console.error = (msg: string) =>
-									consoleLog('error', msg);
-							}
-						};
+						(
+							['debug', 'log', 'info', 'warn', 'error'] as (
+								| 'debug'
+								| 'log'
+								| 'info'
+								| 'warn'
+								| 'error'
+							)[]
+						).forEach((type) => {
+							if (iframe.contentWindow)
+								iframe.contentWindow.console[type] = (msg: string) =>
+									consoleLog(type, msg);
+						});
 
-						window.gameWindow.onbeforeunload = () => game.stop();
-						iframe.contentWindow.onbeforeunload = () => game.stop();
+						['keydown', 'keyup'].forEach((eventType) =>
+							window.gameWindow?.addEventListener(eventType, (event) =>
+								iframe.contentWindow?.dispatchEvent(
+									new KeyboardEvent(eventType, event),
+								),
+							),
+						);
+
+						window.gameWindow.focus();
+						window.gameWindow.document.documentElement.requestFullscreen();
 					}
+
+					window.gameWindowIframe = iframe.contentWindow;
 				}
 			} else {
 				window.gameWindow.focus();
@@ -155,25 +165,34 @@ const game = {
 			const waitForCrash = setInterval(() => {
 				if (window.gameWindow?.closed) {
 					clearInterval(waitForCrash);
-					game.stop();
+					game.stop(undefined, { killed: true });
 				} else {
-					window.gameWindow?.document
+					window.gameWindowIframe?.document
 						.querySelectorAll('div')
 						.forEach((element: HTMLElement) => {
-							if (element.innerText.includes('Game Crashed!')) {
+							if (
+								element.innerText.includes(
+									"Game Crashed! I have fallen and I can't get up!",
+								)
+							) {
 								clearInterval(waitForCrash);
-								game.stop(element.innerHTML);
+								game.stop(element.innerText);
 							}
 						});
 				}
 			}, 50);
 		}
 	},
-	stop: function (error?: string) {
+	stop: function (error?: string, options?: { killed: boolean }) {
 		if (window !== window.top) window.top?.game.stop(error);
 		else {
-			if (window.gameWindow && !window.gameWindow.closed) {
+			if (
+				window.gameWindow &&
+				(!window.gameWindow.closed || options?.killed) &&
+				window.gameWindowIframe
+			) {
 				window.gameWindow.onbeforeunload = null;
+				window.gameWindowIframe.onbeforeunload = null;
 				window.gameWindow.close();
 				storage.session.set('playingGame', false);
 				if (error) {
@@ -182,6 +201,7 @@ const game = {
 				} else {
 					consoleLog('error', 'MineXLauncher: Game process killed by user');
 				}
+				window.focus();
 			}
 		}
 	},
@@ -189,11 +209,8 @@ const game = {
 		selectedVersion = path;
 		const selector = document.querySelector('.installations div .selector');
 		if (selector?.textContent) {
-			if (name) {
-				selector.textContent = `Selected: ${name}`;
-			} else {
-				selector.textContent = `Selected: ${path}`;
-			}
+			if (name) selector.textContent = `Selected: ${name}`;
+			else selector.textContent = `Selected: ${path}`;
 		}
 		versionSelector.close();
 	},
