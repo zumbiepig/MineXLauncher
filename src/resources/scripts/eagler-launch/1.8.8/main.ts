@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { inflate } from 'pako';
 const storage = {
 	local: {
 		get: function (key: string) {
@@ -14,7 +15,6 @@ const storage = {
 		},
 	},
 };
-
 const base64Gzip = {
 	decompress: function (string: string): string {
 		return inflate(
