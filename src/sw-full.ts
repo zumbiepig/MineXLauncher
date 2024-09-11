@@ -1,4 +1,5 @@
 // @ts-nocheck
+/*
 const cacheVersion = '1.6';
 const cacheName = `minexlauncher-full-v${cacheVersion}`;
 
@@ -57,3 +58,4 @@ self.addEventListener('fetch', (event) => {
 		}),
 	);
 });
+*/
