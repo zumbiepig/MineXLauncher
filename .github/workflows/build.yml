@@ -24,3 +24,4 @@ jobs:
           name: build
           path: public/
           compression-level: 9
+          retention-days: 2
