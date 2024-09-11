@@ -4,7 +4,7 @@ const storage = {
 		get: function (key: string) {
 			const item = localStorage.getItem('minexlauncher');
 			if (item !== null) {
-				const json = JSON.parse(item);
+				const json = JSON.parse(base64Gzip.decompress(item));
 				if (json[key] !== undefined) {
 					return json[key];
 				}
@@ -12,6 +12,15 @@ const storage = {
 			}
 			return undefined;
 		},
+	},
+};
+
+const base64Gzip = {
+	decompress: function (string: string): string {
+		return inflate(
+			Uint8Array.from(atob(string), (c) => c.charCodeAt(0)),
+			{ to: 'string' },
+		);
 	},
 };
 
