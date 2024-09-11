@@ -84,10 +84,7 @@ function consoleLog(
 		messageElement.classList.add(type);
 		messageElement.innerText = msg;
 		consoleElement.append(messageElement);
-		storage.session.set(
-			'console',
-			base64Gzip.compress(consoleElement.innerHTML),
-		);
+		storage.session.set('console', consoleElement.innerHTML);
 		if (scrolledToBottom) consoleElement.scroll(0, consoleElement.scrollHeight);
 	}
 }
@@ -398,8 +395,7 @@ const storage = {
 		get: function (key: string) {
 			const item = localStorage.getItem('minexlauncher');
 			if (item !== null) {
-				//const decoded = atob(item);
-				const json = JSON.parse(item);
+				const json = JSON.parse(base64Gzip.decompress(item));
 				if (json[key] !== undefined) {
 					return json[key];
 				}
@@ -415,16 +411,17 @@ const storage = {
 			if (item === null) {
 				const json: Record<string, unknown> = {};
 				json[key] = value;
-				const string = JSON.stringify(json);
-				//const encoded = btoa(string);
-				localStorage.setItem('minexlauncher', string);
+				localStorage.setItem(
+					'minexlauncher',
+					base64Gzip.compress(JSON.stringify(json)),
+				);
 			} else {
-				//const decoded = atob(item);
-				const json = JSON.parse(item);
+				const json = JSON.parse(base64Gzip.decompress(item));
 				json[key] = value;
-				const string = JSON.stringify(json);
-				//const encoded = btoa(string);
-				localStorage.setItem('minexlauncher', string);
+				localStorage.setItem(
+					'minexlauncher',
+					base64Gzip.compress(JSON.stringify(json)),
+				);
 			}
 		},
 	},
@@ -432,7 +429,7 @@ const storage = {
 		get: function (key: string) {
 			const item = sessionStorage.getItem('minexlauncher');
 			if (item !== null) {
-				const json = JSON.parse(item);
+				const json = JSON.parse(base64Gzip.decompress(item));
 				if (json[key] !== undefined) {
 					return json[key];
 				}
@@ -444,13 +441,22 @@ const storage = {
 			key: string,
 			value: string | number | object | boolean | null | undefined,
 		) {
-			let item = sessionStorage.getItem('minexlauncher');
+			const item = sessionStorage.getItem('minexlauncher');
 			if (item === null) {
-				item = '{}';
+				const json: Record<string, unknown> = {};
+				json[key] = value;
+				sessionStorage.setItem(
+					'minexlauncher',
+					base64Gzip.compress(JSON.stringify(json)),
+				);
+			} else {
+				const json = JSON.parse(base64Gzip.decompress(item));
+				json[key] = value;
+				sessionStorage.setItem(
+					'minexlauncher',
+					base64Gzip.compress(JSON.stringify(json)),
+				);
 			}
-			const json = JSON.parse(item);
-			json[key] = value;
-			sessionStorage.setItem('minexlauncher', JSON.stringify(json));
 		},
 	},
 };
@@ -677,7 +683,7 @@ if (window.location.pathname === '/') {
 		if (consoleElement) {
 			const consoleHistory = storage.session.get('console');
 			if (consoleHistory) {
-				consoleElement.innerHTML = base64Gzip.decompress(consoleHistory);
+				consoleElement.innerHTML = consoleHistory;
 				consoleElement.style.display = 'flex';
 				consoleElement.scroll(0, consoleElement.scrollHeight);
 			}
