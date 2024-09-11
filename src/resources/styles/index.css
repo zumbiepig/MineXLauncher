@@ -35,6 +35,8 @@ iframe {
 
 .console span {
 	margin: 5px 10px;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 16px;
 }
 
 .console span:first-child {
