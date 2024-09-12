@@ -1,5 +1,41 @@
-// @ts-nocheck
 import { inflate } from 'pako';
+
+declare global {
+	interface Window {
+		eaglercraftXOpts: {
+			container: string;
+			assetsURI: string;
+			localesURI?: string;
+			lang?: string;
+			joinServer?: string;
+			worldsDB?: string;
+			resourcePacksDB?: string;
+			demoMode?: boolean;
+			servers: { addr: string; name: string }[];
+			relays: { addr: string; comment: string; primary: boolean }[];
+			checkShaderGLErrors?: boolean;
+			enableDownloadOfflineButton?: boolean;
+			downloadOfflineButtonLink?: string;
+			html5CursorSupport?: boolean;
+			allowUpdateSvc?: boolean;
+			allowUpdateDL?: boolean;
+			logInvalidCerts?: boolean;
+			enableSignatureBadge?: boolean;
+			checkRelaysForUpdates?: boolean;
+			allowVoiceClient?: boolean;
+			allowFNAWSkins?: boolean;
+			localStorageNamespace?: string;
+			enableMinceraft?: boolean;
+			hooks?: {
+				localStorageSaved?: (key: string, data: string) => void;
+				localStorageLoaded?: (key: string) => string | null;
+			};
+			Mods?: string[];
+		};
+		main: () => void;
+	}
+}
+
 const storage = {
 	local: {
 		get: function (key: string) {
@@ -15,6 +51,7 @@ const storage = {
 		},
 	},
 };
+
 const base64Gzip = {
 	decompress: function (string: string): string {
 		return inflate(
@@ -24,42 +61,40 @@ const base64Gzip = {
 	},
 };
 
-window.addEventListener('load', () => {
-	const relayId = Math.floor(Math.random() * 3);
-	window.eaglercraftXOpts = {
-		container: 'game_frame',
-		assetsURI: `${window.location.pathname}/assets.epk`,
-		localesURI: `${window.location.pathname}/lang/`,
-		servers: [
-			{ addr: 'wss://webmc.xyz/server', name: 'WebMC OneBlock' },
-			{ addr: 'wss://mc.ricenetwork.xyz', name: 'Rice Network' },
-			{ addr: 'wss://mc.lamplifesteal.xyz', name: 'LampLifesteal' },
-			{ addr: 'wss://electronmc.club', name: 'Electron Network' },
-			{ addr: 'wss://play.brickmc.net', name: 'BrickMC' },
-		],
-		relays: [
-			{
-				addr: 'wss://relay.deev.is/',
-				comment: 'lax1dude relay #1',
-				primary: relayId === 0,
-			},
-			{
-				addr: 'wss://relay.lax1dude.net/',
-				comment: 'lax1dude relay #2',
-				primary: relayId === 1,
-			},
-			{
-				addr: 'wss://relay.shhnowisnottheti.me/',
-				comment: 'ayunami relay #1',
-				primary: relayId === 2,
-			},
-		],
-	};
+const randomRelay = Math.floor(Math.random() * 3);
+window.eaglercraftXOpts = {
+	container: 'game_frame',
+	assetsURI: 'assets.epk',
+	servers: [
+		{ addr: 'wss://temuzx.xyz', name: 'TemuzX' },
+		{ addr: 'wss://webmc.xyz/server', name: 'WebMC OneBlock' },
+		{ addr: 'wss://mc.ricenetwork.xyz', name: 'Rice Network' },
+		{ addr: 'wss://mc.lamplifesteal.xyz', name: 'LampLifesteal' },
+		{ addr: 'wss://electronmc.club', name: 'Electron Network' },
+		{ addr: 'wss://play.brickmc.net', name: 'BrickMC' },
+	],
+	relays: [
+		{
+			addr: 'wss://relay.deev.is',
+			comment: 'lax1dude relay #1',
+			primary: randomRelay === 0,
+		},
+		{
+			addr: 'wss://relay.lax1dude.net',
+			comment: 'lax1dude relay #2',
+			primary: randomRelay === 1,
+		},
+		{
+			addr: 'wss://relay.shhnowisnottheti.me',
+			comment: 'ayunami relay #1',
+			primary: randomRelay === 2,
+		},
+	],
+	Mods: storage.local.get('mods') ?? [],
+};
 
-	const urlParams = new URLSearchParams(window.location.search);
-	window.eaglercraftXOpts.joinServer = urlParams.get('server') ?? undefined;
-	window.eaglercraftXOpts.Mods = storage.local.get('mods') ?? [];
+const urlParams = new URLSearchParams(window.location.search);
+const server = urlParams.get('server');
+if (server) window.eaglercraftXOpts.joinServer = server;
 
-	history.replaceState({}, '', '/play');
-	main();
-});
+window.onload = () => window.main();
