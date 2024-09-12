@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { gt, coerce } from 'semver';
 import { inflate, deflate } from 'pako';
 // @ts-expect-error
