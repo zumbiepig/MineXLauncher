@@ -1,9 +1,14 @@
-// @ts-nocheck
-import { Router } from 'express';
-const indexRouter = Router();
+import {
+	Router,
+	type Request,
+	type Response,
+	type NextFunction,
+} from 'express';
 
-indexRouter.get('/', async (req, res) => {
-	// router for future use
+const router = Router();
+
+router.get('/', (_req: Request, _res: Response, next: NextFunction) => {
+	next();
 });
 
-export { indexRouter };
+export default router;

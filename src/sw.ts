@@ -1,5 +1,4 @@
-// @ts-nocheck
-/*const CACHE_VERSION = '1.6';
+/* const CACHE_VERSION = '1.6';
 const OFFLINE_URL = '/offline/';
 const CACHE_ASSETS = [
 	OFFLINE_URL,
@@ -89,5 +88,4 @@ self.addEventListener('fetch', (event) => {
 			}),
 		);
 	}
-});
-*/
+}); */

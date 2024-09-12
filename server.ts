@@ -16,7 +16,7 @@ import morgan from 'morgan';
 import serveFavicon from 'serve-favicon';
 import serveStatic from 'serve-static';
 
-import { indexRouter } from './routes/index.ts';
+import indexRouter from './routes/index.ts';
 
 const BASE_DIR = join(import.meta.dir, 'public');
 const PORT = process.env['PORT'] ?? 3000;
