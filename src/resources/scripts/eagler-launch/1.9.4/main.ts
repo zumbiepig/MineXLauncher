@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
 		container: 'game_frame',
 		assetsURI: `${window.location.pathname}/assets.epk`,
 		localesURI: `${window.location.pathname}/lang/`,
-		servers: [{ addr: 'wss://eagler.xyz', name: 'TemuzX' }],
+		servers: [{ addr: 'wss://temuzx.xyz', name: 'TemuzX' }],
 		relays: [
 			{
 				addr: 'wss://relay.deev.is/',
