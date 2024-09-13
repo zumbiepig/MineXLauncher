@@ -12,8 +12,6 @@ import { minify } from 'html-minifier';
 import javascriptObfuscator from 'javascript-obfuscator';
 import chalk from 'chalk';
 
-console.clear();
-
 function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 	dir = dir ?? baseDir;
 	filesArr = filesArr ?? [];
