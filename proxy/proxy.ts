@@ -3,11 +3,12 @@ import https from 'https';
 import express from 'express';
 import morgan from 'morgan';
 
-const PROXY_HOSTNAME = 'launcher.orionzleon.me';
-const CACHE_LIFETIME = 1000 * 60 * 10; // 10 minutes
-const MAX_CACHE_SIZE = 1024 * 1024 * 1024 * 0.5; // 0.5 GiB
+if (Number(process.env['CACHE_MINUTES'] ?? 10) < 5)
+	process.env['CACHE_MINUTES'] = '5';
 
 const PORT = process.env['PORT'] ?? 3000;
+const CACHE_MINUTES = process.env['CACHE_MINUTES'] ?? 10;
+const CACHE_SIZE = process.env['CACHE_SIZE'] ?? 0.5;
 
 const cache = new Map<
 	string,
@@ -18,7 +19,10 @@ const cache = new Map<
 		data: Buffer;
 	}
 >();
+const maxCacheSize = 1024 * 1024 * 1024 * Number(CACHE_SIZE);
 let cacheSize = 0;
+const cacheLifetime = 1000 * 60 * Number(CACHE_MINUTES);
+const proxyHostname = 'launcher.orionzleon.me';
 const requestCounter = new Map<string, number>();
 
 const app = express();
@@ -28,7 +32,7 @@ app.use(morgan(':method :url :status - :response-time ms'));
 app.use((req, res) => {
 	if (req.method === 'GET' && cache.has(req.url)) {
 		const cached = cache.get(req.url);
-		if (cached && Date.now() - cached.lastFetched < CACHE_LIFETIME) {
+		if (cached && Date.now() - cached.lastFetched < cacheLifetime) {
 			requestCounter.set(req.url, (requestCounter.get(req.url) ?? 0) + 1);
 			res.writeHead(cached.statusCode, cached.headers).end(cached.data);
 			return;
@@ -37,7 +41,7 @@ app.use((req, res) => {
 
 	const proxyReq = https.request(
 		{
-			hostname: PROXY_HOSTNAME,
+			hostname: proxyHostname,
 			path: req.url,
 			method: req.method,
 		},
@@ -63,13 +67,13 @@ app.use((req, res) => {
 					requestCounter.set(req.url, (requestCounter.get(req.url) ?? 0) + 1);
 
 					cacheSize += responseData.length;
-					if (cacheSize > MAX_CACHE_SIZE) {
+					if (cacheSize > maxCacheSize) {
 						const keys = Array.from(cache.keys());
 						keys.sort(
 							(a, b) =>
 								(requestCounter.get(a) ?? 0) - (requestCounter.get(b) ?? 0),
 						);
-						while (cacheSize > MAX_CACHE_SIZE && keys.length > 0) {
+						while (cacheSize > maxCacheSize && keys.length > 0) {
 							const key = keys.shift();
 							if (key) {
 								const cached = cache.get(key);
@@ -96,4 +100,8 @@ app.use((req, res) => {
 	proxyReq.end();
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}.\nYou can change the port with \`PORT=1234 ./path/to/executable\`.\n\nThis program may use up to 500 MB of RAM.`));
+app.listen(PORT, () =>
+	console.log(
+		`Server running on http://localhost:${PORT}/\n\nConfiguration:\n  Maximum memory usage: ${CACHE_SIZE} GiB\n  Cache TTL: ${CACHE_MINUTES} minutes`,
+	),
+);
