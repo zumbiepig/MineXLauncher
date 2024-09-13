@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo 'Make sure you are running this in the `proxy` directory' &&
 rm -r ./bin &&
 mkdir ./bin &&
 bun build ./proxy.ts --compile --minify --target=bun-linux-x64-modern --outfile ./bin/linux-x64 &&
