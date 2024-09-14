@@ -29,7 +29,7 @@ function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 const srcDir = resolve(import.meta.dir, 'src');
-const publicDir = resolve(import.meta.dir, 'public');
+const publicDir = resolve(import.meta.dir, process.env['BUILD_PATH'] ?? 'public');
 const srcFiles = getFiles(resolve(import.meta.dir, 'src'));
 const bundleFiles: string[] = [];
 const minifyFiles: string[] = [];
@@ -48,10 +48,10 @@ srcFiles.forEach((file) => {
 	} else copyFiles.push(file);
 });
 
-if (!isDev) {
+/* if (!isDev) {
 	console.log(chalk.cyan('Removing old build artifacts...\n'));
 	rmSync(publicDir, { force: true, recursive: true });
-}
+} */
 
 console.log(chalk.cyan('Bundling TypeScript and modules...\n'));
 await build({
