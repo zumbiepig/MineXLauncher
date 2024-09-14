@@ -45,6 +45,7 @@
 		{
 			"version": "1.7",
 			"changelog": [
+				"Added Eaglercraft Zeta 1.11",
 				"Console logs are now shown while playing",
 				"Added importing and exporting launcher data"
 			]
