@@ -18,10 +18,3 @@ jobs:
         run: bun run lint
       - name: Build
         run: bun run build
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: public/
-          compression-level: 9
-          retention-days: 2
