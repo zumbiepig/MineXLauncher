@@ -1025,5 +1025,6 @@ if (window.location.hostname === null) {
 		backups,
 		consoleLog,
 		openAboutBlank,
+		$,
 	]);
 }
