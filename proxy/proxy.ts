@@ -35,69 +35,75 @@ app.use((req, res) => {
 		if (cached && Date.now() - cached.lastFetched < cacheLifetime) {
 			requestCounter.set(req.url, (requestCounter.get(req.url) ?? 0) + 1);
 			res.writeHead(cached.statusCode, cached.headers).end(cached.data);
-			return;
 		}
-	}
+	} else {
+		const proxyReq = https.request(
+			{
+				hostname: proxyHostname,
+				path: req.url,
+				method: req.method,
+			},
+			(proxyRes) => {
+				const statusCode = proxyRes.statusCode ?? 500;
+				const headers = proxyRes.headers;
 
-	const proxyReq = https.request(
-		{
-			hostname: proxyHostname,
-			path: req.url,
-			method: req.method,
-		},
-		(proxyRes) => {
-			const statusCode = proxyRes.statusCode ?? 500;
-			const headers = proxyRes.headers;
+				const responseChunks: Buffer[] = [];
 
-			const responseChunks: Buffer[] = [];
+				proxyRes.on('data', (chunk) => responseChunks.push(chunk));
 
-			proxyRes.on('data', (chunk) => responseChunks.push(chunk));
+				proxyRes.on('end', () => {
+					const responseData = Buffer.concat(responseChunks);
 
-			proxyRes.on('end', () => {
-				const responseData = Buffer.concat(responseChunks);
+					if (req.method === 'GET') {
+						cache.set(req.url, {
+							lastFetched: Date.now(),
+							statusCode: statusCode,
+							headers: headers,
+							data: responseData,
+						});
 
-				if (req.method === 'GET') {
-					cache.set(req.url, {
-						lastFetched: Date.now(),
-						statusCode: statusCode,
-						headers: headers,
-						data: responseData,
-					});
+						requestCounter.set(req.url, (requestCounter.get(req.url) ?? 0) + 1);
 
-					requestCounter.set(req.url, (requestCounter.get(req.url) ?? 0) + 1);
-
-					cacheSize += responseData.length;
-					if (cacheSize > maxCacheSize) {
-						const keys = Array.from(cache.keys());
-						keys.sort(
-							(a, b) =>
-								(requestCounter.get(a) ?? 0) - (requestCounter.get(b) ?? 0),
-						);
-						while (cacheSize > maxCacheSize && keys.length > 0) {
-							const key = keys.shift();
-							if (key) {
-								const cached = cache.get(key);
-								if (cached) {
-									cacheSize -= cached.data.length;
-									cache.delete(key);
+						cacheSize += responseData.length;
+						if (cacheSize > maxCacheSize) {
+							const keys = Array.from(cache.keys());
+							keys.sort(
+								(a, b) =>
+									(requestCounter.get(a) ?? 0) - (requestCounter.get(b) ?? 0),
+							);
+							while (cacheSize > maxCacheSize && keys.length > 0) {
+								const key = keys.shift();
+								if (key) {
+									const cached = cache.get(key);
+									if (cached) {
+										cacheSize -= cached.data.length;
+										cache.delete(key);
+									}
 								}
 							}
 						}
 					}
+
+					res.writeHead(statusCode, headers).end(responseData);
+				});
+			},
+		);
+
+		proxyReq.on('error', () => {
+			if (req.method === 'GET' && cache.has(req.url)) {
+				const cached = cache.get(req.url);
+				if (cached) {
+					requestCounter.set(req.url, (requestCounter.get(req.url) ?? 0) + 1);
+					res.writeHead(cached.statusCode, cached.headers).end(cached.data);
 				}
+			} else
+				res
+					.writeHead(500, { 'Content-Type': 'text/plain' })
+					.end('500 Internal Server Error');
+		});
 
-				res.writeHead(statusCode, headers).end(responseData);
-			});
-		},
-	);
-
-	proxyReq.on('error', () =>
-		res
-			.writeHead(500, { 'Content-Type': 'text/plain' })
-			.end('500 Internal Server Error'),
-	);
-
-	proxyReq.end();
+		proxyReq.end();
+	}
 });
 
 app.listen(PORT, () =>
