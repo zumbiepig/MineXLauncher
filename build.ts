@@ -5,7 +5,7 @@ import {
 	statSync,
 	writeFileSync,
 	readFileSync,
-	rmSync,
+	// rmSync,
 } from 'fs';
 import { resolve, dirname, basename } from 'path';
 import { minify } from 'html-minifier';
@@ -29,7 +29,10 @@ function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 const srcDir = resolve(import.meta.dir, 'src');
-const publicDir = resolve(import.meta.dir, process.env['BUILD_PATH'] ?? 'public');
+const publicDir = resolve(
+	import.meta.dir,
+	process.env['BUILD_PATH'] ?? 'public',
+);
 const srcFiles = getFiles(resolve(import.meta.dir, 'src'));
 const bundleFiles: string[] = [];
 const minifyFiles: string[] = [];
