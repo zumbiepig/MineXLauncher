@@ -67,11 +67,9 @@ window.eaglercraftXOpts = {
 	assetsURI: 'assets.epk',
 	servers: [
 		{ addr: 'wss://temuzx.xyz', name: 'TemuzX' },
-		{ addr: 'wss://webmc.xyz/server', name: 'WebMC OneBlock' },
 		{ addr: 'wss://mc.ricenetwork.xyz', name: 'Rice Network' },
+		{ addr: 'wss://webmc.xyz/server', name: 'WebMC OneBlock' },
 		{ addr: 'wss://mc.lamplifesteal.xyz', name: 'LampLifesteal' },
-		{ addr: 'wss://electronmc.club', name: 'Electron Network' },
-		{ addr: 'wss://play.brickmc.net', name: 'BrickMC' },
 	],
 	relays: [
 		{
