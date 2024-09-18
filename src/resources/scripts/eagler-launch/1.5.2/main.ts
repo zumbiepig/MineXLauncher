@@ -8,11 +8,11 @@ window.addEventListener('load', function () {
 		serverWorkerURI: `${window.location.pathname}/worker_bootstrap.js`,
 		worldsFolder: 'MAIN',
 		servers: [
-			{
-				serverName: 'BrickMC',
-				serverAddress: 'wss://play.brickmc.net',
+			/*{
+				serverName: 'Example server',
+				serverAddress: 'wss://example.com',
 				hideAddress: false,
-			},
+			},*/
 		],
 		relays: [
 			{
