@@ -411,7 +411,7 @@ const article = {
 const storage = {
 	local: {
 		get: function (key: string) {
-			const item = localStorage.getItem('minexlauncher');
+			const item = localStorage.getItem('minexlauncher-v2');
 			if (item !== null) {
 				const json = JSON.parse(base64Gzip.decompress(item));
 				if (json[key] !== undefined) {
@@ -425,7 +425,7 @@ const storage = {
 			key: string,
 			value: string | number | object | boolean | null | undefined,
 		) {
-			const item = localStorage.getItem('minexlauncher');
+			const item = localStorage.getItem('minexlauncher-v2');
 			if (item === null) {
 				const json: Record<string, unknown> = {};
 				json[key] = value;
@@ -445,7 +445,7 @@ const storage = {
 	},
 	session: {
 		get: function (key: string) {
-			const item = sessionStorage.getItem('minexlauncher');
+			const item = sessionStorage.getItem('minexlauncher-v2');
 			if (item !== null) {
 				const json = JSON.parse(base64Gzip.decompress(item));
 				if (json[key] !== undefined) {
@@ -459,7 +459,7 @@ const storage = {
 			key: string,
 			value: string | number | object | boolean | null | undefined,
 		) {
-			const item = sessionStorage.getItem('minexlauncher');
+			const item = sessionStorage.getItem('minexlauncher-v2');
 			if (item === null) {
 				const json: Record<string, unknown> = {};
 				json[key] = value;
