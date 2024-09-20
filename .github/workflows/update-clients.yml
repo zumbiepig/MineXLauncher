@@ -33,14 +33,14 @@ jobs:
             ./src/game/web/main/1.8.8/assets.epk \
             ./src/game/web/main/1.8.8/classes.js \
             ./src/game/web/main/1.8.8/classes.js.map \
-            ./src/game/offline/main/EaglercraftX_1.8.html \
+            ./src/game/offline/main/EaglercraftX_1.8.8.html \
             ${{ runner.temp }}/eaglerx/javascript/assets.epk \
             ${{ runner.temp }}/eaglerx/javascript/classes.js
           cd ${{ runner.temp }}/eaglerx/
           chmod +x ./gradlew
           java -jar "desktopRuntime/CompileEPK.jar" "desktopRuntime/resources" "javascript/assets.epk"
           ./gradlew generateJavascript
-          wget -O ${{ github.workspace }}/src/game/offline/main/EaglercraftX_1.8.html https://git.eaglercraft.rip/eaglercraft/eaglercraft-builds/raw/branch/main/EaglercraftX_1.8_Offline_Signed_Client.html
+          wget -O ${{ github.workspace }}/src/game/offline/main/EaglercraftX_1.8.8.html https://git.eaglercraft.rip/eaglercraft/eaglercraft-builds/raw/branch/main/EaglercraftX_1.8_Offline_Signed_Client.html
           cd ${{ github.workspace }}
           cp -r ${{ runner.temp }}/eaglerx/javascript/lang/ ./src/game/web/main/1.8.8/lang/
           cp ${{ runner.temp }}/eaglerx/javascript/assets.epk ./src/game/web/main/1.8.8/assets.epk
@@ -55,14 +55,14 @@ jobs:
       #      ./src/game/web/main/1.9.4/assets.epk \
       #      ./src/game/web/main/1.9.4/classes.js \
       #      ./src/game/web/main/1.9.4/classes.js.map \
-      #      ./src/game/offline/main/EaglercraftL_1.9.html \
+      #      ./src/game/offline/main/EaglercraftL_1.9.4.html \
       #      ${{ runner.temp }}/eaglerl/javascript/assets.epk \
       #      ${{ runner.temp }}/eaglerl/javascript/classes.js
       #    cd ${{ runner.temp }}/eaglerl/
       #    chmod +x ./gradlew
       #    java -jar "resources/CompileEPK.jar" "resources/resources" "javascript/assets.epk"
       #    ./gradlew generateJavascript
-      #    wget -O ${{ github.workspace }}/src/game/offline/main/EaglercraftL_1.9.html https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases/download/latest/EaglercraftL_1.9_Offline_Signed_Client.html
+      #    wget -O ${{ github.workspace }}/src/game/offline/main/EaglercraftL_1.9.4.html https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases/download/latest/EaglercraftL_1.9_Offline_Signed_Client.html
       #    cd ${{ github.workspace }}
       #    cp -r ${{ runner.temp }}/eaglerl/javascript/lang/ ./src/game/web/main/1.9.4/lang/
       #    cp ${{ runner.temp }}/eaglerl/javascript/assets.epk ./src/game/web/main/1.9.4/assets.epk
