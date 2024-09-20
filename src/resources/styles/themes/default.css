@@ -679,7 +679,7 @@ body {
 
 .settings form input[type='text'],
 .settings form select {
-	width: calc(100% - 22px);
+	width: 100%;
 	padding: 10px;
 	margin-bottom: 10px;
 	border: none;
@@ -687,6 +687,10 @@ body {
 	background-color: #333;
 	color: #fff;
 	appearance: none;
+}
+
+.settings form input[type='text'] {
+	width: calc(100% - 20px);
 }
 
 .settings form input[type='checkbox'] {
