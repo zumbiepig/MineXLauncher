@@ -43,6 +43,14 @@
 	],
 	"updates": [
 		{
+			"version": "1.7.1",
+			"changelog": [
+				"Added an offline download for Eaglercraft Zeta 1.11",
+				"Added Precision Client",
+				"Fixed some CSS bugs"
+			]
+		},
+		{
 			"version": "1.7",
 			"changelog": [
 				"Added Eaglercraft Zeta 1.11",
@@ -71,7 +79,6 @@
 		{
 			"version": "1.4",
 			"changelog": [
-				"Added Starlike Client",
 				"Added welcome and setup screen",
 				"Show changelog when the launcher is updated",
 				"Added themes and backgrounds",
