@@ -430,14 +430,14 @@ const storage = {
 				const json: Record<string, unknown> = {};
 				json[key] = value;
 				localStorage.setItem(
-					'minexlauncher',
+					'minexlauncher-v2',
 					base64Gzip.compress(JSON.stringify(json)),
 				);
 			} else {
 				const json = JSON.parse(base64Gzip.decompress(item));
 				json[key] = value;
 				localStorage.setItem(
-					'minexlauncher',
+					'minexlauncher-v2',
 					base64Gzip.compress(JSON.stringify(json)),
 				);
 			}
@@ -464,14 +464,14 @@ const storage = {
 				const json: Record<string, unknown> = {};
 				json[key] = value;
 				sessionStorage.setItem(
-					'minexlauncher',
+					'minexlauncher-v2',
 					base64Gzip.compress(JSON.stringify(json)),
 				);
 			} else {
 				const json = JSON.parse(base64Gzip.decompress(item));
 				json[key] = value;
 				sessionStorage.setItem(
-					'minexlauncher',
+					'minexlauncher-v2',
 					base64Gzip.compress(JSON.stringify(json)),
 				);
 			}
