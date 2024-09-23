@@ -47,7 +47,7 @@
 							<img src="/resources/images/icons/nav/servers.webp" />
 							<span>Server List</span>
 						</li>
-						<li class="selected" onclick="navigate.mods.mods()">
+						<li class="selected" onclick="navigate.addons.mods()">
 							<img src="/resources/images/icons/nav/mods.webp" />
 							<span>Mods</span>
 						</li>
@@ -64,17 +64,14 @@
 				<div class="main-panel">
 					<div class="top-nav">
 						<ul>
-							<li class="selected" onclick="navigate.mods.mods()">Mods</li>
-							<li onclick="navigate.mods.resourcepacks()">Resource Packs</li>
+							<li onclick="navigate.addons.mods()">Mods</li>
+							<li class="selected" onclick="navigate.addons.resourcepacks()">
+								Resource Packs
+							</li>
 						</ul>
 					</div>
 					<div class="main-content">
 						<div class="mod-list"></div>
-					</div>
-					<div class="installations">
-						<button onclick="game.play('/game/web/clients/eaglerforge/')">
-							Play
-						</button>
 					</div>
 				</div>
 			</div>
