@@ -108,7 +108,11 @@ const game = {
 			if (console) console.style.display = 'flex';
 
 			if (!window.gameWindow || window.gameWindow.closed) {
-				window.gameWindow = window.open('about:blank', '_blank', 'popup');
+				window.gameWindow = window.open(
+					'about:blank',
+					'_blank',
+					`popup=${storage.local.get('noPopup') ? 'false' : 'true'}`,
+				);
 				if (window.gameWindow) {
 					window.gameWindow.document.title = 'MineXLauncher';
 					const icon = window.gameWindow.document.createElement('link');
@@ -288,11 +292,6 @@ const navigate = {
 	},
 	articles: function () {
 		const navUrl = '/articles/';
-		storage.session.set('lastPage', navUrl);
-		window.location.href = navUrl;
-	},
-	mobile: function () {
-		const navUrl = '/mobile/';
 		storage.session.set('lastPage', navUrl);
 		window.location.href = navUrl;
 	},
@@ -683,15 +682,12 @@ function downloadFile(url: string, name?: string) {
 
 if (window.location.pathname === '/') {
 	const lastPage = storage.session.get('lastPage');
-	const isMobile = detect.mobile();
 	const iframe = document.createElement('iframe');
 	iframe.src = !storage.local.get('lastVersion')
 		? '/welcome/'
 		: lastPage
 			? lastPage
-			: isMobile
-				? '/mobile/'
-				: '/home/game/';
+			: '/home/game/';
 
 	document.addEventListener('DOMContentLoaded', () => {
 		document.body.append(iframe);
@@ -794,6 +790,9 @@ if (window.location.pathname === '/settings/general/') {
 		const themeSelect = document.querySelector(
 			'#theme-select',
 		) as HTMLSelectElement | null;
+		const noPopupCheckbox = document.querySelector(
+			'#no-popup-checkbox',
+		) as HTMLInputElement | null;
 		const offlineCheckbox = document.querySelector(
 			'#offline-checkbox',
 		) as HTMLInputElement | null;
@@ -828,6 +827,13 @@ if (window.location.pathname === '/settings/general/') {
 			themeSelect.value = storage.local.get('theme') ?? '';
 			themeSelect.addEventListener('change', () =>
 				theme.set(themeSelect.value ?? 'default'),
+			);
+		}
+
+		if (noPopupCheckbox) {
+			noPopupCheckbox.checked = storage.local.get('noPopup');
+			noPopupCheckbox.addEventListener('change', () =>
+				storage.local.set('noPopup', noPopupCheckbox.checked),
 			);
 		}
 
@@ -915,6 +921,7 @@ if (window.location.pathname === '/settings/general/') {
 
 					storage.local.set('username', username);
 					storage.local.set('theme', themeSelect?.value ?? 'default');
+					storage.local.set('noPopup', false);
 					// storage.local.set('offlineCache', offlineCheckbox?.checked ?? false);
 					// storage.local.set('showAds', true);
 					storage.local.set('mods', []);
@@ -1026,5 +1033,6 @@ if (window.location.hostname === null) {
 		consoleLog,
 		openAboutBlank,
 		$,
+		detect,
 	]);
 }

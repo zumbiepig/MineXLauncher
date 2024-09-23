@@ -1,6 +1,7 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
+// import tsdocPlugin from 'eslint-plugin-tsdoc';
 
 export default tseslint.config(
 	eslint.configs.recommended,
@@ -9,6 +10,9 @@ export default tseslint.config(
 	...tseslint.configs.stylisticTypeChecked,
 	eslintConfigPrettier,
 	{
+		/* plugins: {
+			tsdoc: tsdocPlugin,
+		}, */
 		languageOptions: {
 			parserOptions: {
 				projectService: true,
@@ -25,6 +29,7 @@ export default tseslint.config(
 					'ts-check': true,
 				},
 			],
+			// 'tsdoc/syntax': 'warn',
 		},
 	},
 );
