@@ -264,16 +264,16 @@ const navigate = {
 			window.location.href = navUrl;
 		},
 	},
-	mods: {
+	addons: {
 		mods: function () {
 			document.body.style.display = 'none';
-			const navUrl = '/mods/mods/';
+			const navUrl = '/addons/mods/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
 		},
 		resourcepacks: function () {
 			document.body.style.display = 'none';
-			const navUrl = '/mods/resourcepacks/';
+			const navUrl = '/addons/resourcepacks/';
 			storage.session.set('lastPage', navUrl);
 			window.location.href = navUrl;
 		},
@@ -500,7 +500,7 @@ const detect = {
 
 const mods = {
 	toggle: function (modId: string): void {
-		const mod = `/resources/mods/downloads/${modId}.js`;
+		const mod = `/resources/addons/${modId}.js`;
 		const mods: string[] = storage.local.get('mods') ?? [];
 		const modIndex = mods.indexOf(mod);
 		if (modIndex === -1) {
@@ -945,12 +945,12 @@ if (window.location.pathname === '/settings/general/') {
 		}
 	});
 } else if (
-	window.location.pathname === '/mods/mods/' ||
-	window.location.pathname === '/mods/resourcepacks/'
+	window.location.pathname === '/addons/mods/' ||
+	window.location.pathname === '/addons/resourcepacks/'
 ) {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const addonType: 'mods' | 'resourcepacks' =
-			window.location.pathname === '/mods/mods/' ? 'mods' : 'resourcepacks';
+			window.location.pathname === '/addons/mods/' ? 'mods' : 'resourcepacks';
 		const data: {
 			id: string;
 			name: string;
@@ -963,12 +963,12 @@ if (window.location.pathname === '/settings/general/') {
 		// @ts-expect-error
 		data[addonType].forEach((addon) => {
 			const modItem = document.createElement('div');
-			modItem.innerHTML = `<img loading="lazy" src="/resources/mods/icons/${addon.id}.webp" /><div class="details"><strong>${
+			modItem.innerHTML = `<img loading="lazy" src="/resources/images/icons/addons/${addon.id}.webp" /><div class="details"><strong>${
 				addon.name
 			}</strong><p class="author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p><p class="description">${addon.description}</p></div><div class="links">${
 				addonType === 'mods'
-					? `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.js', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="mods.toggle('${addon.id}')">Install</span>`
-					: `<span class="download" onclick="downloadFile('/resources/mods/downloads/${addon.id}.zip', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.zip')">Download</span>`
+					? `<span class="download" onclick="downloadFile('/resources/addons/${addon.id}.js', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="mods.toggle('${addon.id}')">Install</span>`
+					: `<span class="download" onclick="downloadFile('/resources/addons/${addon.id}.zip', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.zip')">Download</span>`
 			}</div>`;
 			modList?.append(modItem);
 		});
@@ -980,7 +980,7 @@ if (window.location.pathname === '/settings/general/') {
 			);
 			modElements.forEach((element) => {
 				const modId = (element as HTMLElement).dataset['modId'];
-				if (installedMods.includes(`/resources/mods/downloads/${modId}.js`)) {
+				if (installedMods.includes(`/resources/addons/${modId}.js`)) {
 					element.textContent = 'Uninstall';
 					element.classList.add('installed');
 				}

@@ -4,6 +4,6 @@
 		"node_modules/",
 		"public/",
 		"src/game/",
-		"src/resources/mods/downloads/"
+		"src/resources/addons"
 	]
 }
