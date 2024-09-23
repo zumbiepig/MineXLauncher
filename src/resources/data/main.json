@@ -43,6 +43,14 @@
 	],
 	"updates": [
 		{
+			"version": "1.7.2",
+			"changelog": [
+				"Updated EaglercraftX 1.8 to u37",
+				"Added Sweet Cherry 16x texture pack",
+				"New setting to open new tab instead of popup"
+			]
+		},
+		{
 			"version": "1.7.1",
 			"changelog": [
 				"Added an offline download for Eaglercraft Zeta 1.11",
@@ -351,6 +359,14 @@
 				"author": "The REAL Senpai",
 				"authorLink": "https://www.planetminecraft.com/member/the_real_senpai/",
 				"source": "https://www.planetminecraft.com/texture-pack/senpa1-1-8-9-1-16-texture-pack-netherite/"
+			},
+			{
+				"id": "sweet-cherry-16x",
+				"name": "Sweet Cherry 16x",
+				"description": "Sweet Cherry 16x is a pack made for Alcheras reaching 5,000 subscribers! Perfect for 1.8 player vs player such as bedwars, duels & skywars!",
+				"author": "VanillaSpooks",
+				"authorLink": "https://www.planetminecraft.com/member/vanillaspooks/",
+				"source": "https://www.planetminecraft.com/texture-pack/sweet-cherry-16x/"
 			}
 		]
 	}
