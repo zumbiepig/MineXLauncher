@@ -2,6 +2,7 @@ package-lock.json
 desktop.ini
 
 public/
+proxy_linux-x64
 
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
