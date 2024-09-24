@@ -498,33 +498,37 @@ const detect = {
 	},
 };
 
-const mods = {
-	toggle: function (modId: string): void {
-		const mod = `/resources/addons/${modId}.js`;
-		const mods: string[] = storage.local.get('mods') ?? [];
-		const modIndex = mods.indexOf(mod);
-		if (modIndex === -1) {
-			mods.push(mod);
-			mods.sort();
-			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(
-				`.mod-list > div .links .install[data-mod-id='${modId}']`,
-			);
-			if (modInstallElem) {
-				modInstallElem.textContent = 'Uninstall';
-				modInstallElem.classList.add('installed');
+const addons = {
+	mods: {
+		toggle: function (modId: string): void {
+			const mod = `/resources/addons/${modId}.js`;
+			const addons: { mods: string[] } = storage.local.get('addons') ?? {
+				mods: [],
+			};
+			const modIndex = addons.mods.indexOf(mod);
+			if (modIndex === -1) {
+				addons.mods.push(mod);
+				addons.mods.sort();
+				storage.local.set('addons', addons);
+				const modInstallElem = document.querySelector(
+					`.mod-list > div .links .install[data-mod-id='${modId}']`,
+				);
+				if (modInstallElem) {
+					modInstallElem.classList.add('installed');
+					modInstallElem.textContent = 'Uninstall';
+				}
+			} else {
+				addons.mods.splice(modIndex, 1);
+				storage.local.set('addons', addons);
+				const modInstallElem = document.querySelector(
+					`.mod-list > div .links .install[data-mod-id='${modId}']`,
+				);
+				if (modInstallElem) {
+					modInstallElem.classList.remove('installed');
+					modInstallElem.textContent = 'Install';
+				}
 			}
-		} else {
-			mods.splice(modIndex, 1);
-			storage.local.set('mods', mods);
-			const modInstallElem = document.querySelector(
-				`.mod-list > div .links .install[data-mod-id='${modId}']`,
-			);
-			if (modInstallElem) {
-				modInstallElem.textContent = 'Install';
-				modInstallElem.classList.remove('installed');
-			}
-		}
+		},
 	},
 };
 
@@ -924,7 +928,7 @@ if (window.location.pathname === '/settings/general/') {
 					storage.local.set('noPopup', false);
 					// storage.local.set('offlineCache', offlineCheckbox?.checked ?? false);
 					// storage.local.set('showAds', true);
-					storage.local.set('mods', []);
+					storage.local.set('addons', { mods: [] });
 					storage.local.set(
 						'lastVersion',
 						(await (await fetch('/resources/data/main.json')).json()).updates[0]
@@ -951,38 +955,47 @@ if (window.location.pathname === '/settings/general/') {
 	document.addEventListener('DOMContentLoaded', async () => {
 		const addonType: 'mods' | 'resourcepacks' =
 			window.location.pathname === '/addons/mods/' ? 'mods' : 'resourcepacks';
-		const data: {
-			id: string;
-			name: string;
-			description: string;
-			author: string;
-			authorLink: string;
-			source: string;
-		}[] = (await (await fetch('/resources/data/main.json')).json()).addons;
-		const modList = document.querySelector('.mod-list');
-		// @ts-expect-error
-		data[addonType].forEach((addon) => {
-			const modItem = document.createElement('div');
-			modItem.innerHTML = `<img loading="lazy" src="/resources/images/icons/addons/${addon.id}.webp" /><div class="details"><strong>${
+		const addons: {
+			mods: {
+				id: string;
+				name: string;
+				description: string;
+				author: string;
+				authorLink: string;
+				source: string;
+			}[];
+			resourcepacks: {
+				id: string;
+				name: string;
+				description: string;
+				author: string;
+				authorLink: string;
+				source: string;
+			}[];
+		} = (await (await fetch('/resources/data/main.json')).json()).addons;
+		const addonList = document.querySelector('.mod-list');
+		addons[addonType].forEach((addon) => {
+			const addonItem = document.createElement('div');
+			addonItem.innerHTML = `<img loading="lazy" src="/resources/images/icons/addons/${addon.id}.webp" /><div class="details"><strong>${
 				addon.name
 			}</strong><p class="author">By <a href="${addon.authorLink}" target="_blank">${addon.author}</a></p><p class="description">${addon.description}</p></div><div class="links">${
 				addonType === 'mods'
-					? `<span class="download" onclick="downloadFile('/resources/addons/${addon.id}.js', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="mods.toggle('${addon.id}')">Install</span>`
+					? `<span class="download" onclick="downloadFile('/resources/addons/${addon.id}.js', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.js')">Download</span><span class="install" data-mod-id="${addon.id}" onclick="addons.mods.toggle('${addon.id}')">Install</span>`
 					: `<span class="download" onclick="downloadFile('/resources/addons/${addon.id}.zip', '${addon.name.replace('\\', '\\\\').replace("'", "\\'")}.zip')">Download</span>`
 			}</div>`;
-			modList?.append(modItem);
+			addonList?.append(addonItem);
 		});
 
 		if (addonType === 'mods') {
-			const installedMods = storage.local.get('mods') ?? [];
+			const installedMods = storage.local.get('addons').mods ?? [];
 			const modElements = document.querySelectorAll(
 				'.mod-list > div .links .install',
 			);
 			modElements.forEach((element) => {
 				const modId = (element as HTMLElement).dataset['modId'];
 				if (installedMods.includes(`/resources/addons/${modId}.js`)) {
-					element.textContent = 'Uninstall';
 					element.classList.add('installed');
+					element.textContent = 'Uninstall';
 				}
 			});
 		}
@@ -1025,7 +1038,7 @@ if (window.location.hostname === null) {
 		query,
 		versionSelector,
 		game,
-		mods,
+		addons,
 		base64Gzip,
 		article,
 		downloadFile,

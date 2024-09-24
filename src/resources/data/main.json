@@ -45,6 +45,7 @@
 		{
 			"version": "1.7.2",
 			"changelog": [
+				"Added Starlike Client",
 				"Updated EaglercraftX 1.8 to u37",
 				"Added Sweet Cherry 16x texture pack",
 				"New setting to open new tab instead of popup"
