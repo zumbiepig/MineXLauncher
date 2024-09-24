@@ -479,7 +479,7 @@ window.eaglercraftXOpts = {
 			}
 		},
 	},
-	Mods: storage.local.get('addons').mods ?? [],
+	Mods: storage.local.get('addons')?.mods ?? [],
 };
 
 const urlParams = new URLSearchParams(window.location.search);
