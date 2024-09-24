@@ -469,13 +469,13 @@ window.eaglercraftXOpts = {
 			const data = storage.local.get('eaglercraftXData');
 			switch (key) {
 				case 'p':
-					return data.profile ? data.profile : null;
+					return data?.profile ? data?.profile : null;
 				case 'g':
-					return data.settings ? data.settings : null;
+					return data?.settings ? data?.settings : null;
 				case 's':
-					return data.servers ? data.servers : null;
+					return data?.servers ? data?.servers : null;
 				case 'r':
-					return data.relays ? data.relays : null;
+					return data?.relays ? data?.relays : null;
 			}
 		},
 	},
