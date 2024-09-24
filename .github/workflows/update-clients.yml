@@ -67,6 +67,28 @@ jobs:
       #    cp -r ${{ runner.temp }}/eaglerl/javascript/lang/ ./src/game/web/main/1.9.4/lang/
       #    cp ${{ runner.temp }}/eaglerl/javascript/assets.epk ./src/game/web/main/1.9.4/assets.epk
       #    cp ${{ runner.temp }}/eaglerl/javascript/classes.js ./src/game/web/main/1.9.4/classes.js
+      - name: Compile Starlike Client
+        if: success() || failure()
+        run: |
+          git clone https://github.com/SpeedSlicer/Starlike-Client.git ${{ runner.temp }}/starlike
+          rm -rf \
+            ./src/game/web/clients/starlike/lang/ \
+            ./src/game/web/clients/starlike/assets.epk \
+            ./src/game/web/clients/starlike/classes.js \
+            ./src/game/web/clients/starlike/classes.js.map \
+            ./src/game/offline/clients/Starlike_Client.html \
+            ${{ runner.temp }}/starlike/javascript/assets.epk \
+            ${{ runner.temp }}/starlike/javascript/classes.js
+          cd ${{ runner.temp }}/starlike/
+          chmod +x ./gradlew
+          java -jar "desktopRuntime/CompileEPK.jar" "desktopRuntime/resources" "javascript/assets.epk"
+          ./gradlew generateJavascript
+          java -cp "desktopRuntime/MakeOfflineDownload.jar:desktopRuntime/CompileEPK.jar" net.lax1dude.eaglercraft.v1_8.buildtools.workspace.MakeOfflineDownload "javascript/OfflineDownloadTemplate.txt" "javascript/classes.js" "javascript/assets.epk" "/dev/null" "javascript/Starlike_Client_International.html" "javascript/lang"
+          cd ${{ github.workspace }}
+          cp -r ${{ runner.temp }}/starlike/javascript/lang/ ./src/game/web/clients/starlike/lang/
+          cp ${{ runner.temp }}/starlike/javascript/assets.epk ./src/game/web/clients/starlike/assets.epk
+          cp ${{ runner.temp }}/starlike/javascript/classes.js ./src/game/web/clients/starlike/classes.js
+          cp ${{ runner.temp }}/starlike/javascript/Starlike_Client_International.html ./src/game/offline/clients/Starlike_Client.html
       - name: Compile Shadow Client
         if: success() || failure()
         run: |
