@@ -110,28 +110,38 @@ const game = {
 			if (!window.gameWindow || window.gameWindow.closed) {
 				const noPopup = storage.local.get('noPopup');
 				window.gameWindow = window.open(
-					'about:blank',
+					noPopup ? version : 'about:blank',
 					'_blank',
 					`popup=${noPopup ? 'false' : 'true'}`,
 				);
 				if (window.gameWindow) {
-					window.gameWindow.document.title = 'MineXLauncher';
-					const icon = window.gameWindow.document.createElement('link');
-					icon.rel = 'icon';
-					icon.href = '/resources/images/icons/favicon.webp';
-					window.gameWindow.document.head.append(icon);
+					if (!noPopup) {
+						window.gameWindow.document.title = 'MineXLauncher';
+						const icon = window.gameWindow.document.createElement('link');
+						icon.rel = 'icon';
+						icon.href = '/resources/images/icons/favicon.webp';
+						window.gameWindow.document.head.append(icon);
 
-					const iframe = window.gameWindow.document.createElement('iframe');
-					iframe.src = version;
-					iframe.width = '100%';
-					iframe.height = '100%';
-					iframe.style.position = 'fixed';
-					iframe.style.top = '0';
-					iframe.style.left = '0';
-					iframe.style.border = 'none';
-					window.gameWindow.document.body.append(iframe);
+						const iframe = window.gameWindow.document.createElement('iframe');
+						iframe.src = version;
+						iframe.width = '100%';
+						iframe.height = '100%';
+						iframe.style.position = 'fixed';
+						iframe.style.top = '0';
+						iframe.style.left = '0';
+						iframe.style.border = 'none';
+						window.gameWindow.document.body.append(iframe);
 
-					if (iframe.contentWindow) {
+						['keydown', 'keyup'].forEach((eventType) =>
+							window.gameWindow?.addEventListener(eventType, (event) =>
+								iframe.contentWindow?.dispatchEvent(
+									new KeyboardEvent(eventType, event),
+								),
+							),
+						);
+						window.gameWindowIframe = iframe.contentWindow;
+					} else window.gameWindowIframe = window.gameWindow;
+					if (window.gameWindowIframe) {
 						(
 							['debug', 'log', 'info', 'warn', 'error'] as (
 								| 'debug'
@@ -141,24 +151,13 @@ const game = {
 								| 'error'
 							)[]
 						).forEach((type) => {
-							if (iframe.contentWindow)
-								iframe.contentWindow.console[type] = (msg: string) =>
+							if (window.gameWindowIframe)
+								window.gameWindowIframe.console[type] = (msg: string) =>
 									consoleLog(type, msg);
 						});
-
-						['keydown', 'keyup'].forEach((eventType) =>
-							window.gameWindow?.addEventListener(eventType, (event) =>
-								iframe.contentWindow?.dispatchEvent(
-									new KeyboardEvent(eventType, event),
-								),
-							),
-						);
-
-						window.gameWindow.focus();
-						window.gameWindow.document.documentElement.requestFullscreen();
 					}
-
-					window.gameWindowIframe = iframe.contentWindow;
+					window.gameWindow.focus();
+					window.gameWindow.document.documentElement.requestFullscreen();
 				}
 			} else {
 				window.gameWindow.focus();
