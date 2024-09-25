@@ -108,10 +108,11 @@ const game = {
 			if (console) console.style.display = 'flex';
 
 			if (!window.gameWindow || window.gameWindow.closed) {
+				const noPopup = storage.local.get('noPopup');
 				window.gameWindow = window.open(
 					'about:blank',
 					'_blank',
-					`popup=${storage.local.get('noPopup') ? 'false' : 'true'}`,
+					`popup=${noPopup ? 'false' : 'true'}`,
 				);
 				if (window.gameWindow) {
 					window.gameWindow.document.title = 'MineXLauncher';
