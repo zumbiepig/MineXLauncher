@@ -1,5 +1,4 @@
-/* const CACHE_VERSION = '1.6';
-const OFFLINE_URL = '/offline/';
+const OFFLINE_URL = '/offline.html';
 const CACHE_ASSETS = [
 	OFFLINE_URL,
 	'/resources/images/icons/favicon.webp',
@@ -24,22 +23,9 @@ const CACHE_ASSETS = [
 	'/resources/images/backgrounds/themes/retro.webp',
 	'/resources/images/backgrounds/themes/starfall.webp',
 	'/resources/images/backgrounds/themes/campfire.webp',
-	'/resources/images/icons/nav/game.webp',
-	'/resources/images/covers/minecraft.webp',
-	'/resources/images/icons/clients/all.webp',
-	// i am deducing that the max file size is 10mb
-	// we need to do something else
-	//'/game/offline/main/EaglercraftL_1.9.html',
-	//'/game/offline/main/EaglercraftX_1.8.html',
-	//'/game/offline/main/Eaglercraft_1.5.html',
-	'/game/offline/main/Eaglercraft_1.2.5.html',
-	//'/game/offline/main/Eaglercraft_b1.7.3.html',
-	'/game/offline/main/Eaglercraft_b1.3.html',
-	'/game/offline/main/Eaglercraft_a1.2.6.html',
-	'/game/offline/main/Eaglercraft_Indev.html',
 ];
 
-const cacheName = `minexlauncher-v${CACHE_VERSION}`;
+const cacheName = `minexlauncher`;
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
@@ -88,4 +74,4 @@ self.addEventListener('fetch', (event) => {
 			}),
 		);
 	}
-}); */
+});

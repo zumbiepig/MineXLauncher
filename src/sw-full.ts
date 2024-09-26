@@ -1,5 +1,4 @@
-/* const cacheVersion = '1.6';
-const cacheName = `minexlauncher-full-v${cacheVersion}`;
+const cacheName = `minexlauncher-full`;
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
@@ -55,4 +54,4 @@ self.addEventListener('fetch', (event) => {
 			return response ?? fetch(event.request);
 		}),
 	);
-}); */
+});
