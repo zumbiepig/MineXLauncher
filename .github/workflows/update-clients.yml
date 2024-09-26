@@ -29,88 +29,82 @@ jobs:
         run: |
           git clone https://git.eaglercraft.rip/eaglercraft/eaglercraft-1.8-workspace.git ${{ runner.temp }}/eaglerx
           rm -rf \
-            ./src/game/web/main/1.8.8/lang/ \
-            ./src/game/web/main/1.8.8/assets.epk \
-            ./src/game/web/main/1.8.8/classes.js \
-            ./src/game/web/main/1.8.8/classes.js.map \
-            ./src/game/offline/main/EaglercraftX_1.8.8.html \
+            ./src/game/main/1.8.8/lang/ \
+            ./src/game/main/1.8.8/assets.epk \
+            ./src/game/main/1.8.8/classes.js \
+            ./src/game/main/1.8.8/offline.html \
             ${{ runner.temp }}/eaglerx/javascript/assets.epk \
             ${{ runner.temp }}/eaglerx/javascript/classes.js
           cd ${{ runner.temp }}/eaglerx/
           chmod +x ./gradlew
-          java -jar "desktopRuntime/CompileEPK.jar" "desktopRuntime/resources" "javascript/assets.epk"
           ./gradlew generateJavascript
-          wget -O ${{ github.workspace }}/src/game/offline/main/EaglercraftX_1.8.8.html https://git.eaglercraft.rip/eaglercraft/eaglercraft-builds/raw/branch/main/EaglercraftX_1.8_Offline_Signed_Client.html
+          bash ./CompileEPK.sh
+          wget -O ${{ github.workspace }}/src/game/main/1.8.8/offline.html https://git.eaglercraft.rip/eaglercraft/eaglercraft-builds/raw/branch/main/EaglercraftX_1.8_Offline_Signed_Client.html
           cd ${{ github.workspace }}
-          cp -r ${{ runner.temp }}/eaglerx/javascript/lang/ ./src/game/web/main/1.8.8/lang/
-          cp ${{ runner.temp }}/eaglerx/javascript/assets.epk ./src/game/web/main/1.8.8/assets.epk
-          cp ${{ runner.temp }}/eaglerx/javascript/classes.js ./src/game/web/main/1.8.8/classes.js
+          cp -r --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/lang/ ./src/game/main/1.8.8/lang/
+          cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/assets.epk ./src/game/main/1.8.8/assets.epk
+          cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/classes.js ./src/game/main/1.8.8/classes.js
       # FREEZE AT V0.6.1 UNTIL FURTHER NOTICE
       #- name: Compile EaglercraftL 1.9
       #  if: success() || failure()
       #  run: |
       #    git clone https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod.git ${{ runner.temp }}/eaglerl
       #    rm -rf \
-      #      ./src/game/web/main/1.9.4/lang/ \
-      #      ./src/game/web/main/1.9.4/assets.epk \
-      #      ./src/game/web/main/1.9.4/classes.js \
-      #      ./src/game/web/main/1.9.4/classes.js.map \
-      #      ./src/game/offline/main/EaglercraftL_1.9.4.html \
+      #      ./src/game/main/1.9.4/lang/ \
+      #      ./src/game/main/1.9.4/assets.epk \
+      #      ./src/game/main/1.9.4/classes.js \
+      #      ./src/game/main/1.9.4/offline.html \
       #      ${{ runner.temp }}/eaglerl/javascript/assets.epk \
       #      ${{ runner.temp }}/eaglerl/javascript/classes.js
       #    cd ${{ runner.temp }}/eaglerl/
       #    chmod +x ./gradlew
-      #    java -jar "resources/CompileEPK.jar" "resources/resources" "javascript/assets.epk"
       #    ./gradlew generateJavascript
-      #    wget -O ${{ github.workspace }}/src/game/offline/main/EaglercraftL_1.9.4.html https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases/download/latest/EaglercraftL_1.9_Offline_Signed_Client.html
+      #    bash ./CompileEPK.sh
+      #    wget -O ${{ github.workspace }}/src/game/main/1.9.4/offline.html https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases/download/latest/EaglercraftL_1.9_Offline_Signed_Client.html
       #    cd ${{ github.workspace }}
-      #    cp -r ${{ runner.temp }}/eaglerl/javascript/lang/ ./src/game/web/main/1.9.4/lang/
-      #    cp ${{ runner.temp }}/eaglerl/javascript/assets.epk ./src/game/web/main/1.9.4/assets.epk
-      #    cp ${{ runner.temp }}/eaglerl/javascript/classes.js ./src/game/web/main/1.9.4/classes.js
+      #    cp -r --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/lang/ ./src/game/main/1.9.4/lang/
+      #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/assets.epk ./src/game/main/1.9.4/assets.epk
+      #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/classes.js ./src/game/main/1.9.4/classes.js
       - name: Compile Starlike Client
         if: success() || failure()
         run: |
           git clone https://github.com/SpeedSlicer/Starlike-Client.git ${{ runner.temp }}/starlike
           rm -rf \
-            ./src/game/web/clients/starlike/lang/ \
-            ./src/game/web/clients/starlike/assets.epk \
-            ./src/game/web/clients/starlike/classes.js \
-            ./src/game/web/clients/starlike/classes.js.map \
-            ./src/game/offline/clients/Starlike_Client.html \
+            ./src/game/clients/starlike/assets.epk \
+            ./src/game/clients/starlike/classes.js \
+            ./src/game/clients/starlike/offline.html \
             ${{ runner.temp }}/starlike/javascript/assets.epk \
             ${{ runner.temp }}/starlike/javascript/classes.js
           cd ${{ runner.temp }}/starlike/
           chmod +x ./gradlew
-          java -jar "desktopRuntime/CompileEPK.jar" "desktopRuntime/resources" "javascript/assets.epk"
           ./gradlew generateJavascript
-          java -cp "desktopRuntime/MakeOfflineDownload.jar:desktopRuntime/CompileEPK.jar" net.lax1dude.eaglercraft.v1_8.buildtools.workspace.MakeOfflineDownload "javascript/OfflineDownloadTemplate.txt" "javascript/classes.js" "javascript/assets.epk" "/dev/null" "javascript/Starlike_Client_International.html" "javascript/lang"
+          bash ./CompileEPK.sh
+          bash ./MakeOfflineDownload.sh
           cd ${{ github.workspace }}
-          cp -r ${{ runner.temp }}/starlike/javascript/lang/ ./src/game/web/clients/starlike/lang/
-          cp ${{ runner.temp }}/starlike/javascript/assets.epk ./src/game/web/clients/starlike/assets.epk
-          cp ${{ runner.temp }}/starlike/javascript/classes.js ./src/game/web/clients/starlike/classes.js
-          cp ${{ runner.temp }}/starlike/javascript/Starlike_Client_International.html ./src/game/offline/clients/Starlike_Client.html
+          cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/assets.epk ./src/game/clients/starlike/assets.epk
+          cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/classes.js ./src/game/clients/starlike/classes.js
+          cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/Starlike_Client_Offline.html ./src/game/clients/starlike/offline.html
       - name: Compile Shadow Client
         if: success() || failure()
         run: |
           git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
           rm -rf \
-            ./src/game/web/clients/shadow/lang/ \
-            ./src/game/web/clients/shadow/assets.epk \
-            ./src/game/web/clients/shadow/classes.js \
-            ./src/game/web/clients/shadow/classes.js.map \
-            ./src/game/offline/clients/Shadow_Client.html \
+            ./src/game/clients/shadow/lang/ \
+            ./src/game/clients/shadow/assets.epk \
+            ./src/game/clients/shadow/classes.js \
+            ./src/game/clients/shadow/offline.html \
             ${{ runner.temp }}/shadow/javascript/assets.epk \
             ${{ runner.temp }}/shadow/javascript/classes.js
           cd ${{ runner.temp }}/shadow/
           chmod +x ./gradlew
-          java -jar "desktopRuntime/CompileEPK.jar" "desktopRuntime/resources" "javascript/assets.epk"
           ./gradlew generateJavascript
-          java -cp "desktopRuntime/MakeOfflineDownload.jar:desktopRuntime/CompileEPK.jar" net.lax1dude.eaglercraft.v1_8.buildtools.workspace.MakeOfflineDownload "javascript/OfflineDownloadTemplate.txt" "javascript/classes.js" "javascript/assets.epk" "/dev/null" "javascript/Shadow_Client_International.html" "javascript/lang"
+          bash ./CompileEPK.sh
+          bash ./MakeOfflineDownload.sh
           cd ${{ github.workspace }}
-          cp -r ${{ runner.temp }}/shadow/javascript/lang/ ./src/game/web/clients/shadow/lang/
-          cp ${{ runner.temp }}/shadow/javascript/assets.epk ./src/game/web/clients/shadow/assets.epk
-          cp ${{ runner.temp }}/shadow/javascript/classes.js ./src/game/web/clients/shadow/classes.js
-          cp ${{ runner.temp }}/shadow/javascript/Shadow_Client_International.html ./src/game/offline/clients/Shadow_Client.html
+          cp -r --no-preserve=mode ${{ runner.temp }}/shadow/javascript/lang/ ./src/game/clients/shadow/lang/
+          cp --no-preserve=mode ${{ runner.temp }}/shadow/javascript/assets.epk ./src/game/clients/shadow/assets.epk
+          cp --no-preserve=mode ${{ runner.temp }}/shadow/javascript/classes.js ./src/game/clients/shadow/classes.js
+          cp --no-preserve=mode ${{ runner.temp }}/shadow/javascript/Shadow_Client_International.html ./src/game/clients/shadow/offline.html
       - name: Commit and push changes
         id: git-auto-commit-action
         if: success() || failure()

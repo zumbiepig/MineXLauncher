@@ -446,39 +446,8 @@ window.eaglercraftXOpts = {
 			primary: randomRelay === 2,
 		},
 	],
-	hooks: {
-		localStorageSaved: (key, data) => {
-			const dataStorage = storage.local.get('eaglercraftXData') ?? {};
-			switch (key) {
-				case 'p':
-					dataStorage.profile = data;
-					break;
-				case 'g':
-					dataStorage.settings = data;
-					break;
-				case 's':
-					dataStorage.servers = data;
-					break;
-				case 'r':
-					dataStorage.relays = data;
-					break;
-			}
-			storage.local.set('eaglercraftXData', dataStorage);
-		},
-		localStorageLoaded: (key) => {
-			const data = storage.local.get('eaglercraftXData');
-			switch (key) {
-				case 'p':
-					return data?.profile ? data?.profile : null;
-				case 'g':
-					return data?.settings ? data?.settings : null;
-				case 's':
-					return data?.servers ? data?.servers : null;
-				case 'r':
-					return data?.relays ? data?.relays : null;
-			}
-		},
-	},
+	localStorageNamespace:
+		'_eaglercraftX_' + window.location.pathname.replace(/[^A-Za-z0-9]/g, '_'),
 	Mods: storage.local.get('addons')?.mods ?? [],
 };
 
