@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const cacheName = `minexlauncher-full`;
 
 self.addEventListener('install', (event) => {

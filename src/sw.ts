@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const OFFLINE_URL = '/offline.html';
 const CACHE_ASSETS = [
 	OFFLINE_URL,
