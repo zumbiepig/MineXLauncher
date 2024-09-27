@@ -43,7 +43,8 @@ srcFiles.forEach((file) => {
 	else if (isDev) copyFiles.push(file);
 	else if (/\.(html|css|js|json)$/.test(strippedPath)) {
 		if (
-			strippedPath.startsWith('/game/offline/') ||
+			(strippedPath.startsWith('/game/') &&
+				strippedPath.endsWith('/offline.html')) ||
 			basename(strippedPath) === 'classes.js'
 		)
 			copyFiles.push(file);
