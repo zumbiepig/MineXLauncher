@@ -5,11 +5,10 @@ import {
 	statSync,
 	writeFileSync,
 	readFileSync,
-	// rmSync,
+	rmSync,
 } from 'fs';
-import { resolve, dirname, basename } from 'path';
+import { resolve, dirname } from 'path';
 import { minify } from 'html-minifier';
-import javascriptObfuscator from 'javascript-obfuscator';
 import chalk from 'chalk';
 
 function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
@@ -27,7 +26,6 @@ function getFiles(baseDir: string, dir?: string, filesArr?: string[]) {
 	return filesArr;
 }
 
-const isDev = process.env.NODE_ENV === 'development' ? true : false;
 const srcDir = resolve(import.meta.dir, 'src');
 const publicDir = resolve(
 	import.meta.dir,
@@ -40,22 +38,16 @@ const copyFiles: string[] = [];
 srcFiles.forEach((file) => {
 	const strippedPath = file.replace(new RegExp(`^${srcDir}`), '');
 	if (file.endsWith('.ts')) bundleFiles.push(file);
-	else if (isDev) copyFiles.push(file);
-	else if (/\.(html|css|js|json)$/.test(strippedPath)) {
-		if (
-			(strippedPath.startsWith('/game/') &&
-				strippedPath.endsWith('/offline.html')) ||
-			basename(strippedPath) === 'classes.js'
-		)
-			copyFiles.push(file);
-		else minifyFiles.push(file);
-	} else copyFiles.push(file);
+	else if (
+		/\.(?:html|css|js|json)$/.test(strippedPath) &&
+		!/^\/game\/.*(?:\/offline\.html|\/classes\.js)$/.test(strippedPath)
+	)
+		minifyFiles.push(file);
+	else copyFiles.push(file);
 });
 
-/* if (!isDev) {
-	console.log(chalk.cyan('Removing old build artifacts...\n'));
-	rmSync(publicDir, { force: true, recursive: true });
-} */
+console.log(chalk.cyan('Removing old build artifacts...\n'));
+rmSync(publicDir, { force: true, recursive: true });
 
 console.log(chalk.cyan('Bundling TypeScript and modules...\n'));
 await build({
@@ -70,39 +62,21 @@ await build({
 	},
 });
 
-if (!isDev) {
-	console.log(chalk.cyan('Minifying HTML, JS, CSS, and JSON...\n'));
-	minifyFiles.forEach((file) => {
-		const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir);
-		mkdirSync(dirname(outputPath), { recursive: true });
-		writeFileSync(
-			outputPath,
-			minify(readFileSync(file, 'utf-8'), {
-				collapseWhitespace: true,
-				removeComments: true,
-				minifyCSS: true,
-				minifyJS: true,
-				continueOnParseError: true,
-			}),
-		);
-	});
-
-	console.log(chalk.cyan('Obfuscating JavaScript...\n'));
-	bundleFiles.forEach((file) => {
-		const outputPath = file
-			.replace(new RegExp(`^${srcDir}`), publicDir)
-			.replace(/\.ts$/, '.js');
-		writeFileSync(
-			outputPath,
-			javascriptObfuscator
-				.obfuscate(readFileSync(outputPath, 'utf-8'), {
-					//optionsPreset: 'medium-obfuscation',
-					target: 'browser',
-				})
-				.getObfuscatedCode(),
-		);
-	});
-}
+console.log(chalk.cyan('Minifying HTML, JS, CSS, and JSON...\n'));
+minifyFiles.forEach((file) => {
+	const outputPath = file.replace(new RegExp(`^${srcDir}`), publicDir);
+	mkdirSync(dirname(outputPath), { recursive: true });
+	writeFileSync(
+		outputPath,
+		minify(readFileSync(file, 'utf-8'), {
+			collapseWhitespace: true,
+			removeComments: true,
+			minifyCSS: true,
+			minifyJS: true,
+			continueOnParseError: true,
+		}),
+	);
+});
 
 console.log(chalk.cyan('Copying other files...\n'));
 copyFiles.forEach((file) => {
