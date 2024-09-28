@@ -18,6 +18,8 @@
 - Offline preference order: Signed, International, en_US
 - Do not update the index.html
 
+(this list is outdated)
+
 | Name               | Version/commit                    | Date updated | Link                                                                                            |
 | ------------------ | --------------------------------- | ------------ | ----------------------------------------------------------------------------------------------- |
 | 1.9.4              | v0.6.1                            | 07/24/2024   | [Gitea](https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases)                        |
