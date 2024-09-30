@@ -19,7 +19,7 @@
 		"compression": "^1.7.4",
 		"cookie-parser": "^1.4.6",
 		"express": "^4.21.0",
-		"helmet": "^7.1.0",
+		"helmet": "^8.0.0",
 		"http-proxy": "^1.18.1",
 		"indexeddb-export-import": "^2.1.5",
 		"jquery": "^3.7.1",
