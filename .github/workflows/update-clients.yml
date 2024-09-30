@@ -25,7 +25,6 @@ jobs:
         with:
           cache-disabled: true
       - name: Compile EaglercraftX 1.8
-        if: success() || failure()
         run: |
           git clone https://git.eaglercraft.rip/eaglercraft/eaglercraft-1.8-workspace.git ${{ runner.temp }}/eaglerx
           rm -rf \
@@ -46,7 +45,6 @@ jobs:
           cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/classes.js ./src/game/main/1.8.8/classes.js
       # FREEZE AT V0.6.1 UNTIL FURTHER NOTICE
       #- name: Compile EaglercraftL 1.9
-      #  if: success() || failure()
       #  run: |
       #    git clone https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod.git ${{ runner.temp }}/eaglerl
       #    rm -rf \
@@ -66,9 +64,8 @@ jobs:
       #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/assets.epk ./src/game/main/1.9.4/assets.epk
       #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/classes.js ./src/game/main/1.9.4/classes.js
       - name: Compile Starlike Client
-        if: success() || failure()
         run: |
-          git clone https://github.com/SpeedSlicer/Starlike-Client.git ${{ runner.temp }}/starlike
+          git clone https://git.webmc.xyz/zumbiepig/Starlike-Client.git ${{ runner.temp }}/starlike
           rm -rf \
             ./src/game/clients/starlike/assets.epk \
             ./src/game/clients/starlike/classes.js \
@@ -85,7 +82,6 @@ jobs:
           cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/classes.js ./src/game/clients/starlike/classes.js
           cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/Starlike_Client_Offline.html ./src/game/clients/starlike/offline.html
       - name: Compile Shadow Client
-        if: success() || failure()
         run: |
           git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
           rm -rf \
@@ -107,7 +103,6 @@ jobs:
           cp --no-preserve=mode ${{ runner.temp }}/shadow/javascript/Shadow_Client_International.html ./src/game/clients/shadow/offline.html
       - name: Commit and push changes
         id: git-auto-commit-action
-        if: success() || failure()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'github-actions: auto-update clients'
