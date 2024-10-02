@@ -63,24 +63,6 @@ jobs:
       #    cp -r --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/lang/ ./src/game/main/1.9.4/lang/
       #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/assets.epk ./src/game/main/1.9.4/assets.epk
       #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/classes.js ./src/game/main/1.9.4/classes.js
-      - name: Compile Starlike Client
-        run: |
-          git clone https://git.webmc.xyz/zumbiepig/Starlike-Client.git ${{ runner.temp }}/starlike
-          rm -rf \
-            ./src/game/clients/starlike/assets.epk \
-            ./src/game/clients/starlike/classes.js \
-            ./src/game/clients/starlike/offline.html \
-            ${{ runner.temp }}/starlike/javascript/assets.epk \
-            ${{ runner.temp }}/starlike/javascript/classes.js
-          cd ${{ runner.temp }}/starlike/
-          chmod +x ./gradlew
-          ./gradlew generateJavascript
-          bash ./CompileEPK.sh
-          bash ./MakeOfflineDownload.sh
-          cd ${{ github.workspace }}
-          cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/assets.epk ./src/game/clients/starlike/assets.epk
-          cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/classes.js ./src/game/clients/starlike/classes.js
-          cp --no-preserve=mode ${{ runner.temp }}/starlike/javascript/Starlike_Client_Offline.html ./src/game/clients/starlike/offline.html
       - name: Compile Shadow Client
         run: |
           git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
