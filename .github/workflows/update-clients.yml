@@ -2,7 +2,7 @@ name: Auto-update clients
 
 on:
   schedule:
-    - cron: '0 0,12 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -20,69 +20,19 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-disabled: true
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v3
       - name: Compile EaglercraftX 1.8
         run: |
+          rm ${{ github.workspace }}/src/game/main/1.8.8/lang/*
           git clone https://git.eaglercraft.rip/eaglercraft/eaglercraft-1.8-workspace.git ${{ runner.temp }}/eaglerx
-          rm -rf \
-            ./src/game/main/1.8.8/lang/ \
-            ./src/game/main/1.8.8/assets.epk \
-            ./src/game/main/1.8.8/classes.js \
-            ./src/game/main/1.8.8/offline.html \
-            ${{ runner.temp }}/eaglerx/javascript/assets.epk \
-            ${{ runner.temp }}/eaglerx/javascript/classes.js
-          cd ${{ runner.temp }}/eaglerx/
-          chmod +x ./gradlew
-          ./gradlew generateJavascript
+          cd ${{ runner.temp }}/eaglerx
           bash ./CompileEPK.sh
+          bash ./CompileJS.sh
+          cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/assets.epk ${{ github.workspace }}/src/game/main/1.8.8/assets.epk
+          cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/classes.js ${{ github.workspace }}/src/game/main/1.8.8/classes.js
+          cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/lang/* ${{ github.workspace }}/src/game/main/1.8.8/lang
           wget -O ${{ github.workspace }}/src/game/main/1.8.8/offline.html https://git.eaglercraft.rip/eaglercraft/eaglercraft-builds/raw/branch/main/EaglercraftX_1.8_Offline_Signed_Client.html
-          cd ${{ github.workspace }}
-          cp -r --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/lang/ ./src/game/main/1.8.8/lang/
-          cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/assets.epk ./src/game/main/1.8.8/assets.epk
-          cp --no-preserve=mode ${{ runner.temp }}/eaglerx/javascript/classes.js ./src/game/main/1.8.8/classes.js
-      # FREEZE AT V0.6.1 UNTIL FURTHER NOTICE
-      #- name: Compile EaglercraftL 1.9
-      #  run: |
-      #    git clone https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod.git ${{ runner.temp }}/eaglerl
-      #    rm -rf \
-      #      ./src/game/main/1.9.4/lang/ \
-      #      ./src/game/main/1.9.4/assets.epk \
-      #      ./src/game/main/1.9.4/classes.js \
-      #      ./src/game/main/1.9.4/offline.html \
-      #      ${{ runner.temp }}/eaglerl/javascript/assets.epk \
-      #      ${{ runner.temp }}/eaglerl/javascript/classes.js
-      #    cd ${{ runner.temp }}/eaglerl/
-      #    chmod +x ./gradlew
-      #    ./gradlew generateJavascript
-      #    bash ./CompileEPK.sh
-      #    wget -O ${{ github.workspace }}/src/game/main/1.9.4/offline.html https://git.zelz.net/Eagler-Lambda/hoosiertransfer-mod/releases/download/latest/EaglercraftL_1.9_Offline_Signed_Client.html
-      #    cd ${{ github.workspace }}
-      #    cp -r --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/lang/ ./src/game/main/1.9.4/lang/
-      #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/assets.epk ./src/game/main/1.9.4/assets.epk
-      #    cp --no-preserve=mode ${{ runner.temp }}/eaglerl/javascript/classes.js ./src/game/main/1.9.4/classes.js
-      - name: Compile Shadow Client
-        run: |
-          git clone https://github.com/PeytonPlayz595/Shadow-4.0.git ${{ runner.temp }}/shadow
-          rm -rf \
-            ./src/game/clients/shadow/lang/ \
-            ./src/game/clients/shadow/assets.epk \
-            ./src/game/clients/shadow/classes.js \
-            ./src/game/clients/shadow/offline.html \
-            ${{ runner.temp }}/shadow/javascript/assets.epk \
-            ${{ runner.temp }}/shadow/javascript/classes.js
-          cd ${{ runner.temp }}/shadow/
-          chmod +x ./gradlew
-          ./gradlew generateJavascript
-          bash ./CompileEPK.sh
-          bash ./MakeOfflineDownload.sh
-          cd ${{ github.workspace }}
-          cp -r --no-preserve=mode ${{ runner.temp }}/shadow/javascript/lang/ ./src/game/clients/shadow/lang/
-          cp --no-preserve=mode ${{ runner.temp }}/shadow/javascript/assets.epk ./src/game/clients/shadow/assets.epk
-          cp --no-preserve=mode ${{ runner.temp }}/shadow/javascript/classes.js ./src/game/clients/shadow/classes.js
-          cp --no-preserve=mode ${{ runner.temp }}/shadow/javascript/Shadow_Client_International.html ./src/game/clients/shadow/offline.html
       - name: Commit and push changes
         id: git-auto-commit-action
         uses: stefanzweifel/git-auto-commit-action@v5
