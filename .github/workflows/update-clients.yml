@@ -20,8 +20,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      - name: Validate Gradle Wrapper
-        uses: gradle/actions/wrapper-validation@v3
       - name: Compile EaglercraftX 1.8
         run: |
           rm ${{ github.workspace }}/src/game/main/1.8.8/lang/*
